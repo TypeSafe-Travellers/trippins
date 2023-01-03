@@ -6,7 +6,9 @@
     "type": "git",
     "url": "https://github.com/TypeSafe-Travellers/App.git"
   },
-  "keywords": ["TODO: add keywords for better SEO"],
+  "keywords": [
+    "TODO: add keywords for better SEO"
+  ],
   "engines": {
     "node": ">=14.16"
   },
@@ -16,7 +18,11 @@
     "dev": "next dev",
     "postinstall": "prisma generate",
     "lint": "next lint",
-    "start": "next start"
+    "start": "next start",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
   },
   "dependencies": {
     "@next-auth/prisma-adapter": "^1.0.5",
@@ -43,6 +49,8 @@
     "autoprefixer": "^10.4.7",
     "eslint": "^8.30.0",
     "eslint-config-next": "13.1.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.1.0",
     "postcss": "^8.4.14",
     "prettier": "^2.8.1",
     "prettier-plugin-tailwindcss": "^0.2.1",
