@@ -20,7 +20,7 @@ jobs:
           echo "Adding 'Ship to Production' label to pull request"
           curl -X POST -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" -H "Content-Type: application/json" -d '{"labels": ["Ship to Production"]}' "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.number }}/labels"
       - name: Add "Invalid" Label
-        if: steps.pr-info.outputs.base_ref == 'main' || steps.pr-info.outputs.head_ref != 'dev'
+        if: steps.pr-info.outputs.base_ref == 'main' && steps.pr-info.outputs.head_ref != 'dev'
         run: |
           echo "Adding 'Invalid' label to pull request"
           curl -X POST -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" -H "Content-Type: application/json" -d '{"labels": ["Invalid"]}' "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.number }}/labels"
