@@ -1,15 +1,29 @@
 name: "Pull Request Labeler"
+
 on:
   pull_request:
     branches: ["*"]
 
 jobs:
-  triage:
-    permissions:
-      contents: read
-      pull-requests: write
+  label:
     runs-on: ubuntu-latest
+    name: Add label
     steps:
-      - uses: actions/labeler@v4
-        with:
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+      - uses: actions/checkout@v2
+      - name: Get branch name
+        id: get_branch
+        run: echo "Branch name is ${{ github.ref }}"
+      - name: Add label
+        if: steps.get_branch.outputs.branch_name == 'refs/heads/main'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git tag -a "Ship to Production" -m "This code has been pushed to the main branch and is ready for production deployment"
+          git push origin "Ship to Production"
+      - name: Add invalid label
+        if: steps.get_branch.outputs.branch_name != 'refs/heads/main'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git tag -a "invalid" -m "This code was not pushed to the main branch and cannot be deployed to production"
+          git push origin "invalid"
