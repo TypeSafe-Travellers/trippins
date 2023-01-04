@@ -2,8 +2,7 @@ name: Ship to Production
 
 on:
   pull_request:
-    branches:
-      - main
+    branches: ["*"]
 
 jobs:
   label_pull_request:
