@@ -14,7 +14,7 @@ jobs:
         run: |
           echo "::set-output name=base_ref::$(jq -r '.pull_request.base.ref' ${GITHUB_EVENT_PATH})"
           echo "::set-output name=head_ref::$(jq -r '.pull_request.head.ref' ${GITHUB_EVENT_PATH})"
-      - name: Add "Ship to Production" Label
+      - name: Add "Ship To Production" Label
         if: steps.pr-info.outputs.base_ref == 'main' && steps.pr-info.outputs.head_ref == 'dev'
         run: |
           echo "Adding 'Ship to Production' label to pull request"
