@@ -9,24 +9,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Get pull request details
-        id: pr
+      - name: Get base branch
+        id: base
+        run: echo "::set-output name=base_branch::$(git rev-parse --abbrev-ref HEAD)"
+      - name: Label pull request
+        if: steps.base.outputs.base_branch == 'main'
         run: |
-          echo "Pull Request Number: ${{ github.event.number }}"
-          echo "Pull Request Source Branch: ${{ github.event.pull_request.head.ref }}"
-          echo "Pull Request Target Branch: ${{ github.event.pull_request.base.ref }}"
-      - name: Add label
-        if: github.event.pull_request.head.ref == 'dev' && github.event.pull_request.base.ref == 'main'
-        run: |
-          echo "Adding 'Ship to Production' label"
-          github.issues.addLabels({
-            issue_number: ${{ github.event.number }},
-            labels: ['Ship to Production']
-          })
-        else:
-          run: |
-            echo "Adding 'Invalid' label"
-            github.issues.addLabels({
-              issue_number: ${{ github.event.number }},
-              labels: ['Invalid']
-            })
+          git remote set-branches --add origin main
+          git fetch
+          git checkout main
+          git merge dev
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Add "Ship to Production" label
+        if: steps.base.outputs.base_branch == 'main'
+        uses: peter-evans/create-and-apply-label@v2
+        with:
+          label: "Ship to Production"
+          color: "0052cc"
+      - name: Add "Invalid" label
+        if: steps.base.outputs.base_branch != 'main'
+        uses: peter-evans/create-and-apply-label@v2
+        with:
+          label: "Invalid"
+          color: "e11d21"
