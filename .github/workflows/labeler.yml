@@ -1,0 +1,29 @@
+name: Ship to Production
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  label_pull_request:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Source Branch
+        id: check-source
+        run: |
+          if [ "${{ github.event.pull_request.head.ref }}" = "dev" ]; then
+            echo "::set-output name=valid::true"
+          else
+            echo "::set-output name=valid::false"
+          fi
+      - name: Label Pull Request
+        if: steps.check-source.outputs.valid == 'true'
+        uses: actions/labeler@v2
+        with:
+          labels: Ship to Production
+      - name: Label Invalid
+        if: steps.check-source.outputs.valid == 'false'
+        uses: actions/labeler@v2
+        with:
+          labels: invalid
