@@ -18,13 +18,13 @@ jobs:
           fi
       - name: Label Pull Request
         if: steps.check-source.outputs.valid == 'true'
-        uses: actions/labeler@v2
+        uses: actions/labeler@v4
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           labels: Ship to Production
       - name: Label Invalid
         if: steps.check-source.outputs.valid == 'false'
-        uses: actions/labeler@v2
+        uses: actions/labeler@v4
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          labels: "invalid"
+          labels: invalid
