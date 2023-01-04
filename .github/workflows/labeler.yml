@@ -1,0 +1,26 @@
+name: Pull Request Labeler
+
+on:
+  pull_request:
+    branches: ["*"]
+
+jobs:
+  labeler:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Get Pull Request Info
+        id: pr-info
+        run: |
+          echo "::set-output name=base_ref::$(jq -r '.pull_request.base.ref' ${GITHUB_EVENT_PATH})"
+          echo "::set-output name=head_ref::$(jq -r '.pull_request.head.ref' ${GITHUB_EVENT_PATH})"
+      - name: Add "Ship to Production" Label
+        if: steps.pr-info.outputs.base_ref == 'main' && steps.pr-info.outputs.head_ref == 'dev'
+        run: |
+          echo "Adding 'Ship to Production' label to pull request"
+          curl -X POST -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" -H "Content-Type: application/json" -d '{"labels": ["Ship to Production"]}' "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.number }}/labels"
+      - name: Add "Invalid" Label
+        if: steps.pr-info.outputs.base_ref == 'main' && steps.pr-info.outputs.head_ref != 'dev'
+        run: |
+          echo "Adding 'Invalid' label to pull request"
+          curl -X POST -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" -H "Content-Type: application/json" -d '{"labels": ["Invalid"]}' "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.number }}/labels"
