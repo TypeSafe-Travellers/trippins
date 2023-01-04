@@ -114,3 +114,29 @@ jobs:
 
       - name: Build project
         run: pnpm build
+
+  labeler:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Get pull request details
+        id: pr
+        run: |
+          echo "Pull Request Number: ${{ github.event.number }}"
+          echo "Pull Request Source Branch: ${{ github.event.pull_request.head.ref }}"
+          echo "Pull Request Target Branch: ${{ github.event.pull_request.base.ref }}"
+      - name: Add label
+        if: github.event.pull_request.head.ref == 'dev' && github.event.pull_request.base.ref == 'main'
+        run: |
+          echo "Adding 'Ship to Production' label"
+          github.issues.addLabels({
+            issue_number: ${{ github.event.number }},
+            labels: ['Ship to Production']
+          })
+        else:
+          run: |
+            echo "Adding 'Invalid' label"
+            github.issues.addLabels({
+              issue_number: ${{ github.event.number }},
+              labels: ['Invalid']
+            })
