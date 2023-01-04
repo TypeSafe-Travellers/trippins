@@ -1,0 +1,18 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "bradlc.vscode-tailwindcss",
+    "steoates.autoimport",
+    "formulahendry.auto-rename-tag",
+    "aaron-bond.better-comments",
+    "eamodio.gitlens",
+    "wix.vscode-import-cost",
+    "oderwat.indent-rainbow",
+    "ms-vscode.vscode-typescript-next",
+    "christian-kohler.npm-intellisense",
+    "christian-kohler.path-intellisense",
+    "prisma.prisma",
+    "rbbit.typescript-hero"
+  ]
+}
