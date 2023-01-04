@@ -20,8 +20,8 @@
     "lint": "next lint",
     "start": "next start",
     "prepare": "husky install",
-    "format": "prettier --write --ignore-unknown .",
-    "format:check": "prettier --check --ignore-unknown ."
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
