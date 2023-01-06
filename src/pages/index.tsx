@@ -1,7 +1,7 @@
 import { type NextPage } from "next";
 import Head from "next/head";
+import Link from "next/link";
 import { boldFont } from "../fonts";
-
 import { api } from "../utils/api";
 
 const Home: NextPage = () => {
@@ -17,7 +17,11 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex min-h-screen items-center justify-center">
-        <div className="group relative mx-10 cursor-pointer">
+        <Link
+          className="group relative mx-10 cursor-pointer"
+          href={"https://github.com/TypeSafe-Travellers/App"}
+          target={"_blank"}
+        >
           <div className="animate-tilt absolute -inset-0.5 rounded-lg bg-gradient-to-r from-cyan-400 to-emerald-400 opacity-75 blur transition duration-1000 group-hover:opacity-100 group-hover:duration-200"></div>
           <div className="relative flex items-center divide-x divide-gray-600 rounded-lg bg-black px-7 py-4 leading-none">
             <p
@@ -26,7 +30,7 @@ const Home: NextPage = () => {
               {hello.data ? hello.data.greeting : "Loading greeting..."}
             </p>
           </div>
-        </div>
+        </Link>
       </main>
     </>
   );
