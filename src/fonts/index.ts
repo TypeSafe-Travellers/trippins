@@ -11,7 +11,7 @@ export const regularFont = localfont({
 });
 
 export const semiBoldFont = localfont({
-  src: "./FoundersGrotesk-SemiBold.woff2",
+  src: "./FoundersGrotesk-Semibold.woff2",
   variable: "--font-GroteskSemiBold",
 });
 
