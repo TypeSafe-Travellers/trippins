@@ -7,8 +7,10 @@ import { api } from "../utils/api";
 import "../styles/globals.css";
 
 import localfont from "@next/font/local";
-const defaultFont = localfont({
+
+const boldFont = localfont({
   src: "../fonts/FoundersGrotesk-Bold.woff2",
+  variable: "--font-GroteskBold",
 });
 
 const MyApp: AppType<{ session: Session | null }> = ({
@@ -17,7 +19,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
 }) => {
   return (
     <SessionProvider session={session}>
-      <main className={defaultFont.className}>
+      <main className={`${boldFont.className} font-bold`}>
         <Component {...pageProps} />
       </main>
     </SessionProvider>

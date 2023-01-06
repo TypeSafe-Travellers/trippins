@@ -16,11 +16,11 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex h-screen items-center justify-center bg-black">
-        <div className="mx-6 flex flex-col items-center gap-2 text-center">
-          <p className="text-3xl text-white lg:text-7xl">
+        <div className="mx-6 flex flex-col items-center gap-10 text-center">
+          <p className="text-3xl font-bold text-white lg:text-7xl">
             {hello.data ? hello.data.greeting : "Loading greeting..."}
           </p>
-          <p className="text-xl text-white lg:text-3xl">
+          <p className="text-xl font-bold text-white lg:text-3xl">
             WIP. Please come back later!
           </p>
         </div>
