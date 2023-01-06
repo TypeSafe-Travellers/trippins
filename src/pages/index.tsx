@@ -18,7 +18,7 @@ const Home: NextPage = () => {
       </Head>
       <main className="flex h-screen flex-col items-center justify-center gap-4 bg-black">
         <p
-          className={`mx-5 text-center text-4xl font-light text-white lg:text-7xl ${boldFont.className}`}
+          className={`mx-5 bg-gradient-to-r from-cyan-500 to-emerald-500 bg-clip-text text-center text-4xl font-light text-transparent lg:text-7xl ${boldFont.className}`}
         >
           {hello.data ? hello.data.greeting : "Loading greeting..."}
         </p>
