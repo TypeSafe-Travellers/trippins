@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    /** reverts back to custom font after loading system font on slower connections  */
+    font-display: swap;
+    /** TODO better background color */
+    @apply bg-black;
+  }
+}

@@ -17,6 +17,7 @@ const config = {
     defaultLocale: "en",
   },
   eslint: { ignoreDuringBuilds: !!process.env.CI },
+  optimizeFonts: false,
 };
 
 export default config;
