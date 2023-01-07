@@ -13,6 +13,7 @@
     "christian-kohler.npm-intellisense",
     "christian-kohler.path-intellisense",
     "prisma.prisma",
-    "rbbit.typescript-hero"
+    "rbbit.typescript-hero",
+    "bbenoist.nix"
   ]
 }
