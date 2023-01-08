@@ -43,6 +43,7 @@ npm run format
 - Prisma
 - tRPC
 - TailwindCSS
+- Radix UI
 - NextAuth.js
 - Repl.it
 
