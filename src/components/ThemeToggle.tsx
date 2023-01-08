@@ -1,8 +1,11 @@
 import { useTheme } from "next-themes";
 import { useState, useEffect } from "react";
+import * as Toggle from "@radix-ui/react-toggle";
+import { SunIcon, MoonIcon } from "../icons";
 
 export const ThemeToggle = () => {
   const [mounted, setMounted] = useState(false);
+  const [lightMode, setLightMode] = useState(false);
   const { theme, setTheme } = useTheme();
 
   // useEffect only runs on the client, so now we can safely show the UI
@@ -15,15 +18,20 @@ export const ThemeToggle = () => {
   }
 
   return (
-    <button
-      id="theme-toggle"
-      type="button"
-      className="rounded-lg p-2.5 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
-      onClick={() => {
-        setTheme(theme === "dark" ? "light" : "dark");
-      }}
+    <Toggle.Root
+      defaultPressed={lightMode}
+      onPressedChange={setLightMode}
+      asChild
     >
-      Change Theme
-    </button>
+      <button
+        onClick={() => {
+          setTheme(theme === "dark" ? "light" : "dark");
+        }}
+        className="2xl cursor-pointer text-black dark:text-white"
+        aria-label="Toggle light/dark mode"
+      >
+        {lightMode ? <MoonIcon /> : <SunIcon />}
+      </button>
+    </Toggle.Root>
   );
 };
