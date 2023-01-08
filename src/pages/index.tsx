@@ -10,7 +10,7 @@ const Home: NextPage = () => {
     text: "We are the TypeSafe Travellers.",
   });
 
-  const {theme, setTheme} = useTheme();
+  const { theme, setTheme } = useTheme();
 
   return (
     <>
@@ -20,8 +20,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="dark:bg-black flex min-h-screen items-center justify-center">
-
+      <main className="flex min-h-screen items-center justify-center dark:bg-black">
         <Link
           className="group relative mx-10 cursor-pointer"
           href={"https://github.com/TypeSafe-Travellers/App"}
@@ -41,7 +40,9 @@ const Home: NextPage = () => {
           id="theme-toggle"
           type="button"
           className="rounded-lg p-2.5 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
-          onClick={() => {setTheme(theme === "dark"? "light" : "dark")}}
+          onClick={() => {
+            setTheme(theme === "dark" ? "light" : "dark");
+          }}
         >
           <svg
             id="theme-toggle-dark-icon"
@@ -67,7 +68,6 @@ const Home: NextPage = () => {
           </svg>
           Change Theme
         </button>
-
       </main>
     </>
   );
