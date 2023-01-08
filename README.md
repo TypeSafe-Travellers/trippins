@@ -59,4 +59,8 @@ npm run format
 - [Milestones](https://github.com/TypeSafe-Travellers/App/milestones)
 - [Roadmap & Priorities](https://github.com/TypeSafe-Travellers/App/projects?query=is%3Aopen)
 
+## Show your support
+
+Give a ⭐️ if you like this project!
+
 ---
