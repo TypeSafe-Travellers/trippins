@@ -1,10 +1,14 @@
 {
   "name": "app",
   "version": "0.1.0",
-  "description": "TODO: add description",
+  "license": "MIT",
+  "homepage": "https://app.typesafetravellers.repl.co/",
   "repository": {
     "type": "git",
     "url": "https://github.com/TypeSafe-Travellers/App.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TypeSafe-Travellers/App/issues"
   },
   "keywords": [
     "TODO: add keywords for better SEO"
