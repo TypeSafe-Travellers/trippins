@@ -3,7 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { boldFont } from "../fonts";
 import { api } from "../utils/api";
-
+import { DiscordLogin, GithubLogin } from "../components";
 const Home: NextPage = () => {
   const hello = api.example.hello.useQuery({
     text: "We are the TypeSafe Travellers.",
@@ -31,6 +31,8 @@ const Home: NextPage = () => {
             </p>
           </div>
         </Link>
+        <DiscordLogin />
+        <GithubLogin />
       </main>
     </>
   );
