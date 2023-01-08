@@ -18,17 +18,20 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex min-h-screen items-center justify-center dark:bg-black">
+      <main className="flex min-h-screen items-center justify-center bg-gray-200 dark:bg-black">
         <div className="flex flex-col items-center gap-10">
           <Link
             className="group relative mx-10 cursor-pointer"
             href={"https://github.com/TypeSafe-Travellers/App"}
             target={"_blank"}
           >
-            <div className="animate-tilt absolute -inset-0.5 rounded-lg bg-gradient-to-r from-cyan-400 to-emerald-400 opacity-75 blur transition duration-1000 group-hover:opacity-100 group-hover:duration-200"></div>
-            <div className="relative flex items-center divide-x divide-gray-600 rounded-lg bg-white px-7 py-4 leading-none dark:bg-black">
+            <div
+              className="animate-tilt absolute -inset-0.5 rounded-lg bg-gradient-to-r from-blue-600 to-red-600 opacity-75 blur 
+            transition duration-1000 group-hover:opacity-100 group-hover:duration-200 dark:from-cyan-500 dark:to-emerald-500"
+            ></div>
+            <div className="relative flex items-center divide-x divide-black rounded-lg bg-gray-300 px-7 py-4 leading-none dark:bg-black">
               <p
-                className={`mx-5 bg-gradient-to-r from-cyan-600 to-emerald-600 bg-clip-text px-6 pt-5 text-center text-4xl text-transparent lg:text-7xl ${boldFont.className}`}
+                className={`mx-5 bg-gradient-to-r from-blue-600 to-red-600 bg-clip-text px-6 pt-5 text-center text-4xl text-transparent dark:from-cyan-600 dark:to-emerald-600 lg:text-7xl ${boldFont.className}`}
               >
                 {hello.data ? hello.data.greeting : "Loading greeting..."}
               </p>
