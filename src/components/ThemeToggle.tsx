@@ -2,6 +2,7 @@ import { useTheme } from "next-themes";
 import { useState, useEffect } from "react";
 import * as Toggle from "@radix-ui/react-toggle";
 import * as Tooltip from "@radix-ui/react-tooltip";
+import clsx from "clsx";
 import { regularFont } from "../fonts";
 import { SunIcon, MoonIcon } from "../icons";
 
@@ -32,7 +33,10 @@ export const ThemeToggle = () => {
               onClick={() => {
                 setTheme(theme === "dark" ? "light" : "dark");
               }}
-              className="2xl cursor-pointer text-black dark:text-gray-200"
+              className={clsx(
+                "cursor-pointer",
+                "text-black dark:text-gray-200",
+              )}
               aria-label="Toggle light/dark mode"
             >
               {lightMode ? <MoonIcon /> : <SunIcon />}
@@ -41,11 +45,24 @@ export const ThemeToggle = () => {
         </Tooltip.Trigger>
         <Tooltip.Content
           sideOffset={4}
-          className="radix-side-top:animate-slide-down-fade radix-side-right:animate-slide-left-fade radix-side-bottom:animate-slide-up-fade radix-side-left:animate-slide-right-fade inline-flex items-center rounded-md bg-gray-900 px-4 pt-4 pb-2 dark:bg-gray-200"
+          className={clsx(
+            "radix-side-top:animate-slide-down-fade",
+            "radix-side-right:animate-slide-left-fade",
+            "radix-side-bottom:animate-slide-up-fade",
+            "radix-side-left:animate-slide-right-fade",
+            "bg-gray-900 dark:bg-gray-200",
+            "rounded-md px-4 pt-4 pb-2",
+            "inline-flex items-center",
+          )}
         >
-          <Tooltip.Arrow className="fill-current text-gray-900 dark:text-gray-200" />
+          <Tooltip.Arrow
+            className={clsx("fill-current", "text-gray-900 dark:text-gray-200")}
+          />
           <span
-            className={`block text-lg text-gray-200 dark:text-gray-900 ${regularFont.className}`}
+            className={clsx(
+              "block text-lg text-gray-200 dark:text-gray-900",
+              `${regularFont.className}`,
+            )}
           >
             Toggle Theme
           </span>
