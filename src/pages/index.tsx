@@ -2,6 +2,7 @@ import { type NextPage } from "next";
 import { ThemeToggle } from "../components";
 import Head from "next/head";
 import Link from "next/link";
+import clsx from "clsx";
 import { boldFont } from "../fonts";
 import { api } from "../utils/api";
 
@@ -18,7 +19,13 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex min-h-screen items-center justify-center bg-gray-200 dark:bg-black">
+      <main
+        className={clsx(
+          "flex min-h-screen items-center justify-center",
+          "bg-gray-200 dark:bg-black",
+        )}
+      >
+        {/** TODO - Placehold Banner. Should be removed later. */}
         <div className="flex flex-col items-center gap-10">
           <Link
             className="group relative mx-10 cursor-pointer"
