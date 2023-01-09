@@ -2,6 +2,7 @@ import { useTheme } from "next-themes";
 import { useState, useEffect } from "react";
 import * as Toggle from "@radix-ui/react-toggle";
 import * as Tooltip from "@radix-ui/react-tooltip";
+import { regularFont } from "../fonts";
 import { SunIcon, MoonIcon } from "../icons";
 
 export const ThemeToggle = () => {
@@ -40,10 +41,12 @@ export const ThemeToggle = () => {
         </Tooltip.Trigger>
         <Tooltip.Content
           sideOffset={4}
-          className="radix-side-top:animate-slide-down-fade radix-side-right:animate-slide-left-fade radix-side-bottom:animate-slide-up-fade radix-side-left:animate-slide-right-fade inline-flex items-center rounded-md bg-white px-4 py-2.5 dark:bg-gray-800"
+          className="radix-side-top:animate-slide-down-fade radix-side-right:animate-slide-left-fade radix-side-bottom:animate-slide-up-fade radix-side-left:animate-slide-right-fade inline-flex items-center rounded-md bg-white px-4 pt-4 pb-2 dark:bg-gray-800"
         >
           <Tooltip.Arrow className="fill-current text-white dark:text-gray-800" />
-          <span className="block text-xs leading-none text-gray-700 dark:text-gray-100">
+          <span
+            className={`block text-lg text-gray-700 dark:text-gray-100 ${regularFont.className}`}
+          >
             Toggle Theme
           </span>
         </Tooltip.Content>
