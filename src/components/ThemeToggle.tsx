@@ -7,7 +7,7 @@ import { SunIcon, MoonIcon } from "../icons";
 
 export const ThemeToggle = () => {
   const [mounted, setMounted] = useState(false);
-  const [lightMode, setLightMode] = useState(false);
+  const [lightMode, setLightMode] = useState<boolean>();
   const { theme, setTheme } = useTheme();
 
   // useEffect only runs on the client, so now we can safely show the UI
