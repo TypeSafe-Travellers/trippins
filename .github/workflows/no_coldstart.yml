@@ -1,0 +1,22 @@
+name: Prevent Repl Coldstart
+
+on:
+  push:
+    branches: ["*"]
+  pull_request:
+    branches: ["*"]
+  # schedules workflow every 5 mins
+  schedule:
+    - cron "*/5 * * * *"
+
+jobs:
+  ping_site:
+    runs-on: ubuntu-latest
+    name: Ping the site
+    steps:
+      - name: Check the site
+        id: hello
+        uses: srt32/uptime@master
+        with:
+          url-to-hit: "https://app.typesafetravellers.repl.co/"
+          expected-statuses: "200,301"
