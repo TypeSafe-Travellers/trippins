@@ -6,9 +6,9 @@ import { regularFont } from "../fonts";
 import { SunIcon, MoonIcon } from "../icons";
 
 export const ThemeToggle = () => {
-  const [mounted, setMounted] = useState(false);
-  const [lightMode, setLightMode] = useState<boolean>();
   const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const [lightMode, setLightMode] = useState(theme === "light" ? true : false);
 
   // useEffect only runs on the client, so now we can safely show the UI
   useEffect(() => {
@@ -32,7 +32,7 @@ export const ThemeToggle = () => {
               onClick={() => {
                 setTheme(theme === "dark" ? "light" : "dark");
               }}
-              className="2xl cursor-pointer text-black dark:text-white"
+              className="2xl cursor-pointer text-black dark:text-gray-200"
               aria-label="Toggle light/dark mode"
             >
               {lightMode ? <MoonIcon /> : <SunIcon />}
@@ -41,11 +41,11 @@ export const ThemeToggle = () => {
         </Tooltip.Trigger>
         <Tooltip.Content
           sideOffset={4}
-          className="radix-side-top:animate-slide-down-fade radix-side-right:animate-slide-left-fade radix-side-bottom:animate-slide-up-fade radix-side-left:animate-slide-right-fade inline-flex items-center rounded-md bg-gray-900 px-4 pt-4 pb-2 dark:bg-white"
+          className="radix-side-top:animate-slide-down-fade radix-side-right:animate-slide-left-fade radix-side-bottom:animate-slide-up-fade radix-side-left:animate-slide-right-fade inline-flex items-center rounded-md bg-gray-900 px-4 pt-4 pb-2 dark:bg-gray-200"
         >
-          <Tooltip.Arrow className="fill-current text-gray-900 dark:text-white" />
+          <Tooltip.Arrow className="fill-current text-gray-900 dark:text-gray-200" />
           <span
-            className={`block text-lg text-white dark:text-gray-900 ${regularFont.className}`}
+            className={`block text-lg text-gray-200 dark:text-gray-900 ${regularFont.className}`}
           >
             Toggle Theme
           </span>
