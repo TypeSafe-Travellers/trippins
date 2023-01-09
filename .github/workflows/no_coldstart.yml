@@ -5,7 +5,7 @@ on:
     branches: ["*"]
   pull_request:
     branches: ["*"]
-  # schedules workflow every 5 mins
+  # schedule workflow every 5 mins
   schedule:
     - cron: "*/5 * * * *"
 
