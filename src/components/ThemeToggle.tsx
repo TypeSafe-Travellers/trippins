@@ -41,11 +41,11 @@ export const ThemeToggle = () => {
         </Tooltip.Trigger>
         <Tooltip.Content
           sideOffset={4}
-          className="radix-side-top:animate-slide-down-fade radix-side-right:animate-slide-left-fade radix-side-bottom:animate-slide-up-fade radix-side-left:animate-slide-right-fade inline-flex items-center rounded-md bg-gray-800 px-4 pt-4 pb-2 dark:bg-white"
+          className="radix-side-top:animate-slide-down-fade radix-side-right:animate-slide-left-fade radix-side-bottom:animate-slide-up-fade radix-side-left:animate-slide-right-fade inline-flex items-center rounded-md bg-gray-900 px-4 pt-4 pb-2 dark:bg-white"
         >
-          <Tooltip.Arrow className="fill-current text-gray-800 dark:text-white" />
+          <Tooltip.Arrow className="fill-current text-gray-900 dark:text-white" />
           <span
-            className={`block text-lg text-white dark:text-black ${regularFont.className}`}
+            className={`block text-lg text-white dark:text-gray-900 ${regularFont.className}`}
           >
             Toggle Theme
           </span>
