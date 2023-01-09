@@ -7,7 +7,7 @@ on:
     branches: ["*"]
   # schedules workflow every 5 mins
   schedule:
-    - cron "*/5 * * * *"
+    - cron: "*/5 * * * *"
 
 jobs:
   ping_site:
