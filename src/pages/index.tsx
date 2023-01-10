@@ -29,7 +29,7 @@ const Home: NextPage = () => {
           >
             <div
               className="animate-tilt absolute -inset-0.5 rounded-lg bg-gradient-to-r from-blue-400 to-red-400 opacity-75 blur 
-            transition duration-1000 group-hover:opacity-100 group-hover:duration-200 dark:from-cyan-500 dark:to-emerald-500"
+            transition duration-1000 group-hover:opacity-100 group-hover:duration-200 dark:from-cyan-700 dark:to-cyan-700"
             ></div>
             <div className="relative flex items-center divide-x divide-black rounded-lg bg-gray-200 px-7 py-4 leading-none dark:bg-black">
               <p
