@@ -6,6 +6,8 @@
   html {
     /** reverts back to custom font after loading system font on slower connections  */
     font-display: swap;
-    /** TODO better background color */
+  }
+  body {
+    @apply bg-gray-200 dark:bg-black;
   }
 }

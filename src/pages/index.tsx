@@ -19,12 +19,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main
-        className={clsx(
-          "flex min-h-screen items-center justify-center",
-          "bg-gray-200 dark:bg-black",
-        )}
-      >
+      <main className={clsx("flex min-h-screen items-center justify-center")}>
         {/** TODO - Placehold Banner. Should be removed later. */}
         <div className="flex flex-col items-center gap-10">
           <Link
