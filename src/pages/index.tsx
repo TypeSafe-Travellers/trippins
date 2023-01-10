@@ -28,12 +28,12 @@ const Home: NextPage = () => {
             target={"_blank"}
           >
             <div
-              className="animate-tilt absolute -inset-0.5 rounded-lg bg-gradient-to-r from-blue-600 to-red-600 opacity-75 blur 
+              className="animate-tilt absolute -inset-0.5 rounded-lg bg-gradient-to-r from-blue-400 to-red-400 opacity-75 blur 
             transition duration-1000 group-hover:opacity-100 group-hover:duration-200 dark:from-cyan-500 dark:to-emerald-500"
             ></div>
             <div className="relative flex items-center divide-x divide-black rounded-lg bg-gray-200 px-7 py-4 leading-none dark:bg-black">
               <p
-                className={`mx-5 bg-gradient-to-r from-blue-600 to-red-600 bg-clip-text px-6 pt-5 text-center text-4xl text-transparent dark:from-cyan-600 dark:to-emerald-600 lg:text-7xl ${boldFont.className}`}
+                className={`mx-5 bg-gradient-to-r from-blue-700 to-red-600 bg-clip-text px-6 pt-5 text-center text-4xl text-transparent dark:from-cyan-600 dark:to-emerald-600 lg:text-7xl ${boldFont.className}`}
               >
                 {hello.data ? hello.data.greeting : "Loading greeting..."}
               </p>
