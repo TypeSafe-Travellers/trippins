@@ -44,7 +44,6 @@ npm run format
 - [Tailwind CSS](https://tailwindcss.com/)
 - [Heroicons](https://heroicons.com/)
 - [Radix UI](https://www.radix-ui.com/)
-- [Repl.it](https://replit.com/)
 - [Prisma](https://www.prisma.io/)
 - [tRPC](https://trpc.io/)
 - [Zod](https://zod.dev/)
