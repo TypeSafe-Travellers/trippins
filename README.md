@@ -2,7 +2,7 @@
 
 ## About
 
-This is a [WIP project](https://typesafe-travellers-app.netlify.app/) by Team TypeSafe Travellers for [SWoC S3](https://swoc.getsocialnow.co/) deployed on [Repl.it](https://app.typesafetravellers.repl.co/).
+This is a [WIP project](https://app.typesafetravellers.repl.co/) by Team TypeSafe Travellers for [SWoC S3](https://swoc.getsocialnow.co/) deployed on [Repl.it](https://app.typesafetravellers.repl.co/).
 
 ## Get Started
 
