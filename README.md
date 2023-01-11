@@ -44,6 +44,7 @@ npm run format
 - tRPC
 - TailwindCSS
 - Radix UI
+- Heroicons
 - NextAuth.js
 - Repl.it
 
