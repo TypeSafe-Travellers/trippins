@@ -45,6 +45,7 @@ npm run format
 - [Heroicons](https://heroicons.com/)
 - [Radix UI](https://www.radix-ui.com/)
 - [Prisma](https://www.prisma.io/)
+- [Repl.it](https://replit.com/)
 - [tRPC](https://trpc.io/)
 - [Zod](https://zod.dev/)
 
