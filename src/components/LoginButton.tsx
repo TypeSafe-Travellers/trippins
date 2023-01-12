@@ -1,10 +1,20 @@
 import { signIn } from "next-auth/react";
+import { regularFont } from "../fonts";
+import clsx from "clsx";
 
 export const LoginButton = () => {
   return (
     <button
       type="button"
-      className="mr-2 mb-2 inline-flex items-center rounded-lg bg-white px-5 py-2.5 text-center text-sm font-medium text-black hover:bg-[#24292F]/90 focus:outline-none focus:ring-4 focus:ring-[#24292F]/50 dark:bg-black dark:text-white dark:hover:bg-[#050708]/30 dark:focus:ring-gray-500"
+      className={clsx(
+        "mr-2 mb-2 px-5 pt-2.5 pb-1",
+        "inline-flex items-center rounded-md text-xl",
+        " bg-white text-center text-black",
+        "border-2 border-solid border-black",
+        "hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-black",
+        "dark:bg-black dark:text-white dark:hover:bg-gray-900 dark:focus:ring-gray-500",
+        `${regularFont.className}`,
+      )}
       onClick={() => signIn()}
     >
       {/* <svg
