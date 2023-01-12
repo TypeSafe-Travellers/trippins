@@ -1,11 +1,10 @@
 import { type NextPage } from "next";
-import { ThemeToggle } from "../components";
+import { LoginButton, ThemeToggle } from "../components";
 import Head from "next/head";
 import Link from "next/link";
 import clsx from "clsx";
 import { boldFont } from "../fonts";
 import { api } from "../utils/api";
-import { signIn } from "next-auth/react";
 
 const Home: NextPage = () => {
   const hello = api.example.hello.useQuery({
@@ -39,7 +38,7 @@ const Home: NextPage = () => {
               </p>
             </div>
           </Link>
-          <button onClick={() => signIn()}>Log In</button>
+          <LoginButton />
           <ThemeToggle />
         </div>
       </main>
