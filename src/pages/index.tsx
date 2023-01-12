@@ -1,5 +1,5 @@
 import { type NextPage } from "next";
-import { LoginButton, Navbar, ThemeToggle } from "../components";
+import { LoginButton, ThemeToggle } from "../components";
 import Head from "next/head";
 import Link from "next/link";
 import clsx from "clsx";
