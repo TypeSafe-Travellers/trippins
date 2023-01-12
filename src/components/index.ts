@@ -1,3 +1,3 @@
 export { GithubLogin } from "./GithubLogin";
-export { DiscordLogin } from "./discordLogin";
+export { DiscordLogin } from "./DiscordLogin";
 export { ThemeToggle } from "./ThemeToggle";
