@@ -1,4 +1,4 @@
-import * as NavigationMenuPrimitive from "@radix-ui/react-navigation-menu";
+import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import clsx from "clsx";
 import React from "react";
 
@@ -6,17 +6,17 @@ import React from "react";
 
 export const Navbar = () => {
   return (
-    <NavigationMenuPrimitive.Root className="relative">
-      <NavigationMenuPrimitive.List className="flex flex-row space-x-2 rounded-lg bg-white p-2 dark:bg-gray-800">
-        <NavigationMenuPrimitive.Item asChild>
-          <NavigationMenuPrimitive.Link
+    <NavigationMenu.Root className="relative">
+      <NavigationMenu.List className="flex flex-row space-x-2 rounded-lg bg-white p-2 dark:bg-gray-800">
+        <NavigationMenu.Item asChild>
+          <NavigationMenu.Link
             href="/"
             className={clsx(
               "rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-900",
               "text-sm font-medium text-gray-700 dark:text-gray-100",
             )}
           >
-            <NavigationMenuPrimitive.Trigger
+            <NavigationMenu.Trigger
               className={clsx(
                 "rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-900",
                 "text-sm font-medium",
@@ -25,19 +25,19 @@ export const Navbar = () => {
               )}
             >
               Home
-            </NavigationMenuPrimitive.Trigger>
-          </NavigationMenuPrimitive.Link>
-        </NavigationMenuPrimitive.Item>
+            </NavigationMenu.Trigger>
+          </NavigationMenu.Link>
+        </NavigationMenu.Item>
 
-        <NavigationMenuPrimitive.Item asChild>
-          <NavigationMenuPrimitive.Link
+        <NavigationMenu.Item asChild>
+          <NavigationMenu.Link
             href="/about"
             className={clsx(
               "rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-900",
               "text-sm font-medium text-gray-700 dark:text-gray-100",
             )}
           >
-            <NavigationMenuPrimitive.Trigger
+            <NavigationMenu.Trigger
               className={clsx(
                 "rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-900",
                 "text-sm font-medium text-gray-700 dark:text-gray-100",
@@ -45,19 +45,19 @@ export const Navbar = () => {
               )}
             >
               Resources
-            </NavigationMenuPrimitive.Trigger>
-          </NavigationMenuPrimitive.Link>
-        </NavigationMenuPrimitive.Item>
+            </NavigationMenu.Trigger>
+          </NavigationMenu.Link>
+        </NavigationMenu.Item>
 
-        <NavigationMenuPrimitive.Item asChild>
-          <NavigationMenuPrimitive.Link
+        <NavigationMenu.Item asChild>
+          <NavigationMenu.Link
             href="/about"
             className={clsx(
               "rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-900",
               "text-sm font-medium text-gray-700 dark:text-gray-100",
             )}
           >
-            <NavigationMenuPrimitive.Trigger
+            <NavigationMenu.Trigger
               className={clsx(
                 "rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-900",
                 "text-sm font-medium",
@@ -66,11 +66,11 @@ export const Navbar = () => {
               )}
             >
               About
-            </NavigationMenuPrimitive.Trigger>
-          </NavigationMenuPrimitive.Link>
-        </NavigationMenuPrimitive.Item>
+            </NavigationMenu.Trigger>
+          </NavigationMenu.Link>
+        </NavigationMenu.Item>
 
-        <NavigationMenuPrimitive.Indicator
+        <NavigationMenu.Indicator
           className={clsx(
             "z-10",
             "top-[100%] flex h-2 items-end justify-center overflow-hidden",
@@ -80,8 +80,8 @@ export const Navbar = () => {
           )}
         >
           <div className="relative top-1 h-2 w-2 rotate-45 bg-white dark:bg-gray-800" />
-        </NavigationMenuPrimitive.Indicator>
-      </NavigationMenuPrimitive.List>
+        </NavigationMenu.Indicator>
+      </NavigationMenu.List>
 
       <div
         className={clsx(
@@ -92,7 +92,7 @@ export const Navbar = () => {
           perspective: "2000px",
         }}
       >
-        <NavigationMenuPrimitive.Viewport
+        <NavigationMenu.Viewport
           className={clsx(
             "relative mt-2 overflow-hidden rounded-md bg-white shadow-lg dark:bg-gray-800",
             "w-radix-navigation-menu-viewport",
@@ -103,6 +103,6 @@ export const Navbar = () => {
           )}
         />
       </div>
-    </NavigationMenuPrimitive.Root>
+    </NavigationMenu.Root>
   );
 };
