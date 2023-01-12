@@ -57,8 +57,8 @@ npm run format
 
 ## Links
 
-- [Website](https://app.typesafetravellers.repl.co//)
-- [Repl.it Repo](https://replit.com/@TypeSafeTravellers/App)
+- [Website](https://apptypesafetravellers.ayanavakarmakar.repl.co)
+- [Repl.it Repo](https://replit.com/@AyanavaKarmakar/apptypesafetravellers)
 - [Milestones](https://github.com/TypeSafe-Travellers/App/milestones)
 - [Roadmap & Priorities](https://github.com/TypeSafe-Travellers/App/projects?query=is%3Aopen)
 
