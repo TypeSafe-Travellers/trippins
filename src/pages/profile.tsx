@@ -5,7 +5,13 @@ import { boldFont, semiBoldFont } from "../fonts";
 
 const Profile: NextPage = () => {
   return (
-    <div className={clsx("flex min-h-screen justify-center", "flex-col gap-2")}>
+    <div
+      className={clsx(
+        "flex min-h-screen justify-center",
+        "flex-col gap-2",
+        "text-gray-900 dark:text-gray-200",
+      )}
+    >
       <div
         className={clsx(
           "text-center text-7xl",
@@ -18,21 +24,21 @@ const Profile: NextPage = () => {
       <div
         className={clsx(
           "mx-auto px-8 pt-6 pb-4",
-          "bg-gradient-to-tl from-red-200/20 via-gray-100 to-blue-200/20",
-          "dark:bg-black",
-          "shadow-lg shadow-blue-200 hover:shadow-red-200",
+          "bg-gradient-to-tl from-red-200/20 via-gray-100 to-blue-200/20 hover:from-red-200/50 hover:via-gray-100 hover:to-blue-200/60",
+          "dark:bg-gradient-to-bl dark:from-blue-900/50 dark:via-sky-800/25 dark:to-blue-900/25",
+          "shadow-lg shadow-blue-200 hover:shadow-red-200 dark:shadow-cyan-700",
           "cursor-pointer",
-          "rounded-lg border-4 border-solid border-black dark:border-white",
+          "rounded-lg border-4 border-solid border-black dark:border-gray-200",
         )}
       >
         <div className={clsx("text-3xl", "my-2", `${semiBoldFont.className}`)}>
-          Username: Ayanava Karmakar
+          Username: John Doe
         </div>
         <div className={clsx("text-3xl", `${semiBoldFont.className}`)}>
-          Email: karmakarayanava2021@gmail.com
+          Email: johndoe123@gmail.com
         </div>
       </div>
-      <div className={clsx("items-center text-center", "pt-5")}>
+      <div className={clsx("items-center pt-5 text-center")}>
         <ThemeToggle />
       </div>
     </div>
