@@ -13,6 +13,8 @@ const Profile: NextPage = () => {
         className={clsx(
           "mx-auto px-8 pt-6 pb-4",
           "bg-white dark:bg-black",
+          "shadow-lg shadow-red-500 hover:shadow-blue-500",
+          "cursor-pointer",
           "rounded-lg border-4 border-solid border-black dark:border-white",
         )}
       >
