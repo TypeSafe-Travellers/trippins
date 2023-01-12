@@ -24,8 +24,8 @@ const Profile: NextPage = () => {
       <div
         className={clsx(
           "mx-auto px-8 pt-6 pb-4",
-          "bg-gradient-to-tl from-red-200/20 via-gray-100 to-blue-200/20 hover:from-red-200/50 hover:via-gray-100 hover:to-blue-200/60",
-          "dark:bg-gradient-to-bl dark:from-blue-900/50 dark:via-sky-800/25 dark:to-blue-900/25",
+          "bg-gradient-to-tl from-red-200/20 via-gray-100 to-blue-200/20 hover:from-red-200/30 hover:via-gray-100 hover:to-blue-200/40",
+          "dark:bg-gradient-to-tl dark:from-black/70 dark:via-black/60 dark:to-black/50",
           "shadow-lg shadow-blue-200 hover:shadow-red-200 dark:shadow-cyan-700",
           "cursor-pointer",
           "rounded-lg border-4 border-solid border-black dark:border-gray-200",
@@ -34,8 +34,11 @@ const Profile: NextPage = () => {
         <div className={clsx("text-3xl", "my-2", `${semiBoldFont.className}`)}>
           Username: John Doe
         </div>
-        <div className={clsx("text-3xl", `${semiBoldFont.className}`)}>
+        <div className={clsx("text-3xl", "my-2", `${semiBoldFont.className}`)}>
           Email: johndoe123@gmail.com
+        </div>
+        <div className={clsx("text-3xl", "my-2", `${semiBoldFont.className}`)}>
+          Trips: 12
         </div>
       </div>
       <div className={clsx("items-center pt-5 text-center")}>
