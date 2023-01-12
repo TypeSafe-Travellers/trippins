@@ -5,7 +5,7 @@ import Link from "next/link";
 import clsx from "clsx";
 import { boldFont } from "../fonts";
 import { api } from "../utils/api";
-import { DiscordLogin, GithubLogin } from "../components";
+import { DiscordLogin } from "../components";
 const Home: NextPage = () => {
   const hello = api.example.hello.useQuery({
     text: "We are the TypeSafe Travellers.",
@@ -39,10 +39,9 @@ const Home: NextPage = () => {
             </div>
           </Link>
           <DiscordLogin />
-          <GithubLogin />
+          {/* <GithubLogin /> */}
           <ThemeToggle />
         </div>
-
       </main>
     </>
   );
