@@ -1,5 +1,6 @@
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import clsx from "clsx";
+import { LogoutButton } from "./LogoutButton";
 
 export const Navbar = () => {
   return (
@@ -66,6 +67,19 @@ export const Navbar = () => {
             </NavigationMenu.Trigger>
           </NavigationMenu.Link>
         </NavigationMenu.Item>
+        {/* <NavigationMenu.Item asChild>
+        <NavigationMenu.Trigger
+              className={clsx(
+                "rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-900",
+                "text-sm font-medium",
+                "text-gray-700 dark:text-gray-100",
+                "focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75",
+              )}
+            >
+              <LogoutButton />
+            </NavigationMenu.Trigger>
+        </NavigationMenu.Item> */}
+        <LogoutButton />
 
         <NavigationMenu.Indicator
           className={clsx(
