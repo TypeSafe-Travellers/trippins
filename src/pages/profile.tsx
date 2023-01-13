@@ -37,9 +37,6 @@ const Profile: NextPage = () => {
         <div className={clsx("text-3xl", "my-2", `${semiBoldFont.className}`)}>
           Email: johndoe123@gmail.com
         </div>
-        <div className={clsx("text-3xl", "my-2", `${semiBoldFont.className}`)}>
-          Trips: 12
-        </div>
       </div>
       <div className={clsx("items-center pt-5 text-center")}>
         <ThemeToggle />
