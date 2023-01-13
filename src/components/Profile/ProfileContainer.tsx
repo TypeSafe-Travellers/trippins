@@ -7,7 +7,7 @@ export const ProfileContainer = () => {
     <>
       <div
         className={clsx(
-          "text-center text-7xl",
+          "text-center text-4xl lg:text-7xl",
           "mx-auto",
           `${boldFont.className}`,
         )}
