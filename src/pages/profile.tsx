@@ -9,7 +9,7 @@ const Profile: NextPage = () => {
       className={clsx(
         "flex min-h-screen justify-center",
         "flex-col gap-2",
-        "text-gray-900 dark:text-gray-200",
+        "text-gray-900 dark:text-zinc-200",
       )}
     >
       <div
