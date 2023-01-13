@@ -1,6 +1,15 @@
 import clsx from "clsx";
 import { semiBoldFont } from "../../fonts";
 
+/**
+ * placeholder object for the profile details
+ * TODO remove later after auth + backend is done
+ */
+const placeholderProfileDetails = {
+  username: "John Doe",
+  email: "johndoe123@gmail.com",
+};
+
 export const ProfileDetails = () => {
   return (
     <>
@@ -15,10 +24,10 @@ export const ProfileDetails = () => {
         )}
       >
         <div className={clsx("text-3xl", "my-2", `${semiBoldFont.className}`)}>
-          Username: John Doe
+          Username: {placeholderProfileDetails.username}
         </div>
         <div className={clsx("text-3xl", "my-2", `${semiBoldFont.className}`)}>
-          Email: johndoe123@gmail.com
+          Email: {placeholderProfileDetails.email}
         </div>
       </div>
     </>
