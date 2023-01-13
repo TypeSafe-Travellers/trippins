@@ -1,6 +1,5 @@
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import clsx from "clsx";
-import React from "react";
 
 
 export const Navbar = () => {
