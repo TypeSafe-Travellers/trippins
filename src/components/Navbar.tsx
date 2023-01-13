@@ -41,7 +41,7 @@ export const Navbar = () => {
                 "focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75",
               )}
             >
-              Resources
+              Profile
             </NavigationMenu.Trigger>
           </NavigationMenu.Link>
         </NavigationMenu.Item>
