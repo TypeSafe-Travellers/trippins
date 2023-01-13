@@ -1,4 +1,4 @@
-![Repo Banner](https://socialify.git.ci/TypeSafe-Travellers/App/image?description=1&language=1&name=1&owner=1&pattern=Solid&theme=Dark)
+![Repo Banner](https://user-images.githubusercontent.com/89210438/212290982-12013266-2913-42ac-8a90-f6ced83741e1.png)
 
 ## About
 
