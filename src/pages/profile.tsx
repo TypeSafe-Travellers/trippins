@@ -1,5 +1,5 @@
-import { type NextPage } from "next";
 import clsx from "clsx";
+import { type NextPage } from "next";
 import { ProfileContainer, ThemeToggle } from "../components";
 
 const Profile: NextPage = () => {
