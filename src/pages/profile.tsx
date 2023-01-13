@@ -12,7 +12,7 @@ const Profile: NextPage = () => {
       )}
     >
       <ProfileContainer />
-      <div className={clsx("items-center pt-5 text-center")}>
+      <div className={clsx("absolute right-5 top-0 pt-5")}>
         <ThemeToggle />
       </div>
     </div>
