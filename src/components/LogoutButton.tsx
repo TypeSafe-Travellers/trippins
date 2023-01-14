@@ -1,5 +1,5 @@
 import { signOut } from "next-auth/react";
-import { clsx } from "clsx";
+import clsx from "clsx";
 import { regularFont } from "../fonts";
 
 export const LogoutButton = () => {
