@@ -1,9 +1,8 @@
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import { useSession } from "next-auth/react";
-import { LoginButton } from "./LoginButton";
+import { LoginButton, LogOutButton } from "./";
 import { regularFont } from "../fonts";
 import clsx from "clsx";
-import { LogOutButton } from "./LogOutButton";
 
 export const Navbar = () => {
   const { status } = useSession();
