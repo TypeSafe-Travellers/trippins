@@ -8,6 +8,6 @@
     font-display: swap;
   }
   body {
-    @apply bg-gradient-to-tl from-red-200/30 via-gray-200 to-blue-200 dark:bg-gradient-to-bl dark:from-slate-900/40 dark:via-cyan-900/75 dark:to-slate-900/40;
+    @apply bg-gradient-to-tl from-red-500/20 via-gray-200 to-blue-500/40 dark:bg-gradient-to-bl dark:from-slate-900/40 dark:via-cyan-900/75 dark:to-slate-900/40;
   }
 }
