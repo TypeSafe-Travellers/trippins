@@ -1,6 +1,6 @@
 import { Transition } from "@headlessui/react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
-import { Cross1Icon } from "@radix-ui/react-icons";
+import { Cross1Icon } from "../../icons";
 import clsx from "clsx";
 import React, { Fragment, useState } from "react";
 
@@ -132,7 +132,7 @@ export const EditProfile = () => {
                   "focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75",
                 )}
               >
-                <Cross1Icon className="h-4 w-4 text-gray-500 hover:text-gray-700 dark:text-gray-500 dark:hover:text-gray-400" />
+                <Cross1Icon />
               </DialogPrimitive.Close>
             </DialogPrimitive.Content>
           </Transition.Child>
