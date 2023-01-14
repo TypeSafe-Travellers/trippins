@@ -51,7 +51,7 @@ export const ThemeToggle = () => {
             "radix-side-bottom:animate-slide-up-fade",
             "radix-side-left:animate-slide-right-fade",
             "bg-gray-900 dark:bg-gray-200",
-            "rounded-md px-4 pt-4 pb-2",
+            "mr-5 rounded-md px-4 pt-4 pb-2",
             "inline-flex items-center",
           )}
         >
