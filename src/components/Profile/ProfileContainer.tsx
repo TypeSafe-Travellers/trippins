@@ -16,7 +16,9 @@ export const ProfileContainer = () => {
         Profile Details
       </div>
       <ProfileDetails />
-      <EditProfile />
+      <div className="pt-5 text-center">
+        <EditProfile />
+      </div>
     </>
   );
 };
