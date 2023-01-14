@@ -68,7 +68,7 @@ export const Navbar = () => {
             </NavigationMenu.Trigger>
           </NavigationMenu.Link>
         </NavigationMenu.Item>
-
+                                            
         <div className="absolute right-5 top-0 pt-3">
           <LogoutButton />
         </div>
