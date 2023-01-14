@@ -11,8 +11,8 @@ export const LoginButton = () => {
         "inline-flex items-center rounded-md text-xl",
         " bg-white text-center text-black",
         "border-2 border-solid border-black",
-        "hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-black",
-        "dark:bg-black dark:text-white dark:hover:bg-gray-900 dark:focus:ring-gray-500",
+        "focus:outline-none focus:ring-2 focus:ring-black hover:bg-gray-50",
+        "dark:bg-black dark:text-white dark:focus:ring-gray-500 dark:hover:bg-gray-900",
         `${regularFont.className}`,
       )}
       onClick={() => signIn()}
