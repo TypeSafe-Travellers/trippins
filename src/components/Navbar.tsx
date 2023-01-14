@@ -19,39 +19,23 @@ export const Navbar = () => {
           <NavigationMenu.Link
             href="/"
             className={clsx(
-              "rounded-md px-2 py-3 hover:bg-gray-100 dark:hover:bg-gray-900",
+              "rounded-lg px-2 py-3 hover:bg-gray-100 dark:hover:bg-gray-900",
               "text-lg text-gray-700 dark:text-gray-100",
             )}
           >
-            <NavigationMenu.Trigger
-              className={clsx(
-                "rounded-md text-lg hover:bg-gray-100 dark:hover:bg-gray-900",
-                "text-gray-700 dark:text-gray-100",
-                "focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75",
-              )}
-            >
-              Home
-            </NavigationMenu.Trigger>
+            Home
           </NavigationMenu.Link>
         </NavigationMenu.Item>
 
         <NavigationMenu.Item asChild>
           <NavigationMenu.Link
-            href="/about"
+            href="/profile"
             className={clsx(
-              "rounded-md px-2 py-3 hover:bg-gray-100 dark:hover:bg-gray-900",
-              "text-gray-700 dark:text-gray-100",
+              "rounded-lg px-2 py-3 hover:bg-gray-100 dark:hover:bg-gray-900",
+              "text-lg text-gray-700 dark:text-gray-100",
             )}
           >
-            <NavigationMenu.Trigger
-              className={clsx(
-                "rounded-md hover:bg-gray-100 dark:hover:bg-gray-900",
-                "text-lg text-gray-700 dark:text-gray-100",
-                "focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75",
-              )}
-            >
-              Profile
-            </NavigationMenu.Trigger>
+            Profile
           </NavigationMenu.Link>
         </NavigationMenu.Item>
 
@@ -63,15 +47,7 @@ export const Navbar = () => {
               "text-lg text-gray-700 dark:text-gray-100",
             )}
           >
-            <NavigationMenu.Trigger
-              className={clsx(
-                "rounded-md hover:bg-gray-100 dark:hover:bg-gray-900",
-                "text-lg text-gray-700 dark:text-gray-100",
-                "focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75",
-              )}
-            >
-              About
-            </NavigationMenu.Trigger>
+            About
           </NavigationMenu.Link>
         </NavigationMenu.Item>
 
