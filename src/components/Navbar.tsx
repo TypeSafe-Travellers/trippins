@@ -10,6 +10,7 @@ export const Navbar = () => {
     >
       <NavigationMenu.List
         className={clsx(
+          "text-xl",
           "px-2 pt-3 pb-1",
           "flex flex-row space-x-2 rounded-sm",
           "bg-slate-100/90 dark:bg-gray-800",
@@ -19,8 +20,9 @@ export const Navbar = () => {
           <NavigationMenu.Link
             href="/"
             className={clsx(
-              "rounded-lg px-2 py-3 hover:bg-gray-100 dark:hover:bg-gray-900",
-              "text-lg text-gray-700 dark:text-gray-100",
+              "px-2 py-3",
+              "rounded-lg",
+              "hover:text-blue-700 dark:hover:text-sky-300",
             )}
           >
             Home
@@ -31,8 +33,8 @@ export const Navbar = () => {
           <NavigationMenu.Link
             href="/profile"
             className={clsx(
-              "rounded-lg px-2 py-3 hover:bg-gray-100 dark:hover:bg-gray-900",
-              "text-lg text-gray-700 dark:text-gray-100",
+              "rounded-lg px-2 py-3",
+              "hover:text-blue-700 dark:hover:text-sky-300",
             )}
           >
             Profile
@@ -43,8 +45,8 @@ export const Navbar = () => {
           <NavigationMenu.Link
             href="/about"
             className={clsx(
-              "rounded-md px-2 py-3 hover:bg-gray-100 dark:hover:bg-gray-900",
-              "text-lg text-gray-700 dark:text-gray-100",
+              "rounded-lg px-2 py-3",
+              "hover:text-blue-700 dark:hover:text-sky-300",
             )}
           >
             About
