@@ -8,9 +8,9 @@ export const LogoutButton = () => {
       type="button"
       aria-label="Log Out"
       className={clsx(
-        "mt-1 px-5 pt-2 pb-1",
-        "inline-flex items-center rounded-md text-base",
-        "bg-red-50 text-center text-black",
+        "mr-2 mb-2 px-5 pt-2.5 pb-1",
+        "inline-flex items-center rounded-md text-xl",
+        "bg-red-100 text-center text-black",
         "border-2 border-solid border-black",
         "hover:bg-red-100/75 focus:outline-none focus:ring-2 focus:ring-black",
         "dark:bg-red-600/90 dark:text-white dark:hover:bg-red-600 dark:focus:ring-gray-500",
