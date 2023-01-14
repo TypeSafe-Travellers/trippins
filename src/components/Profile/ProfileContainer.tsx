@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { boldFont } from "../../fonts";
 import { ProfileDetails } from "./ProfileDetails";
+import { EditProfile } from "../EditProfile";
 
 export const ProfileContainer = () => {
   return (
@@ -15,6 +16,7 @@ export const ProfileContainer = () => {
         Profile Details
       </div>
       <ProfileDetails />
+      <EditProfile />
     </>
   );
 };
