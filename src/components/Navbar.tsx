@@ -1,6 +1,6 @@
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import { useSession } from "next-auth/react";
-import { LoginButton, LogOutButton } from "./";
+import { LoginButton, LogoutAndAlertButton } from "./";
 import { regularFont } from "../fonts";
 import clsx from "clsx";
 
@@ -61,7 +61,11 @@ export const Navbar = () => {
 
         {/* conditionally render sign in & log out button depending on auth status */}
         <div className="absolute right-0 top-0 pt-3">
-          {status === "authenticated" ? <LogOutButton /> : <LoginButton />}
+          {status === "authenticated" ? (
+            <LogoutAndAlertButton />
+          ) : (
+            <LoginButton />
+          )}
         </div>
       </NavigationMenu.List>
 

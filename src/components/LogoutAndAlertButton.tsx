@@ -5,7 +5,7 @@ import { useState, Fragment } from "react";
 import { regularFont } from "../fonts";
 import { signOut } from "next-auth/react";
 
-export const LogOutButton = () => {
+export const LogoutAndAlertButton = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
