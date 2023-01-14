@@ -16,6 +16,8 @@ const Profile: NextPage = () => {
     }
   }, [router, status]);
 
+  if (status === "loading") return null;
+
   return (
     <>
       <Head>
