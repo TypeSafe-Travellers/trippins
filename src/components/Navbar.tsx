@@ -54,18 +54,6 @@ export const Navbar = () => {
         <div className="absolute right-5 top-0 pt-3">
           <LogoutButton />
         </div>
-
-        <NavigationMenu.Indicator
-          className={clsx(
-            "z-10",
-            "top-[100%] flex h-2 items-end justify-center overflow-hidden",
-            "radix-state-visible:animate-fade-in",
-            "radix-state-hidden:animate-fade-out",
-            "transition-[width_transform] duration-[250ms] ease-[ease]",
-          )}
-        >
-          <div className="relative top-1 h-2 w-2 rotate-45 bg-white dark:bg-gray-800" />
-        </NavigationMenu.Indicator>
       </NavigationMenu.List>
 
       <div
