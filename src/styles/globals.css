@@ -8,6 +8,9 @@
     font-display: swap;
   }
   body {
+    /** custom scrollbar */
+    @apply scroll-smooth scrollbar-thin scrollbar-track-transparent scrollbar-thumb-zinc-500 dark:scrollbar-track-transparent dark:scrollbar-thumb-cyan-700;
+
     @apply bg-gradient-to-tl from-red-500/20 via-gray-200 to-blue-500/40 dark:bg-gradient-to-bl dark:from-slate-900/40 dark:via-cyan-900/75 dark:to-slate-900/40;
   }
 }
