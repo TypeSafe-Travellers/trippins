@@ -28,7 +28,7 @@
     "format:check": "prettier --check ."
   },
   "lint-staged": {
-    "**/*": "prettier --write ."
+    "**/*": "prettier --write --ignore-unknown"
   },
   "dependencies": {
     "@next-auth/prisma-adapter": "^1.0.5",

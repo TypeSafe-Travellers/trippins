@@ -10,5 +10,8 @@
       "rule": "*",
       "severity": "warn"
     }
-  ]
+  ],
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  }
 }
