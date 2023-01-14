@@ -45,9 +45,9 @@ npm run format
 - [PlanetScale](https://planetscale.com/)
 - [Heroicons](https://heroicons.com/)
 - [Radix UI](https://www.radix-ui.com/)
+- [MySQL](https://www.mysql.com/)
 - [Prisma](https://www.prisma.io/)
 - [Repl.it](https://replit.com/)
-- [MySQL](https://www.mysql.com/)
 - [tRPC](https://trpc.io/)
 - [Zod](https://zod.dev/)
 
