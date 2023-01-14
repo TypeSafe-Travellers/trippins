@@ -9,5 +9,8 @@
   }
   body {
     @apply bg-gradient-to-tl from-red-200/30 via-gray-200 to-blue-200 dark:bg-gradient-to-bl dark:from-slate-900/40 dark:via-cyan-900/75 dark:to-slate-900/40;
+
+    /** custom scrollbar */
+    @apply scroll-smooth scrollbar-thin scrollbar-track-transparent scrollbar-thumb-indigo-400 dark:scrollbar-track-transparent dark:scrollbar-thumb-cyan-700;
   }
 }
