@@ -1,5 +1,6 @@
 import { type NextPage } from "next";
 import { Navbar, ThemeToggle } from "../components";
+import { useSession } from "next-auth/react";
 import Head from "next/head";
 import Link from "next/link";
 import clsx from "clsx";
@@ -7,8 +8,12 @@ import { boldFont } from "../fonts";
 import { api } from "../utils/api";
 
 const Home: NextPage = () => {
+  const { data: session } = useSession();
+
   const hello = api.example.hello.useQuery({
-    text: "We are the TypeSafe Travellers.",
+    text: `${
+      session?.user?.name ? session.user.name : "there"
+    }! We are the TypeSafe Travellers.`,
   });
 
   return (
