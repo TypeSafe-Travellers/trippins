@@ -8,7 +8,7 @@ export const Navbar = () => {
     <NavigationMenu.Root
       className={clsx("relative", `${regularFont.className}`)}
     >
-      <NavigationMenu.List className="flex flex-row space-x-2 rounded-lg bg-white px-2 pt-3 pb-1 dark:bg-gray-800">
+      <NavigationMenu.List className="flex flex-row space-x-2 rounded-sm bg-slate-100/75 px-2 pt-3 pb-1 dark:bg-gray-800">
         <NavigationMenu.Item asChild>
           <NavigationMenu.Link
             href="/"
