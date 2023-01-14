@@ -1,5 +1,5 @@
 import { Transition } from "@headlessui/react";
-import * as DialogPrimitive from "@radix-ui/react-dialog";
+import * as Dialog from "@radix-ui/react-dialog";
 import { Cross1Icon } from "../../icons";
 import clsx from "clsx";
 import React, { Fragment, useState } from "react";
@@ -8,8 +8,8 @@ export const EditProfile = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <DialogPrimitive.Root open={isOpen} onOpenChange={setIsOpen}>
-      <DialogPrimitive.Trigger asChild>
+    <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
+      <Dialog.Trigger asChild>
         <button
           className={clsx(
             "inline-flex select-none items-center justify-center rounded-md px-4 py-2 text-sm font-medium",
@@ -26,8 +26,8 @@ export const EditProfile = () => {
         >
           Edit Profile
         </button>
-      </DialogPrimitive.Trigger>
-      <DialogPrimitive.Portal forceMount>
+      </Dialog.Trigger>
+      <Dialog.Portal forceMount>
         <Transition.Root show={isOpen}>
           <Transition.Child
             as={Fragment}
@@ -38,7 +38,7 @@ export const EditProfile = () => {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <DialogPrimitive.Overlay
+            <Dialog.Overlay
               forceMount
               className="fixed inset-0 z-20 bg-black/50"
             />
@@ -52,7 +52,7 @@ export const EditProfile = () => {
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <DialogPrimitive.Content
+            <Dialog.Content
               forceMount
               className={clsx(
                 "fixed z-50",
@@ -62,13 +62,13 @@ export const EditProfile = () => {
                 "focus:outline-none focus-visible:ring focus-visible:ring-black focus-visible:ring-opacity-75",
               )}
             >
-              <DialogPrimitive.Title className="text-sm font-medium text-gray-900 dark:text-gray-100">
+              <Dialog.Title className="text-sm font-medium text-gray-900 dark:text-gray-100">
                 Edit profile
-              </DialogPrimitive.Title>
-              <DialogPrimitive.Description className="mt-2 text-sm font-normal text-gray-700 dark:text-gray-400">
+              </Dialog.Title>
+              <Dialog.Description className="mt-2 text-sm font-normal text-gray-700 dark:text-gray-400">
                 Make changes to your profile here. Click save when you&apos;re
                 done.
-              </DialogPrimitive.Description>
+              </Dialog.Description>
               <form className="mt-2 space-y-2">
                 <fieldset>
                   {/* <legend>Choose your favorite monster</legend> */}
@@ -114,7 +114,7 @@ export const EditProfile = () => {
               </form>
 
               <div className="mt-4 flex justify-end">
-                <DialogPrimitive.Close
+                <Dialog.Close
                   className={clsx(
                     "inline-flex select-none justify-center rounded-md px-4 py-2 text-sm font-medium",
                     "bg-black-600 text-white hover:bg-green-700 dark:bg-green-700 dark:text-gray-100 dark:hover:bg-green-900",
@@ -123,21 +123,21 @@ export const EditProfile = () => {
                   )}
                 >
                   Save
-                </DialogPrimitive.Close>
+                </Dialog.Close>
               </div>
 
-              <DialogPrimitive.Close
+              <Dialog.Close
                 className={clsx(
                   "absolute top-3.5 right-3.5 inline-flex items-center justify-center rounded-full p-1",
                   "focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75",
                 )}
               >
                 <Cross1Icon />
-              </DialogPrimitive.Close>
-            </DialogPrimitive.Content>
+              </Dialog.Close>
+            </Dialog.Content>
           </Transition.Child>
         </Transition.Root>
-      </DialogPrimitive.Portal>
-    </DialogPrimitive.Root>
+      </Dialog.Portal>
+    </Dialog.Root>
   );
 };
