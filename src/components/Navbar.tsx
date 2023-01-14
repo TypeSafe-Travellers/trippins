@@ -1,9 +1,12 @@
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
-import clsx from "clsx";
+import { useSession } from "next-auth/react";
 import { LogoutButton } from "./LogoutButton";
 import { regularFont } from "../fonts";
+import clsx from "clsx";
 
 export const Navbar = () => {
+  const { status } = useSession();
+
   return (
     <NavigationMenu.Root
       className={clsx("relative", `${regularFont.className}`)}
@@ -29,17 +32,20 @@ export const Navbar = () => {
           </NavigationMenu.Link>
         </NavigationMenu.Item>
 
-        <NavigationMenu.Item asChild>
-          <NavigationMenu.Link
-            href="/profile"
-            className={clsx(
-              "rounded-lg px-2 py-3",
-              "hover:text-blue-700 dark:hover:text-sky-300",
-            )}
-          >
-            Profile
-          </NavigationMenu.Link>
-        </NavigationMenu.Item>
+        {/* Only show the profile link if the user is authenticated */}
+        {status === "authenticated" && (
+          <NavigationMenu.Item asChild>
+            <NavigationMenu.Link
+              href="/profile"
+              className={clsx(
+                "rounded-lg px-2 py-3",
+                "hover:text-blue-700 dark:hover:text-sky-300",
+              )}
+            >
+              Profile
+            </NavigationMenu.Link>
+          </NavigationMenu.Item>
+        )}
 
         <NavigationMenu.Item asChild>
           <NavigationMenu.Link
