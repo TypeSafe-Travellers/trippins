@@ -21,7 +21,7 @@ const Home: NextPage = () => {
       <Navbar />
       <main
         className={clsx(
-          "flex h-[calc(100vh-75px)] items-center justify-center",
+          "flex h-[calc(100vh-70px)] items-center justify-center",
         )}
       >
         {/** TODO - Placehold Banner. Should be removed later. */}
