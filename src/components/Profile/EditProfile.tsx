@@ -3,6 +3,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { Cross1Icon } from "../../icons";
 import clsx from "clsx";
 import React, { Fragment, useState } from "react";
+import { regularFont } from "../../fonts";
 
 export const EditProfile = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,9 +13,12 @@ export const EditProfile = () => {
       <Dialog.Trigger asChild>
         <button
           className={clsx(
-            "inline-flex select-none items-center justify-center rounded-md px-4 py-2 text-sm font-medium",
+            `${regularFont.className}`,
+            "inline-flex select-none items-center justify-center rounded-md px-5 pt-2 pb-0.5",
             "mx-auto",
-            "bg-white text-gray-700 hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-900",
+            "text-xl",
+            "border-2 border-solid border-black",
+            "bg-white hover:bg-gray-50 dark:bg-black dark:hover:bg-slate-900",
             "hover:bg-gray-50",
             "focus:outline-none focus-visible:ring focus-visible:ring-black focus-visible:ring-opacity-75",
             // Register all radix states
