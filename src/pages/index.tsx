@@ -48,7 +48,6 @@ const Home: NextPage = () => {
               </p>
             </div>
           </Link>
-        <div className={clsx("absolute right-5 top-0 pt-5")}>
           <ThemeToggle />
         </div>
       </main>

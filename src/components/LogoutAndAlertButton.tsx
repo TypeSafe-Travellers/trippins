@@ -94,7 +94,7 @@ export const LogoutAndAlertButton = () => {
                 </AlertDialog.Cancel>
                 <AlertDialog.Action
                   onClick={() => {
-                    signOut();
+                    signOut({ callbackUrl: "/" });
                     setIsOpen(false);
                   }}
                   className={clsx(
