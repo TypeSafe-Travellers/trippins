@@ -1,5 +1,5 @@
 import { type NextPage } from "next";
-import { LoginButton, Navbar, ThemeToggle } from "../components";
+import { EditProfile, LoginButton, Navbar, ThemeToggle } from "../components";
 import Head from "next/head";
 import Link from "next/link";
 import clsx from "clsx";
@@ -44,6 +44,7 @@ const Home: NextPage = () => {
             </div>
           </Link>
           <LoginButton />
+          <EditProfile />
         </div>
         <div className={clsx("absolute right-5 top-0 pt-5")}>
           <ThemeToggle />
