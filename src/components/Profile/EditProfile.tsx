@@ -1,8 +1,8 @@
 import { Transition } from "@headlessui/react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { Cross1Icon } from "../../icons";
+import { CrossIcon } from "../../icons";
 import clsx from "clsx";
-import React, { Fragment, useState } from "react";
+import { Fragment, useState } from "react";
 import { regularFont } from "../../fonts";
 
 export const EditProfile = () => {
@@ -59,59 +59,49 @@ export const EditProfile = () => {
             <Dialog.Content
               forceMount
               className={clsx(
+                `${regularFont.className}`,
                 "fixed z-50",
-                "w-[95vw] max-w-md rounded-lg p-4 md:w-full",
+                "w-[95vw] max-w-md rounded-lg p-6 md:w-full",
                 "top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]",
-                "bg-white dark:bg-gray-800",
-                "focus:outline-none focus-visible:ring focus-visible:ring-black focus-visible:ring-opacity-75",
+                "bg-gray-100 dark:bg-gray-800",
               )}
             >
-              <Dialog.Title className="text-sm font-medium text-gray-900 dark:text-gray-100">
-                Edit profile
-              </Dialog.Title>
-              <Dialog.Description className="mt-2 text-sm font-normal text-gray-700 dark:text-gray-400">
+              <Dialog.Title className="text-2xl">Edit profile</Dialog.Title>
+              <Dialog.Description className="mt-2 text-xl">
                 Make changes to your profile here. Click save when you&apos;re
                 done.
               </Dialog.Description>
               <form className="mt-2 space-y-2">
                 <fieldset>
                   {/* <legend>Choose your favorite monster</legend> */}
-                  <label
-                    htmlFor="userName"
-                    className="text-xs font-medium text-gray-700 dark:text-gray-400"
-                  >
+                  <label htmlFor="userName" className="text-lg">
                     Username
                   </label>
                   <input
                     id="userName"
                     type="text"
-                    placeholder="Tim1234"
+                    value={"John Doe Carmak"}
                     autoComplete="user-name"
                     className={clsx(
-                      "mt-1 block w-full rounded-md",
-                      "text-sm text-gray-700 placeholder:text-gray-500 dark:text-gray-400 dark:placeholder:text-gray-600",
+                      "mt-1 block w-full rounded-md px-1 pt-2 pb-1",
+                      "text-xl",
                       "border border-gray-400 focus-visible:border-transparent dark:border-gray-700 dark:bg-gray-800",
-                      "focus:outline-none focus-visible:ring focus-visible:ring-black focus-visible:ring-opacity-75",
                     )}
                   />
                 </fieldset>
                 <fieldset>
-                  <label
-                    htmlFor="email"
-                    className="text-xs font-medium text-gray-700 dark:text-gray-400"
-                  >
+                  <label htmlFor="email" className="text-lg">
                     Email
                   </label>
                   <input
                     id="email"
-                    type="text"
-                    placeholder="Tim1@yahoo.com"
+                    type="email"
+                    value={"johndoecarmak123@gmail.com"}
                     autoComplete="email"
                     className={clsx(
-                      "mt-1 block w-full rounded-md",
-                      "text-sm text-gray-700 placeholder:text-gray-500 dark:text-gray-400 dark:placeholder:text-gray-600",
+                      "mt-1 block w-full rounded-md px-1 pt-2 pb-1",
+                      "text-xl",
                       "border border-gray-400 focus-visible:border-transparent dark:border-gray-700 dark:bg-gray-800",
-                      "focus:outline-none focus-visible:ring focus-visible:ring-black focus-visible:ring-opacity-75",
                     )}
                   />
                 </fieldset>
@@ -120,10 +110,11 @@ export const EditProfile = () => {
               <div className="mt-4 flex justify-end">
                 <Dialog.Close
                   className={clsx(
-                    "inline-flex select-none justify-center rounded-md px-4 py-2 text-sm font-medium",
-                    "bg-black-600 text-white hover:bg-green-700 dark:bg-green-700 dark:text-gray-100 dark:hover:bg-green-900",
-                    "border border-transparent",
-                    "focus-visible:ring-black-500 focus:outline-none focus-visible:ring focus-visible:ring-opacity-75",
+                    "inline-flex select-none justify-center rounded-md px-4 pt-2 pb-1 text-xl",
+                    " bg-green-100 text-center text-black",
+                    "border-2 border-solid border-black",
+                    "focus:outline-none focus:ring-2 focus:ring-black hover:bg-green-200",
+                    "dark:bg-green-700 dark:text-white dark:focus:ring-gray-500 dark:hover:bg-green-600",
                   )}
                 >
                   Save
@@ -133,10 +124,9 @@ export const EditProfile = () => {
               <Dialog.Close
                 className={clsx(
                   "absolute top-3.5 right-3.5 inline-flex items-center justify-center rounded-full p-1",
-                  "focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75",
                 )}
               >
-                <Cross1Icon />
+                <CrossIcon />
               </Dialog.Close>
             </Dialog.Content>
           </Transition.Child>
