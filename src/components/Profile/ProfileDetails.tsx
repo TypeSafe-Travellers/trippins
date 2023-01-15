@@ -1,16 +1,9 @@
 import clsx from "clsx";
 import { semiBoldFont } from "../../fonts";
-
-/**
- * placeholder object for the profile details
- * TODO remove later after auth + backend is done
- */
-const placeholderProfileDetails = {
-  username: "John Doe Carmak",
-  email: "johndoecarmak123@gmail.com",
-};
+import { useSession } from "next-auth/react";
 
 export const ProfileDetails = () => {
+  const { data: session } = useSession();
   return (
     <div
       className={clsx(
@@ -24,10 +17,10 @@ export const ProfileDetails = () => {
       )}
     >
       <div className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}>
-        Username: {placeholderProfileDetails.username}
+        Username: {session?.user?.name}
       </div>
       <div className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}>
-        Email: {placeholderProfileDetails.email}
+        Email: {session?.user?.email}
       </div>
     </div>
   );

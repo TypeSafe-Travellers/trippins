@@ -4,9 +4,11 @@ import { CrossIcon } from "../../icons";
 import clsx from "clsx";
 import { Fragment, useState } from "react";
 import { regularFont } from "../../fonts";
+import { useSession } from "next-auth/react";
 
 export const EditProfile = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { data: session } = useSession();
 
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
@@ -80,7 +82,7 @@ export const EditProfile = () => {
                   <input
                     id="userName"
                     type="text"
-                    value={"John Doe Carmak"}
+                    value={session?.user?.name as string}
                     autoComplete="user-name"
                     className={clsx(
                       "mt-1 block w-full rounded-md px-1 pt-2 pb-1",
@@ -96,7 +98,7 @@ export const EditProfile = () => {
                   <input
                     id="email"
                     type="email"
-                    value={"johndoecarmak123@gmail.com"}
+                    value={session?.user?.email as string}
                     autoComplete="email"
                     className={clsx(
                       "mt-1 block w-full rounded-md px-1 pt-2 pb-1",
