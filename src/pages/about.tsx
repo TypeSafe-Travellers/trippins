@@ -39,6 +39,17 @@ const About: NextPage = () => {
         </div>
 
         <div className={clsx("text-2xl", `${regularFont.className}`)}>
+          <h1 className={clsx(`${semiBoldFont.className}`)}>Team</h1>
+          Ayanava Karmakar, Subham Sarkar, Nishith Savla
+        </div>
+
+        <div className={clsx("text-2xl", `${regularFont.className}`)}>
+          <h1 className={clsx(`${semiBoldFont.className}`)}>Tech Stack</h1>
+          Next.js, TypeScript, Tailwind CSS, NextAuth.js, PlanetScale,
+          Heroicons, Radix UI, Radix Icons, MySQL, Prisma, Repl.it, tRPC, Zod
+        </div>
+
+        <div className={clsx("text-2xl", `${regularFont.className}`)}>
           Made with &hearts; using the T3 stack
         </div>
 
