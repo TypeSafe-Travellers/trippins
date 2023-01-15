@@ -5,10 +5,29 @@ import clsx from "clsx";
 import { Fragment, useState } from "react";
 import { regularFont } from "../../fonts";
 import { useSession } from "next-auth/react";
+import { api } from "../../utils/api";
+
+import type { UpdateUserNameType } from "../../types/EditProfileTypes";
 
 export const EditProfile = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { data: session } = useSession();
+
+  // const utils = api.useContext();
+
+  const updateUserNameMutation = api.userProfile.updateName.useMutation();
+
+  const [userName, setUserName] = useState(session?.user?.name as string);
+  const [userEmail, setUserEmail] = useState(session?.user?.email as string);
+
+  const updateUserName = ({ newName, email }: UpdateUserNameType): void => {
+    // doesn't run the mutation if the name is the same
+    if (newName === session?.user?.name) {
+      return;
+    }
+
+    updateUserNameMutation.mutate({ newName, currentEmail: email });
+  };
 
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
@@ -81,7 +100,8 @@ export const EditProfile = () => {
                   <input
                     id="userName"
                     type="text"
-                    value={session?.user?.name as string}
+                    value={userName}
+                    onChange={(e) => setUserName(e.target.value)}
                     autoComplete="user-name"
                     className={clsx(
                       "mt-1 block w-full rounded-md px-1 pt-2 pb-1",
@@ -97,7 +117,8 @@ export const EditProfile = () => {
                   <input
                     id="email"
                     type="email"
-                    value={session?.user?.email as string}
+                    value={userEmail}
+                    onChange={(e) => setUserEmail(e.target.value)}
                     autoComplete="email"
                     className={clsx(
                       "mt-1 block w-full rounded-md px-1 pt-2 pb-1",
@@ -110,6 +131,9 @@ export const EditProfile = () => {
 
               <div className="mt-4 flex justify-end">
                 <Dialog.Close
+                  onClick={() =>
+                    updateUserName({ newName: userName, email: userEmail })
+                  }
                   className={clsx(
                     "inline-flex select-none justify-center rounded-md px-4 pt-2.5 pb-1 text-xl",
                     " bg-green-100 text-center text-black",
