@@ -49,11 +49,11 @@ const About: NextPage = () => {
         </div>
 
         <div className={clsx("text-2xl", `${regularFont.className}`)}>
-          Made with &hearts; using the T3 stack
+          Made with &hearts; by TypeSafe Travellers using the T3 stack
         </div>
 
         <footer className={clsx(`${regularFont.className}`, "text-xl")}>
-          &copy; 2023 Typesafe Travellers
+          &copy; {new Date().getFullYear()} Typesafe Travellers
         </footer>
       </main>
     </>
