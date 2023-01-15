@@ -110,7 +110,7 @@ export const EditProfile = () => {
               <div className="mt-4 flex justify-end">
                 <Dialog.Close
                   className={clsx(
-                    "inline-flex select-none justify-center rounded-md px-4 pt-2 pb-1 text-xl",
+                    "inline-flex select-none justify-center rounded-md px-4 pt-2.5 pb-1 text-xl",
                     " bg-green-100 text-center text-black",
                     "border-2 border-solid border-black",
                     "focus:outline-none focus:ring-2 focus:ring-black hover:bg-green-200",
