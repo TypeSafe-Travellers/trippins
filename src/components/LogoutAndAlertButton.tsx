@@ -19,8 +19,8 @@ export const LogoutAndAlertButton = () => {
             "inline-flex items-center rounded-md text-xl",
             "bg-red-100 text-center text-black",
             "border-2 border-solid border-black",
-            "hover:bg-red-100/75 focus:outline-none focus:ring-2 focus:ring-black",
-            "dark:bg-red-600/90 dark:text-white dark:hover:bg-red-600 dark:focus:ring-gray-500",
+            "focus:outline-none focus:ring-2 focus:ring-black hover:bg-red-100/75",
+            "dark:bg-red-600/90 dark:text-white dark:focus:ring-gray-500 dark:hover:bg-red-600",
             `${regularFont.className}`,
           )}
         >
