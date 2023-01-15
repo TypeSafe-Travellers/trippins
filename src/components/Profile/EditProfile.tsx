@@ -20,13 +20,15 @@ export const EditProfile = () => {
   const [userName, setUserName] = useState(session?.user?.name as string);
   const [userEmail, setUserEmail] = useState(session?.user?.email as string);
 
-  const updateUserName = ({ newName, email }: UpdateUserNameType): void => {
+  const updateUserName = ({ newName }: UpdateUserNameType): void => {
     // doesn't run the mutation if the name is the same
     if (newName === session?.user?.name) {
       return;
     }
 
-    updateUserNameMutation.mutate({ newName, currentEmail: email });
+    if (session?.user?.id !== undefined) {
+      updateUserNameMutation.mutate({ newName, userId: session?.user?.id });
+    }
   };
 
   return (
@@ -131,9 +133,7 @@ export const EditProfile = () => {
 
               <div className="mt-4 flex justify-end">
                 <Dialog.Close
-                  onClick={() =>
-                    updateUserName({ newName: userName, email: userEmail })
-                  }
+                  onClick={() => updateUserName({ newName: userName })}
                   className={clsx(
                     "inline-flex select-none justify-center rounded-md px-4 pt-2.5 pb-1 text-xl",
                     " bg-green-100 text-center text-black",

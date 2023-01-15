@@ -12,7 +12,7 @@ export const userProfileRouter = createTRPCRouter({
   updateName: protectedProcedure
     .input(
       z.object({
-        currentEmail: z.string().email(),
+        userId: z.string(),
         newName: z.string(),
       }),
     )
@@ -20,7 +20,7 @@ export const userProfileRouter = createTRPCRouter({
       try {
         await ctx.prisma.user.update({
           where: {
-            email: input.currentEmail,
+            id: input.userId,
           },
           data: {
             name: input.newName,
