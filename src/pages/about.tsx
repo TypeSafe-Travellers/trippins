@@ -54,7 +54,7 @@ const About: NextPage = () => {
         </div>
 
         <footer className={clsx(`${regularFont.className}`, "text-xl")}>
-          &copy; 2023 Typesafe Travellers
+          &copy; {new Date().getFullYear()} Typesafe Travellers
         </footer>
       </main>
     </>
