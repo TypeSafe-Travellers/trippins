@@ -51,7 +51,7 @@ export const userProfileRouter = createTRPCRouter({
             id: input.userId,
           },
           data: {
-            name: input.newEmail,
+            email: input.newEmail,
           },
         });
       } catch (error) {

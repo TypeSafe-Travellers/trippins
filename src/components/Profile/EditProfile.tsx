@@ -7,7 +7,10 @@ import { regularFont } from "../../fonts";
 import { useSession } from "next-auth/react";
 import { api } from "../../utils/api";
 
-import type { UpdateUserNameType } from "../../types/EditProfileTypes";
+import type {
+  UpdateUserEmailType,
+  UpdateUserNameType,
+} from "../../types/EditProfileTypes";
 
 export const EditProfile = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,19 +20,33 @@ export const EditProfile = () => {
   const [userEmail, setUserEmail] = useState(session?.user?.email as string);
 
   const updateUserNameMutation = api.userProfile.updateName.useMutation();
+  const updateUserEmailMutation = api.userProfile.updateEmail.useMutation();
 
-  const updateUserName = ({ newName }: UpdateUserNameType): void => {
-    // doesn't run the mutation if the name is the same
-    if (newName === session?.user?.name) {
-      return;
+  const handleSave = (): void => {
+    if (userName !== session?.user?.name) {
+      updateUserName({ newName: userName });
     }
 
+    if (userEmail !== session?.user?.email) {
+      updateUserEmail({ newEmail: userEmail });
+    }
+
+    setIsOpen(false);
+
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
+  };
+
+  const updateUserName = ({ newName }: UpdateUserNameType): void => {
     if (session?.user?.id !== undefined) {
       updateUserNameMutation.mutate({ newName, userId: session?.user?.id });
+    }
+  };
 
-      setTimeout(() => {
-        window.location.reload();
-      }, 1000);
+  const updateUserEmail = ({ newEmail }: UpdateUserEmailType): void => {
+    if (session?.user?.id !== undefined) {
+      updateUserEmailMutation.mutate({ newEmail, userId: session?.user?.id });
     }
   };
 
@@ -135,7 +152,7 @@ export const EditProfile = () => {
 
               <div className="mt-4 flex justify-end">
                 <Dialog.Close
-                  onClick={() => updateUserName({ newName: userName })}
+                  onClick={() => handleSave()}
                   className={clsx(
                     "inline-flex select-none justify-center rounded-md px-4 pt-2.5 pb-1 text-xl",
                     " bg-green-100 text-center text-black",
