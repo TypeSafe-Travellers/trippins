@@ -8,13 +8,26 @@ import { boldFont } from "../fonts";
 import { api } from "../utils/api";
 
 const Home: NextPage = () => {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
 
   const hello = api.example.hello.useQuery({
     text: `${
       session?.user?.name ? session.user.name : "there"
     }! We are the TypeSafe Travellers.`,
   });
+
+  if (status === "loading")
+    return (
+      <div
+        className={clsx(
+          "flex min-h-screen items-center justify-center text-center",
+          "text-4xl lg:text-7xl",
+          `${boldFont.className}`,
+        )}
+      >
+        Loading...
+      </div>
+    );
 
   return (
     <>
