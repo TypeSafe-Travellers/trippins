@@ -32,7 +32,7 @@ const About: NextPage = () => {
           possible. Our app allows users to create a trip itinerary, share it
           with their group, and collaborate on details such as accommodations,
           transportation, and activities. We believe that group trip planning
-          should be fun and exciting, not overwhelming. That's why we've
+          should be fun and exciting, not overwhelming. That is why we have
           designed our app to be user-friendly and intuitive. Thank you for
           choosing our group trip-planning app. Happy travels!
         </div>
