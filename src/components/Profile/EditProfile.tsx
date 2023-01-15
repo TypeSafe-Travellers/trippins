@@ -75,7 +75,6 @@ export const EditProfile = () => {
               </Dialog.Description>
               <form className="mt-2 space-y-2">
                 <fieldset>
-                  {/* <legend>Choose your favorite monster</legend> */}
                   <label htmlFor="userName" className="text-lg">
                     Username
                   </label>
