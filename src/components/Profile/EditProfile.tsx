@@ -13,12 +13,10 @@ export const EditProfile = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { data: session } = useSession();
 
-  // const utils = api.useContext();
-
-  const updateUserNameMutation = api.userProfile.updateName.useMutation();
-
   const [userName, setUserName] = useState(session?.user?.name as string);
   const [userEmail, setUserEmail] = useState(session?.user?.email as string);
+
+  const updateUserNameMutation = api.userProfile.updateName.useMutation();
 
   const updateUserName = ({ newName }: UpdateUserNameType): void => {
     // doesn't run the mutation if the name is the same
