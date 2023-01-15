@@ -26,6 +26,10 @@ export const EditProfile = () => {
 
     if (session?.user?.id !== undefined) {
       updateUserNameMutation.mutate({ newName, userId: session?.user?.id });
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
     }
   };
 
