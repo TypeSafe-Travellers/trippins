@@ -6,6 +6,7 @@ export const LoginButton = () => {
   return (
     <button
       type="button"
+      aria-label="Log In"
       className={clsx(
         "mr-2 mb-2 px-5 pt-2.5 pb-1",
         "inline-flex items-center rounded-md text-xl",
