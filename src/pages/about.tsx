@@ -26,16 +26,15 @@ const About: NextPage = () => {
         </div>
 
         <div className={clsx("text-2xl", `${regularFont.className}`)}>
-          This is a website for people who want to travel the world, but do not
-          want to be ripped off by the travel industry. Many a times, when a
-          group of friends want to travel together, they have to go through the
-          hassle of finding a travel agent, who will then book the tickets,
-          hotels, and other things for them. This is a very time consuming
-          process, and the travel agent will charge a hefty commission for this.
-          This website aims to solve this problem by providing a platform for
-          people to book their own tickets, hotels, and other things, and then
-          share the cost with their friends. This way, they can save a lot of
-          money, and also have a lot of fun.
+          Welcome to our group trip-planning app! We are a team of travel
+          enthusiasts who understand the challenges of planning a group trip. We
+          created this app to make the process as easy and stress-free as
+          possible. Our app allows users to create a trip itinerary, share it
+          with their group, and collaborate on details such as accommodations,
+          transportation, and activities. We believe that group trip planning
+          should be fun and exciting, not overwhelming. That's why we've
+          designed our app to be user-friendly and intuitive. Thank you for
+          choosing our group trip-planning app. Happy travels!
         </div>
 
         <div className={clsx("text-2xl", `${regularFont.className}`)}>
