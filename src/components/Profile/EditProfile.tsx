@@ -141,7 +141,7 @@ export const EditProfile = () => {
 
               <div className="mt-4 flex justify-end">
                 <Dialog.Close
-                  onClick={() => handleSave()}
+                  onClick={handleSave}
                   className={clsx(
                     "inline-flex select-none justify-center rounded-md px-4 pt-2.5 pb-1 text-xl",
                     " bg-green-100 text-center text-black",
