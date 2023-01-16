@@ -22,21 +22,14 @@ const About: NextPage = () => {
           "items-center justify-center text-center",
         )}
       >
-        <div
-          className={clsx(
-            "bg-slate-100/90 dark:bg-black",
-            "border-2 border-solid border-black",
-            "rounded-3xl px-5 pt-14 pb-8",
-          )}
-        >
+        <div className={clsx("px-12", "bg-white dark:bg-transparent")}>
           <div className={clsx(`${boldFont.className}`, "text-8xl", "pb-5")}>
-            Typesafe Travellers
+            TypeSafe Travellers
           </div>
 
           <div
             className={clsx(
               "text-2xl",
-              "px-10",
               "text-justify",
               `${regularFont.className}`,
             )}
@@ -55,9 +48,19 @@ const About: NextPage = () => {
           <div className={clsx(`${boldFont.className}`, "text-5xl", "pt-3")}>
             Tech Stack
           </div>
-          <div className={clsx("text-2xl", `${regularFont.className}`)}>
-            Next.js, TypeScript, Tailwind CSS, NextAuth.js, PlanetScale,
-            Heroicons, Radix UI, Radix Icons, MySQL, Prisma, Repl.it, tRPC, Zod
+          <div
+            className={clsx(
+              "text-2xl",
+              "text-justify",
+              `${regularFont.className}`,
+            )}
+          >
+            This app has been built using the T3 stack initialized using
+            create-t3-app. The frontend is built using Next.js, React, Tailwind
+            CSS, and Radix UI. NextAuth.js is being used for passwordless
+            authentication. The backend is built using Prisma, tRPC, and
+            PlanetScale &#40;Serverless MySQL&#41;. The app is deployed on
+            Repl.it.
           </div>
 
           <div className={clsx(`${boldFont.className}`, "text-5xl", "pt-3")}>
@@ -66,13 +69,14 @@ const About: NextPage = () => {
           <div className={clsx("text-3xl", `${regularFont.className}`)}>
             Ayanava Karmakar // Subham Sarkar // Nishith Savla
           </div>
-        </div>
 
-        <footer
-          className={clsx(`${regularFont.className}`, "text-2xl", "pt-5")}
-        >
-          &copy; {new Date().getFullYear()} Typesafe Travellers
-        </footer>
+          <footer
+            className={clsx(`${regularFont.className}`, "text-2xl", "pt-10")}
+          >
+            &copy; {new Date().getFullYear()} TypeSafe Travellers. Open-Source —
+            GitHub &amp; Repl.it
+          </footer>
+        </div>
       </main>
     </>
   );
