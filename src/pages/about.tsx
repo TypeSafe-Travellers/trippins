@@ -50,7 +50,7 @@ const About: NextPage = () => {
             transportation, and activities. We believe that group trip planning
             should be fun and exciting, not overwhelming. That&apos;s why
             we&apos;ve designed our app to be user-friendly and intuitive. Thank
-            you for choosing our group trip-planning app. Happy travels!
+            you for choosing our group trip-planning app. Bon voyage!
           </div>
 
           <div
