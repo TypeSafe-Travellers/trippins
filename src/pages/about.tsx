@@ -96,6 +96,10 @@ const About: NextPage = () => {
             </Link>{" "}
             &amp;{" "}
             <Link
+              className={clsx(
+                "text-orange-700 hover:text-orange-800",
+                "dark:text-orange-400 dark:hover:text-orange-500",
+              )}
               href={"https://replit.com/@AyanavaKarmakar/apptypesafetravellers"}
               target={"_blank"}
             >
