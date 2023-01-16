@@ -89,6 +89,10 @@ const About: NextPage = () => {
             </Link>
             . Open-Source —{" "}
             <Link
+              className={clsx(
+                "text-purple-600 hover:text-purple-700",
+                "dark:text-purple-300 dark:hover:text-purple-400",
+              )}
               href={"https://github.com/TypeSafe-Travellers/App"}
               target={"_blank"}
             >
