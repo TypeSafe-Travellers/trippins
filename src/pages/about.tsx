@@ -16,13 +16,13 @@ const About: NextPage = () => {
       <Navbar />
       <main
         className={clsx(
-          "mx-12 my-auto pt-10",
+          "mx-12 my-auto",
           "flex flex-col gap-2",
           "h-[calc(100vh-70px)]",
           "items-center justify-center text-center",
         )}
       >
-        <div className={clsx("px-12", "bg-white dark:bg-transparent")}>
+        <div className={clsx("px-12 pt-12 pb-3")}>
           <div className={clsx(`${boldFont.className}`, "text-8xl", "pb-5")}>
             TypeSafe Travellers
           </div>
