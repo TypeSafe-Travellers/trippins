@@ -63,7 +63,9 @@ const About: NextPage = () => {
             Repl.it.
           </div>
 
-          <div className={clsx(`${boldFont.className}`, "text-5xl", "pt-3")}>
+          <div
+            className={clsx(`${boldFont.className}`, "text-5xl", "pt-3 pb-1")}
+          >
             Team
           </div>
           <div className={clsx("text-3xl", `${regularFont.className}`)}>
