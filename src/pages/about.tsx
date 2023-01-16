@@ -7,7 +7,7 @@ import { boldFont, regularFont } from "../fonts";
 import { useSession } from "next-auth/react";
 
 const About: NextPage = () => {
-  const { data: session, status } = useSession();
+  const { status } = useSession();
 
   if (status === "loading")
     return (
