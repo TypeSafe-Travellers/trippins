@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import clsx from "clsx";
 import { boldFont } from "../fonts";
+import { HomePageButton } from "../components";
 
 const NotFound: NextPage = () => {
   return (
@@ -11,10 +12,11 @@ const NotFound: NextPage = () => {
       )}
     >
       <div className={clsx("flex flex-col", `${boldFont.className}`)}>
-        <div className={clsx("text-9xl")}>
+        <div className={clsx("text-3xl lg:text-9xl")}>
           Page not found...
-          <span className="text-sky-500"> 404!</span>
+          <span className="text-blue-600 dark:text-sky-500"> 404!</span>
         </div>
+        <HomePageButton />
       </div>
     </div>
   );
