@@ -1,5 +1,5 @@
 import { type NextPage } from "next";
-import { Navbar, ThemeToggle } from "../components";
+import { Footer, Navbar, ThemeToggle } from "../components";
 import { useSession } from "next-auth/react";
 import Head from "next/head";
 import Link from "next/link";
@@ -62,6 +62,10 @@ const Home: NextPage = () => {
             </div>
           </Link>
           <ThemeToggle />
+
+          <div className={clsx("absolute bottom-3 lg:bottom-6")}>
+            <Footer />
+          </div>
         </div>
       </main>
     </>
