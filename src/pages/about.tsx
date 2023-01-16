@@ -8,7 +8,7 @@ const About: NextPage = () => {
   return (
     <>
       <Head>
-        <title>TypeSafe Travellers</title>
+        <title>TypeSafe Travellers | About</title>
         <meta name="description" content="Group Trip Planning App" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -32,9 +32,9 @@ const About: NextPage = () => {
           possible. Our app allows users to create a trip itinerary, share it
           with their group, and collaborate on details such as accommodations,
           transportation, and activities. We believe that group trip planning
-          should be fun and exciting, not overwhelming. That&apos;s why we&apos;ve
-          designed our app to be user-friendly and intuitive. Thank you for
-          choosing our group trip-planning app. Happy travels!
+          should be fun and exciting, not overwhelming. That&apos;s why
+          we&apos;ve designed our app to be user-friendly and intuitive. Thank
+          you for choosing our group trip-planning app. Happy travels!
         </div>
 
         <div className={clsx("text-2xl", `${regularFont.className}`)}>
