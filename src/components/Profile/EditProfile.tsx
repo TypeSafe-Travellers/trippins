@@ -7,11 +7,6 @@ import { regularFont } from "../../fonts";
 import { useSession } from "next-auth/react";
 import { api } from "../../utils/api";
 
-import type {
-  UpdateUserEmailType,
-  UpdateUserNameType,
-} from "../../types/EditProfileTypes";
-
 export const EditProfile = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { data: session } = useSession();
@@ -23,12 +18,18 @@ export const EditProfile = () => {
   const updateUserEmailMutation = api.userProfile.updateEmail.useMutation();
 
   const handleSave = (): void => {
-    if (userName !== session?.user?.name) {
-      updateUserName({ newName: userName });
+    if (userName !== session?.user?.name && session?.user?.id !== undefined) {
+      updateUserNameMutation.mutate({
+        newName: userName,
+        userId: session?.user?.id,
+      });
     }
 
-    if (userEmail !== session?.user?.email) {
-      updateUserEmail({ newEmail: userEmail });
+    if (userEmail !== session?.user?.email && session?.user?.id !== undefined) {
+      updateUserEmailMutation.mutate({
+        newEmail: userEmail,
+        userId: session?.user?.id,
+      });
     }
 
     setIsOpen(false);
@@ -36,18 +37,6 @@ export const EditProfile = () => {
     setTimeout(() => {
       window.location.reload();
     }, 1000);
-  };
-
-  const updateUserName = ({ newName }: UpdateUserNameType): void => {
-    if (session?.user?.id !== undefined) {
-      updateUserNameMutation.mutate({ newName, userId: session?.user?.id });
-    }
-  };
-
-  const updateUserEmail = ({ newEmail }: UpdateUserEmailType): void => {
-    if (session?.user?.id !== undefined) {
-      updateUserEmailMutation.mutate({ newEmail, userId: session?.user?.id });
-    }
   };
 
   return (
