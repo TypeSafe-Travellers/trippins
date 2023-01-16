@@ -132,7 +132,7 @@ const About: NextPage = () => {
             )}
           >
             <div className={clsx("text-2xl")}>
-              &copy; {new Date().getFullYear()}{" "}
+              &copy;{` ${new Date().getFullYear()} `}
               <Link
                 className={clsx(
                   "text-2xl lg:text-2xl",
