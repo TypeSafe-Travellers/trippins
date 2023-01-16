@@ -4,8 +4,24 @@ import Head from "next/head";
 import Link from "next/link";
 import { Navbar } from "../components";
 import { boldFont, regularFont } from "../fonts";
+import { useSession } from "next-auth/react";
 
 const About: NextPage = () => {
+  const { data: session, status } = useSession();
+
+  if (status === "loading")
+    return (
+      <div
+        className={clsx(
+          "flex min-h-screen items-center justify-center text-center",
+          "text-4xl lg:text-7xl",
+          `${boldFont.className}`,
+        )}
+      >
+        Loading...
+      </div>
+    );
+
   return (
     <>
       <Head>
