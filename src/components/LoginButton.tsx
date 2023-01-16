@@ -16,7 +16,7 @@ export const LoginButton = () => {
         "dark:bg-green-700 dark:text-white dark:focus:ring-gray-500 dark:hover:bg-green-600",
         `${regularFont.className}`,
       )}
-      onClick={() => signIn()}
+      onClick={() => signIn(undefined, { callbackUrl: '/' })}
     >
       Sign In
     </button>
