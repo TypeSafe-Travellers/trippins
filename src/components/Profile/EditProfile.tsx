@@ -5,10 +5,39 @@ import clsx from "clsx";
 import { Fragment, useState } from "react";
 import { regularFont } from "../../fonts";
 import { useSession } from "next-auth/react";
+import { api } from "../../utils/api";
 
 export const EditProfile = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { data: session } = useSession();
+
+  const [userName, setUserName] = useState(session?.user?.name as string);
+  const [userEmail, setUserEmail] = useState(session?.user?.email as string);
+
+  const updateUserNameMutation = api.userProfile.updateName.useMutation();
+  const updateUserEmailMutation = api.userProfile.updateEmail.useMutation();
+
+  const handleSave = (): void => {
+    if (userName !== session?.user?.name && session?.user?.id !== undefined) {
+      updateUserNameMutation.mutate({
+        newName: userName,
+        userId: session?.user?.id,
+      });
+    }
+
+    if (userEmail !== session?.user?.email && session?.user?.id !== undefined) {
+      updateUserEmailMutation.mutate({
+        newEmail: userEmail,
+        userId: session?.user?.id,
+      });
+    }
+
+    setIsOpen(false);
+
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
+  };
 
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
@@ -75,14 +104,14 @@ export const EditProfile = () => {
               </Dialog.Description>
               <form className="mt-2 space-y-2">
                 <fieldset>
-                  {/* <legend>Choose your favorite monster</legend> */}
                   <label htmlFor="userName" className="text-lg">
                     Username
                   </label>
                   <input
                     id="userName"
                     type="text"
-                    value={session?.user?.name as string}
+                    value={userName}
+                    onChange={(e) => setUserName(e.target.value)}
                     autoComplete="user-name"
                     className={clsx(
                       "mt-1 block w-full rounded-md px-1 pt-2 pb-1",
@@ -98,7 +127,8 @@ export const EditProfile = () => {
                   <input
                     id="email"
                     type="email"
-                    value={session?.user?.email as string}
+                    value={userEmail}
+                    onChange={(e) => setUserEmail(e.target.value)}
                     autoComplete="email"
                     className={clsx(
                       "mt-1 block w-full rounded-md px-1 pt-2 pb-1",
@@ -111,6 +141,7 @@ export const EditProfile = () => {
 
               <div className="mt-4 flex justify-end">
                 <Dialog.Close
+                  onClick={handleSave}
                   className={clsx(
                     "inline-flex select-none justify-center rounded-md px-4 pt-2.5 pb-1 text-xl",
                     " bg-green-100 text-center text-black",
