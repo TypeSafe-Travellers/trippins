@@ -55,7 +55,7 @@ export const userProfileRouter = createTRPCRouter({
           },
         });
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     }),
 });
