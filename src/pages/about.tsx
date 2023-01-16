@@ -45,12 +45,13 @@ const About: NextPage = () => {
             Welcome to our group trip-planning app! We are a team of travel
             enthusiasts who understand the challenges of planning a group trip.
             We created this app to make the process as easy and stress-free as
-            possible. Our web app allows users to create a trip itinerary, share it
-            with their group, and collaborate on details such as accommodations,
-            transportation, and activities. We believe that group trip planning
-            should be fun and exciting, not overwhelming. That&apos;s why
-            we&apos;ve designed our app to be user-friendly and intuitive. Thank
-            you for choosing our group trip-planning app. Bon voyage!
+            possible. Our web app allows users to create a trip itinerary, share
+            it with their group, and collaborate on details such as
+            accommodations, transportation, and activities. We believe that
+            group trip planning should be fun and exciting, not overwhelming.
+            That&apos;s why we&apos;ve designed our app to be user-friendly and
+            intuitive. Thank you for choosing our group trip-planning app. Bon
+            voyage!
           </div>
 
           <div
