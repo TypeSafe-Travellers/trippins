@@ -17,19 +17,19 @@ const About: NextPage = () => {
       <Navbar />
       <main
         className={clsx(
-          "mx-12 my-auto",
+          "my-auto lg:mx-12",
           "flex flex-col gap-2",
           "h-[calc(100vh-70px)]",
           "items-center justify-center text-center",
         )}
       >
-        <div className={clsx("px-12 pt-12 pb-3")}>
+        <div className={clsx("px-6 pt-3", "lg:px-12 lg:pt-12 lg:pb-3")}>
           <div
             className={clsx(
               `${boldFont.className}`,
-              "text-8xl",
-              "pb-5",
-              "text-cyan-50",
+              "text-4xl lg:text-8xl",
+              "pb-3 lg:pb-5",
+              "dark:text-cyan-50",
             )}
           >
             TypeSafe Travellers
@@ -37,7 +37,7 @@ const About: NextPage = () => {
 
           <div
             className={clsx(
-              "text-2xl",
+              "lg:text-2xl",
               "text-justify",
               `${regularFont.className}`,
             )}
@@ -56,16 +56,16 @@ const About: NextPage = () => {
           <div
             className={clsx(
               `${boldFont.className}`,
-              "text-5xl",
+              "text-3xl lg:text-5xl",
               "pt-3",
-              "text-cyan-50",
+              "dark:text-cyan-50",
             )}
           >
             Tech Stack
           </div>
           <div
             className={clsx(
-              "text-2xl",
+              "lg:text-2xl",
               "text-justify",
               `${regularFont.className}`,
             )}
@@ -81,14 +81,14 @@ const About: NextPage = () => {
           <div
             className={clsx(
               `${boldFont.className}`,
-              "text-5xl",
-              "pt-3 pb-1",
-              "text-cyan-50",
+              "text-3xl lg:text-5xl",
+              "pt-3 lg:pb-1",
+              "dark:text-cyan-50",
             )}
           >
             Team
           </div>
-          <div className={clsx("text-3xl", `${regularFont.className}`)}>
+          <div className={clsx("lg:text-3xl", `${regularFont.className}`)}>
             <Link
               className={clsx(
                 "text-sky-600 hover:text-sky-700",
@@ -124,41 +124,53 @@ const About: NextPage = () => {
           </div>
 
           <footer
-            className={clsx(`${regularFont.className}`, "text-2xl", "pt-10")}
+            className={clsx(
+              `${regularFont.className}`,
+              "text-xl lg:text-xl",
+              "pt-6 lg:pt-10",
+              "flex flex-col gap-0",
+            )}
           >
-            &copy; {new Date().getFullYear()}{" "}
-            <Link
-              className={clsx(
-                "text-blue-600 hover:text-blue-700",
-                "dark:text-sky-200 dark:hover:text-sky-300",
-              )}
-              href={"https://github.com/TypeSafe-Travellers"}
-              target={"_blank"}
-            >
-              TypeSafe Travellers
-            </Link>
-            . Open-Source —{" "}
-            <Link
-              className={clsx(
-                "text-purple-600 hover:text-purple-700",
-                "dark:text-purple-300 dark:hover:text-purple-400",
-              )}
-              href={"https://github.com/TypeSafe-Travellers/App"}
-              target={"_blank"}
-            >
-              GitHub
-            </Link>{" "}
-            &amp;{" "}
-            <Link
-              className={clsx(
-                "text-orange-700 hover:text-orange-800",
-                "dark:text-orange-400 dark:hover:text-orange-500",
-              )}
-              href={"https://replit.com/@AyanavaKarmakar/apptypesafetravellers"}
-              target={"_blank"}
-            >
-              Repl.it
-            </Link>
+            <div className={clsx("text-2xl")}>
+              &copy; {new Date().getFullYear()}{" "}
+              <Link
+                className={clsx(
+                  "text-2xl lg:text-2xl",
+                  "text-blue-600 hover:text-blue-700",
+                  "dark:text-sky-200 dark:hover:text-sky-300",
+                )}
+                href={"https://github.com/TypeSafe-Travellers"}
+                target={"_blank"}
+              >
+                TypeSafe Travellers
+              </Link>{" "}
+            </div>
+            <div>
+              Open-Source —{" "}
+              <Link
+                className={clsx(
+                  "text-purple-600 hover:text-purple-700",
+                  "dark:text-purple-300 dark:hover:text-purple-400",
+                )}
+                href={"https://github.com/TypeSafe-Travellers/App"}
+                target={"_blank"}
+              >
+                GitHub
+              </Link>{" "}
+              &amp;{" "}
+              <Link
+                className={clsx(
+                  "text-orange-700 hover:text-orange-800",
+                  "dark:text-orange-400 dark:hover:text-orange-500",
+                )}
+                href={
+                  "https://replit.com/@AyanavaKarmakar/apptypesafetravellers"
+                }
+                target={"_blank"}
+              >
+                Repl.it
+              </Link>
+            </div>
           </footer>
         </div>
       </main>
