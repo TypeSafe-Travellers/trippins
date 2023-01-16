@@ -45,7 +45,7 @@ const About: NextPage = () => {
             Welcome to our group trip-planning app! We are a team of travel
             enthusiasts who understand the challenges of planning a group trip.
             We created this app to make the process as easy and stress-free as
-            possible. Our app allows users to create a trip itinerary, share it
+            possible. Our web app allows users to create a trip itinerary, share it
             with their group, and collaborate on details such as accommodations,
             transportation, and activities. We believe that group trip planning
             should be fun and exciting, not overwhelming. That&apos;s why
