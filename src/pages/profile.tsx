@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { type NextPage } from "next";
 import Head from "next/head";
-import { Navbar, ProfileContainer, ThemeToggle } from "../components";
+import { Footer, Navbar, ProfileContainer, ThemeToggle } from "../components";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
@@ -39,18 +39,21 @@ const Profile: NextPage = () => {
       </Head>
 
       <Navbar />
-      <main>
-        <div
-          className={clsx(
-            "flex h-[calc(100vh-70px)] w-screen justify-center",
-            "flex-col gap-2",
-            "text-gray-900 dark:text-zinc-200",
-          )}
-        >
-          <ProfileContainer />
-          <div className="pt-5 text-center">
-            <ThemeToggle />
-          </div>
+      <main
+        className={clsx(
+          "flex h-[calc(100vh-70px)] w-screen items-center justify-center",
+          "flex-col gap-2",
+          "text-gray-900 dark:text-zinc-200",
+        )}
+      >
+        <ProfileContainer />
+
+        <div className="pt-5 text-center">
+          <ThemeToggle />
+        </div>
+
+        <div className={clsx("absolute bottom-3 lg:bottom-6")}>
+          <Footer />
         </div>
       </main>
     </>
