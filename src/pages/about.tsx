@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import type { NextPage } from "next";
 import Head from "next/head";
+import Link from "next/link";
 import { Navbar } from "../components";
 import { boldFont, regularFont } from "../fonts";
 
@@ -75,8 +76,31 @@ const About: NextPage = () => {
           <footer
             className={clsx(`${regularFont.className}`, "text-2xl", "pt-10")}
           >
-            &copy; {new Date().getFullYear()} TypeSafe Travellers. Open-Source —
-            GitHub &amp; Repl.it
+            &copy; {new Date().getFullYear()}{" "}
+            <Link
+              className={clsx(
+                "text-blue-600 hover:text-blue-700",
+                "dark:text-sky-200 dark:hover:text-sky-300",
+              )}
+              href={"https://github.com/TypeSafe-Travellers"}
+              target={"_blank"}
+            >
+              TypeSafe Travellers
+            </Link>
+            . Open-Source —{" "}
+            <Link
+              href={"https://github.com/TypeSafe-Travellers/App"}
+              target={"_blank"}
+            >
+              GitHub
+            </Link>{" "}
+            &amp;{" "}
+            <Link
+              href={"https://replit.com/@AyanavaKarmakar/apptypesafetravellers"}
+              target={"_blank"}
+            >
+              Repl.it
+            </Link>
           </footer>
         </div>
       </main>
