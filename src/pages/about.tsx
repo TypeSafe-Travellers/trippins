@@ -70,7 +70,38 @@ const About: NextPage = () => {
             Team
           </div>
           <div className={clsx("text-3xl", `${regularFont.className}`)}>
-            Ayanava Karmakar // Subham Sarkar // Nishith Savla
+            <Link
+              className={clsx(
+                "text-sky-600 hover:text-sky-700",
+                "dark:text-emerald-100 dark:hover:text-emerald-200",
+              )}
+              href={"https://github.com/AyanavaKarmakar"}
+              target={"_blank"}
+            >
+              Ayanava Karmakar
+            </Link>
+            {" // "}
+            <Link
+              className={clsx(
+                "text-sky-600 hover:text-sky-700",
+                "dark:text-emerald-100 dark:hover:text-emerald-200",
+              )}
+              href={"https://github.com/ssarkar551"}
+              target={"_blank"}
+            >
+              Subham Sarkar
+            </Link>
+            {" // "}
+            <Link
+              className={clsx(
+                "text-sky-600 hover:text-sky-700",
+                "dark:text-emerald-100 dark:hover:text-emerald-200",
+              )}
+              href={"https://github.com/Nishith-Savla"}
+              target={"_blank"}
+            >
+              Nishith Savla
+            </Link>
           </div>
 
           <footer
