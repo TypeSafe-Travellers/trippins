@@ -12,7 +12,7 @@ const NotFound: NextPage = () => {
       )}
     >
       <div className={clsx("flex flex-col", `${boldFont.className}`)}>
-        <div className={clsx("text-3xl lg:text-9xl")}>
+        <div className={clsx("text-4xl lg:text-9xl")}>
           Page not found...
           <span className="text-blue-600 dark:text-sky-500"> 404!</span>
         </div>

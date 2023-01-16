@@ -8,7 +8,7 @@ export const HomePageButton = () => {
       href="/"
       className={clsx(
         "mr-2 mb-2 px-5 pt-3 pb-1",
-        "items-center rounded-md text-2xl",
+        "items-center rounded-md text-xl lg:text-2xl",
         "bg-teal-50 text-center text-black",
         "border-2 border-solid border-black",
         "focus:outline-none focus:ring-2 focus:ring-black hover:bg-teal-200",
