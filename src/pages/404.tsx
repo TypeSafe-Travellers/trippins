@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import clsx from "clsx";
 import { boldFont } from "../fonts";
-import { HomePageButton } from "../components";
+import { Footer, HomePageButton } from "../components";
 
 const NotFound: NextPage = () => {
   return (
@@ -17,6 +17,9 @@ const NotFound: NextPage = () => {
           <span className="text-blue-600 dark:text-sky-500"> 404!</span>
         </div>
         <HomePageButton />
+        <div className={clsx("relative")}>
+          <Footer />
+        </div>
       </div>
     </div>
   );
