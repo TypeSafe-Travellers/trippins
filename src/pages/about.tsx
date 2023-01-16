@@ -24,7 +24,14 @@ const About: NextPage = () => {
         )}
       >
         <div className={clsx("px-12 pt-12 pb-3")}>
-          <div className={clsx(`${boldFont.className}`, "text-8xl", "pb-5")}>
+          <div
+            className={clsx(
+              `${boldFont.className}`,
+              "text-8xl",
+              "pb-5",
+              "text-cyan-50",
+            )}
+          >
             TypeSafe Travellers
           </div>
 
@@ -46,7 +53,14 @@ const About: NextPage = () => {
             you for choosing our group trip-planning app. Happy travels!
           </div>
 
-          <div className={clsx(`${boldFont.className}`, "text-5xl", "pt-3")}>
+          <div
+            className={clsx(
+              `${boldFont.className}`,
+              "text-5xl",
+              "pt-3",
+              "text-cyan-50",
+            )}
+          >
             Tech Stack
           </div>
           <div
@@ -65,7 +79,12 @@ const About: NextPage = () => {
           </div>
 
           <div
-            className={clsx(`${boldFont.className}`, "text-5xl", "pt-3 pb-1")}
+            className={clsx(
+              `${boldFont.className}`,
+              "text-5xl",
+              "pt-3 pb-1",
+              "text-cyan-50",
+            )}
           >
             Team
           </div>
