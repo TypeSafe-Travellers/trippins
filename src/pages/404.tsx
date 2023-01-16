@@ -1,40 +1,41 @@
 import Link from "next/link";
+import type { NextPage } from "next";
 
-export default function FourOhFour() {
+const NotFound: NextPage = () => {
   return (
     <main>
-      <div>
-        <div className="h-[calc(100vh-200px)] py-12 sm:py-8 md:py-12 lg:py-14 xl:py-12 2xl:py-28">
-          <div className="flex flex-col items-center">
-            <div className="max-w-md px-4 sm:max-w-2xl sm:px-6 md:max-w-3xl lg:max-w-4xl lg:px-0 xl:max-w-5xl 2xl:max-w-6xl">
-              <h1 className="text-center text-4xl font-bold tracking-tight text-white sm:text-6xl sm:tracking-tight lg:text-[4rem] xl:text-[6rem] xl:tracking-tight 2xl:text-[6.5rem]">
-                Page not found...
-                <span className="text-[hsl(200,100%,60%)]">404!</span>
-              </h1>
-              <div className="mt-4 flex w-full items-center justify-center gap-4 text-white xl:mt-8">
-                <Link href="/" className="text-xl">
-                  Return to the homepage
-                  <svg
-                    className="stroke ml-2 -mr-1 inline h-3 stroke-current stroke-2"
-                    fill="none"
-                    viewBox="0 0 10 10"
-                    aria-hidden="true"
-                  >
-                    <path
-                      className="opacity-0 transition group-hover:opacity-100"
-                      d="M0 5h7"
-                    ></path>
-                    <path
-                      className="transition group-hover:translate-x-[3px]"
-                      d="M1 1l4 4-4 4"
-                    ></path>
-                  </svg>
-                </Link>
-              </div>
+      <div className="flex min-h-screen items-center justify-center text-center">
+        <div className="flex flex-col items-center">
+          <div className="max-w-md px-4 sm:max-w-2xl sm:px-6 md:max-w-3xl lg:max-w-4xl lg:px-0 xl:max-w-5xl 2xl:max-w-6xl">
+            <h1 className="text-center text-4xl font-bold tracking-tight text-white sm:text-6xl sm:tracking-tight lg:text-[4rem] xl:text-[6rem] xl:tracking-tight 2xl:text-[6.5rem]">
+              Page not found...
+              <span className="text-[hsl(200,100%,60%)]"> 404!</span>
+            </h1>
+            <div className="group mt-4 flex w-full items-center justify-center gap-4 text-white xl:mt-8">
+              <Link href="/" className="text-xl">
+                Return to the homepage
+                <svg
+                  className="stroke ml-2 -mr-1 inline h-3 stroke-current stroke-2"
+                  fill="none"
+                  viewBox="0 0 10 10"
+                  aria-hidden="true"
+                >
+                  <path
+                    className="opacity-0 transition group-hover:opacity-100"
+                    d="M0 5h7"
+                  ></path>
+                  <path
+                    className="transition group-hover:translate-x-[3px]"
+                    d="M1 1l4 4-4 4"
+                  ></path>
+                </svg>
+              </Link>
             </div>
           </div>
         </div>
       </div>
     </main>
   );
-}
+};
+
+export default NotFound;
