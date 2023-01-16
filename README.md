@@ -42,15 +42,14 @@ npm run format
 - [TypeScript](https://www.typescriptlang.org/)
 - [NextAuth.js](https://next-auth.js.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
-- [PlanetScale](https://planetscale.com/)
-- [Heroicons](https://heroicons.com/)
 - [Radix UI](https://www.radix-ui.com/)
+- [Heroicons](https://heroicons.com/)
 - [Radix Icons](https://icons.radix-ui.com/)
-- [MySQL](https://www.mysql.com/)
 - [Prisma](https://www.prisma.io/)
-- [Repl.it](https://replit.com/)
 - [tRPC](https://trpc.io/)
-- [Zod](https://zod.dev/)
+- [MySQL](https://www.mysql.com/)
+- [PlanetScale](https://planetscale.com/)
+- [Repl.it](https://replit.com/)
 
 ## Team
 
