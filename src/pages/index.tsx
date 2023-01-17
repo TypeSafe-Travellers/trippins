@@ -1,5 +1,5 @@
 import { type NextPage } from "next";
-import { Navbar, ThemeToggle } from "../components";
+import { Navbar } from "../components";
 import { useSession } from "next-auth/react";
 import Head from "next/head";
 import Link from "next/link";
@@ -61,7 +61,6 @@ const Home: NextPage = () => {
               </p>
             </div>
           </Link>
-          <ThemeToggle />
         </div>
       </main>
     </>
