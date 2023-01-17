@@ -1,28 +1,71 @@
-# Create T3 App
+![Repo Banner](https://user-images.githubusercontent.com/89210438/212290982-12013266-2913-42ac-8a90-f6ced83741e1.png)
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+## About
 
-## What's next? How do I make an app with this?
+This is a [WIP project](https://apptypesafetravellers.ayanavakarmakar.repl.co) by Team TypeSafe Travellers for [SWoC S3](https://swoc.getsocialnow.co/) deployed on [Repl.it](https://replit.com/@AyanavaKarmakar/apptypesafetravellers).
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+## Get Started
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+- Clone the repo
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+```bash
+git clone https://github.com/TypeSafe-Travellers/App.git
+```
 
-## Learn More
+- Install dependencies
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+```bash
+npm install
+```
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+- Run the app
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+```bash
+npm run dev
+```
 
-## How do I deploy this?
+- Check Formatting
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+```bash
+npm run format:check
+```
+
+- Format Code
+
+```bash
+npm run format
+```
+
+# Tech Stack
+
+- [Next.js](https://nextjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [NextAuth.js](https://next-auth.js.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Radix UI](https://www.radix-ui.com/)
+- [Heroicons](https://heroicons.com/)
+- [Radix Icons](https://icons.radix-ui.com/)
+- [Prisma](https://www.prisma.io/)
+- [tRPC](https://trpc.io/)
+- [MySQL](https://www.mysql.com/)
+- [PlanetScale](https://planetscale.com/)
+- [Repl.it](https://replit.com/)
+
+## Team
+
+- [Ayanava Karmakar](https://github.com/AyanavaKarmakar)
+- [Subham Sarkar](https://github.com/ssarkar551)
+- [Nishith Savla](https://github.com/Nishith-Savla)
+
+## Links
+
+- [Website](https://apptypesafetravellers.ayanavakarmakar.repl.co)
+- [Repl.it Repo](https://replit.com/@AyanavaKarmakar/apptypesafetravellers)
+- [Milestones](https://github.com/TypeSafe-Travellers/App/milestones)
+- [Roadmap & Priorities](https://github.com/TypeSafe-Travellers/App/projects?query=is%3Aopen)
+
+## Show your support
+
+Give a ⭐️ if you like this project!
+
+---
