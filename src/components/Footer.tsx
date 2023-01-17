@@ -37,8 +37,8 @@ export const Footer = () => {
           target={"_blank"}
         >
           GitHub
-        </Link>{" "}
-        &amp;{" "}
+        </Link>
+        {" & "}
         <Link
           className={clsx(
             "text-orange-700 hover:text-orange-800",
