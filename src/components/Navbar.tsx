@@ -63,7 +63,7 @@ export const Navbar = () => {
         <div
           className={clsx(
             "absolute right-0 top-0 pt-3",
-            "flex flex-row gap-2 lg:gap-4",
+            "flex flex-row gap-4 lg:gap-6",
           )}
         >
           <div className={clsx("pt-2")}>
