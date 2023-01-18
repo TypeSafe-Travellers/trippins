@@ -43,6 +43,7 @@ const Home: NextPage = () => {
         )}
       >
         {/** TODO - Placehold Banner. Should be removed later. */}
+        {status === "authenticated"}
         <div className="flex flex-col items-center gap-10">
           <Link
             className="group relative mx-10 cursor-pointer"
