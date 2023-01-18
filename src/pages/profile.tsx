@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { type NextPage } from "next";
 import Head from "next/head";
-import { Footer, Navbar, ProfileContainer } from "../components";
+import { Footer, Navbar, ProfileContainer, ThemeToggle } from "../components";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
@@ -47,6 +47,10 @@ const Profile: NextPage = () => {
         )}
       >
         <ProfileContainer />
+
+        <div className="pt-5 text-center">
+          <ThemeToggle />
+        </div>
 
         <div className={clsx("absolute bottom-3 lg:bottom-6")}>
           <Footer />
