@@ -1,16 +1,17 @@
 import { Transition } from "@headlessui/react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { CrossIcon } from "../icons";
+import { CrossIcon } from "../../icons";
 import clsx from "clsx";
 import { Fragment, useState } from "react";
-import { regularFont } from "../fonts";
+import { regularFont } from "../../fonts";
 
 export const NewTripButton = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [tripName, setTripName] = useState("");
-  const [tripDesc, setTripDesc] = useState("");
+  const [tripDescription, settripDescription] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
       <Dialog.Trigger asChild>
@@ -69,9 +70,9 @@ export const NewTripButton = () => {
                 "bg-gray-100 dark:bg-gray-800",
               )}
             >
-              <Dialog.Title className="text-2xl">New Trip</Dialog.Title>
+              <Dialog.Title className="text-2xl">Create New Trip</Dialog.Title>
               <Dialog.Description className="mt-2 text-xl">
-                Click here to set up a new trip
+                Fill this form to set up a new trip
               </Dialog.Description>
               <form className="mt-2 space-y-2">
                 <fieldset>
@@ -95,12 +96,11 @@ export const NewTripButton = () => {
                   <label htmlFor="email" className="text-lg">
                     Trip Description
                   </label>
-                  <input
-                    id="tripDesc"
-                    type="textarea"
-                    value={tripDesc}
-                    onChange={(e) => setTripDesc(e.target.value)}
-                    autoComplete="tripDesc"
+                  <textarea
+                    id="tripDescriptionription"
+                    value={tripDescription}
+                    onChange={(e) => settripDescription(e.target.value)}
+                    autoComplete="tripDescription"
                     className={clsx(
                       "mt-1 block w-full rounded-md px-1 pt-2 pb-1",
                       "text-xl",
@@ -114,10 +114,10 @@ export const NewTripButton = () => {
                   </label>
                   <input
                     id="startDate"
-                    type="date"
+                    type="datetime-local"
                     value={startDate}
                     onChange={(e) => setStartDate(e.target.value)}
-                    autoComplete="tripDesc"
+                    autoComplete="tripDescription"
                     className={clsx(
                       "mt-1 block w-full rounded-md px-1 pt-2 pb-1",
                       "text-xl",
@@ -131,7 +131,7 @@ export const NewTripButton = () => {
                   </label>
                   <input
                     id="endDate"
-                    type="date"
+                    type="datetime-local"
                     value={endDate}
                     onChange={(e) => setEndDate(e.target.value)}
                     autoComplete="endDate"
