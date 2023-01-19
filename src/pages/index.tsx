@@ -1,12 +1,11 @@
 import { type NextPage } from "next";
-import { Footer, Navbar } from "../components";
+import { Footer, Navbar, NewTripButton } from "../components";
 import { useSession } from "next-auth/react";
 import Head from "next/head";
 import Link from "next/link";
 import clsx from "clsx";
 import { boldFont } from "../fonts";
 import { api } from "../utils/api";
-import { NewTripButton } from "../components/Home/NewTripButton";
 
 const Home: NextPage = () => {
   const { data: session, status } = useSession();
@@ -45,7 +44,6 @@ const Home: NextPage = () => {
       >
         {/** TODO - Placehold Banner. Should be removed later. */}
         <div className="flex flex-col items-center gap-10">
-          {status === "authenticated" && <NewTripButton />}
           <Link
             className="group relative mx-10 cursor-pointer"
             href={"https://github.com/TypeSafe-Travellers/App"}
@@ -63,6 +61,9 @@ const Home: NextPage = () => {
               </p>
             </div>
           </Link>
+
+          {status === "authenticated" && <NewTripButton />}
+
           <div className={clsx("absolute bottom-3 lg:bottom-6")}>
             <Footer />
           </div>

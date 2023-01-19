@@ -116,6 +116,7 @@ export const EditProfile = () => {
                     className={clsx(
                       "mt-1 block w-full rounded-md px-1 pt-2 pb-1",
                       "text-xl",
+                      "bg-white dark:bg-gray-900",
                       "border border-gray-400 focus-visible:border-transparent dark:border-gray-700 dark:bg-gray-800",
                     )}
                   />
@@ -133,6 +134,7 @@ export const EditProfile = () => {
                     className={clsx(
                       "mt-1 block w-full rounded-md px-1 pt-2 pb-1",
                       "text-xl",
+                      "bg-white dark:bg-gray-900",
                       "border border-gray-400 focus-visible:border-transparent dark:border-gray-700 dark:bg-gray-800",
                     )}
                   />
