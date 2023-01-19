@@ -4,7 +4,6 @@ import { CrossIcon } from "../icons";
 import clsx from "clsx";
 import { Fragment, useState } from "react";
 import { regularFont } from "../fonts";
-import { useSession } from "next-auth/react";
 
 export const NewTripButton = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,17 +11,6 @@ export const NewTripButton = () => {
   const [tripDesc, setTripDesc] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-  const { data: session } = useSession();
-  const [userName] = useState(session?.user?.name as string);
-  //   const saveNewTripMutation = api.userProfile.newTrip.
-
-  //   const handleSave = (): void => {
-  //     if (userName !== session?.user?.name && session?.user?.id !== undefined) {
-  //       update.mutate({
-  //         newName: userName,
-  //         userId: session?.user?.id,
-  //       });
-  //     }
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
       <Dialog.Trigger asChild>
@@ -155,21 +143,6 @@ export const NewTripButton = () => {
                   />
                 </fieldset>
               </form>
-
-              <div className="mt-4 flex justify-end">
-                <Dialog.Close
-                  // onClick={handleSave}
-                  className={clsx(
-                    "inline-flex select-none justify-center rounded-md px-4 pt-2.5 pb-1 text-xl",
-                    " bg-green-100 text-center text-black",
-                    "border-2 border-solid border-black",
-                    "focus:outline-none focus:ring-2 focus:ring-black hover:bg-green-200",
-                    "dark:bg-green-700 dark:text-white dark:focus:ring-gray-500 dark:hover:bg-green-600",
-                  )}
-                >
-                  Save
-                </Dialog.Close>
-              </div>
 
               <Dialog.Close
                 className={clsx(

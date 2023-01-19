@@ -6,6 +6,7 @@ import Link from "next/link";
 import clsx from "clsx";
 import { boldFont } from "../fonts";
 import { api } from "../utils/api";
+import { NewTripButton } from "../components/NewTripButton";
 
 const Home: NextPage = () => {
   const { data: session, status } = useSession();
@@ -43,7 +44,7 @@ const Home: NextPage = () => {
         )}
       >
         {/** TODO - Placehold Banner. Should be removed later. */}
-        {status === "authenticated"}
+        {status === "authenticated" && <NewTripButton />}
         <div className="flex flex-col items-center gap-10">
           <Link
             className="group relative mx-10 cursor-pointer"
