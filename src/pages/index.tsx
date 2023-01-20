@@ -38,7 +38,7 @@ const Home: NextPage = () => {
 
       <Navbar />
 
-      <main className={clsx("flex h-[calc(100vh-70px)] w-screen")}>
+      <main>
         <HomeContainer />
       </main>
     </>

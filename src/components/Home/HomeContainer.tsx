@@ -11,11 +11,14 @@ export const HomeContainer = () => {
   return (
     <>
       {status === "authenticated" ? (
-        <TripsContainer />
+        <div className={clsx("p-5")}>
+          <TripsContainer />
+        </div>
       ) : (
         <div
           className={clsx(
-            "flex flex-col items-center",
+            "flex flex-col",
+            "h-[calc(100vh-70px)] w-screen",
             "items-center justify-center",
           )}
         >
