@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import Link from "next/link";
-import { regularFont } from "../fonts";
+import { regularFont } from "../../fonts";
 
 export const Footer = () => {
   return (

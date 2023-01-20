@@ -1,5 +1,5 @@
 import { signIn } from "next-auth/react";
-import { regularFont } from "../fonts";
+import { regularFont } from "../../fonts";
 import clsx from "clsx";
 
 export const LoginButton = () => {

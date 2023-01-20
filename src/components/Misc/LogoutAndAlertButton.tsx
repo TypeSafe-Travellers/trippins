@@ -2,7 +2,7 @@ import { Transition } from "@headlessui/react";
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
 import clsx from "clsx";
 import { useState, Fragment } from "react";
-import { regularFont } from "../fonts";
+import { regularFont } from "../../fonts";
 import { signOut } from "next-auth/react";
 
 export const LogoutAndAlertButton = () => {

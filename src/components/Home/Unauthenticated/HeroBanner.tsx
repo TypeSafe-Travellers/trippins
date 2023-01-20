@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { boldFont, semiBoldFont } from "../../fonts";
+import { boldFont, semiBoldFont } from "../../../fonts";
 
 export const HeroBanner = () => {
   return (

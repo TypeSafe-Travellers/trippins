@@ -1,9 +1,9 @@
 import { Transition } from "@headlessui/react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { CrossIcon } from "../../icons";
+import { CrossIcon } from "../../../icons";
 import clsx from "clsx";
 import { Fragment, useState } from "react";
-import { regularFont } from "../../fonts";
+import { regularFont } from "../../../fonts";
 
 export const NewTripButton = () => {
   const [isOpen, setIsOpen] = useState(false);

@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { regularFont } from "../../fonts";
+import { regularFont } from "../../../fonts";
 import { signIn } from "next-auth/react";
 
 export const GetStartedButton = () => {

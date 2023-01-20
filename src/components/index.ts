@@ -5,9 +5,9 @@ export { HomeContainer } from "./Home/HomeContainer";
 export { ProfileContainer } from "./Profile/ProfileContainer";
 
 // General
-export { Footer } from "./Footer";
-export { HomePageButton } from "./HomePageButton";
-export { LogoutAndAlertButton } from "./LogoutAndAlertButton";
-export { LoginButton } from "./LoginButton";
-export { ThemeToggle } from "./ThemeToggle";
-export { Navbar } from "./Navbar";
+export { Footer } from "./Misc/Footer";
+export { HomePageButton } from "./Misc/HomePageButton";
+export { LogoutAndAlertButton } from "./Misc/LogoutAndAlertButton";
+export { LoginButton } from "./Misc/LoginButton";
+export { ThemeToggle } from "./Misc/ThemeToggle";
+export { Navbar } from "./Misc/Navbar";
