@@ -16,7 +16,7 @@ export const ProfileContainer = () => {
         Profile Details
       </div>
       <ProfileDetails />
-      <div className="pt-5 text-center">
+      <div className="pt-8 text-center">
         <EditProfile />
       </div>
     </>
