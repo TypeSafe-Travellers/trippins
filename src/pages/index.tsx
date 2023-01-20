@@ -1,10 +1,9 @@
 import { type NextPage } from "next";
-import { Footer, Navbar, NewTripButton } from "../components";
+import { Footer, LoginButton, Navbar, NewTripButton } from "../components";
 import { useSession } from "next-auth/react";
 import Head from "next/head";
-import Link from "next/link";
 import clsx from "clsx";
-import { boldFont } from "../fonts";
+import { boldFont, semiBoldFont } from "../fonts";
 import { api } from "../utils/api";
 
 const Home: NextPage = () => {
@@ -13,7 +12,7 @@ const Home: NextPage = () => {
   const hello = api.example.hello.useQuery({
     text: `${
       session?.user?.name ? session.user.name : "there"
-    }! We are the TypeSafe Travellers.`,
+    }! Welcome to Trippins.`,
   });
 
   if (status === "loading")
@@ -36,35 +35,51 @@ const Home: NextPage = () => {
         <meta name="description" content="Group Trip Planning App" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
       <Navbar />
+
       <main
         className={clsx(
-          "flex h-[calc(100vh-70px)] w-screen items-center justify-center",
+          "flex h-[calc(100vh-70px)] w-screen",
+          "items-center justify-center",
         )}
       >
-        {/** TODO - Placehold Banner. Should be removed later. */}
-        <div className="flex flex-col items-center gap-10">
-          <Link
-            className="group relative mx-10 cursor-pointer"
-            href={"https://github.com/TypeSafe-Travellers/App"}
-            target={"_blank"}
+        <div className="flex flex-col items-center gap-0">
+          <div
+            className={clsx(
+              "text-4xl lg:text-9xl",
+              "text-center",
+              `${boldFont.className}`,
+            )}
           >
-            <div
-              className="animate-tilt absolute -inset-0.5 rounded-lg bg-gradient-to-r from-blue-400 to-red-400 opacity-75 blur 
-            transition duration-1000 group-hover:opacity-100 group-hover:duration-200 dark:from-cyan-700 dark:to-cyan-700"
-            ></div>
-            <div className="relative flex items-center divide-x divide-black rounded-lg bg-gray-200 px-7 py-4 leading-none dark:bg-black">
-              <p
-                className={`mx-5 bg-gradient-to-r from-blue-600 to-red-600 bg-clip-text px-6 pt-5 text-center text-4xl text-transparent dark:from-cyan-600 dark:to-emerald-600 lg:text-7xl ${boldFont.className}`}
-              >
-                {hello.data ? hello.data.greeting : "Loading greeting..."}
-              </p>
-            </div>
-          </Link>
+            Welcome to Trippins!
+          </div>
 
-          {status === "authenticated" && <NewTripButton />}
+          <div
+            className={clsx(
+              "text-3xl lg:text-7xl",
+              "text-center",
+              `${boldFont.className}`,
+            )}
+          >
+            The ultimate group trip planning app.
+          </div>
 
-          <div className={clsx("absolute bottom-3 lg:bottom-6")}>
+          <div
+            className={clsx(
+              "text-xl lg:text-5xl",
+              "text-center",
+              "px-40 py-5",
+              `${semiBoldFont.className}`,
+            )}
+          >
+            Say goodbye to the headache of group trip planning and hello to the
+            convenience and organization of Trippins.
+          </div>
+
+          {status === "authenticated" ? <NewTripButton /> : <LoginButton />}
+
+          <div className={clsx("absolute bottom-0 lg:bottom-3")}>
             <Footer />
           </div>
         </div>
