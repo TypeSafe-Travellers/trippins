@@ -18,7 +18,7 @@ export const HeroBanner = () => {
             "bg-clip-text text-transparent",
           )}
         >
-          Trippins!
+          {` Trippins!`}
         </span>
       </div>
 
