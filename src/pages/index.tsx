@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { useSession } from "next-auth/react";
 import { boldFont } from "../fonts";
 import { api } from "../utils/api";
-import { Footer, HomeContainer, Navbar } from "../components";
+import { HomeContainer, Navbar } from "../components";
 
 const Home: NextPage = () => {
   const { data: session, status } = useSession();
@@ -38,19 +38,8 @@ const Home: NextPage = () => {
 
       <Navbar />
 
-      <main
-        className={clsx(
-          "flex h-[calc(100vh-70px)] w-screen",
-          "items-center justify-center",
-        )}
-      >
-        <div className="flex flex-col items-center">
-          <HomeContainer />
-
-          <div className={clsx("absolute bottom-0 lg:bottom-3")}>
-            <Footer />
-          </div>
-        </div>
+      <main className={clsx("flex h-[calc(100vh-70px)] w-screen")}>
+        <HomeContainer />
       </main>
     </>
   );
