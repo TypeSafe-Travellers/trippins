@@ -14,7 +14,7 @@ export const HeroBanner = () => {
         Welcome to
         <span
           className={clsx(
-            "bg-gradient-to-r from-indigo-400 to-fuchsia-400",
+            "bg-gradient-to-r from-indigo-500 to-fuchsia-700 dark:from-indigo-400 dark:to-fuchsia-400",
             "bg-clip-text text-transparent",
           )}
         >
@@ -32,7 +32,7 @@ export const HeroBanner = () => {
         The ultimate
         <span
           className={clsx(
-            "bg-gradient-to-r from-emerald-400 to-cyan-500",
+            "bg-gradient-to-r from-green-500 to-cyan-500 dark:from-emerald-400 dark:to-cyan-500",
             "bg-clip-text text-transparent",
           )}
         >
@@ -52,7 +52,7 @@ export const HeroBanner = () => {
         Say goodbye to the
         <span
           className={clsx(
-            "bg-gradient-to-r from-emerald-400 to-cyan-500",
+            "bg-gradient-to-r from-green-500 to-cyan-500 dark:from-emerald-400 dark:to-cyan-500",
             "bg-clip-text text-transparent",
           )}
         >
@@ -61,7 +61,7 @@ export const HeroBanner = () => {
         of group trip planning and hello to the
         <span
           className={clsx(
-            "bg-gradient-to-r from-emerald-400 to-cyan-500",
+            "bg-gradient-to-r from-green-500 to-cyan-500 dark:from-emerald-400 dark:to-cyan-500",
             "bg-clip-text text-transparent",
           )}
         >
@@ -70,7 +70,7 @@ export const HeroBanner = () => {
         and
         <span
           className={clsx(
-            "bg-gradient-to-r from-emerald-400 to-cyan-500",
+            "bg-gradient-to-r from-green-500 to-cyan-500 dark:from-emerald-400 dark:to-cyan-500",
             "bg-clip-text text-transparent",
           )}
         >
@@ -79,7 +79,7 @@ export const HeroBanner = () => {
         of
         <span
           className={clsx(
-            "bg-gradient-to-r from-indigo-400 to-fuchsia-400",
+            "bg-gradient-to-r from-indigo-700 to-fuchsia-700 dark:from-indigo-400 dark:to-fuchsia-400",
             "bg-clip-text text-transparent",
           )}
         >
