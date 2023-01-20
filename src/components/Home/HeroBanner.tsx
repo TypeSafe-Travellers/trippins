@@ -11,7 +11,15 @@ export const HeroBanner = () => {
           `${boldFont.className}`,
         )}
       >
-        Welcome to Trippins!
+        Welcome to
+        <span
+          className={clsx(
+            "bg-gradient-to-r from-indigo-400 to-fuchsia-400",
+            "bg-clip-text text-transparent",
+          )}
+        >
+          Trippins!
+        </span>
       </div>
 
       <div
@@ -21,7 +29,16 @@ export const HeroBanner = () => {
           `${boldFont.className}`,
         )}
       >
-        The ultimate group trip planning app.
+        The ultimate
+        <span
+          className={clsx(
+            "bg-gradient-to-r from-emerald-400 to-cyan-500",
+            "bg-clip-text text-transparent",
+          )}
+        >
+          {` group trip planning `}
+        </span>
+        app.
       </div>
 
       <div
@@ -32,8 +49,42 @@ export const HeroBanner = () => {
           `${semiBoldFont.className}`,
         )}
       >
-        Say goodbye to the headache of group trip planning and hello to the
-        convenience and organization of Trippins.
+        Say goodbye to the
+        <span
+          className={clsx(
+            "bg-gradient-to-r from-emerald-400 to-cyan-500",
+            "bg-clip-text text-transparent",
+          )}
+        >
+          {` headache `}
+        </span>
+        of group trip planning and hello to the
+        <span
+          className={clsx(
+            "bg-gradient-to-r from-emerald-400 to-cyan-500",
+            "bg-clip-text text-transparent",
+          )}
+        >
+          {` convenience `}
+        </span>
+        and
+        <span
+          className={clsx(
+            "bg-gradient-to-r from-emerald-400 to-cyan-500",
+            "bg-clip-text text-transparent",
+          )}
+        >
+          {` organization `}
+        </span>
+        of
+        <span
+          className={clsx(
+            "bg-gradient-to-r from-indigo-400 to-fuchsia-400",
+            "bg-clip-text text-transparent",
+          )}
+        >
+          {` Trippins.`}
+        </span>
       </div>
     </>
   );

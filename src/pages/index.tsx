@@ -53,7 +53,7 @@ const Home: NextPage = () => {
         <div className="flex flex-col items-center gap-0">
           <HeroBanner />
 
-          <div className={clsx("py-8")}>
+          <div className={clsx("py-6")}>
             {status === "authenticated" ? (
               <NewTripButton />
             ) : (
