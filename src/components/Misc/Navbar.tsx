@@ -24,7 +24,7 @@ export const Navbar = () => {
           <NavigationMenu.Link
             href="/"
             className={clsx(
-              "px-2 py-3",
+              "px-1 py-3 lg:px-2",
               "rounded-lg",
               "hover:text-blue-700 dark:hover:text-indigo-300",
             )}
@@ -39,7 +39,8 @@ export const Navbar = () => {
             <NavigationMenu.Link
               href="/profile"
               className={clsx(
-                "rounded-lg px-2 py-3",
+                "rounded-lg",
+                "px-1 py-3 lg:px-2",
                 "hover:text-blue-700 dark:hover:text-indigo-300",
               )}
             >
@@ -52,7 +53,8 @@ export const Navbar = () => {
           <NavigationMenu.Link
             href="/about"
             className={clsx(
-              "rounded-lg px-2 py-3",
+              "rounded-lg",
+              "px-1 py-3 lg:px-2",
               "hover:text-blue-700 dark:hover:text-indigo-300",
             )}
           >
