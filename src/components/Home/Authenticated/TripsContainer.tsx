@@ -1,5 +1,10 @@
 import clsx from "clsx";
+import { NewTripButton } from "./NewTripButton";
 
 export const TripsContainer = () => {
-  return <div className={clsx("text-3xl", "text-center")}>Welcome, user!</div>;
+  return (
+    <div className={clsx("text-center")}>
+      <NewTripButton />
+    </div>
+  );
 };
