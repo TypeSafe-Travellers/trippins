@@ -1,7 +1,5 @@
 // Home
-export { HeroBanner } from "./Home/HeroBanner";
-export { GetStartedButton } from "./Home/GetStartedButton";
-export { NewTripButton } from "./Home/NewTripButton";
+export { HomeContainer } from "./Home/HomeContainer";
 
 // Profile
 export { ProfileContainer } from "./Profile/ProfileContainer";

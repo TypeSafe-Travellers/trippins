@@ -4,13 +4,7 @@ import clsx from "clsx";
 import { useSession } from "next-auth/react";
 import { boldFont } from "../fonts";
 import { api } from "../utils/api";
-import {
-  Footer,
-  GetStartedButton,
-  HeroBanner,
-  Navbar,
-  NewTripButton,
-} from "../components";
+import { Footer, HomeContainer, Navbar } from "../components";
 
 const Home: NextPage = () => {
   const { data: session, status } = useSession();
@@ -51,15 +45,7 @@ const Home: NextPage = () => {
         )}
       >
         <div className="flex flex-col items-center">
-          <HeroBanner />
-
-          <div className={clsx("py-6")}>
-            {status === "authenticated" ? (
-              <NewTripButton />
-            ) : (
-              <GetStartedButton />
-            )}
-          </div>
+          <HomeContainer />
 
           <div className={clsx("absolute bottom-0 lg:bottom-3")}>
             <Footer />
