@@ -17,7 +17,7 @@ export const Footer = () => {
         <Link
           className={clsx(
             "text-2xl lg:text-2xl",
-            "text-blue-600 hover:text-blue-700",
+            "text-blue-700 hover:text-blue-700",
             "dark:text-sky-200 dark:hover:text-sky-300",
           )}
           href={"https://github.com/TypeSafe-Travellers"}
@@ -30,7 +30,7 @@ export const Footer = () => {
         Open-Source —{" "}
         <Link
           className={clsx(
-            "text-purple-600 hover:text-purple-700",
+            "text-indigo-700 hover:text-purple-700",
             "dark:text-purple-300 dark:hover:text-purple-400",
           )}
           href={"https://github.com/TypeSafe-Travellers/App"}

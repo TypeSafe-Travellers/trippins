@@ -16,8 +16,8 @@ export const Navbar = () => {
           "text-xl",
           "px-2 pt-3 pb-1",
           "flex flex-row space-x-2 rounded-sm",
-          "bg-slate-100/90 dark:bg-zinc-900",
-          "shadow-md dark:shadow-2xl dark:shadow-zinc-800",
+          "bg-white dark:bg-neutral-900",
+          "shadow-xl dark:shadow-2xl dark:shadow-neutral-800",
         )}
       >
         <NavigationMenu.Item asChild>
