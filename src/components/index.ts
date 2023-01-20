@@ -1,4 +1,5 @@
 // Home
+export { HeroBanner } from "./Home/HeroBanner";
 export { GetStartedButton } from "./Home/GetStartedButton";
 export { NewTripButton } from "./Home/NewTripButton";
 
