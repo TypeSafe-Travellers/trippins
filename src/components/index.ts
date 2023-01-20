@@ -1,4 +1,5 @@
 // Home
+export { GetStartedButton } from "./Home/GetStartedButton";
 export { NewTripButton } from "./Home/NewTripButton";
 
 // Profile

@@ -1,5 +1,5 @@
 import { type NextPage } from "next";
-import { Footer, LoginButton, Navbar, NewTripButton } from "../components";
+import { Footer, GetStartedButton, Navbar, NewTripButton } from "../components";
 import { useSession } from "next-auth/react";
 import Head from "next/head";
 import clsx from "clsx";
@@ -77,7 +77,13 @@ const Home: NextPage = () => {
             convenience and organization of Trippins.
           </div>
 
-          {status === "authenticated" ? <NewTripButton /> : <LoginButton />}
+          <div className={clsx("pt-5")}>
+            {status === "authenticated" ? (
+              <NewTripButton />
+            ) : (
+              <GetStartedButton />
+            )}
+          </div>
 
           <div className={clsx("absolute bottom-0 lg:bottom-3")}>
             <Footer />

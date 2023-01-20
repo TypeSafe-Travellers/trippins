@@ -26,7 +26,7 @@ export const Navbar = () => {
             className={clsx(
               "px-2 py-3",
               "rounded-lg",
-              "hover:text-blue-700 dark:hover:text-sky-300",
+              "hover:text-blue-700 dark:hover:text-indigo-300",
             )}
           >
             Home
@@ -40,7 +40,7 @@ export const Navbar = () => {
               href="/profile"
               className={clsx(
                 "rounded-lg px-2 py-3",
-                "hover:text-blue-700 dark:hover:text-sky-300",
+                "hover:text-blue-700 dark:hover:text-indigo-300",
               )}
             >
               Profile
@@ -53,7 +53,7 @@ export const Navbar = () => {
             href="/about"
             className={clsx(
               "rounded-lg px-2 py-3",
-              "hover:text-blue-700 dark:hover:text-sky-300",
+              "hover:text-blue-700 dark:hover:text-indigo-300",
             )}
           >
             About
