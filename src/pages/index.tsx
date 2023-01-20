@@ -50,7 +50,7 @@ const Home: NextPage = () => {
           "items-center justify-center",
         )}
       >
-        <div className="flex flex-col items-center gap-0">
+        <div className="flex flex-col items-center">
           <HeroBanner />
 
           <div className={clsx("py-6")}>

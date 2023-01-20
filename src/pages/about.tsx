@@ -48,7 +48,7 @@ const About: NextPage = () => {
               "dark:text-cyan-50",
             )}
           >
-            TypeSafe Travellers
+            About Us
           </div>
 
           <div

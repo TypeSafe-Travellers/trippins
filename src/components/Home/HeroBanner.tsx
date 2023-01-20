@@ -6,8 +6,8 @@ export const HeroBanner = () => {
     <>
       <div
         className={clsx(
-          "text-4xl lg:text-9xl",
-          "text-center",
+          "text-6xl lg:text-9xl",
+          "text-center leading-none",
           `${boldFont.className}`,
         )}
       >
@@ -24,8 +24,9 @@ export const HeroBanner = () => {
 
       <div
         className={clsx(
-          "text-3xl lg:text-7xl",
+          "text-4xl lg:text-7xl",
           "text-center",
+          "px-5 py-5 lg:px-0 lg:py-0",
           `${boldFont.className}`,
         )}
       >
@@ -43,9 +44,9 @@ export const HeroBanner = () => {
 
       <div
         className={clsx(
-          "text-xl lg:text-5xl",
+          "text-2xl lg:text-5xl",
           "text-center",
-          "px-40 py-5",
+          "px-10 lg:px-40",
           `${semiBoldFont.className}`,
         )}
       >
