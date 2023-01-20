@@ -45,10 +45,10 @@ export const EditProfile = () => {
         <button
           className={clsx(
             `${regularFont.className}`,
-            "inline-flex select-none items-center justify-center rounded-md px-5 pt-2 pb-0.5",
+            "inline-flex select-none items-center justify-center rounded-md px-5 pt-2.5 pb-1",
             "mx-auto",
             "text-xl",
-            "shadow-lg shadow-blue-200 hover:shadow-red-200 dark:shadow-cyan-700",
+            "shadow-lg shadow-blue-200 hover:shadow-red-200 dark:shadow-indigo-700",
             "rounded-md border-2 border-solid border-black dark:border-gray-200",
             "bg-white hover:bg-gray-50 dark:bg-black dark:hover:bg-slate-900",
             "hover:bg-gray-50",
