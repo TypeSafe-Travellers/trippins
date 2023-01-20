@@ -43,7 +43,7 @@ const Profile: NextPage = () => {
         className={clsx(
           "flex h-[calc(100vh-70px)] w-screen items-center justify-center",
           "flex-col gap-2",
-          "text-gray-900 dark:text-zinc-200",
+          "text-gray-900 dark:text-zinc-100",
         )}
       >
         <ProfileContainer />
