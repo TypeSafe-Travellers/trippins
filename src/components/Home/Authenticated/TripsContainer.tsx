@@ -30,6 +30,7 @@ const dummyTripsData = [
   },
 ];
 
+// TODO add trip participants later
 export const TripsContainer = () => {
   return (
     <div className={clsx("flex flex-col gap-10", "p-10")}>
@@ -48,12 +49,12 @@ export const TripsContainer = () => {
           <div
             className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}
           >
-            Trip Name: {trip.name}
+            {trip.name}
           </div>
           <div
             className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}
           >
-            Trip Description: {trip.description}
+            {trip.description}
           </div>
         </div>
       ))}
