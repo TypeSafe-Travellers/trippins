@@ -63,7 +63,7 @@ export const Navbar = () => {
         {/* conditionally render sign in & log out button depending on auth status */}
         <div
           className={clsx(
-            "absolute right-0 top-0 pt-3",
+            "absolute right-2 top-0 pt-3",
             "flex flex-row gap-4 lg:gap-6",
           )}
         >

@@ -17,7 +17,7 @@
   body {
     /** custom scrollbar */
 
-    @apply scroll-smooth scrollbar-thin scrollbar-track-transparent scrollbar-thumb-zinc-300 dark:scrollbar-thumb-zinc-800;
+    @apply scroll-smooth scrollbar-thin scrollbar-track-transparent scrollbar-thumb-zinc-500 dark:scrollbar-thumb-indigo-900;
 
     @apply bg-none;
   }
