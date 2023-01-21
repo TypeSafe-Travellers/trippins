@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { semiBoldFont } from "../../../fonts";
 
-// TODO remove after intergration backend
+// TODO remove after intergrating backend
 const dummyTripsData = [
   {
     id: 1,
