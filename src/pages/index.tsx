@@ -3,17 +3,10 @@ import Head from "next/head";
 import clsx from "clsx";
 import { useSession } from "next-auth/react";
 import { boldFont } from "../fonts";
-import { api } from "../utils/api";
 import { HomeContainer, Navbar } from "../components";
 
 const Home: NextPage = () => {
-  const { data: session, status } = useSession();
-
-  const hello = api.example.hello.useQuery({
-    text: `${
-      session?.user?.name ? session.user.name : "there"
-    }! Welcome to Trippins.`,
-  });
+  const { status } = useSession();
 
   if (status === "loading")
     return (
