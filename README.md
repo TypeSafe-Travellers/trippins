@@ -43,8 +43,6 @@ npm run format
 - [NextAuth.js](https://next-auth.js.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [Radix UI](https://www.radix-ui.com/)
-- [Heroicons](https://heroicons.com/)
-- [Radix Icons](https://icons.radix-ui.com/)
 - [Prisma](https://www.prisma.io/)
 - [tRPC](https://trpc.io/)
 - [MySQL](https://www.mysql.com/)
