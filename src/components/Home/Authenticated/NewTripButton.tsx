@@ -149,6 +149,21 @@ export const NewTripButton = () => {
                 </fieldset>
               </form>
 
+              <div className="mt-4 flex justify-end">
+                <Dialog.Close
+                  // onClick={handleSave}
+                  className={clsx(
+                    "inline-flex select-none justify-center rounded-md px-4 pt-2.5 pb-1 text-xl",
+                    " bg-green-100 text-center text-black",
+                    "border-2 border-solid border-black",
+                    "focus:outline-none focus:ring-2 focus:ring-black hover:bg-green-200",
+                    "dark:bg-green-700 dark:text-white dark:focus:ring-gray-500 dark:hover:bg-green-600",
+                  )}
+                >
+                  Confirm
+                </Dialog.Close>
+              </div>
+
               <Dialog.Close
                 className={clsx(
                   "absolute top-3.5 right-3.5 inline-flex items-center justify-center rounded-full p-1",
