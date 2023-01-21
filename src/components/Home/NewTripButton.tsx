@@ -4,40 +4,13 @@ import { CrossIcon } from "../../icons";
 import clsx from "clsx";
 import { Fragment, useState } from "react";
 import { regularFont } from "../../fonts";
-import { useSession } from "next-auth/react";
-import { api } from "../../utils/api";
 
-export const EditProfile = () => {
+export const NewTripButton = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { data: session } = useSession();
-
-  const [userName, setUserName] = useState(session?.user?.name as string);
-  const [userEmail, setUserEmail] = useState(session?.user?.email as string);
-
-  const updateUserNameMutation = api.userProfile.updateName.useMutation();
-  const updateUserEmailMutation = api.userProfile.updateEmail.useMutation();
-
-  const handleSave = (): void => {
-    if (userName !== session?.user?.name && session?.user?.id !== undefined) {
-      updateUserNameMutation.mutate({
-        newName: userName,
-        userId: session?.user?.id,
-      });
-    }
-
-    if (userEmail !== session?.user?.email && session?.user?.id !== undefined) {
-      updateUserEmailMutation.mutate({
-        newEmail: userEmail,
-        userId: session?.user?.id,
-      });
-    }
-
-    setIsOpen(false);
-
-    setTimeout(() => {
-      window.location.reload();
-    }, 1000);
-  };
+  const [tripName, setTripName] = useState("");
+  const [tripDescription, settripDescription] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
 
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
@@ -59,7 +32,7 @@ export const EditProfile = () => {
             "radix-state-instant-open:bg-gray-50 radix-state-delayed-open:bg-gray-50",
           )}
         >
-          Edit Profile
+          New Trip
         </button>
       </Dialog.Trigger>
       <Dialog.Portal forceMount>
@@ -97,22 +70,21 @@ export const EditProfile = () => {
                 "bg-gray-100 dark:bg-gray-800",
               )}
             >
-              <Dialog.Title className="text-2xl">Edit profile</Dialog.Title>
+              <Dialog.Title className="text-2xl">Create New Trip</Dialog.Title>
               <Dialog.Description className="mt-2 text-xl">
-                Make changes to your profile here. Click save when you&apos;re
-                done.
+                Fill this form to set up a new trip
               </Dialog.Description>
               <form className="mt-2 space-y-2">
                 <fieldset>
-                  <label htmlFor="userName" className="text-lg">
-                    Username
+                  <label htmlFor="tripName" className="text-lg">
+                    Trip Name
                   </label>
                   <input
-                    id="userName"
+                    id="tripName"
                     type="text"
-                    value={userName}
-                    onChange={(e) => setUserName(e.target.value)}
-                    autoComplete="user-name"
+                    value={tripName}
+                    onChange={(e) => setTripName(e.target.value)}
+                    autoComplete="trip-name"
                     className={clsx(
                       "mt-1 block w-full rounded-md px-1 pt-2 pb-1",
                       "text-xl",
@@ -123,14 +95,49 @@ export const EditProfile = () => {
                 </fieldset>
                 <fieldset>
                   <label htmlFor="email" className="text-lg">
-                    Email
+                    Trip Description
+                  </label>
+                  <textarea
+                    id="tripDescriptionription"
+                    value={tripDescription}
+                    onChange={(e) => settripDescription(e.target.value)}
+                    autoComplete="tripDescription"
+                    className={clsx(
+                      "mt-1 block w-full rounded-md px-1 pt-2 pb-1",
+                      "text-xl",
+                      "bg-white dark:bg-gray-900",
+                      "border border-gray-400 focus-visible:border-transparent dark:border-gray-700 dark:bg-gray-800",
+                    )}
+                  />
+                </fieldset>
+                <fieldset>
+                  <label htmlFor="startDate" className="text-lg">
+                    Start Date
                   </label>
                   <input
-                    id="email"
-                    type="email"
-                    value={userEmail}
-                    onChange={(e) => setUserEmail(e.target.value)}
-                    autoComplete="email"
+                    id="startDate"
+                    type="datetime-local"
+                    value={startDate}
+                    onChange={(e) => setStartDate(e.target.value)}
+                    autoComplete="tripDescription"
+                    className={clsx(
+                      "mt-1 block w-full rounded-md px-1 pt-2 pb-1",
+                      "text-xl",
+                      "bg-white dark:bg-gray-900",
+                      "border border-gray-400 focus-visible:border-transparent dark:border-gray-700 dark:bg-gray-800",
+                    )}
+                  />
+                </fieldset>
+                <fieldset>
+                  <label htmlFor="endDate" className="text-lg">
+                    End Date
+                  </label>
+                  <input
+                    id="endDate"
+                    type="datetime-local"
+                    value={endDate}
+                    onChange={(e) => setEndDate(e.target.value)}
+                    autoComplete="endDate"
                     className={clsx(
                       "mt-1 block w-full rounded-md px-1 pt-2 pb-1",
                       "text-xl",
@@ -140,21 +147,6 @@ export const EditProfile = () => {
                   />
                 </fieldset>
               </form>
-
-              <div className="mt-4 flex justify-end">
-                <Dialog.Close
-                  onClick={handleSave}
-                  className={clsx(
-                    "inline-flex select-none justify-center rounded-md px-4 pt-2.5 pb-1 text-xl",
-                    " bg-green-100 text-center text-black",
-                    "border-2 border-solid border-black",
-                    "focus:outline-none focus:ring-2 focus:ring-black hover:bg-green-200",
-                    "dark:bg-green-700 dark:text-white dark:focus:ring-gray-500 dark:hover:bg-green-600",
-                  )}
-                >
-                  Save
-                </Dialog.Close>
-              </div>
 
               <Dialog.Close
                 className={clsx(

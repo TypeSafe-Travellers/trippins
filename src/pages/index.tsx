@@ -1,5 +1,5 @@
 import { type NextPage } from "next";
-import { Footer, Navbar } from "../components";
+import { Footer, Navbar, NewTripButton } from "../components";
 import { useSession } from "next-auth/react";
 import Head from "next/head";
 import Link from "next/link";
@@ -61,6 +61,8 @@ const Home: NextPage = () => {
               </p>
             </div>
           </Link>
+
+          {status === "authenticated" && <NewTripButton />}
 
           <div className={clsx("absolute bottom-3 lg:bottom-6")}>
             <Footer />
