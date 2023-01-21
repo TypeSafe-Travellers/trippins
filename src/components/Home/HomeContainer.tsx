@@ -1,5 +1,5 @@
 import { UnauthenticatedContainer } from "./Unauthenticated/UnauthenticatedContainer";
-import { Authenticatedcontainer } from "./Authenticated/AuthenticatedContainer";
+import { AuthenticatedContainer } from "./Authenticated/AuthenticatedContainer";
 import { useSession } from "next-auth/react";
 
 export const HomeContainer = () => {
@@ -8,7 +8,7 @@ export const HomeContainer = () => {
   return (
     <>
       {status === "authenticated" ? (
-        <Authenticatedcontainer />
+        <AuthenticatedContainer />
       ) : (
         <UnauthenticatedContainer />
       )}
