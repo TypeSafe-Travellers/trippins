@@ -9,14 +9,14 @@ export const TripNav = () => {
   return (
     <div
       className={clsx(
-        "flex flex-row gap-16",
+        "flex flex-col lg:flex-row lg:gap-16",
         "items-center justify-center text-center",
       )}
     >
       <div
         className={clsx(
-          "pt-10",
-          "text-4xl lg:text-7xl",
+          "px-10 pt-10 lg:px-0",
+          "text-3xl lg:text-7xl",
           "break-words",
           `${semiBoldFont.className}`,
         )}
