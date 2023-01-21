@@ -7,18 +7,24 @@ export const TripNav = () => {
   const { data: session } = useSession();
 
   return (
-    <div className={clsx("flex flex-col", "pt-10")}>
+    <div
+      className={clsx(
+        "flex flex-row gap-16",
+        "items-center justify-center text-center",
+      )}
+    >
       <div
         className={clsx(
+          "pt-10",
           "text-4xl lg:text-7xl",
-          "break-words text-center",
+          "break-words",
           `${semiBoldFont.className}`,
         )}
       >
         {`Welcome, ${session?.user?.name}!`}
       </div>
 
-      <div className={clsx("text-center", "pt-5")}>
+      <div className={clsx("pt-5")}>
         <NewTripButton />
       </div>
     </div>
