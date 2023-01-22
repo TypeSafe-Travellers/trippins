@@ -53,9 +53,9 @@ export const HeroBanner = () => {
 
       <div
         className={clsx(
-          "text-2xl lg:text-5xl",
+          "text-xl lg:text-5xl",
           "text-center",
-          "px-10 lg:px-40",
+          "px-6 lg:px-40",
           `${semiBoldFont.className}`,
         )}
       >
