@@ -4,6 +4,7 @@ import clsx from "clsx";
 import { useState, Fragment } from "react";
 import { regularFont } from "../../fonts";
 import { signOut } from "next-auth/react";
+import { motion } from "framer-motion";
 
 export const LogoutAndAlertButton = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,7 +25,18 @@ export const LogoutAndAlertButton = () => {
             `${regularFont.className}`,
           )}
         >
-          Log Out
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            whileHover={{ scale: 1.1 }}
+            transition={{
+              type: "spring",
+              stiffness: 260,
+              damping: 25,
+            }}
+          >
+            Log Out
+          </motion.div>
         </button>
       </AlertDialog.Trigger>
       <AlertDialog.Portal forceMount>
