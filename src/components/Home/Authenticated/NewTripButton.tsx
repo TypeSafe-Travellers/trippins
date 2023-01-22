@@ -4,6 +4,7 @@ import { CrossIcon } from "../../../icons";
 import clsx from "clsx";
 import { Fragment, useState } from "react";
 import { regularFont } from "../../../fonts";
+import { motion } from "framer-motion";
 
 export const NewTripButton = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,26 +16,37 @@ export const NewTripButton = () => {
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
       <Dialog.Trigger asChild>
-        <button
-          className={clsx(
-            `${regularFont.className}`,
-            "inline-flex select-none items-center justify-center rounded-md",
-            "px-3 pt-2 pb-0.5 lg:px-5 lg:pt-4 lg:pb-2",
-            "mx-auto",
-            "text-xl lg:text-2xl",
-            "shadow-lg shadow-blue-200 hover:shadow-red-200 dark:shadow-indigo-900 dark:hover:shadow-indigo-700",
-            "rounded-md border-2 border-solid border-black dark:border-gray-200",
-            "bg-white dark:bg-black",
-            "focus:outline-none focus-visible:ring focus-visible:ring-black focus-visible:ring-opacity-75",
-            // Register all radix states
-            "group",
-            "radix-state-open:bg-gray-50 dark:radix-state-open:bg-gray-900",
-            "radix-state-on:bg-gray-50 dark:radix-state-on:bg-gray-900",
-            "radix-state-instant-open:bg-gray-50 radix-state-delayed-open:bg-gray-50",
-          )}
+        <motion.div
+          initial={{ y: 100, scale: 0 }}
+          animate={{ y: 0, scale: 1 }}
+          whileHover={{ scale: 1.1 }}
+          transition={{
+            type: "spring",
+            stiffness: 260,
+            damping: 25,
+          }}
         >
-          New Trip
-        </button>
+          <button
+            className={clsx(
+              `${regularFont.className}`,
+              "inline-flex select-none items-center justify-center rounded-md",
+              "px-3 pt-2 pb-0.5 lg:px-5 lg:pt-4 lg:pb-2",
+              "mx-auto",
+              "text-xl lg:text-2xl",
+              "shadow-lg shadow-blue-200 hover:shadow-red-200 dark:shadow-indigo-900 dark:hover:shadow-indigo-700",
+              "rounded-md border-2 border-solid border-black dark:border-gray-200",
+              "bg-white dark:bg-black",
+              "focus:outline-none focus-visible:ring focus-visible:ring-black focus-visible:ring-opacity-75",
+              // Register all radix states
+              "group",
+              "radix-state-open:bg-gray-50 dark:radix-state-open:bg-gray-900",
+              "radix-state-on:bg-gray-50 dark:radix-state-on:bg-gray-900",
+              "radix-state-instant-open:bg-gray-50 radix-state-delayed-open:bg-gray-50",
+            )}
+          >
+            New Trip
+          </button>
+        </motion.div>
       </Dialog.Trigger>
       <Dialog.Portal forceMount>
         <Transition.Root show={isOpen}>
@@ -160,7 +172,17 @@ export const NewTripButton = () => {
                     "dark:bg-green-700 dark:text-white dark:focus:ring-gray-500 dark:hover:bg-green-600",
                   )}
                 >
-                  Confirm
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 30,
+                    }}
+                  >
+                    Confirm
+                  </motion.div>
                 </Dialog.Close>
               </div>
 
