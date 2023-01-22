@@ -117,7 +117,7 @@ export const Navbar = () => {
               <ThemeToggle />
             </div>
           </motion.div>
-
+        
           {status === "authenticated" ? (
             <LogoutAndAlertButton />
           ) : (
