@@ -1,6 +1,6 @@
 import Link from "next/link";
 import clsx from "clsx";
-import { regularFont } from "../fonts";
+import { regularFont } from "../../fonts";
 
 export const HomePageButton = () => {
   return (

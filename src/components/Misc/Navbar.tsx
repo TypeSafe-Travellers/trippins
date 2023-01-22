@@ -1,7 +1,7 @@
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import { useSession } from "next-auth/react";
-import { LoginButton, LogoutAndAlertButton, ThemeToggle } from "./";
-import { regularFont } from "../fonts";
+import { LoginButton, LogoutAndAlertButton, ThemeToggle } from "..";
+import { regularFont } from "../../fonts";
 import clsx from "clsx";
 
 export const Navbar = () => {
@@ -16,16 +16,17 @@ export const Navbar = () => {
           "text-xl",
           "px-2 pt-3 pb-1",
           "flex flex-row space-x-2 rounded-sm",
-          "bg-slate-100/90 dark:bg-gray-800",
+          "bg-white dark:bg-neutral-900",
+          "shadow-xl dark:shadow-2xl dark:shadow-neutral-800",
         )}
       >
         <NavigationMenu.Item asChild>
           <NavigationMenu.Link
             href="/"
             className={clsx(
-              "px-2 py-3",
+              "px-1 py-3 lg:px-2",
               "rounded-lg",
-              "hover:text-blue-700 dark:hover:text-sky-300",
+              "hover:text-blue-700 dark:hover:text-indigo-300",
             )}
           >
             Home
@@ -38,8 +39,9 @@ export const Navbar = () => {
             <NavigationMenu.Link
               href="/profile"
               className={clsx(
-                "rounded-lg px-2 py-3",
-                "hover:text-blue-700 dark:hover:text-sky-300",
+                "rounded-lg",
+                "px-1 py-3 lg:px-2",
+                "hover:text-blue-700 dark:hover:text-indigo-300",
               )}
             >
               Profile
@@ -51,8 +53,9 @@ export const Navbar = () => {
           <NavigationMenu.Link
             href="/about"
             className={clsx(
-              "rounded-lg px-2 py-3",
-              "hover:text-blue-700 dark:hover:text-sky-300",
+              "rounded-lg",
+              "px-1 py-3 lg:px-2",
+              "hover:text-blue-700 dark:hover:text-indigo-300",
             )}
           >
             About
@@ -62,7 +65,7 @@ export const Navbar = () => {
         {/* conditionally render sign in & log out button depending on auth status */}
         <div
           className={clsx(
-            "absolute right-0 top-0 pt-3",
+            "absolute right-2 top-0 pt-3",
             "flex flex-row gap-4 lg:gap-6",
           )}
         >

@@ -1,9 +1,9 @@
 import { Transition } from "@headlessui/react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { CrossIcon } from "../../icons";
+import { CrossIcon } from "../../../icons";
 import clsx from "clsx";
 import { Fragment, useState } from "react";
-import { regularFont } from "../../fonts";
+import { regularFont } from "../../../fonts";
 
 export const NewTripButton = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,12 +18,13 @@ export const NewTripButton = () => {
         <button
           className={clsx(
             `${regularFont.className}`,
-            "inline-flex select-none items-center justify-center rounded-md px-5 pt-2 pb-0.5",
+            "inline-flex select-none items-center justify-center rounded-md",
+            "px-3 pt-2 pb-0.5 lg:px-5 lg:pt-4 lg:pb-2",
             "mx-auto",
-            "text-xl",
-            "border-2 border-solid border-black",
-            "bg-white hover:bg-gray-50 dark:bg-black dark:hover:bg-slate-900",
-            "hover:bg-gray-50",
+            "text-xl lg:text-2xl",
+            "shadow-lg shadow-blue-200 hover:shadow-red-200 dark:shadow-indigo-900 dark:hover:shadow-indigo-700",
+            "rounded-md border-2 border-solid border-black dark:border-gray-200",
+            "bg-white dark:bg-black",
             "focus:outline-none focus-visible:ring focus-visible:ring-black focus-visible:ring-opacity-75",
             // Register all radix states
             "group",
@@ -147,6 +148,21 @@ export const NewTripButton = () => {
                   />
                 </fieldset>
               </form>
+
+              <div className="mt-4 flex justify-end">
+                <Dialog.Close
+                  // onClick={handleSave}
+                  className={clsx(
+                    "inline-flex select-none justify-center rounded-md px-4 pt-2.5 pb-1 text-xl",
+                    " bg-green-100 text-center text-black",
+                    "border-2 border-solid border-black",
+                    "focus:outline-none focus:ring-2 focus:ring-black hover:bg-green-200",
+                    "dark:bg-green-700 dark:text-white dark:focus:ring-gray-500 dark:hover:bg-green-600",
+                  )}
+                >
+                  Confirm
+                </Dialog.Close>
+              </div>
 
               <Dialog.Close
                 className={clsx(
