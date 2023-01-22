@@ -102,7 +102,17 @@ export const LogoutAndAlertButton = () => {
                     "focus:outline-none focus-visible:ring focus-visible:ring-red-500 focus-visible:ring-opacity-75",
                   )}
                 >
-                  Cancel
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 30,
+                    }}
+                  >
+                    Cancel
+                  </motion.div>
                 </AlertDialog.Cancel>
                 <AlertDialog.Action
                   onClick={() => {
@@ -117,7 +127,17 @@ export const LogoutAndAlertButton = () => {
                     "focus:outline-none focus-visible:ring focus-visible:ring-red-500 focus-visible:ring-opacity-75",
                   )}
                 >
-                  Confirm
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 30,
+                    }}
+                  >
+                    Confirm
+                  </motion.div>
                 </AlertDialog.Action>
               </div>
             </AlertDialog.Content>

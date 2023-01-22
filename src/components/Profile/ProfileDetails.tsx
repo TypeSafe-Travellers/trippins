@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { semiBoldFont } from "../../fonts";
 import { useSession } from "next-auth/react";
+import { motion } from "framer-motion";
 
 export const ProfileDetails = () => {
   const { data: session } = useSession();
@@ -15,12 +16,22 @@ export const ProfileDetails = () => {
         "cursor-pointer",
       )}
     >
-      <div className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}>
-        Username: {session?.user?.name}
-      </div>
-      <div className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}>
-        Email: {session?.user?.email}
-      </div>
+      <motion.div
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{
+          type: "spring",
+          stiffness: 300,
+          damping: 30,
+        }}
+      >
+        <div className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}>
+          Username: {session?.user?.name}
+        </div>
+        <div className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}>
+          Email: {session?.user?.email}
+        </div>
+      </motion.div>
     </div>
   );
 };
