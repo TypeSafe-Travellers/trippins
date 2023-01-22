@@ -3,6 +3,7 @@ import { useSession } from "next-auth/react";
 import { LoginButton, LogoutAndAlertButton, ThemeToggle } from "..";
 import { regularFont } from "../../fonts";
 import clsx from "clsx";
+import { motion } from "framer-motion";
 
 export const Navbar = () => {
   const { status } = useSession();
@@ -29,7 +30,18 @@ export const Navbar = () => {
               "hover:text-blue-700 dark:hover:text-indigo-300",
             )}
           >
-            Home
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              whileHover={{ scale: 1.1 }}
+              transition={{
+                type: "spring",
+                stiffness: 260,
+                damping: 25,
+              }}
+            >
+              Home
+            </motion.div>
           </NavigationMenu.Link>
         </NavigationMenu.Item>
 
@@ -44,7 +56,18 @@ export const Navbar = () => {
                 "hover:text-blue-700 dark:hover:text-indigo-300",
               )}
             >
-              Profile
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                whileHover={{ scale: 1.1 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 260,
+                  damping: 25,
+                }}
+              >
+                Profile
+              </motion.div>
             </NavigationMenu.Link>
           </NavigationMenu.Item>
         )}
@@ -58,7 +81,18 @@ export const Navbar = () => {
               "hover:text-blue-700 dark:hover:text-indigo-300",
             )}
           >
-            About
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              whileHover={{ scale: 1.1 }}
+              transition={{
+                type: "spring",
+                stiffness: 260,
+                damping: 25,
+              }}
+            >
+              About
+            </motion.div>
           </NavigationMenu.Link>
         </NavigationMenu.Item>
 
@@ -69,9 +103,20 @@ export const Navbar = () => {
             "flex flex-row gap-4 lg:gap-6",
           )}
         >
-          <div className={clsx("pt-2")}>
-            <ThemeToggle />
-          </div>
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            whileHover={{ scale: 1.1 }}
+            transition={{
+              type: "spring",
+              stiffness: 260,
+              damping: 25,
+            }}
+          >
+            <div className={clsx("pt-2")}>
+              <ThemeToggle />
+            </div>
+          </motion.div>
 
           {status === "authenticated" ? (
             <LogoutAndAlertButton />
