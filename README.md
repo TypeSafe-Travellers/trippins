@@ -43,6 +43,7 @@ npm run format
 - [NextAuth.js](https://next-auth.js.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [Radix UI](https://www.radix-ui.com/)
+- [Framer Motion](https://www.framer.com/motion/)
 - [Heroicons](https://heroicons.com/)
 - [Radix Icons](https://icons.radix-ui.com/)
 - [Prisma](https://www.prisma.io/)
