@@ -29,7 +29,7 @@ export const Navbar = () => {
             className={clsx(
               `${
                 router.pathname === "/"
-                  ? "dark:indigo-300 text-indigo-700"
+                  ? "dark:text-indigo-200 text-indigo-700"
                   : "text-black dark:text-white"
               }`,
               "px-1 py-3 lg:px-2",
