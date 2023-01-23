@@ -1,7 +1,6 @@
-import { Footer } from "../../Misc/Footer";
-import { TripNav } from "./TripNav";
-import { TripsContainer } from "./TripsContainer";
+import { TripNav, TripsContainer } from ".";
 import clsx from "clsx";
+import { Footer } from "../../Misc";
 
 export const AuthenticatedContainer = () => {
   return (
