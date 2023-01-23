@@ -1,8 +1,7 @@
 import clsx from "clsx";
 import { boldFont } from "../../fonts";
-import { ProfileDetails } from "./ProfileDetails";
-import { EditProfile } from "./EditProfile";
 import { motion } from "framer-motion";
+import { ProfileDetails, EditProfile } from ".";
 
 export const ProfileContainer = () => {
   return (

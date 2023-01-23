@@ -1,10 +1,5 @@
-// Home
 export { HomeContainer } from "./Home/HomeContainer";
-
-// Profile
-export { ProfileContainer } from "./Profile/ProfileContainer";
-
-// Misc
+export { ProfileContainer } from "./Profile";
 export {
   Navbar,
   Footer,
