@@ -60,7 +60,7 @@ export const Navbar = () => {
               className={clsx(
                 `${
                   pathname === "/profile"
-                    ? "dark:indigo-300 text-indigo-700"
+                    ? "text-indigo-700 dark:text-indigo-200"
                     : "text-black dark:text-white"
                 }`,
                 "rounded-lg",
@@ -90,7 +90,7 @@ export const Navbar = () => {
             className={clsx(
               `${
                 pathname === "/about"
-                  ? "dark:indigo-300 text-indigo-700"
+                  ? "text-indigo-700 dark:text-indigo-200"
                   : "text-black dark:text-white"
               }`,
               "rounded-lg",
