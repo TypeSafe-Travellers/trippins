@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 
 export const Navbar = () => {
   const { status } = useSession();
-  const router = useRouter();
+  const { pathname } = useRouter();
 
   return (
     <NavigationMenu.Root
