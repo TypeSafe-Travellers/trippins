@@ -59,6 +59,17 @@ model User {
     image         String?
     accounts      Account[]
     sessions      Session[]
+    trips         Trip[]    @relation(name: "TripParticipants")
+}
+
+model Trip {
+    id           String   @id @default(cuid())
+    name         String
+    description  String
+    startDate    DateTime
+    endDate      DateTime
+    adminId      String
+    participants User[]   @relation(name: "TripParticipants")
 }
 
 model VerificationToken {
