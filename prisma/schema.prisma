@@ -14,12 +14,6 @@ datasource db {
     relationMode = "prisma"
 }
 
-model Example {
-    id        String   @id @default(cuid())
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-}
-
 // Necessary for Next auth
 model Account {
     id                       String  @id @default(cuid())
@@ -59,6 +53,17 @@ model User {
     image         String?
     accounts      Account[]
     sessions      Session[]
+    trips         Trip[]    @relation(name: "TripParticipants")
+}
+
+model Trip {
+    id           String   @id @default(cuid())
+    name         String
+    description  String
+    startDate    DateTime
+    endDate      DateTime
+    adminId      String
+    participants User[]   @relation(name: "TripParticipants")
 }
 
 model VerificationToken {
