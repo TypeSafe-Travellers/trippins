@@ -8,14 +8,14 @@ import { useEffect } from "react";
 import { boldFont } from "../fonts";
 
 const Profile: NextPage = () => {
-  const router = useRouter();
+  const { push } = useRouter();
   const { status } = useSession();
 
   useEffect(() => {
     if (status === "unauthenticated") {
-      router.push("/");
+      push("/");
     }
-  }, [router, status]);
+  }, [push, status]);
 
   if (status === "loading")
     return (
