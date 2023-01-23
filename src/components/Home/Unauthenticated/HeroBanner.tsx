@@ -1,9 +1,18 @@
 import clsx from "clsx";
 import { boldFont, semiBoldFont } from "../../../fonts";
+import { motion } from "framer-motion";
 
 export const HeroBanner = () => {
   return (
-    <>
+    <motion.div
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{
+        type: "spring",
+        stiffness: 260,
+        damping: 25,
+      }}
+    >
       <div
         className={clsx(
           "text-6xl lg:text-9xl",
@@ -44,9 +53,9 @@ export const HeroBanner = () => {
 
       <div
         className={clsx(
-          "text-2xl lg:text-5xl",
+          "text-xl lg:text-5xl",
           "text-center",
-          "px-10 lg:px-40",
+          "px-6 lg:px-40",
           `${semiBoldFont.className}`,
         )}
       >
@@ -87,6 +96,6 @@ export const HeroBanner = () => {
           {` Trippins.`}
         </span>
       </div>
-    </>
+    </motion.div>
   );
 };

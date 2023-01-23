@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { semiBoldFont } from "../../../fonts";
 import { useSession } from "next-auth/react";
-import { NewTripButton } from "./NewTripButton";
+import { NewTripButton } from ".";
 
 export const TripNav = () => {
   const { data: session } = useSession();

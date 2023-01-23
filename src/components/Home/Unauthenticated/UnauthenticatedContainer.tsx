@@ -1,7 +1,6 @@
 import clsx from "clsx";
 import { Footer } from "../../Misc/Footer";
-import { GetStartedButton } from "./GetStartedButton";
-import { HeroBanner } from "./HeroBanner";
+import { GetStartedButton, HeroBanner } from ".";
 
 export const UnauthenticatedContainer = () => {
   return (

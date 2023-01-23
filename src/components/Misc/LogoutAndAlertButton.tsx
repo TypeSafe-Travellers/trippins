@@ -4,6 +4,7 @@ import clsx from "clsx";
 import { useState, Fragment } from "react";
 import { regularFont } from "../../fonts";
 import { signOut } from "next-auth/react";
+import { motion } from "framer-motion";
 
 export const LogoutAndAlertButton = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,7 +25,18 @@ export const LogoutAndAlertButton = () => {
             `${regularFont.className}`,
           )}
         >
-          Log Out
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            whileHover={{ scale: 1.1 }}
+            transition={{
+              type: "spring",
+              stiffness: 260,
+              damping: 25,
+            }}
+          >
+            Log Out
+          </motion.div>
         </button>
       </AlertDialog.Trigger>
       <AlertDialog.Portal forceMount>
@@ -90,7 +102,17 @@ export const LogoutAndAlertButton = () => {
                     "focus:outline-none focus-visible:ring focus-visible:ring-red-500 focus-visible:ring-opacity-75",
                   )}
                 >
-                  Cancel
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 30,
+                    }}
+                  >
+                    Cancel
+                  </motion.div>
                 </AlertDialog.Cancel>
                 <AlertDialog.Action
                   onClick={() => {
@@ -105,7 +127,17 @@ export const LogoutAndAlertButton = () => {
                     "focus:outline-none focus-visible:ring focus-visible:ring-red-500 focus-visible:ring-opacity-75",
                   )}
                 >
-                  Confirm
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 30,
+                    }}
+                  >
+                    Confirm
+                  </motion.div>
                 </AlertDialog.Action>
               </div>
             </AlertDialog.Content>
