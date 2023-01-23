@@ -28,8 +28,8 @@ export const Navbar = () => {
             href="/"
             className={clsx(
               `${
-                router.pathname === "/"
-                  ? "dark:text-indigo-200 text-indigo-700"
+                pathname === "/"
+                  ? "text-indigo-700 dark:text-indigo-200"
                   : "text-black dark:text-white"
               }`,
               "px-1 py-3 lg:px-2",
@@ -59,7 +59,7 @@ export const Navbar = () => {
               href="/profile"
               className={clsx(
                 `${
-                  router.pathname === "/profile"
+                  pathname === "/profile"
                     ? "dark:indigo-300 text-indigo-700"
                     : "text-black dark:text-white"
                 }`,
@@ -89,7 +89,7 @@ export const Navbar = () => {
             href="/about"
             className={clsx(
               `${
-                router.pathname === "/about"
+                pathname === "/about"
                   ? "dark:indigo-300 text-indigo-700"
                   : "text-black dark:text-white"
               }`,
