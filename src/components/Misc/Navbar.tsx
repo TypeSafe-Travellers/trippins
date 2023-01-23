@@ -106,7 +106,8 @@ export const Navbar = () => {
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            whileHover={{ scale: 1.1 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 1.5 }}
             transition={{
               type: "spring",
               stiffness: 260,
