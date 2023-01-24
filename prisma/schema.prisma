@@ -63,6 +63,7 @@ model Trip {
     startDate    DateTime
     endDate      DateTime
     adminId      String
+    createdAt    DateTime @default(now())
     participants User[]   @relation(name: "TripParticipants")
 }
 
