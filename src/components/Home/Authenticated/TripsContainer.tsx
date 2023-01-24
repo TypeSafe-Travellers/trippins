@@ -1,41 +1,30 @@
 import clsx from "clsx";
 import { semiBoldFont } from "../../../fonts";
 import { motion } from "framer-motion";
-
-// TODO remove after intergrating backend
-const dummyTripsData = [
-  {
-    id: 1,
-    name: "Trip 1",
-    description: "Trip 1 Description",
-  },
-  {
-    id: 2,
-    name: "Trip 2",
-    description: "Trip 2 Description",
-  },
-  {
-    id: 3,
-    name: "Trip 3",
-    description: "Trip 3 Description",
-  },
-  {
-    id: 4,
-    name: "Trip 4",
-    description: "Trip 4 Description",
-  },
-  {
-    id: 5,
-    name: "Trip 5",
-    description: "Trip 5 Description",
-  },
-];
+import { api } from "../../../utils/api";
 
 // TODO add trip participants later
 export const TripsContainer = () => {
+  const { data: trips, isLoading } = api.userTrips.getAll.useQuery();
+
+  if (isLoading) {
+    return (
+      <div
+        className={clsx(
+          "flex h-full items-center justify-center",
+          "text-center text-3xl",
+          "mt-5 lg:mt-12",
+          `${semiBoldFont.className}`,
+        )}
+      >
+        Loading your trips...
+      </div>
+    );
+  }
+
   return (
     <div className={clsx("flex flex-col gap-10", "p-10")}>
-      {dummyTripsData.map((trip) => (
+      {trips?.map((trip) => (
         <motion.div
           key={trip.id}
           initial={{ scale: 0 }}

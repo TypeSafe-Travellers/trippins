@@ -5,13 +5,33 @@ import clsx from "clsx";
 import { Fragment, useState } from "react";
 import { regularFont } from "../../../fonts";
 import { motion } from "framer-motion";
+import { api } from "../../../utils/api";
 
 export const NewTripButton = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [tripName, setTripName] = useState("");
-  const [tripDescription, settripDescription] = useState("");
+  const [tripDescription, setTripDescription] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+
+  const createTripMutation = api.userTrips.createTrip.useMutation();
+
+  const handleSubmit = (): void => {
+    if (tripName && tripDescription && startDate && endDate) {
+      createTripMutation.mutate({
+        name: tripName,
+        description: tripDescription,
+        startDate: new Date(startDate),
+        endDate: new Date(endDate),
+      });
+    }
+
+    setIsOpen(false);
+
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
+  };
 
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
@@ -113,7 +133,7 @@ export const NewTripButton = () => {
                   <textarea
                     id="tripDescriptionription"
                     value={tripDescription}
-                    onChange={(e) => settripDescription(e.target.value)}
+                    onChange={(e) => setTripDescription(e.target.value)}
                     autoComplete="tripDescription"
                     className={clsx(
                       "mt-1 block w-full rounded-md px-1 pt-2 pb-1",
@@ -163,7 +183,7 @@ export const NewTripButton = () => {
 
               <div className="mt-4 flex justify-end">
                 <Dialog.Close
-                  // onClick={handleSave}
+                  onClick={handleSubmit}
                   className={clsx(
                     "inline-flex select-none justify-center rounded-md px-4 pt-2.5 pb-1 text-xl",
                     " bg-green-100 text-center text-black",
