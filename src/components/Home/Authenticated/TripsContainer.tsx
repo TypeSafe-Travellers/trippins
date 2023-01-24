@@ -62,7 +62,7 @@ export const TripsContainer = () => {
                   `${semiBoldFont.className}`,
                 )}
               >
-                {trip.name}
+                Name: {trip.name}
               </div>
               <div
                 className={clsx(
@@ -70,7 +70,15 @@ export const TripsContainer = () => {
                   `${semiBoldFont.className}`,
                 )}
               >
-                {trip.description}
+                Description: {trip.description}
+              </div>
+              <div
+                className={clsx(
+                  "my-2 leading-none",
+                  `${semiBoldFont.className}`,
+                )}
+              >
+                Created At: {trip.createdAt.toLocaleDateString()}
               </div>
             </motion.div>
           </div>
