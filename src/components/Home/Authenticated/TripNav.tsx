@@ -9,7 +9,7 @@ export const TripNav = () => {
   return (
     <div
       className={clsx(
-        "flex flex-col lg:flex-row lg:gap-16",
+        "flex flex-col lg:flex-row lg:gap-10",
         "items-center justify-center text-center",
       )}
     >
@@ -27,6 +27,7 @@ export const TripNav = () => {
       <div className={clsx("pt-5")}>
         <NewTripButton />
       </div>
+
       <div className={clsx("pt-5")}>
         <JoinTripButton />
       </div>

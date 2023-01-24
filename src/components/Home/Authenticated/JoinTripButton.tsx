@@ -2,12 +2,22 @@ import { Transition } from "@headlessui/react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { CrossIcon } from "../../../icons";
 import { clsx } from "clsx";
-import React, { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { regularFont } from "../../../fonts";
 
 export const JoinTripButton = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [tripId, setTripId] = useState("");
+  const [isValidated, setIsValidated] = useState(false);
+
+  useEffect(() => {
+    if (tripId.length >= 1) {
+      setIsValidated(true);
+    } else {
+      setIsValidated(false);
+    }
+  }, [tripId]);
 
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
@@ -92,7 +102,8 @@ export const JoinTripButton = () => {
                     id="tripId"
                     type="text"
                     placeholder="Enter trip ID"
-                    autoComplete="trip-name"
+                    onChange={(e) => setTripId(e.target.value)}
+                    autoComplete="trip-id"
                     className={clsx(
                       "mt-1 block w-full rounded-md px-1 pt-2 pb-1",
                       "text-xl",
@@ -100,32 +111,43 @@ export const JoinTripButton = () => {
                       "border border-gray-400 focus-visible:border-transparent dark:border-gray-700 dark:bg-gray-800",
                     )}
                   />
-                </fieldset>
-              </form>
 
-              <div className="mt-4 flex justify-end">
-                <Dialog.Close
-                  className={clsx(
-                    "inline-flex select-none justify-center rounded-md px-4 pt-2.5 pb-1 text-xl",
-                    " bg-green-100 text-center text-black",
-                    "border-2 border-solid border-black",
-                    "focus:outline-none focus:ring-2 focus:ring-black hover:bg-green-200",
-                    "dark:bg-green-700 dark:text-white dark:focus:ring-gray-500 dark:hover:bg-green-600",
-                  )}
-                >
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{
-                      type: "spring",
-                      stiffness: 300,
-                      damping: 30,
-                    }}
+                  <div
+                    className={clsx(
+                      "text-lg text-red-600 dark:text-red-500",
+                      "mt-3 leading-none",
+                    )}
                   >
-                    Confirm
-                  </motion.div>
-                </Dialog.Close>
-              </div>
+                    {tripId.length <= 0 && "— Trip ID cannot be empty!"}
+                  </div>
+                </fieldset>
+
+                {isValidated && (
+                  <div className="flex justify-end pt-1">
+                    <button
+                      className={clsx(
+                        "inline-flex select-none justify-center rounded-md px-4 pt-2.5 pb-1 text-xl",
+                        " bg-green-100 text-center text-black",
+                        "border-2 border-solid border-black",
+                        "focus:outline-none focus:ring-2 focus:ring-black hover:bg-green-200",
+                        "dark:bg-green-700 dark:text-white dark:focus:ring-gray-500 dark:hover:bg-green-600",
+                      )}
+                    >
+                      <motion.div
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 300,
+                          damping: 30,
+                        }}
+                      >
+                        Confirm
+                      </motion.div>
+                    </button>
+                  </div>
+                )}
+              </form>
 
               <Dialog.Close
                 className={clsx(
