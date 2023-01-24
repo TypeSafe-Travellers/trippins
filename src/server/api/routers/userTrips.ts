@@ -14,6 +14,7 @@ export const userTripsRouter = createTRPCRouter({
           id: true,
           name: true,
           description: true,
+          createdAt: true,
         },
         where: {
           participants: {
