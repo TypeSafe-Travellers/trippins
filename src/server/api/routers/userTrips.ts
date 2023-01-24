@@ -41,7 +41,7 @@ export const userTripsRouter = createTRPCRouter({
     .input(
       z.object({
         name: z.string().min(3).max(50),
-        description: z.string().min(3).max(100),
+        description: z.string().min(3).max(1000),
         startDate: z.date(),
         endDate: z.date(),
       }),
