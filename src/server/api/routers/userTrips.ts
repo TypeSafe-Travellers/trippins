@@ -40,7 +40,7 @@ export const userTripsRouter = createTRPCRouter({
   createTrip: protectedProcedure
     .input(
       z.object({
-        name: z.string().min(3).max(10),
+        name: z.string().min(3).max(50),
         description: z.string().min(3).max(100),
         startDate: z.date(),
         endDate: z.date(),
