@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { semiBoldFont } from "../../../fonts";
 import { useSession } from "next-auth/react";
 import { NewTripButton } from ".";
+import { JoinTripButton } from ".";
 
 export const TripNav = () => {
   const { data: session } = useSession();
@@ -26,6 +27,9 @@ export const TripNav = () => {
 
       <div className={clsx("pt-5")}>
         <NewTripButton />
+      </div>
+      <div className={clsx("pt-5")}>
+        <JoinTripButton />
       </div>
     </div>
   );
