@@ -4,9 +4,11 @@ import { LoginButton, LogoutAndAlertButton, ThemeToggle } from "..";
 import { regularFont } from "../../fonts";
 import clsx from "clsx";
 import { motion } from "framer-motion";
+import { useRouter } from "next/router";
 
 export const Navbar = () => {
   const { status } = useSession();
+  const { pathname } = useRouter();
 
   return (
     <NavigationMenu.Root
@@ -25,6 +27,11 @@ export const Navbar = () => {
           <NavigationMenu.Link
             href="/"
             className={clsx(
+              `${
+                pathname === "/"
+                  ? "text-indigo-700 dark:text-indigo-200"
+                  : "text-black dark:text-white"
+              }`,
               "px-1 py-3 lg:px-2",
               "rounded-lg",
               "hover:text-blue-700 dark:hover:text-indigo-300",
@@ -51,6 +58,11 @@ export const Navbar = () => {
             <NavigationMenu.Link
               href="/profile"
               className={clsx(
+                `${
+                  pathname === "/profile"
+                    ? "text-indigo-700 dark:text-indigo-200"
+                    : "text-black dark:text-white"
+                }`,
                 "rounded-lg",
                 "px-1 py-3 lg:px-2",
                 "hover:text-blue-700 dark:hover:text-indigo-300",
@@ -76,6 +88,11 @@ export const Navbar = () => {
           <NavigationMenu.Link
             href="/about"
             className={clsx(
+              `${
+                pathname === "/about"
+                  ? "text-indigo-700 dark:text-indigo-200"
+                  : "text-black dark:text-white"
+              }`,
               "rounded-lg",
               "px-1 py-3 lg:px-2",
               "hover:text-blue-700 dark:hover:text-indigo-300",
