@@ -21,6 +21,9 @@ export const userTripsRouter = createTRPCRouter({
               id: ctx.session.user.id,
             },
           },
+          orderBy: {
+            createdAt: "desc",
+          },
         },
       });
     } catch (error) {
