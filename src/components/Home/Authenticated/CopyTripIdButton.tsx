@@ -2,6 +2,8 @@ import { type FC } from "react";
 import clsx from "clsx";
 import { regularFont } from "../../../fonts";
 import { motion } from "framer-motion";
+import * as Toast from "@radix-ui/react-toast";
+import { useMediaQuery } from "../../../hooks";
 
 interface Props {
   tripId: string;
