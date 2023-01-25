@@ -82,7 +82,9 @@ export const userTripsRouter = createTRPCRouter({
           },
           data: {
             participants: {
-              connect: { id: ctx.session.user.id },
+              connect: {
+                id: ctx.session.user.id,
+              },
             },
           },
         });
