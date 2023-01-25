@@ -30,7 +30,7 @@ export const TripsContainer = () => {
           key={trip.id}
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
-          whileHover={{ scale: 1.05 }}
+          whileHover={{ scale: 1.025 }}
           transition={{
             type: "spring",
             stiffness: 300,
@@ -74,7 +74,7 @@ export const TripsContainer = () => {
                 {trip.description}
               </div>
 
-              <div className={clsx("my-2")}>
+              <div className={clsx("my-0 lg:my-2")}>
                 <CopyTripIdButton />
               </div>
             </motion.div>

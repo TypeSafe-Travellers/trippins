@@ -16,9 +16,11 @@ export const CopyTripIdButton = () => {
       <button
         className={clsx(
           `${regularFont.className}`,
-          "inline-flex select-none items-center justify-center rounded-md px-3 pt-2.5 pb-1",
+          "inline-flex select-none items-center justify-center rounded-md",
+          "lg:px-3 lg:pt-2.5 lg:pb-1",
+          "px-2 pt-2 pb-0.5",
           "mx-auto",
-          "text-xl",
+          "text-lg lg:text-xl",
           "shadow-md shadow-blue-200 hover:shadow-red-200 dark:shadow-indigo-900 hover:dark:shadow-indigo-700",
           "rounded-md border-2 border-solid border-black dark:border-gray-200",
           "bg-white dark:bg-black",
