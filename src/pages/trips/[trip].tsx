@@ -9,8 +9,7 @@ import { boldFont } from "../../fonts";
 
 const UserTrip: NextPage = () => {
   const { query, push } = useRouter();
-  const name = query.tripName;
-  const description = query.tripDescription;
+  const { tripId: id, tripName: name, tripDescription: description } = query;
   const { status } = useSession();
 
   useEffect(() => {

@@ -42,6 +42,7 @@ export const TripsContainer = () => {
               push({
                 pathname: `/trips/${trip.id}`,
                 query: {
+                  tripId: trip.id,
                   tripName: trip.name,
                   tripDescription: trip.description,
                 },
