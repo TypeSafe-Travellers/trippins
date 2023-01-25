@@ -18,11 +18,17 @@ const UserTrip: NextPage = () => {
       </Head>
 
       <Navbar />
-      <main>
+      <main
+        className={clsx(
+          "flex h-[calc(100vh-200px)] w-screen items-center justify-center",
+          "flex-col gap-2",
+          "text-gray-900 dark:text-zinc-100",
+        )}
+      >
         {name} - {description}
       </main>
 
-      <div className={clsx("absolute bottom-3 lg:bottom-6")}>
+      <div className={clsx("relative bottom-3 text-center lg:bottom-6")}>
         <Footer />
       </div>
     </>
