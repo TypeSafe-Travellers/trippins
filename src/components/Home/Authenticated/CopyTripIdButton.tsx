@@ -8,7 +8,6 @@ export const CopyTripIdButton = () => {
       await navigator.clipboard.writeText("textToCopy");
 
       // TODO add toast
-      console.log("Text copied to clipboard");
     } catch (err) {
       console.error("Failed to copy text: ", err);
     }
