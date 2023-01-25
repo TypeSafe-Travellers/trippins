@@ -1,6 +1,6 @@
 import { type NextPage } from "next";
 import { useRouter } from "next/router";
-import { Footer, Navbar } from "../../components";
+import { Footer, Navbar, TripDetailsContainer } from "../../components";
 import { clsx } from "clsx";
 import Head from "next/head";
 import { useSession } from "next-auth/react";
@@ -50,7 +50,10 @@ const UserTrip: NextPage = () => {
           "text-gray-900 dark:text-zinc-100",
         )}
       >
-        {name} - {description}
+        <TripDetailsContainer
+          name={name as string}
+          description={description as string}
+        />
       </main>
 
       <div className={clsx("relative bottom-3 text-center lg:bottom-6")}>
