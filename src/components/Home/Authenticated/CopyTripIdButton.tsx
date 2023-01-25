@@ -4,18 +4,24 @@ import { regularFont } from "../../../fonts";
 import { motion } from "framer-motion";
 import * as Toast from "@radix-ui/react-toast";
 import { useMediaQuery } from "../../../hooks";
+import { useSession } from "next-auth/react";
 
 interface Props {
   tripId: string;
+  tripName: string;
 }
 
 export const CopyTripIdButton: FC<Props> = (props) => {
+  const { tripId, tripName } = props;
   const [open, setOpen] = useState(false);
   const isMd = useMediaQuery("(min-width: 768px)");
+  const { data: session } = useSession();
 
   const handleCopyToClipboard = async (): Promise<void> => {
     try {
-      await navigator.clipboard.writeText(props.tripId);
+      await navigator.clipboard.writeText(
+        `${session?.user?.name} has invited you to join their trip: ${tripName}! The passcode is ${tripId}. Signup / Login at https://apptypesafetravellers.ayanavakarmakar.repl.co to join the trip.`,
+      );
 
       if (open) {
         setOpen(false);
@@ -65,7 +71,7 @@ export const CopyTripIdButton: FC<Props> = (props) => {
           className={clsx(
             `${regularFont.className}`,
             "shadow-lg shadow-blue-200 hover:shadow-red-200 dark:shadow-indigo-900 hover:dark:shadow-indigo-700",
-            "fixed inset-x-4 bottom-4 z-50 w-auto rounded-lg shadow-lg md:top-4 md:right-4 md:left-auto md:bottom-auto md:w-full md:max-w-sm",
+            "fixed inset-x-4 bottom-4 z-50 w-auto rounded-3xl shadow-lg md:top-4 md:right-4 md:left-auto md:bottom-auto md:w-full md:max-w-sm",
             "border-2 border-solid border-black bg-white dark:border-white dark:bg-gray-900",
             "radix-state-open:animate-toast-slide-in-bottom md:radix-state-open:animate-toast-slide-in-right",
             "radix-state-closed:animate-toast-hide",
@@ -81,7 +87,10 @@ export const CopyTripIdButton: FC<Props> = (props) => {
             <div className="flex w-0 flex-1 items-center p-5">
               <div className="radix w-full">
                 <Toast.Title className="my-2 text-2xl leading-none">
-                  Trip ID copied to clipboard!
+                  <span className={clsx("text-blue-800 dark:text-indigo-200")}>
+                    {tripName}
+                  </span>
+                  {` passcode copied to clipboard!`}
                 </Toast.Title>
                 <Toast.Description className="mt-1 text-xl leading-none">
                   Share it with your friends and family to invite them.
@@ -93,7 +102,7 @@ export const CopyTripIdButton: FC<Props> = (props) => {
                 <div className="my-auto mr-3">
                   <Toast.Close
                     className={clsx(
-                      "flex items-center justify-center rounded-lg border-2 border-solid border-black px-3 pt-2 pb-1 text-xl focus:z-10 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75 hover:bg-gray-50 dark:border-white dark:hover:bg-gray-900",
+                      "flex items-center justify-center rounded-2xl border-2 border-solid border-black px-3 pt-2 pb-1 text-xl focus:z-10 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75 hover:bg-gray-50 dark:border-white dark:hover:bg-gray-900",
                       "shadow-lg shadow-blue-200 hover:shadow-red-200 dark:shadow-indigo-900 hover:dark:shadow-indigo-700",
                     )}
                   >
