@@ -30,7 +30,6 @@ export const TripsContainer = () => {
           key={trip.id}
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
-          whileHover={{ scale: 1.025 }}
           transition={{
             type: "spring",
             stiffness: 300,
