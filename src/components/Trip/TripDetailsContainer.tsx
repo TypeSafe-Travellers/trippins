@@ -79,6 +79,18 @@ export const TripDetailsContainer: FC<Props> = (props) => {
                   `${semiBoldFont.className}`,
                 )}
               >
+                {`Created at: ${
+                  isLoading === false
+                    ? trip?.createdAt.toLocaleString()
+                    : "loading..."
+                }`}
+              </div>
+              <div
+                className={clsx(
+                  "my-2 leading-none",
+                  `${semiBoldFont.className}`,
+                )}
+              >
                 {`Starts at: ${
                   isLoading === false
                     ? trip?.startDate.toLocaleString()
