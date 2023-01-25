@@ -29,6 +29,22 @@ export const userTripsRouter = createTRPCRouter({
   }),
 
   /**
+   * query to get all trip ids
+   * used to check if a trip exists
+   */
+  getAllTripIds: protectedProcedure.query(async ({ ctx }) => {
+    try {
+      return await ctx.prisma.trip.findMany({
+        select: {
+          id: true,
+        },
+      });
+    } catch (error) {
+      console.error("error", error);
+    }
+  }),
+
+  /**
    * mutation to create a new trip
    * @param name - name of the trip
    * @param description - description of the trip
