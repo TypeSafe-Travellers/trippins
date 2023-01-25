@@ -3,6 +3,17 @@ import { regularFont } from "../../../fonts";
 import { motion } from "framer-motion";
 
 export const CopyTripIdButton = () => {
+  const handleCopyToClipboard = async (): Promise<void> => {
+    try {
+      await navigator.clipboard.writeText("textToCopy");
+
+      // TODO add toast
+      console.log("Text copied to clipboard");
+    } catch (err) {
+      console.error("Failed to copy text: ", err);
+    }
+  };
+
   return (
     <motion.div
       initial={{ scale: 0 }}
@@ -26,6 +37,7 @@ export const CopyTripIdButton = () => {
           "bg-white dark:bg-black",
           "focus:outline-none focus-visible:ring focus-visible:ring-black focus-visible:ring-opacity-75",
         )}
+        onClick={handleCopyToClipboard}
       >
         Share Trip
       </button>
