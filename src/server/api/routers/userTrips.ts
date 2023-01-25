@@ -14,6 +14,7 @@ export const userTripsRouter = createTRPCRouter({
           id: true,
           name: true,
           description: true,
+          createdAt: true,
         },
         where: {
           participants: {
@@ -21,6 +22,9 @@ export const userTripsRouter = createTRPCRouter({
               id: ctx.session.user.id,
             },
           },
+        },
+        orderBy: {
+          createdAt: "desc",
         },
       });
     } catch (error) {
