@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { semiBoldFont } from "../../../fonts";
 import { motion } from "framer-motion";
 import { api } from "../../../utils/api";
+import { CopyTripIdButton } from "./CopyTripIdButton";
 
 // TODO add trip participants later
 export const TripsContainer = () => {
@@ -71,6 +72,10 @@ export const TripsContainer = () => {
                 )}
               >
                 {trip.description}
+              </div>
+
+              <div className={clsx("my-2")}>
+                <CopyTripIdButton />
               </div>
             </motion.div>
           </div>
