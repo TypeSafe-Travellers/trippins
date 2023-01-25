@@ -1,11 +1,16 @@
+import { type FC } from "react";
 import clsx from "clsx";
 import { regularFont } from "../../../fonts";
 import { motion } from "framer-motion";
 
-export const CopyTripIdButton = () => {
+interface Props {
+  tripId: string;
+}
+
+export const CopyTripIdButton: FC<Props> = (props) => {
   const handleCopyToClipboard = async (): Promise<void> => {
     try {
-      await navigator.clipboard.writeText("textToCopy");
+      await navigator.clipboard.writeText(props.tripId);
 
       // TODO add toast
     } catch (err) {

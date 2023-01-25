@@ -75,7 +75,7 @@ export const TripsContainer = () => {
               </div>
 
               <div className={clsx("my-0 lg:my-2")}>
-                <CopyTripIdButton />
+                <CopyTripIdButton tripId={trip.id} />
               </div>
             </motion.div>
           </div>
