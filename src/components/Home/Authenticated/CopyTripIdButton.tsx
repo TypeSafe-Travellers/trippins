@@ -63,8 +63,10 @@ export const CopyTripIdButton: FC<Props> = (props) => {
           open={open}
           onOpenChange={setOpen}
           className={clsx(
+            `${regularFont.className}`,
+            "shadow-lg shadow-blue-200 hover:shadow-red-200 dark:shadow-indigo-900 hover:dark:shadow-indigo-700",
             "fixed inset-x-4 bottom-4 z-50 w-auto rounded-lg shadow-lg md:top-4 md:right-4 md:left-auto md:bottom-auto md:w-full md:max-w-sm",
-            "bg-white dark:bg-gray-800",
+            "border-2 border-solid border-black bg-white dark:border-white dark:bg-gray-900",
             "radix-state-open:animate-toast-slide-in-bottom md:radix-state-open:animate-toast-slide-in-right",
             "radix-state-closed:animate-toast-hide",
             "radix-swipe-direction-right:radix-swipe-end:animate-toast-swipe-out-x",
@@ -76,33 +78,25 @@ export const CopyTripIdButton: FC<Props> = (props) => {
           )}
         >
           <div className="flex">
-            <div className="flex w-0 flex-1 items-center py-4 pl-5">
+            <div className="flex w-0 flex-1 items-center p-5">
               <div className="radix w-full">
-                <Toast.Title className="text-sm font-medium text-gray-900 dark:text-gray-100">
+                <Toast.Title className="text-2xl">
                   Pull Request Review
                 </Toast.Title>
-                <Toast.Description className="mt-1 text-sm text-gray-700 dark:text-gray-400">
+                <Toast.Description className="mt-1 text-xl leading-none">
                   Someone requested your review on{" "}
-                  <span className="font-medium">repository/branch</span>
                 </Toast.Description>
               </div>
             </div>
             <div className="flex">
-              <div className="flex flex-col space-y-1 px-3 py-2">
-                <div className="flex h-0 flex-1">
-                  <Toast.Action
-                    altText="view now"
-                    className="flex w-full items-center justify-center rounded-lg border border-transparent px-3 py-2 text-sm font-medium text-purple-600 focus:z-10 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75 hover:bg-gray-50 dark:text-purple-500 dark:hover:bg-gray-900"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      window.open("https://github.com");
-                    }}
+              <div className="flex flex-col">
+                <div className="my-auto mr-3">
+                  <Toast.Close
+                    className={clsx(
+                      "flex items-center justify-center rounded-lg border-2 border-solid border-black px-3 pt-2 pb-1 text-xl focus:z-10 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75 hover:bg-gray-50 dark:border-white dark:hover:bg-gray-900",
+                      "shadow-lg shadow-blue-200 hover:shadow-red-200 dark:shadow-indigo-900 hover:dark:shadow-indigo-700",
+                    )}
                   >
-                    Review
-                  </Toast.Action>
-                </div>
-                <div className="flex h-0 flex-1">
-                  <Toast.Close className="flex w-full items-center justify-center rounded-lg border border-transparent px-3 py-2 text-sm font-medium text-gray-700 focus:z-10 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75 hover:bg-gray-50 dark:text-gray-100 dark:hover:bg-gray-900">
                     Dismiss
                   </Toast.Close>
                 </div>
