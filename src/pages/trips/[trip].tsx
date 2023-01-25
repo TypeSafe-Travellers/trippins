@@ -6,23 +6,35 @@ import Head from "next/head";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
 import { boldFont } from "../../fonts";
+import { api } from "../../utils/api";
 
 const UserTrip: NextPage = () => {
   const { query, push } = useRouter();
   const { tripId: id, tripName: name, tripDescription: description } = query;
-  const { status } = useSession();
+  const { data: session, status } = useSession();
+  const { data: participants } = api.userTrips.getTripParticipants.useQuery({
+    tripId: id as string,
+  });
 
   useEffect(() => {
     if (status === "unauthenticated") {
       push("/");
     }
 
-    if (!name || !description) {
+    if (status !== "loading" && (!name || !description)) {
       push("/404");
     }
-  }, [description, name, push, status]);
 
-  // TODO add validation to ensure that the user is a participant
+    // validation to ensure that the user is a participant
+    if (status !== "loading" && participants && session?.user?.id) {
+      const foundParticipant = participants.find((p) =>
+        p.participants.find((pp) => pp.id === session?.user?.id),
+      );
+      if (!foundParticipant) {
+        push("/404");
+      }
+    }
+  }, [description, name, participants, push, session?.user?.id, status]);
 
   if (status === "loading")
     return (
