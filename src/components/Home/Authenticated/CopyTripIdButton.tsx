@@ -80,11 +80,11 @@ export const CopyTripIdButton: FC<Props> = (props) => {
           <div className="flex">
             <div className="flex w-0 flex-1 items-center p-5">
               <div className="radix w-full">
-                <Toast.Title className="text-2xl">
-                  Pull Request Review
+                <Toast.Title className="my-2 text-2xl leading-none">
+                  Trip ID copied to clipboard!
                 </Toast.Title>
                 <Toast.Description className="mt-1 text-xl leading-none">
-                  Someone requested your review on{" "}
+                  Share it with your friends and family to invite them.
                 </Toast.Description>
               </div>
             </div>
