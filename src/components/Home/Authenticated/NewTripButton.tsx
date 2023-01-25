@@ -146,7 +146,7 @@ export const NewTripButton = () => {
                   <div
                     className={clsx(
                       "text-lg text-red-600 dark:text-red-500",
-                      "p-1",
+                      "mt-3 leading-none",
                     )}
                   >
                     {tripName.length < 3 &&
@@ -161,7 +161,7 @@ export const NewTripButton = () => {
                     Trip Description
                   </label>
                   <textarea
-                    id="tripDescriptionription"
+                    id="tripDescription"
                     value={tripDescription}
                     onChange={(e) => setTripDescription(e.target.value)}
                     autoComplete="tripDescription"
@@ -176,7 +176,7 @@ export const NewTripButton = () => {
                   <div
                     className={clsx(
                       "text-lg text-red-600 dark:text-red-500",
-                      "p-1",
+                      "mt-3 leading-none",
                     )}
                   >
                     {tripDescription.length < 3 &&
@@ -207,7 +207,7 @@ export const NewTripButton = () => {
                   <div
                     className={clsx(
                       "text-lg text-red-600 dark:text-red-500",
-                      "p-1",
+                      "mt-3 leading-none",
                     )}
                   >
                     {startDate === "" && "— Start date must be set!"}
@@ -236,7 +236,7 @@ export const NewTripButton = () => {
                   <div
                     className={clsx(
                       "text-lg text-red-600 dark:text-red-500",
-                      "p-1",
+                      "mt-3 leading-none",
                     )}
                   >
                     {endDate === "" && "— End date must be set!"}
