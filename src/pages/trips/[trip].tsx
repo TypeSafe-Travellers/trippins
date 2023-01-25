@@ -17,7 +17,11 @@ const UserTrip: NextPage = () => {
     if (status === "unauthenticated") {
       push("/");
     }
-  }, [push, status]);
+
+    if (!name || !description) {
+      push("/404");
+    }
+  }, [description, name, push, status]);
 
   // TODO add validation to ensure that the user is a participant
 

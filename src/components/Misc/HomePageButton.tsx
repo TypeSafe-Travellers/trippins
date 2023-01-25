@@ -9,6 +9,7 @@ export const HomePageButton = () => {
     <div
       onClick={() => push("/")}
       className={clsx(
+        "cursor-pointer",
         "mr-2 mb-2 px-5 pt-3 pb-1",
         "items-center rounded-md text-xl lg:text-2xl",
         "bg-teal-50 text-center text-black",
