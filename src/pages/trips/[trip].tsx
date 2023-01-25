@@ -3,16 +3,41 @@ import { useRouter } from "next/router";
 import { Footer, Navbar } from "../../components";
 import { clsx } from "clsx";
 import Head from "next/head";
+import { useSession } from "next-auth/react";
+import { useEffect } from "react";
+import { boldFont } from "../../fonts";
 
 const UserTrip: NextPage = () => {
-  const { query } = useRouter();
+  const { query, push } = useRouter();
   const name = query.tripName;
   const description = query.tripDescription;
+  const { status } = useSession();
+
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      push("/");
+    }
+  }, [push, status]);
+
+  // TODO add validation to ensure that the user is a participant
+
+  if (status === "loading")
+    return (
+      <div
+        className={clsx(
+          "flex min-h-screen items-center justify-center text-center",
+          "text-4xl lg:text-7xl",
+          `${boldFont.className}`,
+        )}
+      >
+        Loading...
+      </div>
+    );
 
   return (
     <>
       <Head>
-        <title>Trippins | Trip Details</title>
+        <title>Trippins | {name}</title>
         <meta name="description" content="Group Trip Planning App" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
