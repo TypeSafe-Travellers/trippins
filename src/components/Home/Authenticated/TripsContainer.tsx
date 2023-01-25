@@ -88,7 +88,7 @@ export const TripsContainer = () => {
                   `${semiBoldFont.className}`,
                 )}
               >
-                Created At: {trip.createdAt.toLocaleDateString()}
+                Created At: {trip.createdAt.toLocaleString()}
               </div>
             </motion.div>
           </div>
