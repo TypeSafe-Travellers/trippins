@@ -44,6 +44,12 @@ export const userTripsRouter = createTRPCRouter({
             description: true,
             startDate: true,
             endDate: true,
+            participants: {
+              select: {
+                id: true,
+                name: true,
+              },
+            },
           },
           where: {
             id: input.tripId,

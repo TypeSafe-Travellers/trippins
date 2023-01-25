@@ -97,6 +97,22 @@ export const TripDetailsContainer: FC<Props> = (props) => {
                     : "loading..."
                 }`}
               </div>
+              <div
+                className={clsx(
+                  "my-2 leading-none",
+                  `${semiBoldFont.className}`,
+                )}
+              >
+                {`Participants: ${
+                  isLoading === false
+                    ? trip?.participants
+                        .map((p) => {
+                          return p.name;
+                        })
+                        .join(", ")
+                    : "loading..."
+                }`}
+              </div>
             </motion.div>
           </div>
         </motion.div>
