@@ -1,11 +1,13 @@
-import Link from "next/link";
 import clsx from "clsx";
 import { regularFont } from "../../fonts";
+import { useRouter } from "next/router";
 
 export const HomePageButton = () => {
+  const { push } = useRouter();
+
   return (
-    <Link
-      href="/"
+    <div
+      onClick={() => push("/")}
       className={clsx(
         "mr-2 mb-2 px-5 pt-3 pb-1",
         "items-center rounded-md text-xl lg:text-2xl",
@@ -17,6 +19,6 @@ export const HomePageButton = () => {
       )}
     >
       Return to Home Page
-    </Link>
+    </div>
   );
 };

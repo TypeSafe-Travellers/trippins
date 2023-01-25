@@ -33,7 +33,7 @@ const Profile: NextPage = () => {
   return (
     <>
       <Head>
-        <title>TypeSafe Travellers | Profile</title>
+        <title>Trippins | Profile</title>
         <meta name="description" content="Group Trip Planning App" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
