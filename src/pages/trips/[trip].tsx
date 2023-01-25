@@ -10,7 +10,7 @@ import { api } from "../../utils/api";
 
 const UserTrip: NextPage = () => {
   const { query, push } = useRouter();
-  const { tripId: id, tripName: name, tripDescription: description } = query;
+  const { tripId: id, tripName: name } = query;
   const { data: session, status } = useSession();
   const { data: participants } = api.userTrips.getTripParticipants.useQuery({
     tripId: id as string,
@@ -21,7 +21,7 @@ const UserTrip: NextPage = () => {
       push("/");
     }
 
-    if (status !== "loading" && (!name || !description)) {
+    if (status !== "loading" && !id) {
       push("/404");
     }
 
@@ -34,7 +34,7 @@ const UserTrip: NextPage = () => {
         push("/404");
       }
     }
-  }, [description, name, participants, push, session?.user?.id, status]);
+  }, [id, participants, push, session?.user?.id, status]);
 
   if (status === "loading")
     return (
@@ -65,10 +65,7 @@ const UserTrip: NextPage = () => {
           "text-gray-900 dark:text-zinc-100",
         )}
       >
-        <TripDetailsContainer
-          name={name as string}
-          description={description as string}
-        />
+        <TripDetailsContainer tripId={id as string} />
       </main>
 
       <div className={clsx("relative bottom-3 text-center lg:bottom-6")}>

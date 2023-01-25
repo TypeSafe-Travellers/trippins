@@ -29,6 +29,32 @@ export const userTripsRouter = createTRPCRouter({
   }),
 
   /**
+   * query to get a specific trip
+   * @param tripId - id of the trip
+   * @returns trip object
+   */
+  getSpecificTrip: protectedProcedure
+    .input(z.object({ tripId: z.string().min(25).max(25) }))
+    .query(async ({ ctx, input }) => {
+      try {
+        return await ctx.prisma.trip.findUnique({
+          select: {
+            id: true,
+            name: true,
+            description: true,
+            startDate: true,
+            endDate: true,
+          },
+          where: {
+            id: input.tripId,
+          },
+        });
+      } catch (error) {
+        console.error("error", error);
+      }
+    }),
+
+  /**
    * query to get all participants of a trip
    * @param tripId - id of the trip
    * @returns array of user ids

@@ -2,14 +2,17 @@ import { motion } from "framer-motion";
 import { clsx } from "clsx";
 import { boldFont, semiBoldFont } from "../../fonts";
 import { type FC } from "react";
+import { api } from "../../utils/api";
 
 interface Props {
-  name: string;
-  description: string;
+  tripId: string;
 }
 
 export const TripDetailsContainer: FC<Props> = (props) => {
-  const { name, description } = props;
+  const { tripId } = props;
+  const { data: trip, isLoading } = api.userTrips.getSpecificTrip.useQuery({
+    tripId,
+  });
 
   return (
     <>
@@ -58,7 +61,7 @@ export const TripDetailsContainer: FC<Props> = (props) => {
                   `${semiBoldFont.className}`,
                 )}
               >
-                Name: {name}
+                {`Name: ${isLoading === false ? trip?.name : "loading..."}`}
               </div>
               <div
                 className={clsx(
@@ -66,7 +69,33 @@ export const TripDetailsContainer: FC<Props> = (props) => {
                   `${semiBoldFont.className}`,
                 )}
               >
-                Description: {description}
+                {`Description: ${
+                  isLoading === false ? trip?.description : "loading..."
+                }`}
+              </div>
+              <div
+                className={clsx(
+                  "my-2 leading-none",
+                  `${semiBoldFont.className}`,
+                )}
+              >
+                {`Starts at: ${
+                  isLoading === false
+                    ? trip?.startDate.toLocaleString()
+                    : "loading..."
+                }`}
+              </div>
+              <div
+                className={clsx(
+                  "my-2 leading-none",
+                  `${semiBoldFont.className}`,
+                )}
+              >
+                {`Ends at: ${
+                  isLoading === false
+                    ? trip?.endDate.toLocaleString()
+                    : "loading..."
+                }`}
               </div>
             </motion.div>
           </div>

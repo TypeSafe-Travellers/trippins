@@ -44,7 +44,6 @@ export const TripsContainer = () => {
                 query: {
                   tripId: trip.id,
                   tripName: trip.name,
-                  tripDescription: trip.description,
                 },
               })
             }
