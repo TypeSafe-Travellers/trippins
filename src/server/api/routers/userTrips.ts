@@ -66,4 +66,28 @@ export const userTripsRouter = createTRPCRouter({
         console.error(error);
       }
     }),
+
+  /**
+   * mutation to add a participant to a trip
+   * trip passcode is of length 25 characters
+   * @param tripId - id of the trip (trip passcode in client)
+   */
+  addParticipant: protectedProcedure
+    .input(z.object({ tripId: z.string().min(25).max(25) }))
+    .mutation(async ({ ctx, input }) => {
+      try {
+        await ctx.prisma.trip.update({
+          where: {
+            id: input.tripId,
+          },
+          data: {
+            participants: {
+              connect: { id: ctx.session.user.id },
+            },
+          },
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }),
 });
