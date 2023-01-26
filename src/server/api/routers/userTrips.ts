@@ -47,7 +47,7 @@ export const userTripsRouter = createTRPCRouter({
       console.error("error", error);
     }
   }),
-   
+
   /*
    * query to get a specific trip
    * @param tripId - id of the trip
