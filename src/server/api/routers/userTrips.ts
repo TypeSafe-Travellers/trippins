@@ -71,7 +71,7 @@ export const userTripsRouter = createTRPCRouter({
    * @returns array of user ids
    */
   getTripParticipants: protectedProcedure
-    .input(z.object({ tripId: z.string().min(25).max(25) }))
+    .input(z.object({ tripId: z.string().length(25) }))
     .query(async ({ ctx, input }) => {
       try {
         return await ctx.prisma.trip.findMany({
