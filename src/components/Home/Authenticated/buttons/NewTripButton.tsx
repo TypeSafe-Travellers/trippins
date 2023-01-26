@@ -253,13 +253,15 @@ export const NewTripButton = () => {
                     onClick={handleSubmit}
                     className={clsx(
                       `${
-                        isValidated ? "cursor-pointer" : "cursor-not-allowed"
+                        isValidated
+                          ? "cursor-pointer bg-green-100 hover:bg-green-200 dark:bg-green-700 dark:hover:bg-green-600"
+                          : "cursor-not-allowed border-transparent bg-gray-300 dark:bg-gray-700"
                       }`,
                       "inline-flex select-none justify-center rounded-md px-4 pt-2.5 pb-1 text-xl",
-                      " bg-green-100 text-center text-black",
+                      "text-center text-black",
                       "border-2 border-solid border-black",
-                      "focus:outline-none focus:ring-2 focus:ring-black hover:bg-green-200",
-                      "dark:bg-green-700 dark:text-white dark:focus:ring-gray-500 dark:hover:bg-green-600",
+                      "focus:outline-none focus:ring-2 focus:ring-black",
+                      "dark:text-white dark:focus:ring-gray-500",
                     )}
                   >
                     <motion.div
