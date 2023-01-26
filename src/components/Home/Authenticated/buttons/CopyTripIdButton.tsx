@@ -20,7 +20,7 @@ export const CopyTripIdButton: FC<Props> = (props) => {
   const handleCopyToClipboard = async (): Promise<void> => {
     try {
       await navigator.clipboard.writeText(
-        `${session?.user?.name} has invited you to join their trip: ${tripName}! The passcode is ${tripId}. Signup / Login at Trippins (https://apptypesafetravellers.ayanavakarmakar.repl.co/) to join.`,
+        `${session?.user?.name} has invited you to join their trip: ${tripName}! The trip code is ${tripId}. Signup / Login at Trippins (https://apptypesafetravellers.ayanavakarmakar.repl.co/) to join.`,
       );
 
       if (open) {
@@ -90,7 +90,7 @@ export const CopyTripIdButton: FC<Props> = (props) => {
                   <span className={clsx("text-blue-800 dark:text-indigo-200")}>
                     {tripName}
                   </span>
-                  {` passcode copied to clipboard!`}
+                  {` code copied to clipboard!`}
                 </Toast.Title>
                 <Toast.Description className="mt-1 text-xl leading-none">
                   Share it with your friends and family to invite them.

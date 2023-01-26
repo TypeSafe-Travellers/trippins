@@ -89,8 +89,8 @@ export const userTripsRouter = createTRPCRouter({
 
   /**
    * mutation to add a participant to a trip
-   * trip passcode is of length 25 characters
-   * @param tripId - id of the trip (trip passcode in client)
+   * trip code is of length 25 characters
+   * @param tripId - id of the trip (trip code in client)
    */
   addParticipant: protectedProcedure
     .input(z.object({ tripId: z.string().min(25).max(25) }))

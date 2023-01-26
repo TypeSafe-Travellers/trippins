@@ -107,17 +107,17 @@ export const JoinTripButton = () => {
             >
               <Dialog.Title className="text-2xl">Join Trip</Dialog.Title>
               <Dialog.Description className="mt-2 text-xl">
-                Enter the trip Passcode to join a trip.
+                Enter the trip code to join a trip.
               </Dialog.Description>
               <form className="mt-2 space-y-2">
                 <fieldset>
                   <label htmlFor="tripId" className="text-lg">
-                    Trip Passcode
+                    Trip Code
                   </label>
                   <input
                     id="tripId"
                     type="text"
-                    placeholder="Enter trip passcode"
+                    placeholder="Enter trip code"
                     onChange={(e) => setTripId(e.target.value)}
                     autoComplete="trip-id"
                     className={clsx(
@@ -136,7 +136,7 @@ export const JoinTripButton = () => {
                   >
                     {tripId.length !== 0 &&
                       !isValidated &&
-                      "— Trip passcode is invalid!"}
+                      "— Trip code is invalid!"}
                   </div>
                 </fieldset>
 
