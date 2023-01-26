@@ -70,9 +70,9 @@ export const CopyTripIdButton: FC<Props> = (props) => {
           onOpenChange={setOpen}
           className={clsx(
             `${regularFont.className}`,
-            "shadow-lg shadow-blue-200 hover:shadow-red-200 dark:shadow-indigo-900 hover:dark:shadow-indigo-700",
+            "shadow-md shadow-blue-200 hover:shadow-red-200 dark:shadow-indigo-900 hover:dark:shadow-indigo-700",
             "fixed inset-x-4 bottom-4 z-50 w-auto rounded-3xl shadow-lg md:top-4 md:right-4 md:left-auto md:bottom-auto md:w-full md:max-w-sm",
-            "border-2 border-solid border-black bg-white dark:border-white dark:bg-gray-900",
+            "border-2 border-solid border-black bg-white dark:border-none dark:bg-zinc-900",
             "radix-state-open:animate-toast-slide-in-bottom md:radix-state-open:animate-toast-slide-in-right",
             "radix-state-closed:animate-toast-hide",
             "radix-swipe-direction-right:radix-swipe-end:animate-toast-swipe-out-x",
