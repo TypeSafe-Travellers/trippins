@@ -62,7 +62,7 @@ model Trip {
     description  String
     startDate    DateTime
     endDate      DateTime
-    budget       Int
+    budget       Int @default(0)
     adminId      String
     createdAt    DateTime @default(now())
     participants User[]   @relation(name: "TripParticipants")

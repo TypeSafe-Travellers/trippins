@@ -16,8 +16,6 @@ export const NewTripButton = () => {
   const [perHeadBudget, setPerHeadBudget] = useState(0);
   const [isValidated, setIsValidated] = useState(false);
 
-  console.log(perHeadBudget);
-
   useEffect(() => {
     if (
       tripName.length >= 3 &&
@@ -65,6 +63,7 @@ export const NewTripButton = () => {
           }}
         >
           <button
+            type="button"
             className={clsx(
               `${regularFont.className}`,
               "inline-flex select-none items-center justify-center rounded-md",
@@ -280,7 +279,7 @@ export const NewTripButton = () => {
                       onClick={handleSubmit}
                       className={clsx(
                         "inline-flex select-none justify-center rounded-md px-4 pt-2.5 pb-1 text-xl",
-                        " bg-green-100 text-center text-black",
+                        "bg-green-100 text-center text-black",
                         "border-2 border-solid border-black",
                         "focus:outline-none focus:ring-2 focus:ring-black hover:bg-green-200",
                         "dark:bg-green-700 dark:text-white dark:focus:ring-gray-500 dark:hover:bg-green-600",

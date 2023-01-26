@@ -99,6 +99,7 @@ export const userTripsRouter = createTRPCRouter({
    * @param startDate - start date of the trip
    * @param endDate - end date of the trip
    * @param adminId - id of the user who created the trip
+   * @param budget - budget of the trip
    * @param participants - id of users who are participating in the trip
    */
   createTrip: protectedProcedure
@@ -120,6 +121,7 @@ export const userTripsRouter = createTRPCRouter({
             startDate: input.startDate,
             endDate: input.endDate,
             adminId: ctx.session.user.id,
+            budget: input.budget,
             participants: {
               connect: {
                 id: ctx.session.user.id,
