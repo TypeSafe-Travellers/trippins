@@ -27,6 +27,7 @@ export const EditProfile = () => {
         userId: session?.user?.id,
       });
 
+      setIsOpen(false);
       reload();
     }
 
@@ -36,10 +37,9 @@ export const EditProfile = () => {
         userId: session?.user?.id,
       });
 
+      setIsOpen(false);
       reload();
     }
-
-    setIsOpen(false);
   };
 
   return (

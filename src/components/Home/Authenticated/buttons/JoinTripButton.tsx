@@ -6,12 +6,21 @@ import { Fragment, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { regularFont } from "../../../../fonts";
 import { api } from "../../../../utils/api";
+import { useRouter } from "next/router";
 
 export const JoinTripButton = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [tripId, setTripId] = useState("");
   const [isValidated, setIsValidated] = useState(false);
+  const { reload } = useRouter();
   const { data: allTripIds } = api.userTrips.getAllTripIds.useQuery();
+  const addTripParticipantMutation = api.userTrips.addParticipant.useMutation();
+
+  const handleAddParticipant = (): void => {
+    addTripParticipantMutation.mutate({ tripId });
+    setIsOpen(false);
+    reload();
+  };
 
   useEffect(() => {
     // check if tripId is valid
@@ -132,6 +141,7 @@ export const JoinTripButton = () => {
                 {isValidated && (
                   <div className="flex justify-end pt-1">
                     <button
+                      onClick={handleAddParticipant}
                       className={clsx(
                         "inline-flex select-none justify-center rounded-md px-4 pt-2.5 pb-1 text-xl",
                         " bg-green-100 text-center text-black",

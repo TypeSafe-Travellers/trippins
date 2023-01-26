@@ -43,11 +43,11 @@ export const NewTripButton = () => {
         startDate: new Date(startDate),
         endDate: new Date(endDate),
       });
+
+      setIsOpen(false);
+
+      reload();
     }
-
-    setIsOpen(false);
-
-    reload();
   };
 
   return (
