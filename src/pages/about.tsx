@@ -26,7 +26,7 @@ const About: NextPage = () => {
   return (
     <>
       <Head>
-        <title>TypeSafe Travellers | About</title>
+        <title>Trippins | About</title>
         <meta name="description" content="Group Trip Planning App" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

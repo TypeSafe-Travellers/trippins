@@ -47,6 +47,65 @@ export const userTripsRouter = createTRPCRouter({
       console.error("error", error);
     }
   }),
+   
+  /*
+   * query to get a specific trip
+   * @param tripId - id of the trip
+   * @returns trip object
+   */
+  getSpecificTrip: protectedProcedure
+    .input(z.object({ tripId: z.string().min(25).max(25) }))
+    .query(async ({ ctx, input }) => {
+      try {
+        return await ctx.prisma.trip.findUnique({
+          select: {
+            id: true,
+            name: true,
+            description: true,
+            createdAt: true,
+            startDate: true,
+            endDate: true,
+            participants: {
+              select: {
+                id: true,
+                name: true,
+              },
+            },
+          },
+          where: {
+            id: input.tripId,
+          },
+        });
+      } catch (error) {
+        console.error("error", error);
+      }
+    }),
+
+  /**
+   * query to get all participants of a trip
+   * @param tripId - id of the trip
+   * @returns array of user ids
+   */
+  getTripParticipants: protectedProcedure
+    .input(z.object({ tripId: z.string().length(25) }))
+    .query(async ({ ctx, input }) => {
+      try {
+        return await ctx.prisma.trip.findMany({
+          select: {
+            participants: {
+              select: {
+                id: true,
+              },
+            },
+          },
+          where: {
+            id: input.tripId,
+          },
+        });
+      } catch (error) {
+        console.error("error", error);
+      }
+    }),
 
   /**
    * mutation to create a new trip
