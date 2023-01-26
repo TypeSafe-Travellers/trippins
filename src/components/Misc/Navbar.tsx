@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 
 export const Navbar = () => {
   const { status } = useSession();
-  const { pathname } = useRouter();
+  const { pathname, push } = useRouter();
 
   return (
     <NavigationMenu.Root
@@ -25,7 +25,7 @@ export const Navbar = () => {
       >
         <NavigationMenu.Item asChild>
           <NavigationMenu.Link
-            href="/"
+            onClick={() => push("/")}
             className={clsx(
               `${
                 pathname === "/"
@@ -33,7 +33,7 @@ export const Navbar = () => {
                   : "text-black dark:text-white"
               }`,
               "px-1 py-3 lg:px-2",
-              "rounded-lg",
+              "cursor-pointer rounded-lg",
               "hover:text-blue-700 dark:hover:text-indigo-300",
             )}
           >
@@ -56,14 +56,14 @@ export const Navbar = () => {
         {status === "authenticated" && (
           <NavigationMenu.Item asChild>
             <NavigationMenu.Link
-              href="/profile"
+              onClick={() => push("/profile")}
               className={clsx(
                 `${
                   pathname === "/profile"
                     ? "text-indigo-700 dark:text-indigo-200"
                     : "text-black dark:text-white"
                 }`,
-                "rounded-lg",
+                "cursor-pointer rounded-lg",
                 "px-1 py-3 lg:px-2",
                 "hover:text-blue-700 dark:hover:text-indigo-300",
               )}
@@ -86,14 +86,14 @@ export const Navbar = () => {
 
         <NavigationMenu.Item asChild>
           <NavigationMenu.Link
-            href="/about"
+            onClick={() => push("/about")}
             className={clsx(
               `${
                 pathname === "/about"
                   ? "text-indigo-700 dark:text-indigo-200"
                   : "text-black dark:text-white"
               }`,
-              "rounded-lg",
+              "cursor-pointer rounded-lg",
               "px-1 py-3 lg:px-2",
               "hover:text-blue-700 dark:hover:text-indigo-300",
             )}
