@@ -46,7 +46,9 @@ export const NewTripButton = () => {
 
       setIsOpen(false);
 
-      reload();
+      setTimeout(() => {
+        reload();
+      }, 1000);
     }
   };
 

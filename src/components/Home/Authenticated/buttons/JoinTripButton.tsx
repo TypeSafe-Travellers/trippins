@@ -19,7 +19,9 @@ export const JoinTripButton = () => {
   const handleAddParticipant = (): void => {
     addTripParticipantMutation.mutate({ tripId });
     setIsOpen(false);
-    reload();
+    setTimeout(() => {
+      reload();
+    }, 1000);
   };
 
   useEffect(() => {

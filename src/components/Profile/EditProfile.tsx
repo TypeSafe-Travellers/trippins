@@ -28,7 +28,9 @@ export const EditProfile = () => {
       });
 
       setIsOpen(false);
-      reload();
+      setTimeout(() => {
+        reload();
+      }, 1000);
     }
 
     if (userEmail !== session?.user?.email && session?.user?.id !== undefined) {
@@ -38,7 +40,9 @@ export const EditProfile = () => {
       });
 
       setIsOpen(false);
-      reload();
+      setTimeout(() => {
+        reload();
+      }, 1000);
     }
   };
 
