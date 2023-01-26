@@ -26,18 +26,19 @@ export const NewTripButton = () => {
       tripDescription.length <= 1000 &&
       startDate !== "" &&
       endDate !== "" &&
-      startDate < endDate
+      startDate < endDate &&
+      perHeadBudget >= 0
     ) {
       setIsValidated(true);
     } else {
       setIsValidated(false);
     }
-  }, [tripName, tripDescription, startDate, endDate]);
+  }, [tripName, tripDescription, startDate, endDate, perHeadBudget]);
 
   const createTripMutation = api.userTrips.createTrip.useMutation();
 
   const handleSubmit = (): void => {
-    if (tripName && tripDescription && startDate && endDate) {
+    if (tripName && tripDescription && startDate && endDate && perHeadBudget) {
       createTripMutation.mutate({
         name: tripName,
         description: tripDescription,
@@ -48,10 +49,6 @@ export const NewTripButton = () => {
     }
 
     setIsOpen(false);
-
-    // setTimeout(() => {
-    //   window.location.reload();
-    // }, 1000);
   };
 
   return (
@@ -257,12 +254,7 @@ export const NewTripButton = () => {
                     type="number"
                     value={perHeadBudget}
                     onChange={(e) => {
-                      setPerHeadBudget(
-                        Math.max(
-                          0,
-                          Math.min(1000000, parseInt(e.target.value)),
-                        ),
-                      );
+                      setPerHeadBudget(parseInt(e.target.value));
                     }}
                     autoComplete="Per Head Budget"
                     className={clsx(
@@ -279,11 +271,7 @@ export const NewTripButton = () => {
                       "mt-3 leading-none",
                     )}
                   >
-                    {tripName.length < 3 &&
-                      "— Trip name must be at least 3 characters long!"}
-
-                    {tripName.length > 50 &&
-                      "— Trip name must be less than 50 characters long!"}
+                    {perHeadBudget < 0 && "— Budget cannot be negative!"}
                   </div>
                 </fieldset>
                 {isValidated && (
