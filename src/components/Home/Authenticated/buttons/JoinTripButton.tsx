@@ -12,7 +12,7 @@ export const JoinTripButton = () => {
   const [isValidated, setIsValidated] = useState(false);
 
   useEffect(() => {
-    if (tripId.length >= 1) {
+    if (tripId.length === 25) {
       setIsValidated(true);
     } else {
       setIsValidated(false);
@@ -91,17 +91,17 @@ export const JoinTripButton = () => {
             >
               <Dialog.Title className="text-2xl">Join Trip</Dialog.Title>
               <Dialog.Description className="mt-2 text-xl">
-                Enter the trip ID to join a trip.
+                Enter the trip Passcode to join a trip.
               </Dialog.Description>
               <form className="mt-2 space-y-2">
                 <fieldset>
                   <label htmlFor="tripId" className="text-lg">
-                    Trip ID
+                    Trip Passcode
                   </label>
                   <input
                     id="tripId"
                     type="text"
-                    placeholder="Enter trip ID"
+                    placeholder="Enter trip passcode"
                     onChange={(e) => setTripId(e.target.value)}
                     autoComplete="trip-id"
                     className={clsx(
@@ -118,7 +118,7 @@ export const JoinTripButton = () => {
                       "mt-3 leading-none",
                     )}
                   >
-                    {tripId.length <= 0 && "— Trip ID cannot be empty!"}
+                    {tripId.length !== 0 && "— Trip passcode is invalid!"}
                   </div>
                 </fieldset>
 
