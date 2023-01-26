@@ -5,19 +5,24 @@ import { clsx } from "clsx";
 import { Fragment, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { regularFont } from "../../../../fonts";
+import { api } from "../../../../utils/api";
 
 export const JoinTripButton = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [tripId, setTripId] = useState("");
   const [isValidated, setIsValidated] = useState(false);
+  const { data: allTripIds } = api.userTrips.getAllTripIds.useQuery();
 
   useEffect(() => {
-    if (tripId.length === 25) {
+    // check if tripId is valid
+    const tripExists = allTripIds?.find((t) => t.id === tripId);
+
+    if (tripId.length === 25 && tripExists) {
       setIsValidated(true);
     } else {
       setIsValidated(false);
     }
-  }, [tripId]);
+  }, [allTripIds, tripId]);
 
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
@@ -118,7 +123,9 @@ export const JoinTripButton = () => {
                       "mt-3 leading-none",
                     )}
                   >
-                    {tripId.length !== 0 && "— Trip passcode is invalid!"}
+                    {tripId.length !== 0 &&
+                      !isValidated &&
+                      "— Trip passcode is invalid!"}
                   </div>
                 </fieldset>
 
