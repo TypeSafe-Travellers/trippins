@@ -6,6 +6,7 @@ import { Fragment, useEffect, useState } from "react";
 import { regularFont } from "../../../../fonts";
 import { motion } from "framer-motion";
 import { api } from "../../../../utils/api";
+import { useRouter } from "next/router";
 
 export const NewTripButton = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,6 +15,7 @@ export const NewTripButton = () => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [isValidated, setIsValidated] = useState(false);
+  const { reload } = useRouter();
 
   useEffect(() => {
     if (
@@ -45,9 +47,7 @@ export const NewTripButton = () => {
 
     setIsOpen(false);
 
-    setTimeout(() => {
-      window.location.reload();
-    }, 1000);
+    reload();
   };
 
   return (

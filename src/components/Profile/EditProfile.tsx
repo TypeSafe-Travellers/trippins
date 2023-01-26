@@ -7,10 +7,12 @@ import { regularFont } from "../../fonts";
 import { useSession } from "next-auth/react";
 import { api } from "../../utils/api";
 import { motion } from "framer-motion";
+import { useRouter } from "next/router";
 
 export const EditProfile = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { data: session } = useSession();
+  const { reload } = useRouter();
 
   const [userName, setUserName] = useState(session?.user?.name as string);
   const [userEmail, setUserEmail] = useState(session?.user?.email as string);
@@ -24,6 +26,8 @@ export const EditProfile = () => {
         newName: userName,
         userId: session?.user?.id,
       });
+
+      reload();
     }
 
     if (userEmail !== session?.user?.email && session?.user?.id !== undefined) {
@@ -31,13 +35,11 @@ export const EditProfile = () => {
         newEmail: userEmail,
         userId: session?.user?.id,
       });
+
+      reload();
     }
 
     setIsOpen(false);
-
-    setTimeout(() => {
-      window.location.reload();
-    }, 1000);
   };
 
   return (
