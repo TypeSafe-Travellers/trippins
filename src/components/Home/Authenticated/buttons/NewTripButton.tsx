@@ -247,32 +247,34 @@ export const NewTripButton = () => {
                   </div>
                 </fieldset>
 
-                {isValidated && (
-                  <div className="flex justify-end pt-5">
-                    <button
-                      onClick={handleSubmit}
-                      className={clsx(
-                        "inline-flex select-none justify-center rounded-md px-4 pt-2.5 pb-1 text-xl",
-                        " bg-green-100 text-center text-black",
-                        "border-2 border-solid border-black",
-                        "focus:outline-none focus:ring-2 focus:ring-black hover:bg-green-200",
-                        "dark:bg-green-700 dark:text-white dark:focus:ring-gray-500 dark:hover:bg-green-600",
-                      )}
+                <div className="flex justify-end pt-5">
+                  <button
+                    disabled={!isValidated}
+                    onClick={handleSubmit}
+                    className={clsx(
+                      `${
+                        isValidated ? "cursor-pointer" : "cursor-not-allowed"
+                      }`,
+                      "inline-flex select-none justify-center rounded-md px-4 pt-2.5 pb-1 text-xl",
+                      " bg-green-100 text-center text-black",
+                      "border-2 border-solid border-black",
+                      "focus:outline-none focus:ring-2 focus:ring-black hover:bg-green-200",
+                      "dark:bg-green-700 dark:text-white dark:focus:ring-gray-500 dark:hover:bg-green-600",
+                    )}
+                  >
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 30,
+                      }}
                     >
-                      <motion.div
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{
-                          type: "spring",
-                          stiffness: 300,
-                          damping: 30,
-                        }}
-                      >
-                        Confirm
-                      </motion.div>
-                    </button>
-                  </div>
-                )}
+                      Confirm
+                    </motion.div>
+                  </button>
+                </div>
               </form>
 
               <Dialog.Close
