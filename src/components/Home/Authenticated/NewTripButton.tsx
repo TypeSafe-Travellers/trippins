@@ -16,6 +16,8 @@ export const NewTripButton = () => {
   const [perHeadBudget, setPerHeadBudget] = useState(0);
   const [isValidated, setIsValidated] = useState(false);
 
+  console.log(perHeadBudget);
+
   useEffect(() => {
     if (
       tripName.length >= 3 &&
@@ -41,14 +43,15 @@ export const NewTripButton = () => {
         description: tripDescription,
         startDate: new Date(startDate),
         endDate: new Date(endDate),
+        budget: perHeadBudget,
       });
     }
 
     setIsOpen(false);
 
-    setTimeout(() => {
-      window.location.reload();
-    }, 1000);
+    // setTimeout(() => {
+    //   window.location.reload();
+    // }, 1000);
   };
 
   return (
@@ -254,8 +257,12 @@ export const NewTripButton = () => {
                     type="number"
                     value={perHeadBudget}
                     onChange={(e) => {
-                      const m = Math.max(0, parseInt(e.target.value));
-                      setPerHeadBudget(m);
+                      setPerHeadBudget(
+                        Math.max(
+                          0,
+                          Math.min(1000000, parseInt(e.target.value)),
+                        ),
+                      );
                     }}
                     autoComplete="Per Head Budget"
                     className={clsx(

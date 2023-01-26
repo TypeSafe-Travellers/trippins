@@ -49,6 +49,7 @@ export const userTripsRouter = createTRPCRouter({
             createdAt: true,
             startDate: true,
             endDate: true,
+            budget: true,
             participants: {
               select: {
                 id: true,
@@ -107,6 +108,7 @@ export const userTripsRouter = createTRPCRouter({
         description: z.string().min(3).max(1000),
         startDate: z.date(),
         endDate: z.date(),
+        budget: z.number().min(0),
       }),
     )
     .mutation(async ({ ctx, input }) => {
