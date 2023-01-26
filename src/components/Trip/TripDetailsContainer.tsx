@@ -117,9 +117,7 @@ export const TripDetailsContainer: FC<Props> = (props) => {
               >
                 {`Participants: ${
                   isLoading === false
-                    ? trip?.participants
-                        .map((p) => p.name)
-                        .join(", ")
+                    ? trip?.participants.map((p) => p.name).join(", ")
                     : "loading..."
                 }`}
               </div>
