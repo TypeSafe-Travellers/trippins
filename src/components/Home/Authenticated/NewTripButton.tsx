@@ -13,6 +13,7 @@ export const NewTripButton = () => {
   const [tripDescription, setTripDescription] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [perHeadBudget, setPerHeadBudget] = useState(0);
   const [isValidated, setIsValidated] = useState(false);
 
   useEffect(() => {
@@ -244,7 +245,40 @@ export const NewTripButton = () => {
                       " // End date must be after start date!"}
                   </div>
                 </fieldset>
+                <fieldset>
+                  <label htmlFor="perHeadBudget" className="text-lg">
+                    Per Head Budget
+                  </label>
+                  <input
+                    id="perHeadBudget"
+                    type="number"
+                    value={perHeadBudget}
+                    onChange={(e) => {
+                      const m = Math.max(0, parseInt(e.target.value));
+                      setPerHeadBudget(m);
+                    }}
+                    autoComplete="Per Head Budget"
+                    className={clsx(
+                      "mt-1 block w-full rounded-md px-1 pt-2 pb-1",
+                      "text-xl",
+                      "bg-white dark:bg-gray-900",
+                      "border border-gray-400 focus-visible:border-transparent dark:border-gray-700 dark:bg-gray-800",
+                    )}
+                  />
 
+                  <div
+                    className={clsx(
+                      "text-lg text-red-600 dark:text-red-500",
+                      "mt-3 leading-none",
+                    )}
+                  >
+                    {tripName.length < 3 &&
+                      "— Trip name must be at least 3 characters long!"}
+
+                    {tripName.length > 50 &&
+                      "— Trip name must be less than 50 characters long!"}
+                  </div>
+                </fieldset>
                 {isValidated && (
                   <div className="flex justify-end pt-5">
                     <button
