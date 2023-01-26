@@ -2,10 +2,11 @@ import clsx from "clsx";
 import { semiBoldFont } from "../../../fonts";
 import { motion } from "framer-motion";
 import { api } from "../../../utils/api";
+import { useRouter } from "next/router";
 
-// TODO add trip participants later
 export const TripsContainer = () => {
   const { data: trips, isLoading } = api.userTrips.getAll.useQuery();
+  const { push } = useRouter();
 
   if (isLoading) {
     return (
@@ -37,6 +38,15 @@ export const TripsContainer = () => {
           }}
         >
           <div
+            onClick={() =>
+              push({
+                pathname: `/trips/${trip.id}`,
+                query: {
+                  tripId: trip.id,
+                  tripName: trip.name,
+                },
+              })
+            }
             key={trip.id}
             className={clsx(
               "text-2xl lg:text-3xl",
@@ -78,7 +88,7 @@ export const TripsContainer = () => {
                   `${semiBoldFont.className}`,
                 )}
               >
-                Created At: {trip.createdAt.toLocaleDateString()}
+                Created At: {trip.createdAt.toLocaleString()}
               </div>
             </motion.div>
           </div>
