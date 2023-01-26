@@ -1,11 +1,11 @@
 import { Transition } from "@headlessui/react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { CrossIcon } from "../../../icons";
+import { CrossIcon } from "../../../../icons";
 import clsx from "clsx";
 import { Fragment, useEffect, useState } from "react";
-import { regularFont } from "../../../fonts";
+import { regularFont } from "../../../../fonts";
 import { motion } from "framer-motion";
-import { api } from "../../../utils/api";
+import { api } from "../../../../utils/api";
 
 export const NewTripButton = () => {
   const [isOpen, setIsOpen] = useState(false);

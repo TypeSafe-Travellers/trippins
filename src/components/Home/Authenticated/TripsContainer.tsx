@@ -2,9 +2,8 @@ import clsx from "clsx";
 import { semiBoldFont } from "../../../fonts";
 import { motion } from "framer-motion";
 import { api } from "../../../utils/api";
-import { CopyTripIdButton } from "./CopyTripIdButton";
+import { CopyTripIdButton } from "./buttons";
 
-// TODO add trip participants later
 export const TripsContainer = () => {
   const { data: trips, isLoading } = api.userTrips.getAll.useQuery();
 

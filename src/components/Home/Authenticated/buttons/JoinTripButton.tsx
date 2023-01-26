@@ -1,10 +1,10 @@
 import { Transition } from "@headlessui/react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { CrossIcon } from "../../../icons";
+import { CrossIcon } from "../../../../icons";
 import { clsx } from "clsx";
 import { Fragment, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { regularFont } from "../../../fonts";
+import { regularFont } from "../../../../fonts";
 
 export const JoinTripButton = () => {
   const [isOpen, setIsOpen] = useState(false);
