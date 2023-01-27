@@ -7,13 +7,19 @@ import { motion } from "framer-motion";
 import { regularFont } from "../../../../fonts";
 import { api } from "../../../../utils/api";
 import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 
 export const JoinTripButton = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [tripId, setTripId] = useState("");
   const [isValidated, setIsValidated] = useState(false);
+  const [isParticipant, setIsParticipant] = useState(true);
   const { reload } = useRouter();
+  const { data: session } = useSession();
   const { data: allTripIds } = api.userTrips.getAllTripIds.useQuery();
+  const { data: participants } = api.userTrips.getTripParticipants.useQuery({
+    tripId,
+  });
   const addTripParticipantMutation = api.userTrips.addParticipant.useMutation();
 
   const handleAddParticipant = (): void => {
@@ -28,12 +34,21 @@ export const JoinTripButton = () => {
     // check if tripId is valid
     const tripExists = allTripIds?.find((t) => t.id === tripId);
 
-    if (tripId.length === 25 && tripExists) {
+    // check if user is already a participant
+    setIsParticipant(
+      participants?.find((p) =>
+        p.participants.find((pp) => pp.id === session?.user?.id),
+      )
+        ? true
+        : false,
+    );
+
+    if (tripId.length === 25 && tripExists && !isParticipant) {
       setIsValidated(true);
     } else {
       setIsValidated(false);
     }
-  }, [allTripIds, tripId]);
+  }, [allTripIds, isParticipant, participants, session?.user?.id, tripId]);
 
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
@@ -139,7 +154,11 @@ export const JoinTripButton = () => {
                       "mt-3 leading-none",
                     )}
                   >
-                    Trip code is invalid!
+                    {`${
+                      isParticipant
+                        ? "You're already a participant!"
+                        : "Trip code is invalid!"
+                    }`}
                   </div>
                 </fieldset>
 
