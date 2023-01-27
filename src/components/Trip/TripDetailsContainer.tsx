@@ -106,9 +106,9 @@ export const TripDetailsContainer: FC<Props> = (props) => {
           </div>
         </motion.div>
       </div>
-      {session?.user?.id === trip?.adminId && (
+      {trip?.id && session?.user?.id === trip?.adminId && (
         <div className={clsx("py-5", "text-center")}>
-          <DeleteTripButton />
+          <DeleteTripButton tripId={trip?.id} />
         </div>
       )}
     </motion.div>
