@@ -130,17 +130,20 @@ export const JoinTripButton = () => {
 
                   <div
                     className={clsx(
-                      "text-lg text-red-600 dark:text-red-500",
+                      `${
+                        tripId.length !== 0 && !isValidated
+                          ? "text-red-600 dark:text-red-500"
+                          : "text-transparent dark:text-transparent"
+                      }`,
+                      "text-lg",
                       "mt-3 leading-none",
                     )}
                   >
-                    {tripId.length !== 0 &&
-                      !isValidated &&
-                      "— Trip code is invalid!"}
+                    Trip code is invalid!
                   </div>
                 </fieldset>
 
-                <div className="flex justify-end pt-1">
+                <div className="flex justify-end">
                   <button
                     disabled={!isValidated}
                     onClick={handleAddParticipant}
