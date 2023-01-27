@@ -3,10 +3,9 @@ import * as AlertDialog from "@radix-ui/react-alert-dialog";
 import clsx from "clsx";
 import { useState, Fragment } from "react";
 import { regularFont } from "../../fonts";
-import { signOut } from "next-auth/react";
 import { motion } from "framer-motion";
 
-export const LogoutAndAlertButton = () => {
+export const DeleteTripButton = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -35,7 +34,7 @@ export const LogoutAndAlertButton = () => {
               damping: 25,
             }}
           >
-            Log Out
+            Delete Trip
           </motion.div>
         </button>
       </AlertDialog.Trigger>
@@ -90,8 +89,8 @@ export const LogoutAndAlertButton = () => {
                   `${regularFont.className}`,
                 )}
               >
-                You will have to log in again if you want to access your
-                account.
+                This action is irreversible. All data associated with this trip
+                will be deleted.
               </AlertDialog.Description>
               <div className="mt-4 flex justify-end space-x-2">
                 <AlertDialog.Cancel
@@ -117,7 +116,6 @@ export const LogoutAndAlertButton = () => {
                 </AlertDialog.Cancel>
                 <AlertDialog.Action
                   onClick={() => {
-                    signOut({ callbackUrl: "/" });
                     setIsOpen(false);
                   }}
                   className={clsx(
