@@ -2,9 +2,14 @@ import clsx from "clsx";
 import { semiBoldFont } from "../../fonts";
 import { useSession } from "next-auth/react";
 import { motion } from "framer-motion";
+import { api } from "../../utils/api";
 
 export const ProfileDetails = () => {
   const { data: session } = useSession();
+  const { data: user } = api.userProfile.getProfileDetails.useQuery({
+    email: session?.user?.email as string,
+  });
+
   return (
     <div
       className={clsx(
@@ -26,10 +31,10 @@ export const ProfileDetails = () => {
         }}
       >
         <div className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}>
-          Username: {session?.user?.name}
+          Username: {user?.name ? user.name : "loading..."}
         </div>
         <div className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}>
-          Email: {session?.user?.email}
+          Email: {user?.email ? user.email : "loading..."}
         </div>
       </motion.div>
     </div>
