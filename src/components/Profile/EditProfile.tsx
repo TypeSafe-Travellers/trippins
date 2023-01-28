@@ -22,9 +22,20 @@ export const EditProfile = () => {
 
   const handleSave = (): void => {
     if (session?.user?.id !== undefined) {
+      /**
+       * If the user has not changed the name or email, we don't want to send
+       * an update request to the server. So, we only send the update request
+       * if the user has changed the name or email (or both).
+       *
+       * If the user has not changed the name or email, we send undefined to
+       * the server. The server will then not update the name or email.
+       *
+       * Note: Prisma treats undefined as a no-operation.
+       * @see https://www.prisma.io/docs/concepts/components/prisma-client/null-and-undefined
+       */
       updateUserProfileDetailsMutation.mutate({
-        newName: userName,
-        newEmail: userEmail,
+        newName: session.user.name === userName ? undefined : userName,
+        newEmail: session.user.email === userEmail ? undefined : userEmail,
         userId: session?.user?.id,
       });
 
