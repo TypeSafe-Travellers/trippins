@@ -13,6 +13,9 @@ interface Props {
 export const TripDetailsContainer: FC<Props> = (props) => {
   const { tripId } = props;
   const { data: session } = useSession();
+  const { data: user } = api.userProfile.getProfileDetails.useQuery({
+    email: session?.user?.email as string,
+  });
   const { data: trip, isLoading } = api.userTrips.getSpecificTrip.useQuery({
     tripId,
   });
@@ -106,11 +109,14 @@ export const TripDetailsContainer: FC<Props> = (props) => {
           </div>
         </motion.div>
       </div>
-      {trip?.id && session?.user?.id === trip?.adminId && (
-        <div className={clsx("py-5", "text-center")}>
-          <DeleteTripButton tripId={trip?.id} />
-        </div>
-      )}
+      {
+        // if the user is the admin of the trip, show the delete button
+        trip?.id && user?.id === trip?.adminId && (
+          <div className={clsx("py-5", "text-center")}>
+            <DeleteTripButton tripId={trip?.id} />
+          </div>
+        )
+      }
     </motion.div>
   );
 };
