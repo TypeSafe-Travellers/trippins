@@ -18,6 +18,14 @@ git clone https://github.com/TypeSafe-Travellers/trippins.git
 npm install
 ```
 
+- Connect to PlanetScale database
+
+```bash
+pscale auth login
+pscale connect typesafetravellers dev --port 3309 --org typesafetravellers
+npx prisma studio
+```
+
 - Run the app
 
 ```bash
