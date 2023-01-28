@@ -3,9 +3,11 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { CrossIcon } from "../../../../icons";
 import clsx from "clsx";
 import { Fragment, useEffect, useState } from "react";
-import { regularFont } from "../../../../fonts";
+import { regularFont } from "../../../../../fonts";
 import { motion } from "framer-motion";
-import { api } from "../../../../utils/api";
+import { api } from "../../../../../utils/api";
+import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 
 export const NewTripButton = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,6 +17,12 @@ export const NewTripButton = () => {
   const [endDate, setEndDate] = useState("");
   const [perHeadBudget, setPerHeadBudget] = useState(0);
   const [isValidated, setIsValidated] = useState(false);
+  const { reload } = useRouter();
+
+  const { data: session } = useSession();
+  const { data: user } = api.userProfile.getProfileDetails.useQuery({
+    email: session?.user?.email as string,
+  });
 
   useEffect(() => {
     if (
@@ -36,21 +44,29 @@ export const NewTripButton = () => {
   const createTripMutation = api.userTrips.createTrip.useMutation();
 
   const handleSubmit = (): void => {
-    if (tripName && tripDescription && startDate && endDate && perHeadBudget) {
+    if (
+      tripName &&
+      tripDescription &&
+      startDate &&
+      endDate &&
+      perHeadBudget &&
+      user?.id
+    ) {
       createTripMutation.mutate({
+        userId: user.id,
         name: tripName,
         description: tripDescription,
         startDate: new Date(startDate),
         endDate: new Date(endDate),
         budget: perHeadBudget,
       });
+
+      setIsOpen(false);
+
+      setTimeout(() => {
+        reload();
+      }, 1000);
     }
-
-    setIsOpen(false);
-
-    setTimeout(() => {
-      window.location.reload();
-    }, 1000);
   };
 
   return (
@@ -149,15 +165,16 @@ export const NewTripButton = () => {
 
                   <div
                     className={clsx(
-                      "text-lg text-red-600 dark:text-red-500",
-                      "mt-3 leading-none",
+                      `${
+                        tripName.length < 3 || tripName.length > 50
+                          ? "text-red-600 dark:text-red-500"
+                          : "text-transparent dark:text-transparent"
+                      }`,
+                      "text-lg",
+                      "my-3 leading-none",
                     )}
                   >
-                    {tripName.length < 3 &&
-                      "— Trip name must be at least 3 characters long!"}
-
-                    {tripName.length > 50 &&
-                      "— Trip name must be less than 50 characters long!"}
+                    Trip name must be between 3 and 50 characters!
                   </div>
                 </fieldset>
                 <fieldset>
@@ -179,15 +196,17 @@ export const NewTripButton = () => {
 
                   <div
                     className={clsx(
-                      "text-lg text-red-600 dark:text-red-500",
-                      "mt-3 leading-none",
+                      `${
+                        tripDescription.length < 3 ||
+                        tripDescription.length > 1000
+                          ? "text-red-600 dark:text-red-500"
+                          : "text-transparent dark:text-transparent"
+                      }`,
+                      "text-lg",
+                      "my-3 leading-none",
                     )}
                   >
-                    {tripDescription.length < 3 &&
-                      "— Trip description must be at least 3 characters long!"}
-
-                    {tripDescription.length > 1000 &&
-                      "— Trip description must be less than 50 characters long!"}
+                    Trip description must be between 3 and 1000 characters!
                   </div>
                 </fieldset>
                 <fieldset>
@@ -207,16 +226,22 @@ export const NewTripButton = () => {
                       "border border-gray-400 focus-visible:border-transparent dark:border-gray-700 dark:bg-gray-800",
                     )}
                   />
-
                   <div
                     className={clsx(
-                      "text-lg text-red-600 dark:text-red-500",
-                      "mt-3 leading-none",
+                      `${
+                        startDate === "" || startDate > endDate
+                          ? "text-red-600 dark:text-red-500"
+                          : "text-transparent dark:text-transparent"
+                      }`,
+                      "text-lg",
+                      "my-3 leading-none",
                     )}
                   >
-                    {startDate === "" && "— Start date must be set!"}
-                    {startDate > endDate &&
-                      " // Start date must be before end date!"}
+                    {`${
+                      startDate === ""
+                        ? "Start date cannot be empty!"
+                        : "Start date must be before end date!"
+                    }`}
                   </div>
                 </fieldset>
                 <fieldset>
@@ -239,13 +264,20 @@ export const NewTripButton = () => {
 
                   <div
                     className={clsx(
-                      "text-lg text-red-600 dark:text-red-500",
-                      "mt-3 leading-none",
+                      `${
+                        endDate === "" || startDate > endDate
+                          ? "text-red-600 dark:text-red-500"
+                          : "text-transparent dark:text-transparent"
+                      }`,
+                      "text-lg",
+                      "my-3 leading-none",
                     )}
                   >
-                    {endDate === "" && "— End date must be set!"}
-                    {startDate > endDate &&
-                      " // End date must be after start date!"}
+                    {`${
+                      endDate === ""
+                        ? "End date cannot be empty!"
+                        : "End date must be after start date!"
+                    }`}
                   </div>
                 </fieldset>
                 <fieldset>

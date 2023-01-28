@@ -1,13 +1,32 @@
 import { Transition } from "@headlessui/react";
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
 import clsx from "clsx";
-import { useState, Fragment } from "react";
+import { type FC, useState, Fragment } from "react";
 import { regularFont } from "../../fonts";
-import { signOut } from "next-auth/react";
 import { motion } from "framer-motion";
+import { api } from "../../utils/api";
+import { useRouter } from "next/router";
 
-export const LogoutAndAlertButton = () => {
+interface Props {
+  tripId: string;
+}
+
+export const DeleteTripButton: FC<Props> = (props) => {
+  const { tripId } = props;
+  const { push, reload } = useRouter();
   const [isOpen, setIsOpen] = useState(false);
+  const deleteTripMutation = api.userTrips.deleteTrip.useMutation();
+
+  const handleDeleteTrip = (): void => {
+    deleteTripMutation.mutate({ tripId });
+    setIsOpen(false);
+
+    push("/");
+
+    setTimeout(() => {
+      reload();
+    }, 500);
+  };
 
   return (
     <AlertDialog.Root open={isOpen} onOpenChange={setIsOpen}>
@@ -35,7 +54,7 @@ export const LogoutAndAlertButton = () => {
               damping: 25,
             }}
           >
-            Log Out
+            Delete Trip
           </motion.div>
         </button>
       </AlertDialog.Trigger>
@@ -90,8 +109,8 @@ export const LogoutAndAlertButton = () => {
                   `${regularFont.className}`,
                 )}
               >
-                You will have to log in again if you want to access your
-                account.
+                This action is irreversible. All data associated with this trip
+                will be deleted.
               </AlertDialog.Description>
               <div className="mt-4 flex justify-end space-x-2">
                 <AlertDialog.Cancel
@@ -116,10 +135,7 @@ export const LogoutAndAlertButton = () => {
                   </motion.div>
                 </AlertDialog.Cancel>
                 <AlertDialog.Action
-                  onClick={() => {
-                    signOut({ callbackUrl: "/" });
-                    setIsOpen(false);
-                  }}
+                  onClick={handleDeleteTrip}
                   className={clsx(
                     `${regularFont.className}`,
                     "inline-flex select-none justify-center rounded-md px-4 pb-1 pt-2.5 text-lg",
