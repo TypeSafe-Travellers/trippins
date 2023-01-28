@@ -1,11 +1,12 @@
 import { Transition } from "@headlessui/react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { CrossIcon } from "../../../icons";
+import { CrossIcon } from "../../../../icons";
 import clsx from "clsx";
 import { Fragment, useEffect, useState } from "react";
-import { regularFont } from "../../../fonts";
+import { regularFont } from "../../../../fonts";
 import { motion } from "framer-motion";
-import { api } from "../../../utils/api";
+import { api } from "../../../../utils/api";
+import { useRouter } from "next/router";
 
 export const NewTripButton = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,8 +14,8 @@ export const NewTripButton = () => {
   const [tripDescription, setTripDescription] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-  const [perHeadBudget, setPerHeadBudget] = useState(0);
   const [isValidated, setIsValidated] = useState(false);
+  const { reload } = useRouter();
 
   useEffect(() => {
     if (
@@ -24,33 +25,31 @@ export const NewTripButton = () => {
       tripDescription.length <= 1000 &&
       startDate !== "" &&
       endDate !== "" &&
-      startDate < endDate &&
-      perHeadBudget >= 0
+      startDate < endDate
     ) {
       setIsValidated(true);
     } else {
       setIsValidated(false);
     }
-  }, [tripName, tripDescription, startDate, endDate, perHeadBudget]);
+  }, [tripName, tripDescription, startDate, endDate]);
 
   const createTripMutation = api.userTrips.createTrip.useMutation();
 
   const handleSubmit = (): void => {
-    if (tripName && tripDescription && startDate && endDate && perHeadBudget) {
+    if (tripName && tripDescription && startDate && endDate) {
       createTripMutation.mutate({
         name: tripName,
         description: tripDescription,
         startDate: new Date(startDate),
         endDate: new Date(endDate),
-        budget: perHeadBudget,
       });
+
+      setIsOpen(false);
+
+      setTimeout(() => {
+        reload();
+      }, 1000);
     }
-
-    setIsOpen(false);
-
-    setTimeout(() => {
-      window.location.reload();
-    }, 1000);
   };
 
   return (
@@ -67,7 +66,6 @@ export const NewTripButton = () => {
           }}
         >
           <button
-            type="button"
             className={clsx(
               `${regularFont.className}`,
               "inline-flex select-none items-center justify-center rounded-md",
@@ -149,15 +147,16 @@ export const NewTripButton = () => {
 
                   <div
                     className={clsx(
-                      "text-lg text-red-600 dark:text-red-500",
-                      "mt-3 leading-none",
+                      `${
+                        tripName.length < 3 || tripName.length > 50
+                          ? "text-red-600 dark:text-red-500"
+                          : "text-transparent dark:text-transparent"
+                      }`,
+                      "text-lg",
+                      "my-3 leading-none",
                     )}
                   >
-                    {tripName.length < 3 &&
-                      "— Trip name must be at least 3 characters long!"}
-
-                    {tripName.length > 50 &&
-                      "— Trip name must be less than 50 characters long!"}
+                    Trip name must be between 3 and 50 characters!
                   </div>
                 </fieldset>
                 <fieldset>
@@ -179,15 +178,17 @@ export const NewTripButton = () => {
 
                   <div
                     className={clsx(
-                      "text-lg text-red-600 dark:text-red-500",
-                      "mt-3 leading-none",
+                      `${
+                        tripDescription.length < 3 ||
+                        tripDescription.length > 1000
+                          ? "text-red-600 dark:text-red-500"
+                          : "text-transparent dark:text-transparent"
+                      }`,
+                      "text-lg",
+                      "my-3 leading-none",
                     )}
                   >
-                    {tripDescription.length < 3 &&
-                      "— Trip description must be at least 3 characters long!"}
-
-                    {tripDescription.length > 1000 &&
-                      "— Trip description must be less than 50 characters long!"}
+                    Trip description must be between 3 and 1000 characters!
                   </div>
                 </fieldset>
                 <fieldset>
@@ -207,16 +208,22 @@ export const NewTripButton = () => {
                       "border border-gray-400 focus-visible:border-transparent dark:border-gray-700 dark:bg-gray-800",
                     )}
                   />
-
                   <div
                     className={clsx(
-                      "text-lg text-red-600 dark:text-red-500",
-                      "mt-3 leading-none",
+                      `${
+                        startDate === "" || startDate > endDate
+                          ? "text-red-600 dark:text-red-500"
+                          : "text-transparent dark:text-transparent"
+                      }`,
+                      "text-lg",
+                      "my-3 leading-none",
                     )}
                   >
-                    {startDate === "" && "— Start date must be set!"}
-                    {startDate > endDate &&
-                      " // Start date must be before end date!"}
+                    {`${
+                      startDate === ""
+                        ? "Start date cannot be empty!"
+                        : "Start date must be before end date!"
+                    }`}
                   </div>
                 </fieldset>
                 <fieldset>
@@ -239,70 +246,53 @@ export const NewTripButton = () => {
 
                   <div
                     className={clsx(
-                      "text-lg text-red-600 dark:text-red-500",
-                      "mt-3 leading-none",
+                      `${
+                        endDate === "" || startDate > endDate
+                          ? "text-red-600 dark:text-red-500"
+                          : "text-transparent dark:text-transparent"
+                      }`,
+                      "text-lg",
+                      "my-3 leading-none",
                     )}
                   >
-                    {endDate === "" && "— End date must be set!"}
-                    {startDate > endDate &&
-                      " // End date must be after start date!"}
+                    {`${
+                      endDate === ""
+                        ? "End date cannot be empty!"
+                        : "End date must be after start date!"
+                    }`}
                   </div>
                 </fieldset>
-                <fieldset>
-                  <label htmlFor="perHeadBudget" className="text-lg">
-                    Per Head Budget(in INR)
-                  </label>
-                  <input
-                    id="perHeadBudget"
-                    type="number"
-                    value={perHeadBudget}
-                    onChange={(e) => {
-                      setPerHeadBudget(parseInt(e.target.value));
-                    }}
-                    autoComplete="Per Head Budget"
-                    className={clsx(
-                      "mt-1 block w-full rounded-md px-1 pt-2 pb-1",
-                      "text-xl",
-                      "bg-white dark:bg-gray-900",
-                      "border border-gray-400 focus-visible:border-transparent dark:border-gray-700 dark:bg-gray-800",
-                    )}
-                  />
 
-                  <div
+                <div className="flex justify-end">
+                  <button
+                    disabled={!isValidated}
+                    onClick={handleSubmit}
                     className={clsx(
-                      "text-lg text-red-600 dark:text-red-500",
-                      "mt-3 leading-none",
+                      `${
+                        isValidated
+                          ? "cursor-pointer bg-green-100 hover:bg-green-200 dark:bg-green-700 dark:hover:bg-green-600"
+                          : "cursor-not-allowed border-transparent bg-gray-300 dark:bg-gray-700"
+                      }`,
+                      "inline-flex select-none justify-center rounded-md px-4 pt-2.5 pb-1 text-xl",
+                      "text-center text-black",
+                      "border-2 border-solid border-black",
+                      "focus:outline-none focus:ring-2 focus:ring-black",
+                      "dark:text-white dark:focus:ring-gray-500",
                     )}
                   >
-                    {perHeadBudget < 0 && "— Budget cannot be negative!"}
-                  </div>
-                </fieldset>
-                {isValidated && (
-                  <div className="flex justify-end pt-5">
-                    <button
-                      onClick={handleSubmit}
-                      className={clsx(
-                        "inline-flex select-none justify-center rounded-md px-4 pt-2.5 pb-1 text-xl",
-                        "bg-green-100 text-center text-black",
-                        "border-2 border-solid border-black",
-                        "focus:outline-none focus:ring-2 focus:ring-black hover:bg-green-200",
-                        "dark:bg-green-700 dark:text-white dark:focus:ring-gray-500 dark:hover:bg-green-600",
-                      )}
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 30,
+                      }}
                     >
-                      <motion.div
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{
-                          type: "spring",
-                          stiffness: 300,
-                          damping: 30,
-                        }}
-                      >
-                        Confirm
-                      </motion.div>
-                    </button>
-                  </div>
-                )}
+                      Confirm
+                    </motion.div>
+                  </button>
+                </div>
               </form>
 
               <Dialog.Close
