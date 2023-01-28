@@ -102,7 +102,6 @@ export const EditTripButton: FC<Props> = (props) => {
         <motion.div
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
-          whileHover={{ scale: 1.1 }}
           transition={{
             type: "spring",
             stiffness: 260,

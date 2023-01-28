@@ -4,6 +4,8 @@ import { boldFont, semiBoldFont } from "../../fonts";
 import { type FC } from "react";
 import { api } from "../../utils/api";
 import { EditTripButton } from "./EditTripButton";
+import { CopyTripIdButton } from "../Home/Authenticated";
+import { useSession } from "next-auth/react";
 
 interface Props {
   tripId: string;
@@ -11,6 +13,7 @@ interface Props {
 
 export const TripDetailsContainer: FC<Props> = (props) => {
   const { tripId } = props;
+  const { data: session } = useSession();
   const { data: trip, isLoading } = api.userTrips.getSpecificTrip.useQuery({
     tripId,
   });
@@ -104,9 +107,17 @@ export const TripDetailsContainer: FC<Props> = (props) => {
           </div>
         </motion.div>
       </div>
+
       {trip && (
-        <div className={clsx("py-5 text-center")}>
-          <EditTripButton trip={trip} />
+        <div
+          className={clsx(
+            "flex flex-row gap-5",
+            "items-center justify-center",
+            "py-5",
+          )}
+        >
+          <CopyTripIdButton tripId={trip.id} tripName={trip.name} />
+          {trip.adminId === session?.user?.id && <EditTripButton trip={trip} />}
         </div>
       )}
     </motion.div>

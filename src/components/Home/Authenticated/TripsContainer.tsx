@@ -2,7 +2,6 @@ import clsx from "clsx";
 import { semiBoldFont } from "../../../fonts";
 import { motion } from "framer-motion";
 import { api } from "../../../utils/api";
-import { CopyTripIdButton } from "./buttons";
 import { useRouter } from "next/router";
 
 export const TripsContainer = () => {
@@ -89,10 +88,6 @@ export const TripsContainer = () => {
                 )}
               >
                 Created At: {trip.createdAt.toLocaleString()}
-              </div>
-
-              <div className={clsx("my-0 lg:my-2")}>
-                <CopyTripIdButton tripId={trip.id} tripName={trip.name} />
               </div>
             </motion.div>
           </div>
