@@ -1,4 +1,4 @@
-![Repo Banner](https://user-images.githubusercontent.com/89210438/212290982-12013266-2913-42ac-8a90-f6ced83741e1.png)
+![reo banner](https://socialify.git.ci/TypeSafe-Travellers/trippins/image?description=1&font=Raleway&forks=1&issues=1&name=1&pattern=Solid&pulls=1&stargazers=1&theme=Dark)
 
 ## About
 
