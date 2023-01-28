@@ -7,37 +7,30 @@ import { regularFont } from "../../fonts";
 import { useSession } from "next-auth/react";
 import { api } from "../../utils/api";
 import { motion } from "framer-motion";
+import { useRouter } from "next/router";
 
 export const EditProfile = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { data: session } = useSession();
+  const { reload } = useRouter();
 
   const [userName, setUserName] = useState(session?.user?.name as string);
   const [userEmail, setUserEmail] = useState(session?.user?.email as string);
 
-  const updateUserNameMutation = api.userProfile.updateName.useMutation();
-  const updateUserEmailMutation = api.userProfile.updateEmail.useMutation();
+  const updateUserProfileDetailsMutation =
+    api.userProfile.updateUserProfileDetails.useMutation();
 
   const handleSave = (): void => {
-    if (userName !== session?.user?.name && session?.user?.id !== undefined) {
-      updateUserNameMutation.mutate({
+    if (session?.user?.id !== undefined) {
+      updateUserProfileDetailsMutation.mutate({
         newName: userName,
-        userId: session?.user?.id,
-      });
-    }
-
-    if (userEmail !== session?.user?.email && session?.user?.id !== undefined) {
-      updateUserEmailMutation.mutate({
         newEmail: userEmail,
         userId: session?.user?.id,
       });
+
+      setIsOpen(false);
+      reload();
     }
-
-    setIsOpen(false);
-
-    setTimeout(() => {
-      window.location.reload();
-    }, 1000);
   };
 
   return (
