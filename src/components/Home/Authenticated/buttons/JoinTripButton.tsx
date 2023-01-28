@@ -155,7 +155,7 @@ export const JoinTripButton = () => {
                           : "text-transparent dark:text-transparent"
                       }`,
                       "text-lg",
-                      "mt-3 leading-none",
+                      "mt-2 mb-1 leading-none",
                     )}
                   >
                     {`${

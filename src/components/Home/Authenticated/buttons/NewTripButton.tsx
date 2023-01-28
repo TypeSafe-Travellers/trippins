@@ -171,7 +171,7 @@ export const NewTripButton = () => {
                           : "text-transparent dark:text-transparent"
                       }`,
                       "text-lg",
-                      "my-3 leading-none",
+                      "mt-2 mb-1 leading-none",
                     )}
                   >
                     Trip name must be between 3 and 50 characters!
@@ -203,7 +203,7 @@ export const NewTripButton = () => {
                           : "text-transparent dark:text-transparent"
                       }`,
                       "text-lg",
-                      "my-3 leading-none",
+                      "mt-2 mb-1 leading-none",
                     )}
                   >
                     Trip description must be between 3 and 1000 characters!
@@ -234,7 +234,7 @@ export const NewTripButton = () => {
                           : "text-transparent dark:text-transparent"
                       }`,
                       "text-lg",
-                      "my-3 leading-none",
+                      "mt-2 mb-1 leading-none",
                     )}
                   >
                     {`${
@@ -270,7 +270,7 @@ export const NewTripButton = () => {
                           : "text-transparent dark:text-transparent"
                       }`,
                       "text-lg",
-                      "my-3 leading-none",
+                      "mt-2 mb-1 leading-none",
                     )}
                   >
                     {`${
@@ -309,32 +309,37 @@ export const NewTripButton = () => {
                     {perHeadBudget < 0 && "— Budget cannot be negative!"}
                   </div>
                 </fieldset>
-                {isValidated && (
-                  <div className="flex justify-end pt-5">
-                    <button
-                      onClick={handleSubmit}
-                      className={clsx(
-                        "inline-flex select-none justify-center rounded-md px-4 pt-2.5 pb-1 text-xl",
-                        "bg-green-100 text-center text-black",
-                        "border-2 border-solid border-black",
-                        "focus:outline-none focus:ring-2 focus:ring-black hover:bg-green-200",
-                        "dark:bg-green-700 dark:text-white dark:focus:ring-gray-500 dark:hover:bg-green-600",
-                      )}
+
+                <div className="flex justify-end">
+                  <button
+                    disabled={!isValidated}
+                    onClick={handleSubmit}
+                    className={clsx(
+                      `${
+                        isValidated
+                          ? "cursor-pointer bg-green-100 hover:bg-green-200 dark:bg-green-700 dark:hover:bg-green-600"
+                          : "cursor-not-allowed border-transparent bg-gray-300 dark:bg-gray-700"
+                      }`,
+                      "inline-flex select-none justify-center rounded-md px-4 pt-2.5 pb-1 text-xl",
+                      "text-center text-black",
+                      "border-2 border-solid border-black",
+                      "focus:outline-none focus:ring-2 focus:ring-black",
+                      "dark:text-white dark:focus:ring-gray-500",
+                    )}
+                  >
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 30,
+                      }}
                     >
-                      <motion.div
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{
-                          type: "spring",
-                          stiffness: 300,
-                          damping: 30,
-                        }}
-                      >
-                        Confirm
-                      </motion.div>
-                    </button>
-                  </div>
-                )}
+                      Confirm
+                    </motion.div>
+                  </button>
+                </div>
               </form>
 
               <Dialog.Close

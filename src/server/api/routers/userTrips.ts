@@ -142,6 +142,7 @@ export const userTripsRouter = createTRPCRouter({
             startDate: input.startDate,
             endDate: input.endDate,
             adminId: input.userId,
+            budget: input.budget,
             participants: {
               connect: {
                 id: input.userId,
