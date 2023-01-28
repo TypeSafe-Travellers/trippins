@@ -1,4 +1,4 @@
-![reo banner](https://socialify.git.ci/TypeSafe-Travellers/trippins/image?description=1&font=Raleway&forks=1&issues=1&name=1&pattern=Solid&pulls=1&stargazers=1&theme=Dark)
+![repo banner](https://socialify.git.ci/TypeSafe-Travellers/trippins/image?description=1&font=Raleway&forks=1&issues=1&name=1&pattern=Solid&pulls=1&stargazers=1&theme=Dark)
 
 ## About
 
