@@ -1,23 +1,54 @@
 import { Transition } from "@headlessui/react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { CrossIcon } from "../../../icons";
+import { CrossIcon } from "../../../../icons";
 import { clsx } from "clsx";
 import { Fragment, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { regularFont } from "../../../fonts";
+import { regularFont } from "../../../../fonts";
+import { api } from "../../../../utils/api";
+import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 
 export const JoinTripButton = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [tripId, setTripId] = useState("");
   const [isValidated, setIsValidated] = useState(false);
+  const [isParticipant, setIsParticipant] = useState(true);
+  const { reload } = useRouter();
+  const { data: session } = useSession();
+  const { data: allTripIds } = api.userTrips.getAllTripIds.useQuery();
+  const { data: participants } = api.userTrips.getTripParticipants.useQuery({
+    tripId,
+  });
+  const addTripParticipantMutation = api.userTrips.addParticipant.useMutation();
+
+  const handleAddParticipant = (): void => {
+    addTripParticipantMutation.mutate({ tripId });
+    setIsOpen(false);
+    setTimeout(() => {
+      reload();
+    }, 1000);
+  };
 
   useEffect(() => {
-    if (tripId.length >= 1) {
+    // check if tripId is valid
+    const tripExists = allTripIds?.find((t) => t.id === tripId);
+
+    // check if user is already a participant
+    setIsParticipant(
+      participants?.find((p) =>
+        p.participants.find((pp) => pp.id === session?.user?.id),
+      )
+        ? true
+        : false,
+    );
+
+    if (tripId.length === 25 && tripExists && !isParticipant) {
       setIsValidated(true);
     } else {
       setIsValidated(false);
     }
-  }, [tripId]);
+  }, [allTripIds, isParticipant, participants, session?.user?.id, tripId]);
 
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
@@ -91,17 +122,17 @@ export const JoinTripButton = () => {
             >
               <Dialog.Title className="text-2xl">Join Trip</Dialog.Title>
               <Dialog.Description className="mt-2 text-xl">
-                Enter the trip ID to join a trip.
+                Enter the trip code to join a trip.
               </Dialog.Description>
               <form className="mt-2 space-y-2">
                 <fieldset>
                   <label htmlFor="tripId" className="text-lg">
-                    Trip ID
+                    Trip Code
                   </label>
                   <input
                     id="tripId"
                     type="text"
-                    placeholder="Enter trip ID"
+                    placeholder="Enter trip code"
                     onChange={(e) => setTripId(e.target.value)}
                     autoComplete="trip-id"
                     className={clsx(
@@ -114,39 +145,53 @@ export const JoinTripButton = () => {
 
                   <div
                     className={clsx(
-                      "text-lg text-red-600 dark:text-red-500",
+                      `${
+                        tripId.length !== 0 && !isValidated
+                          ? "text-red-600 dark:text-red-500"
+                          : "text-transparent dark:text-transparent"
+                      }`,
+                      "text-lg",
                       "mt-3 leading-none",
                     )}
                   >
-                    {tripId.length <= 0 && "— Trip ID cannot be empty!"}
+                    {`${
+                      isParticipant
+                        ? "You're already a participant!"
+                        : "Trip code is invalid!"
+                    }`}
                   </div>
                 </fieldset>
 
-                {isValidated && (
-                  <div className="flex justify-end pt-1">
-                    <button
-                      className={clsx(
-                        "inline-flex select-none justify-center rounded-md px-4 pt-2.5 pb-1 text-xl",
-                        " bg-green-100 text-center text-black",
-                        "border-2 border-solid border-black",
-                        "focus:outline-none focus:ring-2 focus:ring-black hover:bg-green-200",
-                        "dark:bg-green-700 dark:text-white dark:focus:ring-gray-500 dark:hover:bg-green-600",
-                      )}
+                <div className="flex justify-end">
+                  <button
+                    disabled={!isValidated}
+                    onClick={handleAddParticipant}
+                    className={clsx(
+                      `${
+                        isValidated
+                          ? "cursor-pointer bg-green-100 hover:bg-green-200 dark:bg-green-700 dark:hover:bg-green-600"
+                          : "cursor-not-allowed border-transparent bg-gray-300 dark:bg-gray-700"
+                      }`,
+                      "inline-flex select-none justify-center rounded-md px-4 pt-2.5 pb-1 text-xl",
+                      "text-center text-black",
+                      "border-2 border-solid border-black",
+                      "focus:outline-none focus:ring-2 focus:ring-black",
+                      "dark:text-white dark:focus:ring-gray-500",
+                    )}
+                  >
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 30,
+                      }}
                     >
-                      <motion.div
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{
-                          type: "spring",
-                          stiffness: 300,
-                          damping: 30,
-                        }}
-                      >
-                        Confirm
-                      </motion.div>
-                    </button>
-                  </div>
-                )}
+                      Confirm
+                    </motion.div>
+                  </button>
+                </div>
               </form>
 
               <Dialog.Close
