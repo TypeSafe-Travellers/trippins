@@ -7,30 +7,32 @@ export const userTripsRouter = createTRPCRouter({
    * query to get all trips
    * only query trips which the user has created or participated in
    */
-  getAll: protectedProcedure.query(async ({ ctx }) => {
-    try {
-      return await ctx.prisma.trip.findMany({
-        select: {
-          id: true,
-          name: true,
-          description: true,
-          createdAt: true,
-        },
-        where: {
-          participants: {
-            some: {
-              id: ctx.session.user.id,
+  getAll: protectedProcedure
+    .input(z.object({ userId: z.string() }))
+    .query(async ({ ctx, input }) => {
+      try {
+        return await ctx.prisma.trip.findMany({
+          select: {
+            id: true,
+            name: true,
+            description: true,
+            createdAt: true,
+          },
+          where: {
+            participants: {
+              some: {
+                id: input.userId,
+              },
             },
           },
-        },
-        orderBy: {
-          createdAt: "desc",
-        },
-      });
-    } catch (error) {
-      console.error("error", error);
-    }
-  }),
+          orderBy: {
+            createdAt: "desc",
+          },
+        });
+      } catch (error) {
+        console.error("error", error);
+      }
+    }),
 
   /**
    * query to get all trip ids
@@ -110,6 +112,7 @@ export const userTripsRouter = createTRPCRouter({
 
   /**
    * mutation to create a new trip
+   * @param userId - id of the user who created the trip
    * @param name - name of the trip
    * @param description - description of the trip
    * @param startDate - start date of the trip
@@ -120,6 +123,7 @@ export const userTripsRouter = createTRPCRouter({
   createTrip: protectedProcedure
     .input(
       z.object({
+        userId: z.string(),
         name: z.string().min(3).max(50),
         description: z.string().min(3).max(1000),
         startDate: z.date(),
@@ -134,10 +138,10 @@ export const userTripsRouter = createTRPCRouter({
             description: input.description,
             startDate: input.startDate,
             endDate: input.endDate,
-            adminId: ctx.session.user.id,
+            adminId: input.userId,
             participants: {
               connect: {
-                id: ctx.session.user.id,
+                id: input.userId,
               },
             },
           },
@@ -185,12 +189,31 @@ export const userTripsRouter = createTRPCRouter({
     }),
 
   /**
+   * mutation to delete a trip
+   * @param tripId - id of the trip
+   */
+  deleteTrip: protectedProcedure
+    .input(z.object({ tripId: z.string().length(25) }))
+    .mutation(async ({ ctx, input }) => {
+      try {
+        await ctx.prisma.trip.delete({
+          where: {
+            id: input.tripId,
+          },
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    }),
+
+  /**
    * mutation to add a participant to a trip
    * trip code is of length 25 characters
+   * @param userId - id of the user to be added
    * @param tripId - id of the trip (trip code in client)
    */
   addParticipant: protectedProcedure
-    .input(z.object({ tripId: z.string().min(25).max(25) }))
+    .input(z.object({ tripId: z.string().min(25).max(25), userId: z.string() }))
     .mutation(async ({ ctx, input }) => {
       try {
         await ctx.prisma.trip.update({
@@ -200,7 +223,7 @@ export const userTripsRouter = createTRPCRouter({
           data: {
             participants: {
               connect: {
-                id: ctx.session.user.id,
+                id: input.userId,
               },
             },
           },

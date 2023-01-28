@@ -4,19 +4,39 @@ import { createTRPCRouter, protectedProcedure } from "../trpc";
 
 export const userProfileRouter = createTRPCRouter({
   /**
-   * updates the name or email (or both) of the user
-   * requires the user's new name or new email (or both) to be passed in
-   * @param newName - the new name of the user
-   * @param newEmail - the new email of the user
-   * @param userId - the user's current session id
-   * @see https://www.prisma.io/docs/concepts/components/prisma-client/null-and-undefined
+   * query to get the user's profile details
+   * @returns user object
    */
-  updateUserProfileDetails: protectedProcedure
+  getProfileDetails: protectedProcedure
+    .input(z.object({ email: z.string().email() }))
+    .query(async ({ ctx, input }) => {
+      try {
+        return await ctx.prisma.user.findUnique({
+          select: {
+            id: true,
+            name: true,
+            email: true,
+          },
+          where: {
+            email: input.email,
+          },
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }),
+
+  /**
+   * updates the name of the user
+   * requires the user's current email and the new name
+   * @param userId - the user's current session id
+   * @param newName - the new name of the user
+   */
+  updateName: protectedProcedure
     .input(
       z.object({
         userId: z.string(),
-        newName: z.string().optional(),
-        newEmail: z.string().optional(),
+        newName: z.string(),
       }),
     )
     .mutation(async ({ ctx, input }) => {
@@ -26,8 +46,7 @@ export const userProfileRouter = createTRPCRouter({
             id: input.userId,
           },
           data: {
-            name: input.newName || undefined,
-            email: input.newEmail || undefined,
+            name: input.newName,
           },
         });
       } catch (error) {

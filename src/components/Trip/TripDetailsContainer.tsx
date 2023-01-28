@@ -3,6 +3,7 @@ import { clsx } from "clsx";
 import { boldFont, semiBoldFont } from "../../fonts";
 import { type FC } from "react";
 import { api } from "../../utils/api";
+import { DeleteTripButton } from "./DeleteTripButton";
 import { EditTripButton } from "./EditTripButton";
 import { CopyTripIdButton } from "../Home/Authenticated";
 import { useSession } from "next-auth/react";
@@ -14,6 +15,9 @@ interface Props {
 export const TripDetailsContainer: FC<Props> = (props) => {
   const { tripId } = props;
   const { data: session } = useSession();
+  const { data: user } = api.userProfile.getProfileDetails.useQuery({
+    email: session?.user?.email as string,
+  });
   const { data: trip, isLoading } = api.userTrips.getSpecificTrip.useQuery({
     tripId,
   });
@@ -104,6 +108,45 @@ export const TripDetailsContainer: FC<Props> = (props) => {
                 ? trip?.participants.map((p) => p.name).join(", ")
                 : "loading..."
             }`}
+            {`Description: ${
+              isLoading === false ? trip?.description : "loading..."
+            }`}
+          </div>
+          <div
+            className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}
+          >
+            {`Created at: ${
+              isLoading === false
+                ? trip?.createdAt.toLocaleString()
+                : "loading..."
+            }`}
+          </div>
+          <div
+            className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}
+          >
+            {`Starts at: ${
+              isLoading === false
+                ? trip?.startDate.toLocaleString()
+                : "loading..."
+            }`}
+          </div>
+          <div
+            className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}
+          >
+            {`Ends at: ${
+              isLoading === false
+                ? trip?.endDate.toLocaleString()
+                : "loading..."
+            }`}
+          </div>
+          <div
+            className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}
+          >
+            {`Participants: ${
+              isLoading === false
+                ? trip?.participants.map((p) => p.name).join(", ")
+                : "loading..."
+            }`}
           </div>
         </motion.div>
       </div>
@@ -117,7 +160,15 @@ export const TripDetailsContainer: FC<Props> = (props) => {
           )}
         >
           <CopyTripIdButton tripId={trip.id} tripName={trip.name} />
-          {trip.adminId === session?.user?.id && <EditTripButton trip={trip} />}
+          {
+            // if the user is the admin of the trip, show the delete button
+            user?.id === trip?.adminId && (
+              <>
+                <EditTripButton trip={trip} />
+                <DeleteTripButton tripId={trip?.id} />
+              </>
+            )
+          }
         </div>
       )}
     </motion.div>
