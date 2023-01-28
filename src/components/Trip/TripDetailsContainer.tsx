@@ -91,9 +91,7 @@ export const TripDetailsContainer: FC<Props> = (props) => {
                   `${semiBoldFont.className}`,
                 )}
               >
-                {`Budget: ${
-                  isLoading === false ? trip?.budget : "loading..."
-                } per head`}
+                {`Budget: ${isLoading === false ? trip?.budget : "loading..."}`}
               </div>
               <div
                 className={clsx(
