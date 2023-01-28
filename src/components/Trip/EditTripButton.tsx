@@ -198,7 +198,7 @@ export const EditTripButton: FC<Props> = (props) => {
                           : "text-transparent dark:text-transparent"
                       }`,
                       "text-lg",
-                      "my-3 leading-none",
+                      "mt-2 mb-1 leading-none",
                     )}
                   >
                     Trip name must be between 3 and 50 characters!
@@ -230,7 +230,7 @@ export const EditTripButton: FC<Props> = (props) => {
                           : "text-transparent dark:text-transparent"
                       }`,
                       "text-lg",
-                      "my-3 leading-none",
+                      "mt-2 mb-1 leading-none",
                     )}
                   >
                     Trip description must be between 3 and 1000 characters!
@@ -261,7 +261,7 @@ export const EditTripButton: FC<Props> = (props) => {
                           : "text-transparent dark:text-transparent"
                       }`,
                       "text-lg",
-                      "my-3 leading-none",
+                      "mt-2 mb-1 leading-none",
                     )}
                   >
                     {`${
@@ -297,7 +297,7 @@ export const EditTripButton: FC<Props> = (props) => {
                           : "text-transparent dark:text-transparent"
                       }`,
                       "text-lg",
-                      "my-3 leading-none",
+                      "mt-2 mb-1 leading-none",
                     )}
                   >
                     {`${
