@@ -2,7 +2,7 @@
 
 ## About
 
-This is a [WIP project](https://apptypesafetravellers.ayanavakarmakar.repl.co) by Team TypeSafe Travellers for [SWoC S3](https://swoc.getsocialnow.co/) deployed on [Repl.it](https://replit.com/@AyanavaKarmakar/apptypesafetravellers).
+This is a [WIP project](https://trippins.ayanavakarmakar.repl.co) by Team TypeSafe Travellers for [SWoC S3](https://swoc.getsocialnow.co/) deployed on [Repl.it](https://replit.com/@AyanavaKarmakar/trippins?v=1).
 
 ## Get Started
 
@@ -59,8 +59,8 @@ npm run format
 
 ## Links
 
-- [Website](https://apptypesafetravellers.ayanavakarmakar.repl.co)
-- [Repl.it Repo](https://replit.com/@AyanavaKarmakar/apptypesafetravellers)
+- [Website](https://trippins.ayanavakarmakar.repl.co)
+- [Repl.it Repo](https://replit.com/@AyanavaKarmakar/trippins?v=1)
 - [Milestones](https://github.com/TypeSafe-Travellers/App/milestones)
 - [Roadmap & Priorities](https://github.com/TypeSafe-Travellers/App/projects?query=is%3Aopen)
 
