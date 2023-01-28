@@ -9,7 +9,7 @@ This is a [WIP project](https://trippins.ayanavakarmakar.repl.co) by Team TypeSa
 - Clone the repo
 
 ```bash
-git clone https://github.com/TypeSafe-Travellers/App.git
+git clone https://github.com/TypeSafe-Travellers/trippins.git
 ```
 
 - Install dependencies
