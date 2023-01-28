@@ -91,25 +91,19 @@ jobs:
         with:
           node-version: 16
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2.0.1
-        with:
-          version: 7.9.5
-          run_install: false
+      - name: Clear npm cache (Optional)
+        run: npm cache clean --force
 
-      - name: Get path to pnpm store
-        id: pnpm-cache
-        run: |
-          echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
-      - name: Setup pnpm cache
+      - name: Setup npm cache (Optional)
         uses: actions/cache@v3
         with:
-          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          path: $HOME/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+            ${{ runner.os }}-npm-
+
       - name: Install dependencies
-        run: pnpm install
+        run: npm install
 
       - name: Build project
-        run: pnpm build
+        run: npm run build
