@@ -108,45 +108,6 @@ export const TripDetailsContainer: FC<Props> = (props) => {
                 ? trip?.participants.map((p) => p.name).join(", ")
                 : "loading..."
             }`}
-            {`Description: ${
-              isLoading === false ? trip?.description : "loading..."
-            }`}
-          </div>
-          <div
-            className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}
-          >
-            {`Created at: ${
-              isLoading === false
-                ? trip?.createdAt.toLocaleString()
-                : "loading..."
-            }`}
-          </div>
-          <div
-            className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}
-          >
-            {`Starts at: ${
-              isLoading === false
-                ? trip?.startDate.toLocaleString()
-                : "loading..."
-            }`}
-          </div>
-          <div
-            className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}
-          >
-            {`Ends at: ${
-              isLoading === false
-                ? trip?.endDate.toLocaleString()
-                : "loading..."
-            }`}
-          </div>
-          <div
-            className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}
-          >
-            {`Participants: ${
-              isLoading === false
-                ? trip?.participants.map((p) => p.name).join(", ")
-                : "loading..."
-            }`}
           </div>
         </motion.div>
       </div>
