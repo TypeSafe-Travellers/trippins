@@ -3,11 +3,11 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { CrossIcon } from "../../../../icons";
 import clsx from "clsx";
 import { Fragment, useEffect, useState } from "react";
-import { regularFont } from "../../../../../fonts";
 import { motion } from "framer-motion";
-import { api } from "../../../../../utils/api";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
+import { api } from "../../../../utils/api";
+import { regularFont } from "../../../../fonts";
 
 export const NewTripButton = () => {
   const [isOpen, setIsOpen] = useState(false);
