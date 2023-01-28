@@ -68,6 +68,7 @@ export const userTripsRouter = createTRPCRouter({
             startDate: true,
             endDate: true,
             adminId: true,
+            budget: true,
             participants: {
               select: {
                 id: true,
@@ -118,6 +119,7 @@ export const userTripsRouter = createTRPCRouter({
    * @param startDate - start date of the trip
    * @param endDate - end date of the trip
    * @param adminId - id of the user who created the trip
+   * @param budget - budget of the trip
    * @param participants - id of users who are participating in the trip
    */
   createTrip: protectedProcedure
@@ -128,6 +130,7 @@ export const userTripsRouter = createTRPCRouter({
         description: z.string().min(3).max(1000),
         startDate: z.date(),
         endDate: z.date(),
+        budget: z.number().min(0),
       }),
     )
     .mutation(async ({ ctx, input }) => {
@@ -139,6 +142,7 @@ export const userTripsRouter = createTRPCRouter({
             startDate: input.startDate,
             endDate: input.endDate,
             adminId: input.userId,
+            budget: input.budget,
             participants: {
               connect: {
                 id: input.userId,
