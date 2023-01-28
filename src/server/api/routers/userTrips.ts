@@ -67,6 +67,7 @@ export const userTripsRouter = createTRPCRouter({
             createdAt: true,
             startDate: true,
             endDate: true,
+            adminId: true,
             participants: {
               select: {
                 id: true,
@@ -147,6 +148,24 @@ export const userTripsRouter = createTRPCRouter({
         });
       } catch (error) {
         console.error(error);
+      }
+    }),
+
+  /**
+   * mutation to delete a trip
+   * @param tripId - id of the trip
+   */
+  deleteTrip: protectedProcedure
+    .input(z.object({ tripId: z.string().length(25) }))
+    .mutation(async ({ ctx, input }) => {
+      try {
+        await ctx.prisma.trip.delete({
+          where: {
+            id: input.tripId,
+          },
+        });
+      } catch (error) {
+        console.log(error);
       }
     }),
 
