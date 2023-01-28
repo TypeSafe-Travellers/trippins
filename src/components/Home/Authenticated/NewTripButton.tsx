@@ -250,7 +250,7 @@ export const NewTripButton = () => {
                 </fieldset>
                 <fieldset>
                   <label htmlFor="perHeadBudget" className="text-lg">
-                    Per Head Budget
+                    Per Head Budget(in INR)
                   </label>
                   <input
                     id="perHeadBudget"
