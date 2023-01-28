@@ -1,10 +1,14 @@
 import clsx from "clsx";
 import { semiBoldFont } from "../../../fonts";
 import { useSession } from "next-auth/react";
-import { NewTripButton, JoinTripButton } from ".";
+import { NewTripButton, JoinTripButton } from "./buttons";
+import { api } from "../../../utils/api";
 
 export const TripNav = () => {
   const { data: session } = useSession();
+  const { data: user } = api.userProfile.getProfileDetails.useQuery({
+    email: session?.user?.email as string,
+  });
 
   return (
     <div
@@ -21,7 +25,7 @@ export const TripNav = () => {
           `${semiBoldFont.className}`,
         )}
       >
-        {`Welcome, ${session?.user?.name}!`}
+        {user?.name ? `Welcome, ${user.name}!` : "loading..."}
       </div>
 
       <div className={clsx("pt-5")}>
