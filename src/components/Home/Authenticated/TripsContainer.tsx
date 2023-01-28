@@ -4,9 +4,16 @@ import { motion } from "framer-motion";
 import { api } from "../../../utils/api";
 import { CopyTripIdButton } from "./buttons";
 import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 
 export const TripsContainer = () => {
-  const { data: trips, isLoading } = api.userTrips.getAll.useQuery();
+  const { data: session } = useSession();
+  const { data: user } = api.userProfile.getProfileDetails.useQuery({
+    email: session?.user?.email as string,
+  });
+  const { data: trips, isLoading } = api.userTrips.getAll.useQuery({
+    userId: user?.id as string,
+  });
   const { push } = useRouter();
 
   if (isLoading) {

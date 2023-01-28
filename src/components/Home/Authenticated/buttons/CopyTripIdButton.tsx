@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import * as Toast from "@radix-ui/react-toast";
 import { useMediaQuery } from "../../../../hooks";
 import { useSession } from "next-auth/react";
+import { api } from "../../../../utils/api";
 
 interface Props {
   tripId: string;
@@ -16,11 +17,13 @@ export const CopyTripIdButton: FC<Props> = (props) => {
   const [open, setOpen] = useState(false);
   const isMd = useMediaQuery("(min-width: 768px)");
   const { data: session } = useSession();
-
+  const { data: user } = api.userProfile.getProfileDetails.useQuery({
+    email: session?.user?.email as string,
+  });
   const handleCopyToClipboard = async (): Promise<void> => {
     try {
       await navigator.clipboard.writeText(
-        `${session?.user?.name} has invited you to join their trip: ${tripName}! The trip code is ${tripId}. Signup / Login at Trippins (https://trippins.ayanavakarmakar.repl.co) to join.`,
+        `${user?.name} has invited you to join their trip: ${tripName}! The trip code is ${tripId}. Signup / Login at Trippins (https://trippins.ayanavakarmakar.repl.co) to join.`,
       );
 
       if (open) {

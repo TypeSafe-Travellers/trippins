@@ -12,6 +12,9 @@ const UserTrip: NextPage = () => {
   const { query, push } = useRouter();
   const { tripId: id, tripName: name } = query;
   const { data: session, status } = useSession();
+  const { data: user } = api.userProfile.getProfileDetails.useQuery({
+    email: session?.user?.email as string,
+  });
   const { data: participants } = api.userTrips.getTripParticipants.useQuery({
     tripId: id as string,
   });
@@ -26,15 +29,15 @@ const UserTrip: NextPage = () => {
     }
 
     // validation to ensure that the user is a participant
-    if (status !== "loading" && participants && session?.user?.id) {
+    if (status !== "loading" && participants && user?.id) {
       const foundParticipant = participants.find((p) =>
-        p.participants.find((pp) => pp.id === session?.user?.id),
+        p.participants.find((pp) => pp.id === user?.id),
       );
       if (!foundParticipant) {
         push("/404");
       }
     }
-  }, [id, participants, push, session?.user?.id, status]);
+  }, [id, participants, push, user?.id, status]);
 
   if (status === "loading")
     return (

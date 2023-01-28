@@ -12,31 +12,18 @@ import { useRouter } from "next/router";
 export const EditProfile = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { data: session } = useSession();
+  const { data: user } = api.userProfile.getProfileDetails.useQuery({
+    email: session?.user?.email as string,
+  });
   const { reload } = useRouter();
-
-  const [userName, setUserName] = useState(session?.user?.name as string);
-  const [userEmail, setUserEmail] = useState(session?.user?.email as string);
-
+  const [userName, setUserName] = useState(user?.name as string);
   const updateUserNameMutation = api.userProfile.updateName.useMutation();
-  const updateUserEmailMutation = api.userProfile.updateEmail.useMutation();
 
   const handleSave = (): void => {
-    if (userName !== session?.user?.name && session?.user?.id !== undefined) {
+    if (userName !== user?.name && user?.id !== undefined) {
       updateUserNameMutation.mutate({
         newName: userName,
-        userId: session?.user?.id,
-      });
-
-      setIsOpen(false);
-      setTimeout(() => {
-        reload();
-      }, 1000);
-    }
-
-    if (userEmail !== session?.user?.email && session?.user?.id !== undefined) {
-      updateUserEmailMutation.mutate({
-        newEmail: userEmail,
-        userId: session?.user?.id,
+        userId: user?.id,
       });
 
       setIsOpen(false);
@@ -76,7 +63,7 @@ export const EditProfile = () => {
               "radix-state-instant-open:bg-gray-50 radix-state-delayed-open:bg-gray-50",
             )}
           >
-            Edit Profile
+            Edit Username
           </button>
         </motion.div>
       </Dialog.Trigger>
@@ -131,24 +118,6 @@ export const EditProfile = () => {
                     value={userName}
                     onChange={(e) => setUserName(e.target.value)}
                     autoComplete="user-name"
-                    className={clsx(
-                      "mt-1 block w-full rounded-md px-1 pt-2 pb-1",
-                      "text-xl",
-                      "bg-white dark:bg-gray-900",
-                      "border border-gray-400 focus-visible:border-transparent dark:border-gray-700 dark:bg-gray-800",
-                    )}
-                  />
-                </fieldset>
-                <fieldset>
-                  <label htmlFor="email" className="text-lg">
-                    Email
-                  </label>
-                  <input
-                    id="email"
-                    type="email"
-                    value={userEmail}
-                    onChange={(e) => setUserEmail(e.target.value)}
-                    autoComplete="email"
                     className={clsx(
                       "mt-1 block w-full rounded-md px-1 pt-2 pb-1",
                       "text-xl",
