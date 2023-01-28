@@ -93,7 +93,7 @@ export const TripDetailsContainer: FC<Props> = (props) => {
               >
                 {`Budget: ${
                   isLoading === false ? trip?.budget : "loading..."
-                }`}
+                } per head`}
               </div>
               <div
                 className={clsx(
