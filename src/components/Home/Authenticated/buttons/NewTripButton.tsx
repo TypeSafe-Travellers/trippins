@@ -3,11 +3,11 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { CrossIcon } from "../../../../icons";
 import clsx from "clsx";
 import { Fragment, useEffect, useState } from "react";
-import { regularFont } from "../../../../fonts";
 import { motion } from "framer-motion";
-import { api } from "../../../../utils/api";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
+import { api } from "../../../../utils/api";
+import { regularFont } from "../../../../fonts";
 
 export const NewTripButton = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,6 +15,7 @@ export const NewTripButton = () => {
   const [tripDescription, setTripDescription] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [perHeadBudget, setPerHeadBudget] = useState(0);
   const [isValidated, setIsValidated] = useState(false);
   const { reload } = useRouter();
 
@@ -31,24 +32,33 @@ export const NewTripButton = () => {
       tripDescription.length <= 1000 &&
       startDate !== "" &&
       endDate !== "" &&
-      startDate < endDate
+      startDate < endDate &&
+      perHeadBudget >= 0
     ) {
       setIsValidated(true);
     } else {
       setIsValidated(false);
     }
-  }, [tripName, tripDescription, startDate, endDate]);
+  }, [tripName, tripDescription, startDate, endDate, perHeadBudget]);
 
   const createTripMutation = api.userTrips.createTrip.useMutation();
 
   const handleSubmit = (): void => {
-    if (tripName && tripDescription && startDate && endDate && user?.id) {
+    if (
+      tripName &&
+      tripDescription &&
+      startDate &&
+      endDate &&
+      perHeadBudget &&
+      user?.id
+    ) {
       createTripMutation.mutate({
         userId: user.id,
         name: tripName,
         description: tripDescription,
         startDate: new Date(startDate),
         endDate: new Date(endDate),
+        budget: perHeadBudget,
       });
 
       setIsOpen(false);
@@ -73,6 +83,7 @@ export const NewTripButton = () => {
           }}
         >
           <button
+            type="button"
             className={clsx(
               `${regularFont.className}`,
               "inline-flex select-none items-center justify-center rounded-md",
@@ -160,7 +171,7 @@ export const NewTripButton = () => {
                           : "text-transparent dark:text-transparent"
                       }`,
                       "text-lg",
-                      "my-3 leading-none",
+                      "mt-2 mb-1 leading-none",
                     )}
                   >
                     Trip name must be between 3 and 50 characters!
@@ -192,7 +203,7 @@ export const NewTripButton = () => {
                           : "text-transparent dark:text-transparent"
                       }`,
                       "text-lg",
-                      "my-3 leading-none",
+                      "mt-2 mb-1 leading-none",
                     )}
                   >
                     Trip description must be between 3 and 1000 characters!
@@ -223,7 +234,7 @@ export const NewTripButton = () => {
                           : "text-transparent dark:text-transparent"
                       }`,
                       "text-lg",
-                      "my-3 leading-none",
+                      "mt-2 mb-1 leading-none",
                     )}
                   >
                     {`${
@@ -259,7 +270,7 @@ export const NewTripButton = () => {
                           : "text-transparent dark:text-transparent"
                       }`,
                       "text-lg",
-                      "my-3 leading-none",
+                      "mt-2 mb-1 leading-none",
                     )}
                   >
                     {`${
@@ -267,6 +278,35 @@ export const NewTripButton = () => {
                         ? "End date cannot be empty!"
                         : "End date must be after start date!"
                     }`}
+                  </div>
+                </fieldset>
+                <fieldset>
+                  <label htmlFor="perHeadBudget" className="text-lg">
+                    Per Head Budget(in INR)
+                  </label>
+                  <input
+                    id="perHeadBudget"
+                    type="number"
+                    value={perHeadBudget}
+                    onChange={(e) => {
+                      setPerHeadBudget(parseInt(e.target.value));
+                    }}
+                    autoComplete="Per Head Budget"
+                    className={clsx(
+                      "mt-1 block w-full rounded-md px-1 pt-2 pb-1",
+                      "text-xl",
+                      "bg-white dark:bg-gray-900",
+                      "border border-gray-400 focus-visible:border-transparent dark:border-gray-700 dark:bg-gray-800",
+                    )}
+                  />
+
+                  <div
+                    className={clsx(
+                      "text-lg text-red-600 dark:text-red-500",
+                      "mt-3 leading-none",
+                    )}
+                  >
+                    {perHeadBudget < 0 && "— Budget cannot be negative!"}
                   </div>
                 </fieldset>
 

@@ -83,6 +83,13 @@ export const TripDetailsContainer: FC<Props> = (props) => {
           <div
             className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}
           >
+            {`Budget: ${
+              isLoading === false ? trip?.budget : "loading..."
+            } INR per head`}
+          </div>
+          <div
+            className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}
+          >
             {`Starts at: ${
               isLoading === false
                 ? trip?.startDate.toLocaleString()
