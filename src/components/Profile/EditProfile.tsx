@@ -12,15 +12,18 @@ import { useRouter } from "next/router";
 export const EditProfile = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { data: session } = useSession();
+  const { data: user } = api.userProfile.getProfileDetails.useQuery({
+    email: session?.user?.email as string,
+  });
   const { reload } = useRouter();
-  const [userName, setUserName] = useState(session?.user?.name as string);
+  const [userName, setUserName] = useState(user?.name as string);
   const updateUserNameMutation = api.userProfile.updateName.useMutation();
 
   const handleSave = (): void => {
-    if (userName !== session?.user?.name && session?.user?.id !== undefined) {
+    if (userName !== user?.name && user?.id !== undefined) {
       updateUserNameMutation.mutate({
         newName: userName,
-        userId: session?.user?.id,
+        userId: user?.id,
       });
 
       setIsOpen(false);

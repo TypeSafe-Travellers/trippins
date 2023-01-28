@@ -16,6 +16,9 @@ export const JoinTripButton = () => {
   const [isParticipant, setIsParticipant] = useState(true);
   const { reload } = useRouter();
   const { data: session } = useSession();
+  const { data: user } = api.userProfile.getProfileDetails.useQuery({
+    email: session?.user?.email as string,
+  });
   const { data: allTripIds } = api.userTrips.getAllTripIds.useQuery();
   const { data: participants } = api.userTrips.getTripParticipants.useQuery({
     tripId,
@@ -23,7 +26,10 @@ export const JoinTripButton = () => {
   const addTripParticipantMutation = api.userTrips.addParticipant.useMutation();
 
   const handleAddParticipant = (): void => {
-    addTripParticipantMutation.mutate({ tripId });
+    addTripParticipantMutation.mutate({
+      tripId,
+      userId: user?.id as string,
+    });
     setIsOpen(false);
     setTimeout(() => {
       reload();
@@ -36,9 +42,7 @@ export const JoinTripButton = () => {
 
     // check if user is already a participant
     setIsParticipant(
-      participants?.find((p) =>
-        p.participants.find((pp) => pp.id === session?.user?.id),
-      )
+      participants?.find((p) => p.participants.find((pp) => pp.id === user?.id))
         ? true
         : false,
     );
@@ -48,7 +52,7 @@ export const JoinTripButton = () => {
     } else {
       setIsValidated(false);
     }
-  }, [allTripIds, isParticipant, participants, session?.user?.id, tripId]);
+  }, [allTripIds, isParticipant, participants, user?.id, tripId]);
 
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>

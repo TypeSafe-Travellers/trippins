@@ -7,6 +7,7 @@ import { regularFont } from "../../../../fonts";
 import { motion } from "framer-motion";
 import { api } from "../../../../utils/api";
 import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 
 export const NewTripButton = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,6 +17,11 @@ export const NewTripButton = () => {
   const [endDate, setEndDate] = useState("");
   const [isValidated, setIsValidated] = useState(false);
   const { reload } = useRouter();
+
+  const { data: session } = useSession();
+  const { data: user } = api.userProfile.getProfileDetails.useQuery({
+    email: session?.user?.email as string,
+  });
 
   useEffect(() => {
     if (
@@ -36,8 +42,9 @@ export const NewTripButton = () => {
   const createTripMutation = api.userTrips.createTrip.useMutation();
 
   const handleSubmit = (): void => {
-    if (tripName && tripDescription && startDate && endDate) {
+    if (tripName && tripDescription && startDate && endDate && user?.id) {
       createTripMutation.mutate({
+        userId: user.id,
         name: tripName,
         description: tripDescription,
         startDate: new Date(startDate),
