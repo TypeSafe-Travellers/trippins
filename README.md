@@ -2,7 +2,9 @@
 
 ## About
 
-This is a [WIP project](https://trippins.ayanavakarmakar.repl.co) by Team TypeSafe Travellers for [SWoC S3](https://swoc.getsocialnow.co/) deployed on [Repl.it](https://replit.com/@AyanavaKarmakar/trippins?v=1).
+Welcome to our group trip-planning app! We are a team of travel enthusiasts who understand the challenges of planning a group trip. We created this app to make the process as easy and stress-free as possible. Our web app allows users to create a trip itinerary, share it with their group, and collaborate on details such as accommodations, transportation, and activities. We believe that group trip planning should be fun and exciting, not overwhelming. That's why we've designed our app to be user-friendly and intuitive. Thank you for choosing our group trip-planning app. Bon voyage!
+
+Note: The app is currently in development. We are working on adding new features and improving the user experience. Please check back soon for updates!
 
 ## Get Started
 
