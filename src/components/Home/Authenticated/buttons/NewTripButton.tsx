@@ -33,6 +33,7 @@ export const NewTripButton = () => {
       startDate !== "" &&
       endDate !== "" &&
       startDate < endDate &&
+      startDate !== endDate &&
       perHeadBudget >= 0
     ) {
       setIsValidated(true);
@@ -166,7 +167,8 @@ export const NewTripButton = () => {
                   <div
                     className={clsx(
                       `${
-                        tripName.length < 3 || tripName.length > 50
+                        tripName.length !== 0 &&
+                        (tripName.length < 3 || tripName.length > 50)
                           ? "text-red-600 dark:text-red-500"
                           : "text-transparent dark:text-transparent"
                       }`,
@@ -175,9 +177,9 @@ export const NewTripButton = () => {
                     )}
                   >
                     {tripName.length < 3 &&
-                      "Trip name must be at least 3 characters long"}
+                      "Trip name must be at least 3 characters long!"}
                     {tripName.length > 50 &&
-                      "Trip name must be at most 50 characters long"}
+                      "Trip name must be at most 50 characters long!"}
                   </div>
                 </fieldset>
                 <fieldset>
@@ -200,8 +202,9 @@ export const NewTripButton = () => {
                   <div
                     className={clsx(
                       `${
-                        tripDescription.length < 3 ||
-                        tripDescription.length > 1000
+                        tripDescription.length !== 0 &&
+                        (tripDescription.length < 3 ||
+                          tripDescription.length > 1000)
                           ? "text-red-600 dark:text-red-500"
                           : "text-transparent dark:text-transparent"
                       }`,
@@ -210,9 +213,9 @@ export const NewTripButton = () => {
                     )}
                   >
                     {tripDescription.length < 3 &&
-                      "Trip description must be at least 3 characters long"}
+                      "Trip description must be at least 3 characters long!"}
                     {tripDescription.length > 1000 &&
-                      "Trip description must be at most 1000 characters long"}
+                      "Trip description must be at most 1000 characters long!"}
                   </div>
                 </fieldset>
                 <fieldset>
@@ -235,7 +238,8 @@ export const NewTripButton = () => {
                   <div
                     className={clsx(
                       `${
-                        startDate === "" || startDate > endDate
+                        startDate.length !== 0 &&
+                        (startDate > endDate || startDate === endDate)
                           ? "text-red-600 dark:text-red-500"
                           : "text-transparent dark:text-transparent"
                       }`,
@@ -243,11 +247,7 @@ export const NewTripButton = () => {
                       "mt-2 mb-1 leading-none",
                     )}
                   >
-                    {`${
-                      startDate === ""
-                        ? "Start date cannot be empty!"
-                        : "Start date must be before end date!"
-                    }`}
+                    Start date must be before end date!
                   </div>
                 </fieldset>
                 <fieldset>
@@ -271,7 +271,8 @@ export const NewTripButton = () => {
                   <div
                     className={clsx(
                       `${
-                        endDate === "" || startDate > endDate
+                        endDate.length !== 0 &&
+                        (startDate > endDate || startDate === endDate)
                           ? "text-red-600 dark:text-red-500"
                           : "text-transparent dark:text-transparent"
                       }`,
@@ -279,11 +280,7 @@ export const NewTripButton = () => {
                       "mt-2 mb-1 leading-none",
                     )}
                   >
-                    {`${
-                      endDate === ""
-                        ? "End date cannot be empty!"
-                        : "End date must be after start date!"
-                    }`}
+                    End date must be after start date!
                   </div>
                 </fieldset>
                 <fieldset>
@@ -308,11 +305,16 @@ export const NewTripButton = () => {
 
                   <div
                     className={clsx(
-                      "text-lg text-red-600 dark:text-red-500",
-                      "mt-3 leading-none",
+                      `${
+                        perHeadBudget < 0
+                          ? "text-red-600 dark:text-red-500"
+                          : "text-transparent dark:text-transparent"
+                      }`,
+                      "text-lg",
+                      "mt-2 mb-1 leading-none",
                     )}
                   >
-                    {perHeadBudget < 0 && "Budget cannot be negative!"}
+                    Budget cannot be negative!
                   </div>
                 </fieldset>
 
