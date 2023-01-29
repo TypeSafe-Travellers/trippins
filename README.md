@@ -45,6 +45,8 @@ npm run format
 
 # Tech Stack
 
+ **Trippins** has been built using the [**T3 stack**](https://create.t3.gg/) initialized using [**create-t3-app**](https://github.com/t3-oss/create-t3-app).
+
 - [Next.js](https://nextjs.org/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [NextAuth.js](https://next-auth.js.org/)
