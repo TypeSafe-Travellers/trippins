@@ -6,21 +6,26 @@ Welcome to our group trip-planning app! We are a team of travel enthusiasts who 
 
 **Note:** The app is currently in development. We are working on adding new features and improving the user experience. Please check back soon for updates!
 
+## Screenshots
+Please note that the app is still in active development and the following screenshots are pre-alpha previews.
+
 ## Get Started
 
-- Clone the repo
+Here's how you can set up the Trippins app on your local machine:
+
+1. Clone the repo
 
 ```bash
 git clone https://github.com/TypeSafe-Travellers/trippins.git
 ```
 
-- Install dependencies
+2. Install dependencies
 
 ```bash
 npm install
 ```
 
-- Connect to PlanetScale database
+3. Connect to PlanetScale database
 
 ```bash
 pscale auth login
@@ -28,21 +33,16 @@ pscale connect typesafetravellers dev --port 3309 --org typesafetravellers
 npx prisma studio
 ```
 
-- Run the app
+4. Run the app
 
 ```bash
 npm run dev
 ```
 
-- Check Formatting
+5. Check and format code
 
 ```bash
 npm run format:check
-```
-
-- Format Code
-
-```bash
 npm run format
 ```
 
@@ -76,6 +76,6 @@ npm run format
 
 ## Show your support
 
-Give a ⭐️ if you like this project!
+Give a ⭐️ if you like this project! Your support helps us continue to develop and improve Trippins.
 
 ---
