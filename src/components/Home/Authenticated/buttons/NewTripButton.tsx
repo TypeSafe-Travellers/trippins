@@ -174,7 +174,10 @@ export const NewTripButton = () => {
                       "mt-2 mb-1 leading-none",
                     )}
                   >
-                    Trip name must be between 3 and 50 characters!
+                    {tripName.length < 3 &&
+                      "Trip name must be at least 3 characters long"}
+                    {tripName.length > 50 &&
+                      "Trip name must be at most 50 characters long"}
                   </div>
                 </fieldset>
                 <fieldset>
@@ -206,7 +209,10 @@ export const NewTripButton = () => {
                       "mt-2 mb-1 leading-none",
                     )}
                   >
-                    Trip description must be between 3 and 1000 characters!
+                    {tripDescription.length < 3 &&
+                      "Trip description must be at least 3 characters long"}
+                    {tripDescription.length > 1000 &&
+                      "Trip description must be at most 1000 characters long"}
                   </div>
                 </fieldset>
                 <fieldset>
