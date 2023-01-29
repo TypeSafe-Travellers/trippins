@@ -23,7 +23,7 @@ export const HeroBanner = () => {
         Welcome to
         <span
           className={clsx(
-            "bg-gradient-to-r from-indigo-500 to-fuchsia-700 dark:from-indigo-400 dark:to-fuchsia-400",
+            "bg-gradient-to-r from-indigo-700 to-fuchsia-700 dark:from-indigo-300 dark:to-fuchsia-300",
             "bg-clip-text text-transparent",
           )}
         >
@@ -89,7 +89,7 @@ export const HeroBanner = () => {
         of
         <span
           className={clsx(
-            "bg-gradient-to-r from-indigo-700 to-fuchsia-700 dark:from-indigo-400 dark:to-fuchsia-400",
+            "bg-gradient-to-r from-indigo-700 to-fuchsia-700 dark:from-indigo-300 dark:to-fuchsia-300",
             "bg-clip-text text-transparent",
           )}
         >

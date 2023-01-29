@@ -25,7 +25,15 @@ export const TripNav = () => {
           `${semiBoldFont.className}`,
         )}
       >
-        {user?.name ? `Welcome, ${user.name}!` : "loading..."}
+        Welcome,
+        <span
+          className={clsx(
+            "bg-clip-text text-transparent",
+            "bg-gradient-to-r from-indigo-700 to-fuchsia-700 dark:from-indigo-300 dark:to-fuchsia-300",
+          )}
+        >
+          {` ${user?.name ? user.name : "loading..."}!`}
+        </span>
       </div>
 
       <div className={clsx("pt-5")}>
