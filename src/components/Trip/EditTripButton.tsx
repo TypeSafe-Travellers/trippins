@@ -43,6 +43,7 @@ export const EditTripButton: FC<Props> = (props) => {
       tripBudget >= 0 &&
       startDate !== "" &&
       endDate !== "" &&
+      startDate !== endDate &&
       startDate < endDate &&
       (tripName !== trip.name ||
         tripDescription !== trip.description ||
@@ -262,7 +263,8 @@ export const EditTripButton: FC<Props> = (props) => {
                   <div
                     className={clsx(
                       `${
-                        startDate === "" || startDate > endDate
+                        startDate.length !== 0 &&
+                        (startDate > endDate || startDate === endDate)
                           ? "text-red-600 dark:text-red-500"
                           : "text-transparent dark:text-transparent"
                       }`,
@@ -270,11 +272,7 @@ export const EditTripButton: FC<Props> = (props) => {
                       "mt-2 mb-1 leading-none",
                     )}
                   >
-                    {`${
-                      startDate === ""
-                        ? "Start date cannot be empty!"
-                        : "Start date must be before end date!"
-                    }`}
+                    Start date must be before end date!
                   </div>
                 </fieldset>
                 <fieldset>
@@ -298,7 +296,8 @@ export const EditTripButton: FC<Props> = (props) => {
                   <div
                     className={clsx(
                       `${
-                        endDate === "" || startDate > endDate
+                        endDate.length !== 0 &&
+                        (startDate > endDate || startDate === endDate)
                           ? "text-red-600 dark:text-red-500"
                           : "text-transparent dark:text-transparent"
                       }`,
@@ -306,11 +305,7 @@ export const EditTripButton: FC<Props> = (props) => {
                       "mt-2 mb-1 leading-none",
                     )}
                   >
-                    {`${
-                      endDate === ""
-                        ? "End date cannot be empty!"
-                        : "End date must be after start date!"
-                    }`}
+                    End date must be after start date!
                   </div>
                 </fieldset>
                 <fieldset>
@@ -335,11 +330,16 @@ export const EditTripButton: FC<Props> = (props) => {
 
                   <div
                     className={clsx(
-                      "text-lg text-red-600 dark:text-red-500",
-                      "mt-3 leading-none",
+                      `${
+                        tripBudget < 0
+                          ? "text-red-600 dark:text-red-500"
+                          : "text-transparent dark:text-transparent"
+                      }`,
+                      "text-lg",
+                      "mt-2 mb-1 leading-none",
                     )}
                   >
-                    {tripBudget < 0 && "Budget cannot be negative!"}
+                    Budget cannot be negative!
                   </div>
                 </fieldset>
 
