@@ -31,10 +31,16 @@ export const ProfileDetails = () => {
         }}
       >
         <div className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}>
-          Username: {user?.name ? user.name : "loading..."}
+          <span className={clsx("text-indigo-800 dark:text-indigo-200")}>
+            Username:
+          </span>
+          {` ${user?.name ? user.name : "loading..."}`}
         </div>
         <div className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}>
-          Email: {user?.email ? user.email : "loading..."}
+          <span className={clsx("text-indigo-800 dark:text-indigo-200")}>
+            Email:
+          </span>
+          {` ${user?.email ? user.email : "loading..."}`}
         </div>
       </motion.div>
     </div>

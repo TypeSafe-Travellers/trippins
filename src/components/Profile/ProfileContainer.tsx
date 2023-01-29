@@ -17,8 +17,10 @@ export const ProfileContainer = () => {
       >
         <div
           className={clsx(
-            "text-center text-4xl lg:text-7xl",
             "mx-auto",
+            "bg-clip-text text-transparent",
+            "text-center text-4xl lg:text-7xl",
+            "bg-gradient-to-r from-indigo-700 to-fuchsia-700 dark:from-indigo-300 dark:to-fuchsia-300",
             `${boldFont.className}`,
           )}
         >
