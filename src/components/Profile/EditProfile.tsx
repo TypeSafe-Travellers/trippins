@@ -27,9 +27,7 @@ export const EditProfile = () => {
       });
 
       setIsOpen(false);
-      setTimeout(() => {
-        reload();
-      }, 1000);
+      reload();
     }
   };
 

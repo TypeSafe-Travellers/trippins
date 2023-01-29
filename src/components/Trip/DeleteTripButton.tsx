@@ -35,19 +35,19 @@ export const DeleteTripButton: FC<Props> = (props) => {
           type="button"
           aria-label="Log Out"
           className={clsx(
-            "mr-2 mb-2 px-5 pt-2.5 pb-1",
-            "inline-flex items-center rounded-md text-xl",
-            "bg-red-100 text-center text-black",
-            "border-2 border-solid border-black",
-            "focus:outline-none focus:ring-2 focus:ring-black hover:bg-red-100/75",
-            "dark:bg-red-600/90 dark:text-white dark:focus:ring-gray-500 dark:hover:bg-red-600",
+            "inline-flex select-none items-center justify-center rounded-md",
+            "px-3 pt-2 pb-0.5 lg:px-5 lg:pt-4 lg:pb-2",
+            "text-xl lg:text-2xl",
+            "shadow-lg shadow-blue-200 hover:shadow-red-200 dark:shadow-indigo-900 dark:hover:shadow-indigo-700",
+            "rounded-md border-2 border-solid border-black dark:border-gray-200",
+            "bg-white dark:bg-black",
+            "focus:outline-none focus-visible:ring focus-visible:ring-black focus-visible:ring-opacity-75",
             `${regularFont.className}`,
           )}
         >
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            whileHover={{ scale: 1.1 }}
             transition={{
               type: "spring",
               stiffness: 260,

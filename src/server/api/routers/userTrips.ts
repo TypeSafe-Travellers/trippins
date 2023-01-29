@@ -156,6 +156,46 @@ export const userTripsRouter = createTRPCRouter({
     }),
 
   /**
+   * mutation to edit trip details
+   * @param tripId - id of the trip
+   * @param name - name of the trip
+   * @param description - description of the trip
+   * @param budget - budget of the trip
+   * @param startDate - start date of the trip
+   * @param endDate - end date of the trip
+   * @see https://www.prisma.io/docs/concepts/components/prisma-client/null-and-undefined
+   */
+  editTrip: protectedProcedure
+    .input(
+      z.object({
+        tripId: z.string().length(25),
+        name: z.string().min(3).max(50).optional(),
+        description: z.string().min(3).max(1000).optional(),
+        budget: z.number().min(0).optional(),
+        startDate: z.date().optional(),
+        endDate: z.date().optional(),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      try {
+        await ctx.prisma.trip.update({
+          where: {
+            id: input.tripId,
+          },
+          data: {
+            name: input.name ?? undefined,
+            description: input.description ?? undefined,
+            startDate: input.startDate ?? undefined,
+            endDate: input.endDate ?? undefined,
+            budget: input.budget ?? undefined,
+          },
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }),
+
+  /**
    * mutation to delete a trip
    * @param tripId - id of the trip
    */
