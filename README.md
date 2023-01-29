@@ -9,6 +9,9 @@ Welcome to our group trip-planning app! We are a team of travel enthusiasts who 
 ## Screenshots
 **Note:** Please note that the app is still in active development and the following screenshots are pre-alpha previews.
 
+![get started](https://user-images.githubusercontent.com/89210438/215353896-6a96d1b2-c8cb-4f51-9bb5-048144d10d8a.png)
+
+
 ## Get Started
 
 Here's how you can set up the Trippins app on your local machine:
