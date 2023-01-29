@@ -7,7 +7,7 @@ Welcome to our group trip-planning app! We are a team of travel enthusiasts who 
 **Note:** The app is currently in development. We are working on adding new features and improving the user experience. Please check back soon for updates!
 
 ## Screenshots
-Please note that the app is still in active development and the following screenshots are pre-alpha previews.
+**Note:** Please note that the app is still in active development and the following screenshots are pre-alpha previews.
 
 ## Get Started
 
