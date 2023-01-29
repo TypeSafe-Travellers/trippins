@@ -12,14 +12,10 @@ interface Props {
   trip: {
     id: string;
     name: string;
-    participants: {
-      id: string;
-      name: string | null;
-    }[];
     description: string;
     startDate: Date;
     endDate: Date;
-    createdAt: Date;
+    budget: number;
   };
 }
 
@@ -29,8 +25,13 @@ export const EditTripButton: FC<Props> = (props) => {
   const { trip } = props;
   const [tripName, setTripName] = useState(trip.name);
   const [tripDescription, setTripDescription] = useState(trip.description);
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  const [tripBudget, setTripBudget] = useState(trip.budget);
+  const [startDate, setStartDate] = useState(
+    trip.startDate.toISOString().slice(0, 16),
+  );
+  const [endDate, setEndDate] = useState(
+    trip.endDate.toISOString().slice(0, 16),
+  );
   const [isValidated, setIsValidated] = useState(false);
 
   useEffect(() => {
@@ -39,13 +40,15 @@ export const EditTripButton: FC<Props> = (props) => {
       tripName.length <= 50 &&
       tripDescription.length >= 3 &&
       tripDescription.length <= 1000 &&
+      tripBudget >= 0 &&
       startDate !== "" &&
       endDate !== "" &&
       startDate < endDate &&
       (tripName !== trip.name ||
         tripDescription !== trip.description ||
-        startDate !== trip.startDate.toLocaleString() ||
-        endDate !== trip.endDate.toLocaleString())
+        tripBudget !== trip.budget ||
+        startDate !== trip.startDate.toISOString().slice(0, 16) ||
+        endDate !== trip.endDate.toISOString().slice(0, 16))
     ) {
       setIsValidated(true);
     } else {
@@ -60,6 +63,8 @@ export const EditTripButton: FC<Props> = (props) => {
     trip.description,
     trip.startDate,
     trip.endDate,
+    trip.budget,
+    tripBudget,
   ]);
 
   const editTripDetailsMutation = api.userTrips.editTrip.useMutation();
@@ -81,6 +86,7 @@ export const EditTripButton: FC<Props> = (props) => {
       name: tripName === trip.name ? undefined : tripName,
       description:
         tripDescription === trip.description ? undefined : tripDescription,
+      budget: tripBudget === trip.budget ? undefined : tripBudget,
       startDate:
         new Date(startDate) === trip.startDate
           ? undefined
@@ -305,6 +311,35 @@ export const EditTripButton: FC<Props> = (props) => {
                         ? "End date cannot be empty!"
                         : "End date must be after start date!"
                     }`}
+                  </div>
+                </fieldset>
+                <fieldset>
+                  <label htmlFor="perHeadBudget" className="text-lg">
+                    Per Head Budget (in INR)
+                  </label>
+                  <input
+                    id="perHeadBudget"
+                    type="number"
+                    value={tripBudget}
+                    onChange={(e) => {
+                      setTripBudget(parseInt(e.target.value));
+                    }}
+                    autoComplete="Per Head Budget"
+                    className={clsx(
+                      "mt-1 block w-full rounded-md px-1 pt-2 pb-1",
+                      "text-xl",
+                      "bg-white dark:bg-gray-900",
+                      "border border-gray-400 focus-visible:border-transparent dark:border-gray-700 dark:bg-gray-800",
+                    )}
+                  />
+
+                  <div
+                    className={clsx(
+                      "text-lg text-red-600 dark:text-red-500",
+                      "mt-3 leading-none",
+                    )}
+                  >
+                    {tripBudget < 0 && "Budget cannot be negative!"}
                   </div>
                 </fieldset>
 
