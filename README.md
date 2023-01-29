@@ -7,10 +7,12 @@ Welcome to our group trip-planning app! We are a team of travel enthusiasts who 
 **Note:** The app is currently in development. We are working on adding new features and improving the user experience. Please check back soon for updates!
 
 ## Screenshots
+
 **Note:** Please note that the app is still in active development and the following screenshots are pre-alpha previews.
 
-![get started](https://user-images.githubusercontent.com/89210438/215353896-6a96d1b2-c8cb-4f51-9bb5-048144d10d8a.png)
+- To start using Trippins, you must create an account. You can do so by clicking the "Get Started" button on the home page.
 
+![Home Page](https://user-images.githubusercontent.com/89210438/215353896-6a96d1b2-c8cb-4f51-9bb5-048144d10d8a.png)
 
 ## Get Started
 
