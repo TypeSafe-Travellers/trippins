@@ -55,12 +55,12 @@ export const TripsContainer = () => {
             }
             key={trip.id}
             className={clsx(
+              "cursor-pointer",
               "text-2xl lg:text-3xl",
               "mx-0 break-words px-3 pt-6 pb-4 lg:mx-20 lg:px-8",
-              "dark:bg-gradient-to-tl dark:from-black/70 dark:via-black/60 dark:to-black/50",
-              "shadow-lg shadow-blue-200 hover:shadow-red-200 dark:shadow-indigo-900 dark:hover:shadow-indigo-700",
               "rounded-lg border-4 border-solid border-black dark:border-gray-200",
-              "cursor-pointer",
+              "shadow-lg shadow-blue-200 hover:shadow-red-200 dark:shadow-indigo-900 dark:hover:shadow-indigo-700",
+              "bg-gradient-to-tl from-white/70 via-white/60 to-white/50 dark:from-black/70 dark:via-black/60 dark:to-black/50",
             )}
           >
             <motion.div
