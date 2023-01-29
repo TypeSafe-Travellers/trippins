@@ -4,6 +4,8 @@ import { boldFont, semiBoldFont } from "../../fonts";
 import { type FC } from "react";
 import { api } from "../../utils/api";
 import { DeleteTripButton } from "./DeleteTripButton";
+import { EditTripButton } from "./EditTripButton";
+import { CopyTripIdButton } from "../Home/Authenticated";
 import { useSession } from "next-auth/react";
 
 interface Props {
@@ -116,14 +118,27 @@ export const TripDetailsContainer: FC<Props> = (props) => {
           </div>
         </motion.div>
       </div>
-      {
-        // if the user is the admin of the trip, show the delete button
-        trip?.id && user?.id === trip?.adminId && (
-          <div className={clsx("py-5", "text-center")}>
-            <DeleteTripButton tripId={trip?.id} />
-          </div>
-        )
-      }
+
+      {trip && (
+        <div
+          className={clsx(
+            "flex flex-row gap-5",
+            "items-center justify-center",
+            "py-5",
+          )}
+        >
+          <CopyTripIdButton tripId={trip.id} tripName={trip.name} />
+          {
+            // if the user is the admin of the trip, show the delete button
+            user?.id === trip?.adminId && (
+              <>
+                <EditTripButton trip={trip} />
+                <DeleteTripButton tripId={trip?.id} />
+              </>
+            )
+          }
+        </div>
+      )}
     </motion.div>
   );
 };

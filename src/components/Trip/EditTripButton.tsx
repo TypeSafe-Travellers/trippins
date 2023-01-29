@@ -1,28 +1,38 @@
 import { Transition } from "@headlessui/react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { CrossIcon } from "../../../../icons";
-import clsx from "clsx";
-import { Fragment, useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { CrossIcon } from "../../icons";
 import { useRouter } from "next/router";
-import { useSession } from "next-auth/react";
-import { api } from "../../../../utils/api";
-import { regularFont } from "../../../../fonts";
+import { type FC, useEffect, useState, Fragment } from "react";
+import clsx from "clsx";
+import { regularFont } from "../../fonts";
+import { motion } from "framer-motion";
+import { api } from "../../utils/api";
 
-export const NewTripButton = () => {
+interface Props {
+  trip: {
+    id: string;
+    name: string;
+    description: string;
+    startDate: Date;
+    endDate: Date;
+    budget: number;
+  };
+}
+
+export const EditTripButton: FC<Props> = (props) => {
+  const { reload, push } = useRouter();
   const [isOpen, setIsOpen] = useState(false);
-  const [tripName, setTripName] = useState("");
-  const [tripDescription, setTripDescription] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-  const [perHeadBudget, setPerHeadBudget] = useState(0);
+  const { trip } = props;
+  const [tripName, setTripName] = useState(trip.name);
+  const [tripDescription, setTripDescription] = useState(trip.description);
+  const [tripBudget, setTripBudget] = useState(trip.budget);
+  const [startDate, setStartDate] = useState(
+    trip.startDate.toISOString().slice(0, 16),
+  );
+  const [endDate, setEndDate] = useState(
+    trip.endDate.toISOString().slice(0, 16),
+  );
   const [isValidated, setIsValidated] = useState(false);
-  const { reload } = useRouter();
-
-  const { data: session } = useSession();
-  const { data: user } = api.userProfile.getProfileDetails.useQuery({
-    email: session?.user?.email as string,
-  });
 
   useEffect(() => {
     if (
@@ -30,52 +40,74 @@ export const NewTripButton = () => {
       tripName.length <= 50 &&
       tripDescription.length >= 3 &&
       tripDescription.length <= 1000 &&
+      tripBudget >= 0 &&
       startDate !== "" &&
       endDate !== "" &&
       startDate < endDate &&
-      perHeadBudget >= 0
+      (tripName !== trip.name ||
+        tripDescription !== trip.description ||
+        tripBudget !== trip.budget ||
+        startDate !== trip.startDate.toISOString().slice(0, 16) ||
+        endDate !== trip.endDate.toISOString().slice(0, 16))
     ) {
       setIsValidated(true);
     } else {
       setIsValidated(false);
     }
-  }, [tripName, tripDescription, startDate, endDate, perHeadBudget]);
+  }, [
+    tripName,
+    tripDescription,
+    startDate,
+    endDate,
+    trip.name,
+    trip.description,
+    trip.startDate,
+    trip.endDate,
+    trip.budget,
+    tripBudget,
+  ]);
 
-  const createTripMutation = api.userTrips.createTrip.useMutation();
+  const editTripDetailsMutation = api.userTrips.editTrip.useMutation();
 
   const handleSubmit = (): void => {
-    if (
-      tripName &&
-      tripDescription &&
-      startDate &&
-      endDate &&
-      perHeadBudget &&
-      user?.id
-    ) {
-      createTripMutation.mutate({
-        userId: user.id,
-        name: tripName,
-        description: tripDescription,
-        startDate: new Date(startDate),
-        endDate: new Date(endDate),
-        budget: perHeadBudget,
-      });
+    /**
+     * If the user has not changed the name or email, we don't want to send
+     * an update request to the server. So, we only send the update request
+     * if the user has changed the name or email (or both).
+     *
+     * If the user has not changed the name or email, we send undefined to
+     * the server. The server will then not update the name or email.
+     *
+     * Note: Prisma treats undefined as a no-operation.
+     * @see https://www.prisma.io/docs/concepts/components/prisma-client/null-and-undefined
+     */
+    editTripDetailsMutation.mutate({
+      tripId: trip.id,
+      name: tripName === trip.name ? undefined : tripName,
+      description:
+        tripDescription === trip.description ? undefined : tripDescription,
+      budget: tripBudget === trip.budget ? undefined : tripBudget,
+      startDate:
+        new Date(startDate) === trip.startDate
+          ? undefined
+          : new Date(startDate),
+      endDate:
+        new Date(endDate) === trip.endDate ? undefined : new Date(endDate),
+    });
 
-      setIsOpen(false);
-
-      setTimeout(() => {
-        reload();
-      }, 1000);
-    }
+    setIsOpen(false);
+    push("/");
+    setTimeout(() => {
+      reload();
+    }, 500);
   };
 
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
       <Dialog.Trigger asChild>
         <motion.div
-          initial={{ y: 100, scale: 0 }}
-          animate={{ y: 0, scale: 1 }}
-          whileHover={{ scale: 1.1 }}
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
           transition={{
             type: "spring",
             stiffness: 260,
@@ -83,7 +115,6 @@ export const NewTripButton = () => {
           }}
         >
           <button
-            type="button"
             className={clsx(
               `${regularFont.className}`,
               "inline-flex select-none items-center justify-center rounded-md",
@@ -101,7 +132,7 @@ export const NewTripButton = () => {
               "radix-state-instant-open:bg-gray-50 radix-state-delayed-open:bg-gray-50",
             )}
           >
-            New Trip
+            Edit Trip
           </button>
         </motion.div>
       </Dialog.Trigger>
@@ -140,9 +171,11 @@ export const NewTripButton = () => {
                 "bg-gray-100 dark:bg-gray-800",
               )}
             >
-              <Dialog.Title className="text-2xl">Create New Trip</Dialog.Title>
+              <Dialog.Title className="text-2xl">
+                Edit Trip Details
+              </Dialog.Title>
               <Dialog.Description className="mt-2 text-xl">
-                Fill this form to set up a new trip
+                Edit your trip details below.
               </Dialog.Description>
               <form className="mt-2 space-y-2">
                 <fieldset>
@@ -174,10 +207,7 @@ export const NewTripButton = () => {
                       "mt-2 mb-1 leading-none",
                     )}
                   >
-                    {tripName.length < 3 &&
-                      "Trip name must be at least 3 characters long"}
-                    {tripName.length > 50 &&
-                      "Trip name must be at most 50 characters long"}
+                    Trip name must be between 3 and 50 characters!
                   </div>
                 </fieldset>
                 <fieldset>
@@ -209,10 +239,7 @@ export const NewTripButton = () => {
                       "mt-2 mb-1 leading-none",
                     )}
                   >
-                    {tripDescription.length < 3 &&
-                      "Trip description must be at least 3 characters long"}
-                    {tripDescription.length > 1000 &&
-                      "Trip description must be at most 1000 characters long"}
+                    Trip description must be between 3 and 1000 characters!
                   </div>
                 </fieldset>
                 <fieldset>
@@ -293,9 +320,9 @@ export const NewTripButton = () => {
                   <input
                     id="perHeadBudget"
                     type="number"
-                    value={perHeadBudget}
+                    value={tripBudget}
                     onChange={(e) => {
-                      setPerHeadBudget(parseInt(e.target.value));
+                      setTripBudget(parseInt(e.target.value));
                     }}
                     autoComplete="Per Head Budget"
                     className={clsx(
@@ -312,7 +339,7 @@ export const NewTripButton = () => {
                       "mt-3 leading-none",
                     )}
                   >
-                    {perHeadBudget < 0 && "Budget cannot be negative!"}
+                    {tripBudget < 0 && "Budget cannot be negative!"}
                   </div>
                 </fieldset>
 
