@@ -34,6 +34,8 @@ export const TripDetailsContainer: FC<Props> = (props) => {
     >
       <div
         className={clsx(
+          "bg-clip-text text-transparent",
+          "bg-gradient-to-r from-indigo-700 to-fuchsia-700 dark:from-indigo-300 dark:to-fuchsia-300",
           "text-center text-4xl lg:text-7xl",
           "mx-auto",
           `${boldFont.className}`,
@@ -64,19 +66,26 @@ export const TripDetailsContainer: FC<Props> = (props) => {
           <div
             className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}
           >
-            {`Name: ${isLoading === false ? trip?.name : "loading..."}`}
+            <span className={clsx("text-indigo-800 dark:text-indigo-200")}>
+              Name:
+            </span>
+            {` ${isLoading === false ? trip?.name : "loading..."}`}
           </div>
           <div
             className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}
           >
-            {`Description: ${
-              isLoading === false ? trip?.description : "loading..."
-            }`}
+            <span className={clsx("text-indigo-800 dark:text-indigo-200")}>
+              Description:
+            </span>
+            {` ${isLoading === false ? trip?.description : "loading..."}`}
           </div>
           <div
             className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}
           >
-            {`Created at: ${
+            <span className={clsx("text-indigo-800 dark:text-indigo-200")}>
+              Created at:
+            </span>
+            {` ${
               isLoading === false
                 ? trip?.createdAt.toLocaleString()
                 : "loading..."
@@ -85,14 +94,21 @@ export const TripDetailsContainer: FC<Props> = (props) => {
           <div
             className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}
           >
-            {`Budget: ${
-              isLoading === false ? trip?.budget : "loading..."
-            } INR per head`}
+            <span className={clsx("text-indigo-800 dark:text-indigo-200")}>
+              Budget:
+            </span>
+            {` ${isLoading === false ? trip?.budget : "loading..."} `}{" "}
+            <span className={clsx("text-indigo-800 dark:text-indigo-100")}>
+              INR per head
+            </span>
           </div>
           <div
             className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}
           >
-            {`Starts at: ${
+            <span className={clsx("text-indigo-800 dark:text-indigo-200")}>
+              Starts at:
+            </span>
+            {` ${
               isLoading === false
                 ? trip?.startDate.toLocaleString()
                 : "loading..."
@@ -101,7 +117,10 @@ export const TripDetailsContainer: FC<Props> = (props) => {
           <div
             className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}
           >
-            {`Ends at: ${
+            <span className={clsx("text-indigo-800 dark:text-indigo-200")}>
+              Ends at:
+            </span>
+            {` ${
               isLoading === false
                 ? trip?.endDate.toLocaleString()
                 : "loading..."
@@ -110,7 +129,10 @@ export const TripDetailsContainer: FC<Props> = (props) => {
           <div
             className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}
           >
-            {`Participants: ${
+            <span className={clsx("text-indigo-800 dark:text-indigo-200")}>
+              Participants:
+            </span>
+            {` ${
               isLoading === false
                 ? trip?.participants.map((p) => p.name).join(", ")
                 : "loading..."

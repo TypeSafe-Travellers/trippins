@@ -78,7 +78,10 @@ export const TripsContainer = () => {
                   `${semiBoldFont.className}`,
                 )}
               >
-                Name: {trip.name}
+                <span className={clsx("text-indigo-800 dark:text-indigo-200")}>
+                  Name:
+                </span>
+                {` ${trip.name}`}
               </div>
               <div
                 className={clsx(
@@ -86,7 +89,10 @@ export const TripsContainer = () => {
                   `${semiBoldFont.className}`,
                 )}
               >
-                Description: {trip.description}
+                <span className={clsx("text-indigo-800 dark:text-indigo-200")}>
+                  Description:
+                </span>
+                {` ${trip.description}`}
               </div>
               <div
                 className={clsx(
@@ -94,7 +100,10 @@ export const TripsContainer = () => {
                   `${semiBoldFont.className}`,
                 )}
               >
-                Created At: {trip.createdAt.toLocaleString()}
+                <span className={clsx("text-indigo-800 dark:text-indigo-200")}>
+                  Created At:
+                </span>
+                {` ${trip.createdAt.toLocaleString()}`}
               </div>
             </motion.div>
           </div>
