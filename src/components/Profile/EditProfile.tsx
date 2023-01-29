@@ -6,61 +6,64 @@ import { Fragment, useState } from "react";
 import { regularFont } from "../../fonts";
 import { useSession } from "next-auth/react";
 import { api } from "../../utils/api";
+import { motion } from "framer-motion";
+import { useRouter } from "next/router";
 
 export const EditProfile = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { data: session } = useSession();
-
-  const [userName, setUserName] = useState(session?.user?.name as string);
-  const [userEmail, setUserEmail] = useState(session?.user?.email as string);
-
+  const { data: user } = api.userProfile.getProfileDetails.useQuery({
+    email: session?.user?.email as string,
+  });
+  const { reload } = useRouter();
+  const [userName, setUserName] = useState(user?.name as string);
   const updateUserNameMutation = api.userProfile.updateName.useMutation();
-  const updateUserEmailMutation = api.userProfile.updateEmail.useMutation();
 
   const handleSave = (): void => {
-    if (userName !== session?.user?.name && session?.user?.id !== undefined) {
+    if (userName !== user?.name && user?.id !== undefined) {
       updateUserNameMutation.mutate({
         newName: userName,
-        userId: session?.user?.id,
+        userId: user?.id,
       });
+
+      setIsOpen(false);
+      reload();
     }
-
-    if (userEmail !== session?.user?.email && session?.user?.id !== undefined) {
-      updateUserEmailMutation.mutate({
-        newEmail: userEmail,
-        userId: session?.user?.id,
-      });
-    }
-
-    setIsOpen(false);
-
-    setTimeout(() => {
-      window.location.reload();
-    }, 1000);
   };
 
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
       <Dialog.Trigger asChild>
-        <button
-          className={clsx(
-            `${regularFont.className}`,
-            "inline-flex select-none items-center justify-center rounded-md px-5 pt-2 pb-0.5",
-            "mx-auto",
-            "text-xl",
-            "border-2 border-solid border-black",
-            "bg-white hover:bg-gray-50 dark:bg-black dark:hover:bg-slate-900",
-            "hover:bg-gray-50",
-            "focus:outline-none focus-visible:ring focus-visible:ring-black focus-visible:ring-opacity-75",
-            // Register all radix states
-            "group",
-            "radix-state-open:bg-gray-50 dark:radix-state-open:bg-gray-900",
-            "radix-state-on:bg-gray-50 dark:radix-state-on:bg-gray-900",
-            "radix-state-instant-open:bg-gray-50 radix-state-delayed-open:bg-gray-50",
-          )}
+        <motion.div
+          initial={{ y: 100, scale: 0 }}
+          animate={{ y: 0, scale: 1 }}
+          whileHover={{ scale: 1.1 }}
+          transition={{
+            type: "spring",
+            stiffness: 260,
+            damping: 25,
+          }}
         >
-          Edit Profile
-        </button>
+          <button
+            className={clsx(
+              `${regularFont.className}`,
+              "inline-flex select-none items-center justify-center rounded-md px-5 pt-2.5 pb-1",
+              "mx-auto",
+              "text-xl",
+              "shadow-lg shadow-blue-200 hover:shadow-red-200 dark:shadow-indigo-900 dark:hover:shadow-indigo-700",
+              "rounded-md border-2 border-solid border-black dark:border-gray-200",
+              "bg-white dark:bg-black",
+              "focus:outline-none focus-visible:ring focus-visible:ring-black focus-visible:ring-opacity-75",
+              // Register all radix states
+              "group",
+              "radix-state-open:bg-gray-50 dark:radix-state-open:bg-gray-900",
+              "radix-state-on:bg-gray-50 dark:radix-state-on:bg-gray-900",
+              "radix-state-instant-open:bg-gray-50 radix-state-delayed-open:bg-gray-50",
+            )}
+          >
+            Edit Username
+          </button>
+        </motion.div>
       </Dialog.Trigger>
       <Dialog.Portal forceMount>
         <Transition.Root show={isOpen}>
@@ -116,23 +119,7 @@ export const EditProfile = () => {
                     className={clsx(
                       "mt-1 block w-full rounded-md px-1 pt-2 pb-1",
                       "text-xl",
-                      "border border-gray-400 focus-visible:border-transparent dark:border-gray-700 dark:bg-gray-800",
-                    )}
-                  />
-                </fieldset>
-                <fieldset>
-                  <label htmlFor="email" className="text-lg">
-                    Email
-                  </label>
-                  <input
-                    id="email"
-                    type="email"
-                    value={userEmail}
-                    onChange={(e) => setUserEmail(e.target.value)}
-                    autoComplete="email"
-                    className={clsx(
-                      "mt-1 block w-full rounded-md px-1 pt-2 pb-1",
-                      "text-xl",
+                      "bg-white dark:bg-gray-900",
                       "border border-gray-400 focus-visible:border-transparent dark:border-gray-700 dark:bg-gray-800",
                     )}
                   />
@@ -150,7 +137,17 @@ export const EditProfile = () => {
                     "dark:bg-green-700 dark:text-white dark:focus:ring-gray-500 dark:hover:bg-green-600",
                   )}
                 >
-                  Save
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 30,
+                    }}
+                  >
+                    Save
+                  </motion.div>
                 </Dialog.Close>
               </div>
 

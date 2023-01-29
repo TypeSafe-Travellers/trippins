@@ -8,14 +8,14 @@ import { useEffect } from "react";
 import { boldFont } from "../fonts";
 
 const Profile: NextPage = () => {
-  const router = useRouter();
+  const { push } = useRouter();
   const { status } = useSession();
 
   useEffect(() => {
     if (status === "unauthenticated") {
-      router.push("/");
+      push("/");
     }
-  }, [router, status]);
+  }, [push, status]);
 
   if (status === "loading")
     return (
@@ -33,7 +33,7 @@ const Profile: NextPage = () => {
   return (
     <>
       <Head>
-        <title>TypeSafe Travellers | Profile</title>
+        <title>Trippins | Profile</title>
         <meta name="description" content="Group Trip Planning App" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -43,7 +43,7 @@ const Profile: NextPage = () => {
         className={clsx(
           "flex h-[calc(100vh-70px)] w-screen items-center justify-center",
           "flex-col gap-2",
-          "text-gray-900 dark:text-zinc-200",
+          "text-gray-900 dark:text-zinc-100",
         )}
       >
         <ProfileContainer />

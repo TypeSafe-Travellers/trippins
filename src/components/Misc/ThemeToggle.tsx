@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import * as Toggle from "@radix-ui/react-toggle";
 import * as Tooltip from "@radix-ui/react-tooltip";
 import clsx from "clsx";
-import { regularFont } from "../fonts";
-import { SunIcon, MoonIcon } from "../icons";
+import { regularFont } from "../../fonts";
+import { SunIcon, MoonIcon } from "../../icons";
 
 export const ThemeToggle = () => {
   const { theme, setTheme } = useTheme();

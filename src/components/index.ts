@@ -1,7 +1,11 @@
-export { Footer } from "./Footer";
-export { HomePageButton } from "./HomePageButton";
-export { LogoutAndAlertButton } from "./LogoutAndAlertButton";
-export { ProfileContainer } from "./Profile/ProfileContainer";
-export { LoginButton } from "./LoginButton";
-export { ThemeToggle } from "./ThemeToggle";
-export { Navbar } from "./Navbar";
+export { TripDetailsContainer } from "./Trip/TripDetailsContainer";
+export { HomeContainer } from "./Home/HomeContainer";
+export { ProfileContainer } from "./Profile";
+export {
+  Navbar,
+  Footer,
+  HomePageButton,
+  LogoutAndAlertButton,
+  LoginButton,
+  ThemeToggle,
+} from "./Misc";

@@ -1,12 +1,32 @@
 import { Transition } from "@headlessui/react";
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
 import clsx from "clsx";
-import { useState, Fragment } from "react";
-import { regularFont } from "../fonts";
-import { signOut } from "next-auth/react";
+import { type FC, useState, Fragment } from "react";
+import { regularFont } from "../../fonts";
+import { motion } from "framer-motion";
+import { api } from "../../utils/api";
+import { useRouter } from "next/router";
 
-export const LogoutAndAlertButton = () => {
+interface Props {
+  tripId: string;
+}
+
+export const DeleteTripButton: FC<Props> = (props) => {
+  const { tripId } = props;
+  const { push, reload } = useRouter();
   const [isOpen, setIsOpen] = useState(false);
+  const deleteTripMutation = api.userTrips.deleteTrip.useMutation();
+
+  const handleDeleteTrip = (): void => {
+    deleteTripMutation.mutate({ tripId });
+    setIsOpen(false);
+
+    push("/");
+
+    setTimeout(() => {
+      reload();
+    }, 500);
+  };
 
   return (
     <AlertDialog.Root open={isOpen} onOpenChange={setIsOpen}>
@@ -15,16 +35,27 @@ export const LogoutAndAlertButton = () => {
           type="button"
           aria-label="Log Out"
           className={clsx(
-            "mr-2 mb-2 px-5 pt-2.5 pb-1",
-            "inline-flex items-center rounded-md text-xl",
-            "bg-red-100 text-center text-black",
-            "border-2 border-solid border-black",
-            "focus:outline-none focus:ring-2 focus:ring-black hover:bg-red-100/75",
-            "dark:bg-red-600/90 dark:text-white dark:focus:ring-gray-500 dark:hover:bg-red-600",
+            "inline-flex select-none items-center justify-center rounded-md",
+            "px-3 pt-2 pb-0.5 lg:px-5 lg:pt-4 lg:pb-2",
+            "text-xl lg:text-2xl",
+            "shadow-lg shadow-blue-200 hover:shadow-red-200 dark:shadow-indigo-900 dark:hover:shadow-indigo-700",
+            "rounded-md border-2 border-solid border-black dark:border-gray-200",
+            "bg-white dark:bg-black",
+            "focus:outline-none focus-visible:ring focus-visible:ring-black focus-visible:ring-opacity-75",
             `${regularFont.className}`,
           )}
         >
-          Log Out
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{
+              type: "spring",
+              stiffness: 260,
+              damping: 25,
+            }}
+          >
+            Delete Trip
+          </motion.div>
         </button>
       </AlertDialog.Trigger>
       <AlertDialog.Portal forceMount>
@@ -73,12 +104,13 @@ export const LogoutAndAlertButton = () => {
               </AlertDialog.Title>
               <AlertDialog.Description
                 className={clsx(
+                  "leading-none",
                   "mt-2 px-2 text-xl text-gray-700 dark:text-gray-400",
                   `${regularFont.className}`,
                 )}
               >
-                You will have to log in again if you want to access your
-                account.
+                This action is irreversible. All data associated with this trip
+                will be deleted.
               </AlertDialog.Description>
               <div className="mt-4 flex justify-end space-x-2">
                 <AlertDialog.Cancel
@@ -90,13 +122,20 @@ export const LogoutAndAlertButton = () => {
                     "focus:outline-none focus-visible:ring focus-visible:ring-red-500 focus-visible:ring-opacity-75",
                   )}
                 >
-                  Cancel
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 30,
+                    }}
+                  >
+                    Cancel
+                  </motion.div>
                 </AlertDialog.Cancel>
                 <AlertDialog.Action
-                  onClick={() => {
-                    signOut({ callbackUrl: "/" });
-                    setIsOpen(false);
-                  }}
+                  onClick={handleDeleteTrip}
                   className={clsx(
                     `${regularFont.className}`,
                     "inline-flex select-none justify-center rounded-md px-4 pb-1 pt-2.5 text-lg",
@@ -105,7 +144,17 @@ export const LogoutAndAlertButton = () => {
                     "focus:outline-none focus-visible:ring focus-visible:ring-red-500 focus-visible:ring-opacity-75",
                   )}
                 >
-                  Confirm
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 30,
+                    }}
+                  >
+                    Confirm
+                  </motion.div>
                 </AlertDialog.Action>
               </div>
             </AlertDialog.Content>

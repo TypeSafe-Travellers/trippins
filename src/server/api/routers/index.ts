@@ -1,2 +1,2 @@
-export { exampleRouter } from "./example";
+export { userTripsRouter } from "./userTrips";
 export { userProfileRouter } from "./userProfile";

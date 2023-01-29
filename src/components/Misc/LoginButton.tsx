@@ -1,6 +1,7 @@
 import { signIn } from "next-auth/react";
-import { regularFont } from "../fonts";
+import { regularFont } from "../../fonts";
 import clsx from "clsx";
+import { motion } from "framer-motion";
 
 export const LoginButton = () => {
   return (
@@ -18,7 +19,18 @@ export const LoginButton = () => {
       )}
       onClick={() => signIn(undefined, { callbackUrl: "/" })}
     >
-      Sign In
+      <motion.div
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        whileHover={{ scale: 1.1 }}
+        transition={{
+          type: "spring",
+          stiffness: 260,
+          damping: 25,
+        }}
+      >
+        Sign In
+      </motion.div>
     </button>
   );
 };
