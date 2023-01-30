@@ -4,6 +4,8 @@ import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "next-themes";
 import { api } from "../utils/api";
 import "../styles/globals.css";
+import clsx from "clsx";
+import { regularFont } from "../fonts";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -12,7 +14,9 @@ const MyApp: AppType<{ session: Session | null }> = ({
   return (
     <ThemeProvider defaultTheme="dark" attribute="class">
       <SessionProvider session={session}>
-        <Component {...pageProps} />
+        <main className={clsx(`${regularFont.className}`)}>
+          <Component {...pageProps} />
+        </main>
       </SessionProvider>
     </ThemeProvider>
   );
