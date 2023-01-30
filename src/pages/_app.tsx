@@ -14,7 +14,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
   return (
     <ThemeProvider defaultTheme="dark" attribute="class">
       <SessionProvider session={session}>
-        <main className={clsx(`${regularFont.variable} font-regular`)}>
+        <main className={clsx(`${regularFont.variable} font-sans`)}>
           <Component {...pageProps} />
         </main>
       </SessionProvider>
