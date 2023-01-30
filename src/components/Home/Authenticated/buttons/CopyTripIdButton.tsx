@@ -23,7 +23,7 @@ export const CopyTripIdButton: FC<Props> = (props) => {
   const handleCopyToClipboard = async (): Promise<void> => {
     try {
       await navigator.clipboard.writeText(
-        `${user?.name} has invited you to join their trip: ${tripName}! The trip code is ${tripId}. Signup / Login at Trippins (https://trippins.ayanavakarmakar.repl.co) to join.`,
+        `${user?.name} has invited you to join their trip: ${tripName}! The trip code is ${tripId}. Signup / Login at Trippins (https://trippins.netlify.app/) to join.`,
       );
 
       if (open) {
