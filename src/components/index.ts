@@ -8,4 +8,5 @@ export {
   LogoutAndAlertButton,
   LoginButton,
   ThemeToggle,
+  Loading,
 } from "./Misc";
