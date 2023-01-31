@@ -102,7 +102,7 @@ const About: NextPage = () => {
               Tailwind CSS, and Radix UI. NextAuth.js is being used for
               passwordless authentication. The backend is built using Prisma,
               tRPC, and PlanetScale &#40;Serverless MySQL&#41;. The app is
-              deployed on Repl.it.
+              deployed on Repl.it & Netlify.
             </div>
 
             <div

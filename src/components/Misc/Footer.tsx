@@ -34,10 +34,10 @@ export const Footer = () => {
             target={"_blank"}
           >
             TypeSafe Travellers
-          </Link>{" "}
+          </Link>
         </div>
         <div>
-          Open-Source —{" "}
+          {"Open-Source — "}
           <Link
             className={clsx(
               "text-indigo-700 hover:text-purple-700",
@@ -54,7 +54,7 @@ export const Footer = () => {
               "text-orange-700 hover:text-orange-800",
               "dark:text-orange-400 dark:hover:text-orange-500",
             )}
-            href={"https://replit.com/@AyanavaKarmakar/apptypesafetravellers"}
+            href={"https://replit.com/@AyanavaKarmakar/trippins?v=1"}
             target={"_blank"}
           >
             Repl.it

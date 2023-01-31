@@ -59,6 +59,7 @@ npm run format
 - [MySQL](https://www.mysql.com/)
 - [PlanetScale](https://planetscale.com/)
 - [Repl.it](https://replit.com/)
+- [Netlify](https://www.netlify.com/)
 
 ## Team
 
