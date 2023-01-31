@@ -24,3 +24,8 @@ jobs:
         run: |
           echo "Adding 'Invalid' label to pull request"
           curl -X POST -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" -H "Content-Type: application/json" -d '{"labels": ["Invalid"]}' "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.number }}/labels"
+      - name: Add "feat/fix/docs" Label
+        if: steps.pr-info.outputs.base_ref == 'dev' && steps.pr-info.outputs.head_ref != 'main'
+        run: |
+          echo "Adding 'feat/fix/docs' label to pull request"
+          curl -X POST -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" -H "Content-Type: application/json" -d '{"labels": ["feat/fix/docs"]}' "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.number }}/labels"
