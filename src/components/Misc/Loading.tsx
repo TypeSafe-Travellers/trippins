@@ -28,3 +28,14 @@ export const Loading = () => {
     </>
   );
 };
+
+export const LoadingAnimation = () => {
+  return (
+    <TypeAnimation
+      sequence={[" ", 50, ".", 125, "..", 250, "...", 500]}
+      wrapper="span"
+      cursor={false}
+      repeat={Infinity}
+    />
+  );
+};

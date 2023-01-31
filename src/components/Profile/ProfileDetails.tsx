@@ -3,6 +3,7 @@ import { semiBoldFont } from "../../fonts";
 import { useSession } from "next-auth/react";
 import { motion } from "framer-motion";
 import { api } from "../../utils/api";
+import { LoadingAnimation } from "../Misc";
 
 export const ProfileDetails = () => {
   const { data: session } = useSession();
@@ -32,15 +33,29 @@ export const ProfileDetails = () => {
       >
         <div className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}>
           <span className={clsx("text-indigo-800 dark:text-indigo-200")}>
-            Username:
+            {"Username: "}
           </span>
-          {` ${user?.name ? user.name : "loading..."}`}
+          {user?.name ? (
+            user.name
+          ) : (
+            <>
+              loading
+              <LoadingAnimation />
+            </>
+          )}
         </div>
         <div className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}>
           <span className={clsx("text-indigo-800 dark:text-indigo-200")}>
-            Email:
+            {"Email: "}
           </span>
-          {` ${user?.email ? user.email : "loading..."}`}
+          {user?.email ? (
+            user.email
+          ) : (
+            <>
+              loading
+              <LoadingAnimation />
+            </>
+          )}
         </div>
       </motion.div>
     </div>

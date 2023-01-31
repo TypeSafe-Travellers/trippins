@@ -9,4 +9,5 @@ export {
   LoginButton,
   ThemeToggle,
   Loading,
+  LoadingAnimation,
 } from "./Misc";
