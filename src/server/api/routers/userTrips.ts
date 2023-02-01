@@ -239,4 +239,30 @@ export const userTripsRouter = createTRPCRouter({
         console.error(error);
       }
     }),
+
+  /**
+   * mutation to remove a participant from a trip
+   * @param userId - id of the user to be removed
+   * @param tripId - id of the trip (trip code in client)
+   */
+  removeParticipant: protectedProcedure
+    .input(z.object({ tripId: z.string().min(25).max(25), userId: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      try {
+        await ctx.prisma.trip.update({
+          where: {
+            id: input.tripId,
+          },
+          data: {
+            participants: {
+              disconnect: {
+                id: input.userId,
+              },
+            },
+          },
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }),
 });
