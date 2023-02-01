@@ -81,23 +81,33 @@ export const RemoveParticipants = () => {
               <Dialog.Title className="text-2xl leading-none">
                 Remove Participant
               </Dialog.Title>
-              <Dialog.Description className="mt-2 text-xl leading-none">
+              <Dialog.Description className="my-3 text-xl leading-none">
                 This action cannot be undone. However, you can always add them
                 back!
               </Dialog.Description>
               <form className="mt-2 space-y-2">
                 <fieldset>
                   <label
-                    htmlFor="countries"
-                    className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+                    htmlFor="participants"
+                    className={clsx(
+                      `${regularFont.className}`,
+                      "my-2",
+                      "block text-lg lg:text-xl",
+                      "text-gray-900 dark:text-white",
+                    )}
                   >
-                    Select an option
+                    Select a participant to remove
                   </label>
                   <select
-                    id="countries"
-                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                    id="participants"
+                    className={clsx(
+                      "text-xl",
+                      "mt-1 block w-full rounded-md px-1 pt-2 pb-1",
+                      "bg-white dark:bg-gray-900",
+                      "border border-gray-400 focus-visible:border-transparent dark:border-gray-700 dark:bg-gray-800",
+                    )}
                   >
-                    <option selected>Choose a country</option>
+                    <option selected>Choose a participant</option>
                     <option value="US">United States</option>
                     <option value="CA">Canada</option>
                     <option value="FR">France</option>
@@ -105,7 +115,7 @@ export const RemoveParticipants = () => {
                   </select>
                 </fieldset>
 
-                <div className="flex justify-end">
+                <div className="flex justify-end pt-3">
                   <button
                     // disabled={!isValidated}
                     // onClick={handleAddParticipant}
