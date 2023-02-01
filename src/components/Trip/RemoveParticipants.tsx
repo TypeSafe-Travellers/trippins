@@ -39,7 +39,7 @@ export const RemoveParticipants = () => {
               "radix-state-instant-open:bg-gray-50 radix-state-delayed-open:bg-gray-50",
             )}
           >
-            Join Trip
+            Remove Participants
           </button>
         </motion.div>
       </Dialog.Trigger>
@@ -78,9 +78,12 @@ export const RemoveParticipants = () => {
                 "bg-gray-100 dark:bg-gray-800",
               )}
             >
-              <Dialog.Title className="text-2xl">Join Trip</Dialog.Title>
-              <Dialog.Description className="mt-2 text-xl">
-                Enter the trip code to join a trip.
+              <Dialog.Title className="text-2xl leading-none">
+                Remove Participant
+              </Dialog.Title>
+              <Dialog.Description className="mt-2 text-xl leading-none">
+                This action cannot be undone. However, you can always add them
+                back!
               </Dialog.Description>
               <form className="mt-2 space-y-2">
                 <fieldset>
