@@ -2,7 +2,7 @@ import { Transition } from "@headlessui/react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { CrossIcon } from "../../icons";
 import { clsx } from "clsx";
-import { type FC, Fragment, useState } from "react";
+import { type FC, Fragment, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { regularFont } from "../../fonts";
 import { api } from "../../utils/api";
@@ -13,10 +13,20 @@ interface Props {
 
 export const RemoveParticipants: FC<Props> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedParticipantId, setselectedParticipantId] = useState("");
+  const [isValidated, setIsValidated] = useState(false);
   const { tripId } = props;
   const { data: trip } = api.userTrips.getSpecificTrip.useQuery({
     tripId,
   });
+
+  useEffect(() => {
+    if (selectedParticipantId !== "") {
+      setIsValidated(true);
+    } else {
+      setIsValidated(false);
+    }
+  }, [selectedParticipantId]);
 
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
@@ -115,8 +125,10 @@ export const RemoveParticipants: FC<Props> = (props) => {
                       "bg-white dark:bg-gray-900",
                       "border border-gray-400 focus-visible:border-transparent dark:border-gray-700 dark:bg-gray-800",
                     )}
+                    value={selectedParticipantId}
+                    onChange={(e) => setselectedParticipantId(e.target.value)}
                   >
-                    <option selected>Choose a participant</option>
+                    <option value={""}>Choose a participant</option>
                     {trip?.participants.map((participant) => (
                       <option
                         key={participant.id}
@@ -133,16 +145,14 @@ export const RemoveParticipants: FC<Props> = (props) => {
 
                 <div className="flex justify-end pt-3">
                   <button
-                    // disabled={!isValidated}
+                    disabled={!isValidated}
                     // onClick={handleAddParticipant}
-                    /**
-                     `${
-                       isValidated
-                         ? "cursor-pointer bg-green-100 hover:bg-green-200 dark:bg-green-700 dark:hover:bg-green-600"
-                         : "cursor-not-allowed border-transparent bg-gray-300 dark:bg-gray-700"
-                     }`,
-                     */
                     className={clsx(
+                      `${
+                        isValidated
+                          ? "cursor-pointer bg-red-100 hover:bg-red-200 dark:bg-red-700 dark:hover:bg-red-600"
+                          : "cursor-not-allowed border-transparent bg-gray-300 dark:bg-gray-700"
+                      }`,
                       "inline-flex select-none justify-center rounded-md px-4 pt-2.5 pb-1 text-xl",
                       "text-center text-black",
                       "border-2 border-solid border-black",
