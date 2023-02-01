@@ -2,7 +2,7 @@ import { Transition } from "@headlessui/react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { CrossIcon } from "../../../../icons";
 import { clsx } from "clsx";
-import { Fragment, useEffect, useState } from "react";
+import { type MouseEvent, Fragment, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { regularFont } from "../../../../fonts";
 import { api } from "../../../../utils/api";
@@ -25,12 +25,16 @@ export const JoinTripButton = () => {
   });
   const addTripParticipantMutation = api.userTrips.addParticipant.useMutation();
 
-  const handleAddParticipant = (): void => {
+  const handleAddParticipant = (e: MouseEvent<HTMLButtonElement>): void => {
+    e.preventDefault();
+
     addTripParticipantMutation.mutate({
       tripId,
       userId: user?.id as string,
     });
+
     setIsOpen(false);
+
     setTimeout(() => {
       reload();
     }, 1000);
@@ -169,7 +173,7 @@ export const JoinTripButton = () => {
                 <div className="flex justify-end">
                   <button
                     disabled={!isValidated}
-                    onClick={handleAddParticipant}
+                    onClick={(e) => handleAddParticipant(e)}
                     className={clsx(
                       `${
                         isValidated
