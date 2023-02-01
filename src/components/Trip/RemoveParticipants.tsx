@@ -118,8 +118,14 @@ export const RemoveParticipants: FC<Props> = (props) => {
                   >
                     <option selected>Choose a participant</option>
                     {trip?.participants.map((participant) => (
-                      <option key={participant.id} value={participant.id}>
-                        {participant.name}
+                      <option
+                        key={participant.id}
+                        value={participant.id}
+                        disabled={participant.id === trip.adminId}
+                      >
+                        {`${participant.name} ${
+                          participant.id === trip.adminId ? " (Admin)" : ""
+                        }`}
                       </option>
                     ))}
                   </select>
