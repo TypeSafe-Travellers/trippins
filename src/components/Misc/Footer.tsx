@@ -8,9 +8,10 @@ export const Footer = () => {
     <footer
       className={clsx(
         `${regularFont.className}`,
-        "text-xl lg:text-xl",
-        "pt-6 lg:pt-10",
+        "text-lg lg:text-xl",
         "flex flex-col gap-0",
+        "text-center leading-none",
+        "pt-6 pb-3 lg:pb-5 lg:pt-10",
       )}
     >
       <motion.div
@@ -22,20 +23,20 @@ export const Footer = () => {
           damping: 30,
         }}
       >
-        <div className={clsx("text-2xl")}>
+        <span className={clsx("text-xl lg:text-2xl")}>
           &copy;{` ${new Date().getFullYear()} `}
-          <Link
-            className={clsx(
-              "text-2xl lg:text-2xl",
-              "text-blue-700 hover:text-blue-700",
-              "dark:text-sky-200 dark:hover:text-sky-300",
-            )}
-            href={"https://github.com/TypeSafe-Travellers"}
-            target={"_blank"}
-          >
-            TypeSafe Travellers
-          </Link>
-        </div>
+        </span>
+        <Link
+          className={clsx(
+            "text-xl lg:text-2xl",
+            "text-blue-700 hover:text-blue-700",
+            "dark:text-sky-200 dark:hover:text-sky-300",
+          )}
+          href={"https://github.com/TypeSafe-Travellers"}
+          target={"_blank"}
+        >
+          TypeSafe Travellers
+        </Link>
         <div>
           {"Open-Source — "}
           <Link
