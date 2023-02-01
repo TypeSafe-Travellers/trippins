@@ -8,6 +8,7 @@ import { EditTripButton } from "./EditTripButton";
 import { CopyTripIdButton } from "../Home/Authenticated";
 import { useSession } from "next-auth/react";
 import { RemoveParticipants } from "./RemoveParticipants";
+import { LoadingAnimation } from "../Misc";
 
 interface Props {
   tripId: string;
@@ -68,76 +69,109 @@ export const TripDetailsContainer: FC<Props> = (props) => {
             className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}
           >
             <span className={clsx("text-indigo-800 dark:text-indigo-200")}>
-              Name:
+              {"Name: "}
             </span>
-            {` ${isLoading === false ? trip?.name : "loading..."}`}
+            {isLoading === false ? (
+              trip?.name
+            ) : (
+              <>
+                loading
+                <LoadingAnimation />
+              </>
+            )}
           </div>
           <div
             className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}
           >
             <span className={clsx("text-indigo-800 dark:text-indigo-200")}>
-              Description:
+              {"Description: "}
             </span>
-            {` ${isLoading === false ? trip?.description : "loading..."}`}
+            {isLoading === false ? (
+              trip?.description
+            ) : (
+              <>
+                loading
+                <LoadingAnimation />
+              </>
+            )}
           </div>
           <div
             className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}
           >
             <span className={clsx("text-indigo-800 dark:text-indigo-200")}>
-              Created at:
+              {"Created at: "}
             </span>
-            {` ${
-              isLoading === false
-                ? trip?.createdAt.toLocaleString()
-                : "loading..."
-            }`}
+            {isLoading === false ? (
+              trip?.createdAt.toLocaleString()
+            ) : (
+              <>
+                loading
+                <LoadingAnimation />
+              </>
+            )}
           </div>
           <div
             className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}
           >
             <span className={clsx("text-indigo-800 dark:text-indigo-200")}>
-              Budget:
+              {"Budget: "}
             </span>
-            {` ${isLoading === false ? trip?.budget : "loading..."} `}{" "}
+            {isLoading === false ? (
+              trip?.budget
+            ) : (
+              <>
+                loading
+                <LoadingAnimation />
+              </>
+            )}
             <span className={clsx("text-indigo-800 dark:text-indigo-100")}>
-              INR per head
+              {" INR per head"}
             </span>
           </div>
           <div
             className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}
           >
             <span className={clsx("text-indigo-800 dark:text-indigo-200")}>
-              Starts at:
+              {"Starts at: "}
             </span>
-            {` ${
-              isLoading === false
-                ? trip?.startDate.toLocaleString()
-                : "loading..."
-            }`}
+            {isLoading === false ? (
+              trip?.startDate.toLocaleString()
+            ) : (
+              <>
+                loading
+                <LoadingAnimation />
+              </>
+            )}
           </div>
           <div
             className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}
           >
             <span className={clsx("text-indigo-800 dark:text-indigo-200")}>
-              Ends at:
+              {"Ends at: "}
             </span>
-            {` ${
-              isLoading === false
-                ? trip?.endDate.toLocaleString()
-                : "loading..."
-            }`}
+            {isLoading === false ? (
+              trip?.endDate.toLocaleString()
+            ) : (
+              <>
+                loading
+                <LoadingAnimation />
+              </>
+            )}
           </div>
           <div
             className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}
           >
             <span className={clsx("text-indigo-800 dark:text-indigo-200")}>
-              Participants:
+              {"Participants: "}
             </span>
-            {` ${
-              isLoading === false
-                ? trip?.participants.map((p) => p.name).join(", ")
-                : "loading..."
-            }`}
+            {isLoading === false ? (
+              trip?.participants.map((p) => p.name).join(", ")
+            ) : (
+              <>
+                loading
+                <LoadingAnimation />
+              </>
+            )}
           </div>
         </motion.div>
       </div>

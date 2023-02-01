@@ -2,7 +2,7 @@ import clsx from "clsx";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { Footer, Navbar } from "../components";
+import { Footer, Loading, Navbar } from "../components";
 import { boldFont, regularFont } from "../fonts";
 import { useSession } from "next-auth/react";
 import { motion } from "framer-motion";
@@ -10,18 +10,7 @@ import { motion } from "framer-motion";
 const About: NextPage = () => {
   const { status } = useSession();
 
-  if (status === "loading")
-    return (
-      <div
-        className={clsx(
-          "flex min-h-screen items-center justify-center text-center",
-          "text-4xl lg:text-7xl",
-          `${boldFont.className}`,
-        )}
-      >
-        Loading...
-      </div>
-    );
+  if (status === "loading") return <Loading />;
 
   return (
     <>

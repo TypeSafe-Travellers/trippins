@@ -1,11 +1,15 @@
 import { type NextPage } from "next";
 import { useRouter } from "next/router";
-import { Footer, Navbar, TripDetailsContainer } from "../../components";
+import {
+  Footer,
+  Loading,
+  Navbar,
+  TripDetailsContainer,
+} from "../../components";
 import { clsx } from "clsx";
 import Head from "next/head";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
-import { boldFont } from "../../fonts";
 import { api } from "../../utils/api";
 
 const UserTrip: NextPage = () => {
@@ -39,18 +43,7 @@ const UserTrip: NextPage = () => {
     }
   }, [id, participants, push, user?.id, status]);
 
-  if (status === "loading")
-    return (
-      <div
-        className={clsx(
-          "flex min-h-screen items-center justify-center text-center",
-          "text-4xl lg:text-7xl",
-          `${boldFont.className}`,
-        )}
-      >
-        Loading...
-      </div>
-    );
+  if (status === "loading") return <Loading />;
 
   return (
     <>
