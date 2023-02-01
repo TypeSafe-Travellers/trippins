@@ -13,7 +13,7 @@ interface Props {
 }
 
 export const RemoveParticipants: FC<Props> = (props) => {
-  const { reload } = useRouter();
+  const { push } = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedParticipantId, setselectedParticipantId] = useState("");
   const [isValidated, setIsValidated] = useState(false);
@@ -30,9 +30,7 @@ export const RemoveParticipants: FC<Props> = (props) => {
       userId: selectedParticipantId,
     });
     setIsOpen(false);
-    setTimeout(() => {
-      reload();
-    }, 1000);
+    push("/");
   };
 
   useEffect(() => {
