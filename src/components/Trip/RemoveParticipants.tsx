@@ -6,12 +6,14 @@ import { type FC, Fragment, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { regularFont } from "../../fonts";
 import { api } from "../../utils/api";
+import { useRouter } from "next/router";
 
 interface Props {
   tripId: string;
 }
 
 export const RemoveParticipants: FC<Props> = (props) => {
+  const { reload } = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedParticipantId, setselectedParticipantId] = useState("");
   const [isValidated, setIsValidated] = useState(false);
@@ -19,6 +21,19 @@ export const RemoveParticipants: FC<Props> = (props) => {
   const { data: trip } = api.userTrips.getSpecificTrip.useQuery({
     tripId,
   });
+  const removeTripParticipantMutation =
+    api.userTrips.removeParticipant.useMutation();
+
+  const handleRemoveParticipant = (): void => {
+    removeTripParticipantMutation.mutate({
+      tripId,
+      userId: selectedParticipantId,
+    });
+    setIsOpen(false);
+    setTimeout(() => {
+      reload();
+    }, 1000);
+  };
 
   useEffect(() => {
     if (selectedParticipantId !== "") {
@@ -146,7 +161,7 @@ export const RemoveParticipants: FC<Props> = (props) => {
                 <div className="flex justify-end pt-3">
                   <button
                     disabled={!isValidated}
-                    // onClick={handleAddParticipant}
+                    onClick={handleRemoveParticipant}
                     className={clsx(
                       `${
                         isValidated
