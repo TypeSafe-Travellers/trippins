@@ -3,6 +3,7 @@ import { semiBoldFont } from "../../../fonts";
 import { useSession } from "next-auth/react";
 import { NewTripButton, JoinTripButton } from "./buttons";
 import { api } from "../../../utils/api";
+import { LoadingAnimation } from "../../Misc";
 
 export const TripNav = () => {
   const { data: session } = useSession();
@@ -25,14 +26,21 @@ export const TripNav = () => {
           `${semiBoldFont.className}`,
         )}
       >
-        Welcome,
+        {"Welcome, "}
         <span
           className={clsx(
             "bg-clip-text text-transparent",
             "bg-gradient-to-r from-indigo-700 to-fuchsia-700 dark:from-indigo-300 dark:to-fuchsia-300",
           )}
         >
-          {` ${user?.name ? user.name : "loading..."}!`}
+          {user?.name ? (
+            `${user.name}!`
+          ) : (
+            <>
+              loading
+              <LoadingAnimation />
+            </>
+          )}
         </span>
       </div>
 

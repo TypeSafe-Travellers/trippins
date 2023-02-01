@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { api } from "../../../utils/api";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
+import { LoadingAnimation } from "../../Misc";
 
 export const TripsContainer = () => {
   const { data: session } = useSession();
@@ -25,7 +26,8 @@ export const TripsContainer = () => {
           `${semiBoldFont.className}`,
         )}
       >
-        Loading your trips...
+        Loading your trips
+        <LoadingAnimation />
       </div>
     );
   }
