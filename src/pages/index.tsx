@@ -6,9 +6,28 @@ import Link from "next/link";
 import clsx from "clsx";
 import { boldFont } from "../fonts";
 import { api } from "../utils/api";
+import { useState, useEffect } from "react";
 
 const Home: NextPage = () => {
   const { data: session, status } = useSession();
+
+  // hotfix for repl.it
+  const [url, setUrl] = useState(
+    typeof window !== "undefined" ? window.location.href : "",
+  );
+
+  useEffect(() => {
+    if (
+      typeof window !== "undefined" &&
+      (url.startsWith("https://trippins.ayanavakarmakar.repl.co/") ||
+        url.startsWith("https://trippins--ayanavakarmakar.repl.co/"))
+    ) {
+      const newUrl = url
+        .replace("trippins.ayanavakarmakar.repl.co/", "trippins.netlify.app")
+        .replace("trippins--ayanavakarmakar.repl.co/", "trippins.netlify.app");
+      window.location.replace(newUrl);
+    }
+  }, [url]);
 
   const hello = api.example.hello.useQuery({
     text: `${
