@@ -2,6 +2,7 @@ import { Transition } from "@headlessui/react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { CrossIcon } from "../../icons";
 import { clsx } from "clsx";
+import type { MouseEvent } from "react";
 import { type FC, Fragment, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { regularFont } from "../../fonts";
@@ -13,7 +14,7 @@ interface Props {
 }
 
 export const RemoveParticipants: FC<Props> = (props) => {
-  const { push } = useRouter();
+  const { reload } = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedParticipantId, setselectedParticipantId] = useState("");
   const [isValidated, setIsValidated] = useState(false);
@@ -24,13 +25,19 @@ export const RemoveParticipants: FC<Props> = (props) => {
   const removeTripParticipantMutation =
     api.userTrips.removeParticipant.useMutation();
 
-  const handleRemoveParticipant = (): void => {
+  const handleRemoveParticipant = (e: MouseEvent<HTMLButtonElement>): void => {
+    e.preventDefault();
+
     removeTripParticipantMutation.mutate({
       tripId,
       userId: selectedParticipantId,
     });
+
     setIsOpen(false);
-    push("/");
+
+    setTimeout(() => {
+      reload();
+    }, 500);
   };
 
   useEffect(() => {
@@ -158,8 +165,9 @@ export const RemoveParticipants: FC<Props> = (props) => {
 
                 <div className="flex justify-end pt-3">
                   <button
+                    type="button"
                     disabled={!isValidated}
-                    onClick={handleRemoveParticipant}
+                    onClick={(e) => handleRemoveParticipant(e)}
                     className={clsx(
                       `${
                         isValidated
