@@ -2,7 +2,7 @@ import { Transition } from "@headlessui/react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { CrossIcon } from "../../icons";
 import { clsx } from "clsx";
-import { type FC, Fragment, useState, useEffect } from "react";
+import { type FC, type MouseEvent, Fragment, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { regularFont } from "../../fonts";
 import { api } from "../../utils/api";
