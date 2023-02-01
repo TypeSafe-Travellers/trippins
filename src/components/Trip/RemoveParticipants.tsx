@@ -2,12 +2,21 @@ import { Transition } from "@headlessui/react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { CrossIcon } from "../../icons";
 import { clsx } from "clsx";
-import { Fragment, useState } from "react";
+import { type FC, Fragment, useState } from "react";
 import { motion } from "framer-motion";
 import { regularFont } from "../../fonts";
+import { api } from "../../utils/api";
 
-export const RemoveParticipants = () => {
+interface Props {
+  tripId: string;
+}
+
+export const RemoveParticipants: FC<Props> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
+  const { tripId } = props;
+  const { data: trip } = api.userTrips.getSpecificTrip.useQuery({
+    tripId,
+  });
 
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
@@ -108,10 +117,11 @@ export const RemoveParticipants = () => {
                     )}
                   >
                     <option selected>Choose a participant</option>
-                    <option value="US">United States</option>
-                    <option value="CA">Canada</option>
-                    <option value="FR">France</option>
-                    <option value="DE">Germany</option>
+                    {trip?.participants.map((participant) => (
+                      <option key={participant.id} value={participant.id}>
+                        {participant.name}
+                      </option>
+                    ))}
                   </select>
                 </fieldset>
 

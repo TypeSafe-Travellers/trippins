@@ -157,7 +157,7 @@ export const TripDetailsContainer: FC<Props> = (props) => {
               <>
                 <EditTripButton trip={trip} />
                 <DeleteTripButton tripId={trip?.id} />
-                <RemoveParticipants />
+                <RemoveParticipants tripId={trip?.id} />
               </>
             )
           }
