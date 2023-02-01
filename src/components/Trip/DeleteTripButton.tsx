@@ -1,7 +1,7 @@
 import { Transition } from "@headlessui/react";
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
 import clsx from "clsx";
-import { type FC, useState, Fragment } from "react";
+import { type FC, type MouseEvent, useState, Fragment } from "react";
 import { regularFont } from "../../fonts";
 import { motion } from "framer-motion";
 import { api } from "../../utils/api";
@@ -17,7 +17,9 @@ export const DeleteTripButton: FC<Props> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const deleteTripMutation = api.userTrips.deleteTrip.useMutation();
 
-  const handleDeleteTrip = (): void => {
+  const handleDeleteTrip = (e: MouseEvent<HTMLButtonElement>): void => {
+    e.preventDefault();
+
     deleteTripMutation.mutate({ tripId });
     setIsOpen(false);
 
@@ -135,7 +137,8 @@ export const DeleteTripButton: FC<Props> = (props) => {
                   </motion.div>
                 </AlertDialog.Cancel>
                 <AlertDialog.Action
-                  onClick={handleDeleteTrip}
+                  type="button"
+                  onClick={(e) => handleDeleteTrip(e)}
                   className={clsx(
                     `${regularFont.className}`,
                     "inline-flex select-none justify-center rounded-md px-4 pb-1 pt-2.5 text-lg",

@@ -2,7 +2,7 @@ import { Transition } from "@headlessui/react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { CrossIcon } from "../../icons";
 import { useRouter } from "next/router";
-import { type FC, useEffect, useState, Fragment } from "react";
+import { type FC, type MouseEvent, useEffect, useState, Fragment } from "react";
 import clsx from "clsx";
 import { regularFont } from "../../fonts";
 import { motion } from "framer-motion";
@@ -20,7 +20,7 @@ interface Props {
 }
 
 export const EditTripButton: FC<Props> = (props) => {
-  const { reload, push } = useRouter();
+  const { reload } = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const { trip } = props;
   const [tripName, setTripName] = useState(trip.name);
@@ -70,7 +70,9 @@ export const EditTripButton: FC<Props> = (props) => {
 
   const editTripDetailsMutation = api.userTrips.editTrip.useMutation();
 
-  const handleSubmit = (): void => {
+  const handleSubmit = (e: MouseEvent<HTMLButtonElement>): void => {
+    e.preventDefault();
+
     /**
      * If the user has not changed the name or email, we don't want to send
      * an update request to the server. So, we only send the update request
@@ -97,10 +99,9 @@ export const EditTripButton: FC<Props> = (props) => {
     });
 
     setIsOpen(false);
-    push("/");
     setTimeout(() => {
       reload();
-    }, 500);
+    }, 1000);
   };
 
   return (
@@ -345,8 +346,9 @@ export const EditTripButton: FC<Props> = (props) => {
 
                 <div className="flex justify-end">
                   <button
+                    type="button"
                     disabled={!isValidated}
-                    onClick={handleSubmit}
+                    onClick={(e) => handleSubmit(e)}
                     className={clsx(
                       `${
                         isValidated

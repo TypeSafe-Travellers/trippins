@@ -2,7 +2,7 @@ import { Transition } from "@headlessui/react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { CrossIcon } from "../../../../icons";
 import clsx from "clsx";
-import { Fragment, useEffect, useState } from "react";
+import { type MouseEvent, Fragment, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
@@ -44,7 +44,9 @@ export const NewTripButton = () => {
 
   const createTripMutation = api.userTrips.createTrip.useMutation();
 
-  const handleSubmit = (): void => {
+  const handleSubmit = (e: MouseEvent<HTMLButtonElement>): void => {
+    e.preventDefault();
+
     if (
       tripName &&
       tripDescription &&
@@ -320,8 +322,9 @@ export const NewTripButton = () => {
 
                 <div className="flex justify-end">
                   <button
+                    type="button"
                     disabled={!isValidated}
-                    onClick={handleSubmit}
+                    onClick={(e) => handleSubmit(e)}
                     className={clsx(
                       `${
                         isValidated
