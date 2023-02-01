@@ -111,7 +111,7 @@ export const RemoveParticipants: FC<Props> = (props) => {
                     id="participants"
                     className={clsx(
                       "text-xl",
-                      "mt-1 block w-full rounded-md px-1 pt-2 pb-1",
+                      "block w-full rounded-xl px-3 pt-4 pb-3",
                       "bg-white dark:bg-gray-900",
                       "border border-gray-400 focus-visible:border-transparent dark:border-gray-700 dark:bg-gray-800",
                     )}
