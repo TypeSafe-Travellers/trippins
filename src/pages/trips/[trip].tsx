@@ -1,11 +1,6 @@
 import { type NextPage } from "next";
 import { useRouter } from "next/router";
-import {
-  Footer,
-  Loading,
-  Navbar,
-  TripDetailsContainer,
-} from "../../components";
+import { Loading, Navbar, TripDetailsContainer } from "../../components";
 import { clsx } from "clsx";
 import Head from "next/head";
 import { useSession } from "next-auth/react";
@@ -56,17 +51,13 @@ const UserTrip: NextPage = () => {
       <Navbar />
       <main
         className={clsx(
-          "flex h-[calc(100vh-200px)] w-screen items-center justify-center",
+          "flex h-screen w-screen items-center justify-center",
           "flex-col gap-2",
           "text-gray-900 dark:text-zinc-100",
         )}
       >
         <TripDetailsContainer tripId={id as string} />
       </main>
-
-      <div className={clsx("relative bottom-3 text-center lg:bottom-6")}>
-        <Footer />
-      </div>
     </>
   );
 };

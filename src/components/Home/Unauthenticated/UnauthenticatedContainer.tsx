@@ -19,7 +19,7 @@ export const UnauthenticatedContainer = () => {
         <GetStartedButton />
       </div>
 
-      <div className={clsx("absolute bottom-0 lg:bottom-3")}>
+      <div className={clsx("relative bottom-0 lg:bottom-3")}>
         <Footer />
       </div>
     </div>

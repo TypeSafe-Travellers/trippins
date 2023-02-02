@@ -22,7 +22,7 @@ export const TripsContainer = () => {
         className={clsx(
           "flex h-full items-center justify-center",
           "text-center text-3xl",
-          "mt-5 lg:mt-12",
+          "mt-5 py-3 lg:mt-12",
           `${semiBoldFont.className}`,
         )}
       >
@@ -33,7 +33,7 @@ export const TripsContainer = () => {
   }
 
   return (
-    <div className={clsx("flex flex-col gap-10", "p-10")}>
+    <div className={clsx("flex flex-col gap-10", "p-0 px-2 pt-10 lg:p-10")}>
       {trips?.map((trip) => (
         <motion.div
           key={trip.id}
