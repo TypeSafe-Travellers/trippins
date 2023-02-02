@@ -13,24 +13,7 @@ const Home: NextPage = () => {
       <Head>
         <title>Trippins</title>
         <meta name="description" content="Group Trip Planning App" />
-        <link
-          rel="preload"
-          as="font"
-          href="../fonts/FoundersGrotesk-Bold.woff2"
-          type="font/woff2"
-        />
-        <link
-          rel="preload"
-          as="font"
-          href="../fonts/FoundersGrotesk-Semibold.woff2"
-          type="font/woff2"
-        />
-        <link
-          rel="preload"
-          as="font"
-          href="../fonts/FoundersGrotesk-Regular.woff2"
-          type="font/woff2"
-        />
+        <link rel="preload" as="font" href="../fonts" type="font/woff2" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
