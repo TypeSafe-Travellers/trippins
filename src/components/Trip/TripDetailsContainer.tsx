@@ -7,6 +7,7 @@ import { DeleteTripButton } from "./DeleteTripButton";
 import { EditTripButton } from "./EditTripButton";
 import { CopyTripIdButton } from "../Home/Authenticated";
 import { useSession } from "next-auth/react";
+import { ManageParticipants } from "./ManageParticipants";
 import { Footer, LoadingAnimation } from "../Misc";
 
 interface Props {
@@ -177,21 +178,16 @@ export const TripDetailsContainer: FC<Props> = (props) => {
 
       {trip && (
         <div
-          className={clsx(
-            "flex items-stretch justify-evenly",
-            "mx-5 gap-x-3 py-3",
-          )}
+          className={clsx("flex gap-x-3", "items-center justify-center py-3")}
         >
           <CopyTripIdButton tripId={trip.id} tripName={trip.name} />
-          {
-            // if the user is the admin of the trip
-            user?.id === trip?.adminId && (
-              <>
-                <EditTripButton trip={trip} />
-                <DeleteTripButton tripId={trip?.id} />
-              </>
-            )
-          }
+          {user?.id === trip?.adminId && (
+            <div className="flex gap-x-3">
+              <ManageParticipants tripId={trip?.id} />
+              <EditTripButton trip={trip} />
+              <DeleteTripButton tripId={trip?.id} />
+            </div>
+          )}
         </div>
       )}
 

@@ -120,8 +120,8 @@ export const EditTripButton: FC<Props> = (props) => {
             className={clsx(
               `${regularFont.className}`,
               "inline-flex select-none items-center justify-center rounded-md",
-              "px-5 pt-4 pb-2",
-              "text-2xl",
+              "mx-auto px-3 pt-2.5 pb-1.5 lg:px-5 lg:pt-4 lg:pb-2",
+              "text-xl lg:text-2xl",
               "shadow-lg shadow-blue-200 hover:shadow-red-200 dark:shadow-indigo-900 dark:hover:shadow-indigo-700",
               "rounded-md border-2 border-solid border-black dark:border-gray-200",
               "bg-white dark:bg-black",
@@ -133,7 +133,7 @@ export const EditTripButton: FC<Props> = (props) => {
               "radix-state-instant-open:bg-gray-50 radix-state-delayed-open:bg-gray-50",
             )}
           >
-            Edit Trip
+            Edit
           </button>
         </motion.div>
       </Dialog.Trigger>

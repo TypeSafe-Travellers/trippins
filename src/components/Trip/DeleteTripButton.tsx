@@ -33,32 +33,32 @@ export const DeleteTripButton: FC<Props> = (props) => {
   return (
     <AlertDialog.Root open={isOpen} onOpenChange={setIsOpen}>
       <AlertDialog.Trigger asChild>
-        <button
-          type="button"
-          aria-label="Log Out"
-          className={clsx(
-            "inline-flex select-none items-center justify-center rounded-md",
-            "px-5 pt-4 pb-2",
-            "text-2xl",
-            "shadow-lg shadow-blue-200 hover:shadow-red-200 dark:shadow-indigo-900 dark:hover:shadow-indigo-700",
-            "rounded-md border-2 border-solid border-black dark:border-gray-200",
-            "bg-white dark:bg-black",
-            "focus:outline-none focus-visible:ring focus-visible:ring-black focus-visible:ring-opacity-75",
-            `${regularFont.className}`,
-          )}
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{
+            type: "spring",
+            stiffness: 260,
+            damping: 25,
+          }}
         >
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{
-              type: "spring",
-              stiffness: 260,
-              damping: 25,
-            }}
+          <button
+            type="button"
+            aria-label="Log Out"
+            className={clsx(
+              "inline-flex select-none items-center justify-center rounded-md",
+              "mx-auto px-3 pt-2.5 pb-1.5 lg:px-5 lg:pt-4 lg:pb-2",
+              "text-xl lg:text-2xl",
+              "shadow-lg shadow-blue-200 hover:shadow-red-200 dark:shadow-indigo-900 dark:hover:shadow-indigo-700",
+              "rounded-md border-2 border-solid border-black dark:border-gray-200",
+              "bg-white dark:bg-black",
+              "focus:outline-none focus-visible:ring focus-visible:ring-black focus-visible:ring-opacity-75",
+              `${regularFont.className}`,
+            )}
           >
-            Delete Trip
-          </motion.div>
-        </button>
+            Delete
+          </button>
+        </motion.div>
       </AlertDialog.Trigger>
       <AlertDialog.Portal forceMount>
         <Transition.Root show={isOpen}>
