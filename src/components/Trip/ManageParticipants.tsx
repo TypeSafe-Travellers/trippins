@@ -135,7 +135,7 @@ export const ManageParticipants: FC<Props> = (props) => {
                   <select
                     id="participants"
                     className={clsx(
-                      "text-xl",
+                      "cursor-pointer text-xl",
                       "block w-full rounded-xl px-3 pt-4 pb-3",
                       "bg-white dark:bg-gray-900",
                       "border border-gray-400 focus-visible:border-transparent dark:border-gray-700 dark:bg-gray-800",
