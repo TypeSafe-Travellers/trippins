@@ -15,21 +15,40 @@ interface Props {
 export const ManageParticipants: FC<Props> = (props) => {
   const { reload } = useRouter();
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedParticipantId, setselectedParticipantId] = useState("");
-  const [isValidated, setIsValidated] = useState(false);
+  const [selectedBanParticipantId, setSelectedBanParticipantId] = useState("");
+  const [selectedUnbanParticipantId, setSelectedUnbanParticipantId] =
+    useState("");
+  const [isBanValidated, setIsBanValidated] = useState(false);
+  const [isUnbanValidated, setIsUnbanValidated] = useState(false);
   const { tripId } = props;
   const { data: trip } = api.userTrips.getSpecificTrip.useQuery({
     tripId,
   });
   const removeTripParticipantMutation =
     api.userTrips.removeParticipant.useMutation();
+  const unBanParticipantMutation = api.userTrips.unBanParticipant.useMutation();
 
   const handleRemoveParticipant = (e: MouseEvent<HTMLButtonElement>): void => {
     e.preventDefault();
 
     removeTripParticipantMutation.mutate({
       tripId,
-      userId: selectedParticipantId,
+      userId: selectedBanParticipantId,
+    });
+
+    setIsOpen(false);
+
+    setTimeout(() => {
+      reload();
+    }, 500);
+  };
+
+  const handleUnBanParticipant = (e: MouseEvent<HTMLButtonElement>): void => {
+    e.preventDefault();
+
+    unBanParticipantMutation.mutate({
+      tripId,
+      userId: selectedUnbanParticipantId,
     });
 
     setIsOpen(false);
@@ -40,12 +59,18 @@ export const ManageParticipants: FC<Props> = (props) => {
   };
 
   useEffect(() => {
-    if (selectedParticipantId !== "") {
-      setIsValidated(true);
+    if (selectedBanParticipantId !== "") {
+      setIsBanValidated(true);
     } else {
-      setIsValidated(false);
+      setIsBanValidated(false);
     }
-  }, [selectedParticipantId]);
+
+    if (selectedUnbanParticipantId !== "") {
+      setIsUnbanValidated(true);
+    } else {
+      setIsUnbanValidated(false);
+    }
+  }, [selectedBanParticipantId, selectedUnbanParticipantId]);
 
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
@@ -140,8 +165,10 @@ export const ManageParticipants: FC<Props> = (props) => {
                       "bg-white dark:bg-gray-900",
                       "border border-gray-400 focus-visible:border-transparent dark:border-gray-700 dark:bg-gray-800",
                     )}
-                    value={selectedParticipantId}
-                    onChange={(e) => setselectedParticipantId(e.target.value)}
+                    value={selectedBanParticipantId}
+                    onChange={(e) =>
+                      setSelectedBanParticipantId(e.target.value)
+                    }
                   >
                     <option value={""}>Choose a participant</option>
                     {trip?.participants.map((participant) => (
@@ -158,14 +185,14 @@ export const ManageParticipants: FC<Props> = (props) => {
                   </select>
                 </fieldset>
 
-                <div className="flex justify-end pt-3">
+                <div className="flex justify-end py-3">
                   <button
                     type="button"
-                    disabled={!isValidated}
+                    disabled={!isBanValidated}
                     onClick={(e) => handleRemoveParticipant(e)}
                     className={clsx(
                       `${
-                        isValidated
+                        isBanValidated
                           ? "cursor-pointer bg-red-100 hover:bg-red-200 dark:bg-red-700 dark:hover:bg-red-600"
                           : "cursor-not-allowed border-transparent bg-gray-300 dark:bg-gray-700"
                       }`,
@@ -185,7 +212,73 @@ export const ManageParticipants: FC<Props> = (props) => {
                         damping: 30,
                       }}
                     >
-                      Confirm
+                      Ban
+                    </motion.div>
+                  </button>
+                </div>
+
+                <fieldset>
+                  <label
+                    htmlFor="participants"
+                    className={clsx(
+                      `${regularFont.className}`,
+                      "my-2",
+                      "block text-lg lg:text-xl",
+                      "text-gray-900 dark:text-white",
+                    )}
+                  >
+                    Select a participant to unban from this trip
+                  </label>
+                  <select
+                    id="participants"
+                    className={clsx(
+                      "cursor-pointer text-xl",
+                      "block w-full rounded-xl px-3 pt-4 pb-3",
+                      "bg-white dark:bg-gray-900",
+                      "border border-gray-400 focus-visible:border-transparent dark:border-gray-700 dark:bg-gray-800",
+                    )}
+                    value={selectedUnbanParticipantId}
+                    onChange={(e) =>
+                      setSelectedUnbanParticipantId(e.target.value)
+                    }
+                  >
+                    <option value={""}>Choose a participant</option>
+                    {trip?.bannedUsers.map((bannedUser) => (
+                      <option key={bannedUser.id} value={bannedUser.id}>
+                        {bannedUser.name}
+                      </option>
+                    ))}
+                  </select>
+                </fieldset>
+
+                <div className="flex justify-end pt-3">
+                  <button
+                    type="button"
+                    disabled={!isUnbanValidated}
+                    onClick={(e) => handleUnBanParticipant(e)}
+                    className={clsx(
+                      `${
+                        isUnbanValidated
+                          ? "cursor-pointer bg-green-100 hover:bg-green-200 dark:bg-green-700 dark:hover:bg-green-600"
+                          : "cursor-not-allowed border-transparent bg-gray-300 dark:bg-gray-700"
+                      }`,
+                      "inline-flex select-none justify-center rounded-md px-4 pt-2.5 pb-1 text-xl",
+                      "text-center text-black",
+                      "border-2 border-solid border-black",
+                      "focus:outline-none focus:ring-2 focus:ring-black",
+                      "dark:text-white dark:focus:ring-gray-500",
+                    )}
+                  >
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 30,
+                      }}
+                    >
+                      Unban
                     </motion.div>
                   </button>
                 </div>

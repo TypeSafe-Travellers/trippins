@@ -50,7 +50,7 @@ export const userTripsRouter = createTRPCRouter({
     }
   }),
 
-  /*
+  /**
    * query to get a specific trip
    * @param tripId - id of the trip
    * @returns trip object
@@ -70,6 +70,12 @@ export const userTripsRouter = createTRPCRouter({
             adminId: true,
             budget: true,
             participants: {
+              select: {
+                id: true,
+                name: true,
+              },
+            },
+            bannedUsers: {
               select: {
                 id: true,
                 name: true,
@@ -287,6 +293,37 @@ export const userTripsRouter = createTRPCRouter({
             },
             bannedUsers: {
               connect: {
+                id: input.userId,
+              },
+            },
+          },
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }),
+
+  /**
+   * mutation to unban a participant from a trip
+   * @param userId - id of the user to be unbanned
+   * @param tripId - id of the trip (trip code in client)
+   */
+  unBanParticipant: protectedProcedure
+    .input(z.object({ tripId: z.string().min(25).max(25), userId: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      try {
+        await ctx.prisma.trip.update({
+          where: {
+            id: input.tripId,
+          },
+          data: {
+            participants: {
+              connect: {
+                id: input.userId,
+              },
+            },
+            bannedUsers: {
+              disconnect: {
                 id: input.userId,
               },
             },
