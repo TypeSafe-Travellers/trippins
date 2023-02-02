@@ -72,6 +72,7 @@ npm run format
 ## Links
 
 - [Website](https://trippins.netlify.app/)
+- [Devfolio](https://devfolio.co/projects/trippins-d37a)
 - [Repl.it Repo](https://replit.com/@AyanavaKarmakar/trippins?v=1)
 - [Milestones](https://github.com/TypeSafe-Travellers/App/milestones)
 - [Roadmap & Priorities](https://github.com/TypeSafe-Travellers/App/projects?query=is%3Aopen)
