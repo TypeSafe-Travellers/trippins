@@ -7,7 +7,7 @@ import { DeleteTripButton } from "./DeleteTripButton";
 import { EditTripButton } from "./EditTripButton";
 import { CopyTripIdButton } from "../Home/Authenticated";
 import { useSession } from "next-auth/react";
-import { RemoveParticipants } from "./RemoveParticipants";
+import { ManageParticipants } from "./ManageParticipants";
 import { LoadingAnimation } from "../Misc";
 
 interface Props {
@@ -191,7 +191,7 @@ export const TripDetailsContainer: FC<Props> = (props) => {
               <>
                 <EditTripButton trip={trip} />
                 <DeleteTripButton tripId={trip?.id} />
-                <RemoveParticipants tripId={trip?.id} />
+                <ManageParticipants tripId={trip?.id} />
               </>
             )
           }

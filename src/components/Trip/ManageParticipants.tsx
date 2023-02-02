@@ -12,7 +12,7 @@ interface Props {
   tripId: string;
 }
 
-export const RemoveParticipants: FC<Props> = (props) => {
+export const ManageParticipants: FC<Props> = (props) => {
   const { reload } = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedParticipantId, setselectedParticipantId] = useState("");
@@ -77,7 +77,7 @@ export const RemoveParticipants: FC<Props> = (props) => {
               "radix-state-instant-open:bg-gray-50 radix-state-delayed-open:bg-gray-50",
             )}
           >
-            Remove Participants
+            Manage Participants
           </button>
         </motion.div>
       </Dialog.Trigger>
@@ -117,12 +117,8 @@ export const RemoveParticipants: FC<Props> = (props) => {
               )}
             >
               <Dialog.Title className="text-2xl leading-none">
-                Remove Participant
+                Ban Participant
               </Dialog.Title>
-              <Dialog.Description className="my-3 text-xl leading-none">
-                This action cannot be undone. However, you can always add them
-                back!
-              </Dialog.Description>
               <form className="mt-2 space-y-2">
                 <fieldset>
                   <label
@@ -134,7 +130,7 @@ export const RemoveParticipants: FC<Props> = (props) => {
                       "text-gray-900 dark:text-white",
                     )}
                   >
-                    Select a participant to remove
+                    Select a participant to ban from this trip
                   </label>
                   <select
                     id="participants"

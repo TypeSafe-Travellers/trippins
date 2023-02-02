@@ -112,6 +112,32 @@ export const userTripsRouter = createTRPCRouter({
     }),
 
   /**
+   * query to get all banned participants of a trip
+   * @param tripId - id of the trip
+   * @returns array of user ids
+   */
+  getBannedParticipants: protectedProcedure
+    .input(z.object({ tripId: z.string().length(25) }))
+    .query(async ({ ctx, input }) => {
+      try {
+        return await ctx.prisma.trip.findMany({
+          select: {
+            bannedUsers: {
+              select: {
+                id: true,
+              },
+            },
+          },
+          where: {
+            id: input.tripId,
+          },
+        });
+      } catch (error) {
+        console.error("error", error);
+      }
+    }),
+
+  /**
    * mutation to create a new trip
    * @param userId - id of the user who created the trip
    * @param name - name of the trip
@@ -256,6 +282,11 @@ export const userTripsRouter = createTRPCRouter({
           data: {
             participants: {
               disconnect: {
+                id: input.userId,
+              },
+            },
+            bannedUsers: {
+              connect: {
                 id: input.userId,
               },
             },
