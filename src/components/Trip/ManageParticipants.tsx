@@ -88,8 +88,8 @@ export const ManageParticipants: FC<Props> = (props) => {
             className={clsx(
               `${regularFont.className}`,
               "inline-flex select-none items-center justify-center rounded-md",
-              "mx-auto px-5 pt-4 pb-2",
-              "text-2xl",
+              "mx-auto px-3 pt-2.5 pb-1.5 lg:px-5 lg:pt-4 lg:pb-2",
+              "text-xl lg:text-2xl",
               "shadow-lg shadow-blue-200 hover:shadow-red-200 dark:shadow-indigo-900 dark:hover:shadow-indigo-700",
               "rounded-md border-2 border-solid border-black dark:border-gray-200",
               "bg-white dark:bg-black",
@@ -234,7 +234,12 @@ export const ManageParticipants: FC<Props> = (props) => {
                   <select
                     id="participants"
                     className={clsx(
-                      "cursor-pointer text-xl",
+                      `${
+                        trip?.bannedUsers.length !== 0
+                          ? "cursor-pointer"
+                          : "cursor-not-allowed"
+                      }`,
+                      "text-xl",
                       "block w-full rounded-xl px-3 pt-4 pb-3",
                       "bg-white dark:bg-gray-900",
                       "border border-gray-400 focus-visible:border-transparent dark:border-gray-700 dark:bg-gray-800",
@@ -243,6 +248,7 @@ export const ManageParticipants: FC<Props> = (props) => {
                     onChange={(e) =>
                       setSelectedUnbanParticipantId(e.target.value)
                     }
+                    disabled={trip?.bannedUsers.length === 0}
                   >
                     <option value={""}>Choose a participant</option>
                     {trip?.bannedUsers.map((bannedUser) => (

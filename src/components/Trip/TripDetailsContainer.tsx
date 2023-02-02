@@ -178,18 +178,15 @@ export const TripDetailsContainer: FC<Props> = (props) => {
 
       {trip && (
         <div
-          className={clsx(
-            "hidden items-stretch justify-evenly lg:flex",
-            "mx-5 gap-x-3 py-3",
-          )}
+          className={clsx("flex gap-x-3", "items-center justify-center py-3")}
         >
           <CopyTripIdButton tripId={trip.id} tripName={trip.name} />
           {user?.id === trip?.adminId && (
-            <>
+            <div className="flex gap-x-3">
+              <ManageParticipants tripId={trip?.id} />
               <EditTripButton trip={trip} />
               <DeleteTripButton tripId={trip?.id} />
-              <ManageParticipants tripId={trip?.id} />
-            </>
+            </div>
           )}
         </div>
       )}
