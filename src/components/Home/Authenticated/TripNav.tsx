@@ -20,15 +20,16 @@ export const TripNav = () => {
     >
       <div
         className={clsx(
-          "px-10 pt-10 lg:px-0",
+          "px-2 pt-10 lg:px-0",
           "text-3xl lg:text-7xl",
-          "break-words",
+          "break-words leading-none",
           `${semiBoldFont.className}`,
         )}
       >
         {"Welcome, "}
-        <span
+        <div
           className={clsx(
+            "hidden lg:inline-block",
             "bg-clip-text text-transparent",
             "bg-gradient-to-r from-indigo-700 to-fuchsia-700 dark:from-indigo-300 dark:to-fuchsia-300",
           )}
@@ -41,15 +42,34 @@ export const TripNav = () => {
               <LoadingAnimation />
             </>
           )}
-        </span>
+        </div>
+
+        <div
+          className={clsx(
+            "block sm:hidden md:hidden",
+            "bg-clip-text text-transparent",
+            "bg-gradient-to-r from-indigo-700 to-fuchsia-700 dark:from-indigo-300 dark:to-fuchsia-300",
+          )}
+        >
+          {user?.name ? (
+            `${user.name}!`
+          ) : (
+            <>
+              loading
+              <LoadingAnimation />
+            </>
+          )}
+        </div>
       </div>
 
-      <div className={clsx("pt-5")}>
-        <NewTripButton />
-      </div>
+      <div className="flex gap-x-16 lg:gap-10">
+        <div className={clsx("pt-5")}>
+          <NewTripButton />
+        </div>
 
-      <div className={clsx("pt-5")}>
-        <JoinTripButton />
+        <div className={clsx("pt-5")}>
+          <JoinTripButton />
+        </div>
       </div>
     </div>
   );
