@@ -2,7 +2,7 @@ import { Transition } from "@headlessui/react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { CrossIcon } from "../../../../icons";
 import { clsx } from "clsx";
-import { Fragment, useEffect, useState } from "react";
+import { type MouseEvent, Fragment, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { regularFont } from "../../../../fonts";
 import { api } from "../../../../utils/api";
@@ -14,6 +14,7 @@ export const JoinTripButton = () => {
   const [tripId, setTripId] = useState("");
   const [isValidated, setIsValidated] = useState(false);
   const [isParticipant, setIsParticipant] = useState(true);
+  const [isBanned, setIsBanned] = useState(true);
   const { reload } = useRouter();
   const { data: session } = useSession();
   const { data: user } = api.userProfile.getProfileDetails.useQuery({
@@ -23,14 +24,20 @@ export const JoinTripButton = () => {
   const { data: participants } = api.userTrips.getTripParticipants.useQuery({
     tripId,
   });
+  const { data: bannedParticipants } =
+    api.userTrips.getBannedParticipants.useQuery({ tripId });
   const addTripParticipantMutation = api.userTrips.addParticipant.useMutation();
 
-  const handleAddParticipant = (): void => {
+  const handleAddParticipant = (e: MouseEvent<HTMLButtonElement>): void => {
+    e.preventDefault();
+
     addTripParticipantMutation.mutate({
       tripId,
       userId: user?.id as string,
     });
+
     setIsOpen(false);
+
     setTimeout(() => {
       reload();
     }, 1000);
@@ -47,12 +54,29 @@ export const JoinTripButton = () => {
         : false,
     );
 
-    if (tripId.length === 25 && tripExists && !isParticipant) {
+    // check if user is banned
+    setIsBanned(
+      bannedParticipants?.find((p) =>
+        p.bannedUsers.find((bu) => bu.id === user?.id),
+      )
+        ? true
+        : false,
+    );
+
+    if (tripId.length === 25 && tripExists && !isParticipant && !isBanned) {
       setIsValidated(true);
     } else {
       setIsValidated(false);
     }
-  }, [allTripIds, isParticipant, participants, user?.id, tripId]);
+  }, [
+    tripId,
+    isBanned,
+    user?.id,
+    allTripIds,
+    participants,
+    isParticipant,
+    bannedParticipants,
+  ]);
 
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
@@ -71,9 +95,8 @@ export const JoinTripButton = () => {
             className={clsx(
               `${regularFont.className}`,
               "inline-flex select-none items-center justify-center rounded-md",
-              "px-3 pt-2 pb-0.5 lg:px-5 lg:pt-4 lg:pb-2",
-              "mx-auto",
-              "text-xl lg:text-2xl",
+              "mx-auto px-5 pt-4 pb-2",
+              "text-2xl",
               "shadow-lg shadow-blue-200 hover:shadow-red-200 dark:shadow-indigo-900 dark:hover:shadow-indigo-700",
               "rounded-md border-2 border-solid border-black dark:border-gray-200",
               "bg-white dark:bg-black",
@@ -158,18 +181,18 @@ export const JoinTripButton = () => {
                       "mt-2 mb-1 leading-none",
                     )}
                   >
-                    {`${
-                      isParticipant
-                        ? "You're already a participant!"
-                        : "Trip code is invalid!"
-                    }`}
+                    {isParticipant
+                      ? "You're already a participant!"
+                      : isBanned
+                      ? "You're banned from this trip!"
+                      : "Trip code is invalid!"}
                   </div>
                 </fieldset>
 
                 <div className="flex justify-end">
                   <button
                     disabled={!isValidated}
-                    onClick={handleAddParticipant}
+                    onClick={(e) => handleAddParticipant(e)}
                     className={clsx(
                       `${
                         isValidated

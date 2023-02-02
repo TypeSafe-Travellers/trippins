@@ -1,25 +1,12 @@
-import { type NextPage } from "next";
 import Head from "next/head";
-import clsx from "clsx";
+import { type NextPage } from "next";
 import { useSession } from "next-auth/react";
-import { boldFont } from "../fonts";
-import { HomeContainer, Navbar } from "../components";
+import { HomeContainer, Navbar, Loading } from "../components";
 
 const Home: NextPage = () => {
   const { status } = useSession();
 
-  if (status === "loading")
-    return (
-      <div
-        className={clsx(
-          "flex min-h-screen items-center justify-center text-center",
-          "text-4xl lg:text-7xl",
-          `${boldFont.className}`,
-        )}
-      >
-        Loading...
-      </div>
-    );
+  if (status === "loading") return <Loading />;
 
   return (
     <>

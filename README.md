@@ -1,5 +1,7 @@
 ![repo banner](https://socialify.git.ci/TypeSafe-Travellers/trippins/image?description=1&font=Raleway&forks=1&issues=1&name=1&pattern=Solid&pulls=1&stargazers=1&theme=Dark)
 
+![lighthouse scores](https://user-images.githubusercontent.com/89210438/216146573-4b39ef96-57f5-4db4-9cb2-ebef4ec65edf.png)
+
 ## About
 
 Welcome to our group trip-planning app! We are a team of travel enthusiasts who understand the challenges of planning a group trip. We created this app to make the process as easy and stress-free as possible. Our web app allows users to create a trip itinerary, share it with their group, and collaborate on details such as accommodations, transportation, and activities. We believe that group trip planning should be fun and exciting, not overwhelming. That's why we've designed our app to be user-friendly and intuitive. Thank you for choosing our group trip-planning app. Bon voyage!
@@ -70,6 +72,7 @@ npm run format
 ## Links
 
 - [Website](https://trippins.netlify.app/)
+- [Devfolio](https://devfolio.co/projects/trippins-d37a)
 - [Repl.it Repo](https://replit.com/@AyanavaKarmakar/trippins?v=1)
 - [Milestones](https://github.com/TypeSafe-Travellers/App/milestones)
 - [Roadmap & Priorities](https://github.com/TypeSafe-Travellers/App/projects?query=is%3Aopen)
