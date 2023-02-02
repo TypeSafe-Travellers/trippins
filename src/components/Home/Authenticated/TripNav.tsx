@@ -21,7 +21,7 @@ export const TripNav = () => {
       <div
         className={clsx(
           "px-2 pt-10 lg:px-0",
-          "text-3xl lg:text-7xl",
+          "text-4xl lg:text-7xl",
           "break-words leading-none",
           `${semiBoldFont.className}`,
         )}

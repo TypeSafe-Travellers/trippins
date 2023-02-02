@@ -22,7 +22,7 @@ export const TripsContainer = () => {
         className={clsx(
           "flex h-full items-center justify-center",
           "text-center text-3xl",
-          "mt-5 lg:mt-12",
+          "mt-5 py-3 lg:mt-12",
           `${semiBoldFont.className}`,
         )}
       >
