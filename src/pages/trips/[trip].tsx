@@ -51,7 +51,7 @@ const UserTrip: NextPage = () => {
       <Navbar />
       <main
         className={clsx(
-          "flex h-[calc(100vh-200px)] w-screen items-center justify-center",
+          "flex h-screen w-screen items-center justify-center",
           "flex-col gap-2",
           "text-gray-900 dark:text-zinc-100",
         )}

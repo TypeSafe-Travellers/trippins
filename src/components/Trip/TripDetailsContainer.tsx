@@ -7,7 +7,7 @@ import { DeleteTripButton } from "./DeleteTripButton";
 import { EditTripButton } from "./EditTripButton";
 import { CopyTripIdButton } from "../Home/Authenticated";
 import { useSession } from "next-auth/react";
-import { LoadingAnimation } from "../Misc";
+import { Footer, LoadingAnimation } from "../Misc";
 
 interface Props {
   tripId: string;
@@ -178,9 +178,8 @@ export const TripDetailsContainer: FC<Props> = (props) => {
       {trip && (
         <div
           className={clsx(
-            "flex flex-row gap-5",
-            "items-center justify-center",
-            "py-5",
+            "flex items-stretch justify-evenly",
+            "mx-5 gap-x-3 py-3",
           )}
         >
           <CopyTripIdButton tripId={trip.id} tripName={trip.name} />
@@ -195,6 +194,8 @@ export const TripDetailsContainer: FC<Props> = (props) => {
           }
         </div>
       )}
+
+      <Footer />
     </motion.div>
   );
 };
