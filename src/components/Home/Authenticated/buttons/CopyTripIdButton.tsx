@@ -63,7 +63,7 @@ export const CopyTripIdButton: FC<Props> = (props) => {
           )}
           onClick={handleCopyToClipboard}
         >
-          Share Trip
+          Share
         </button>
 
         <Toast.Root

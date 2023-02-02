@@ -56,7 +56,7 @@ export const DeleteTripButton: FC<Props> = (props) => {
               damping: 25,
             }}
           >
-            Delete Trip
+            Delete
           </motion.div>
         </button>
       </AlertDialog.Trigger>

@@ -101,7 +101,7 @@ export const ManageParticipants: FC<Props> = (props) => {
               "radix-state-instant-open:bg-gray-50 radix-state-delayed-open:bg-gray-50",
             )}
           >
-            Manage Participants
+            Manage
           </button>
         </motion.div>
       </Dialog.Trigger>
@@ -216,6 +216,9 @@ export const ManageParticipants: FC<Props> = (props) => {
                   </button>
                 </div>
 
+                <Dialog.Title className="text-2xl leading-none">
+                  Unban Participant
+                </Dialog.Title>
                 <fieldset>
                   <label
                     htmlFor="participants"

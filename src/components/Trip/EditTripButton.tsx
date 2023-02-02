@@ -133,7 +133,7 @@ export const EditTripButton: FC<Props> = (props) => {
               "radix-state-instant-open:bg-gray-50 radix-state-delayed-open:bg-gray-50",
             )}
           >
-            Edit Trip
+            Edit
           </button>
         </motion.div>
       </Dialog.Trigger>
