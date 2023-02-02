@@ -11,7 +11,7 @@ export const Footer = () => {
         "text-lg lg:text-xl",
         "flex flex-col gap-0",
         "text-center leading-none",
-        "pt-6 pb-3 lg:pb-5 lg:pt-10",
+        "pt-8 pb-3 lg:pb-5 lg:pt-10",
       )}
     >
       <motion.div
