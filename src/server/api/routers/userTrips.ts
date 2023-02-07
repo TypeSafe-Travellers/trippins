@@ -239,4 +239,23 @@ export const userTripsRouter = createTRPCRouter({
         console.error(error);
       }
     }),
+  /**
+   * mutation to remove a participant to a trip
+   * trip code is of length 25 characters
+   * @param userId - id of the user to be added
+   * @param tripId - id of the trip (trip code in client)
+   */
+  removeParticipant: protectedProcedure
+    .input(z.object({ tripId: z.string().min(25).max(25), userId: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      try {
+        await ctx.prisma.trip.delete({
+          where: {
+            id: input.tripId,
+          },
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }),
 });
