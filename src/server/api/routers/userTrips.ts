@@ -50,7 +50,7 @@ export const userTripsRouter = createTRPCRouter({
     }
   }),
 
-  /*
+  /**
    * query to get a specific trip
    * @param tripId - id of the trip
    * @returns trip object
@@ -70,6 +70,12 @@ export const userTripsRouter = createTRPCRouter({
             adminId: true,
             budget: true,
             participants: {
+              select: {
+                id: true,
+                name: true,
+              },
+            },
+            bannedUsers: {
               select: {
                 id: true,
                 name: true,
@@ -97,6 +103,32 @@ export const userTripsRouter = createTRPCRouter({
         return await ctx.prisma.trip.findMany({
           select: {
             participants: {
+              select: {
+                id: true,
+              },
+            },
+          },
+          where: {
+            id: input.tripId,
+          },
+        });
+      } catch (error) {
+        console.error("error", error);
+      }
+    }),
+
+  /**
+   * query to get all banned participants of a trip
+   * @param tripId - id of the trip
+   * @returns array of user ids
+   */
+  getBannedParticipants: protectedProcedure
+    .input(z.object({ tripId: z.string().length(25) }))
+    .query(async ({ ctx, input }) => {
+      try {
+        return await ctx.prisma.trip.findMany({
+          select: {
+            bannedUsers: {
               select: {
                 id: true,
               },
@@ -239,10 +271,11 @@ export const userTripsRouter = createTRPCRouter({
         console.error(error);
       }
     }),
+
+
   /**
-   * mutation to remove a participant to a trip
-   * trip code is of length 25 characters
-   * @param userId - id of the user to be added
+   * mutation to remove a participant from a trip
+   * @param userId - id of the user to be removed
    * @param tripId - id of the trip (trip code in client)
    */
   removeParticipant: protectedProcedure
@@ -252,6 +285,53 @@ export const userTripsRouter = createTRPCRouter({
         await ctx.prisma.trip.delete({
           where: {
             id: input.tripId,
+          },
+        await ctx.prisma.trip.update({
+          where: {
+            id: input.tripId,
+          },
+          data: {
+            participants: {
+              disconnect: {
+                id: input.userId,
+              },
+            },
+            bannedUsers: {
+              connect: {
+                id: input.userId,
+              },
+            },
+          },
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }),
+
+  /**
+   * mutation to unban a participant from a trip
+   * @param userId - id of the user to be unbanned
+   * @param tripId - id of the trip (trip code in client)
+   */
+  unBanParticipant: protectedProcedure
+    .input(z.object({ tripId: z.string().min(25).max(25), userId: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      try {
+        await ctx.prisma.trip.update({
+          where: {
+            id: input.tripId,
+          },
+          data: {
+            participants: {
+              connect: {
+                id: input.userId,
+              },
+            },
+            bannedUsers: {
+              disconnect: {
+                id: input.userId,
+              },
+            },
           },
         });
       } catch (error) {

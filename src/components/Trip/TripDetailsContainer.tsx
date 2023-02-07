@@ -7,6 +7,8 @@ import { DeleteTripButton } from "./DeleteTripButton";
 import { EditTripButton } from "./EditTripButton";
 import { CopyTripIdButton } from "../Home/Authenticated";
 import { useSession } from "next-auth/react";
+import { ManageParticipants } from "./ManageParticipants";
+import { Footer, LoadingAnimation } from "../Misc";
 
 interface Props {
   tripId: string;
@@ -36,7 +38,7 @@ export const TripDetailsContainer: FC<Props> = (props) => {
         className={clsx(
           "bg-clip-text text-transparent",
           "bg-gradient-to-r from-indigo-700 to-fuchsia-700 dark:from-indigo-300 dark:to-fuchsia-300",
-          "text-center text-4xl lg:text-7xl",
+          "text-center text-5xl lg:text-7xl",
           "mx-auto",
           `${boldFont.className}`,
         )}
@@ -48,7 +50,7 @@ export const TripDetailsContainer: FC<Props> = (props) => {
         className={clsx(
           "cursor-pointer",
           "text-2xl lg:text-3xl",
-          "mx-10 break-words px-3 pt-6 pb-4 lg:mx-auto lg:px-8",
+          "mx-5 my-5 break-words px-3 pt-6 pb-4 lg:mx-auto lg:px-8",
           "rounded-lg border-4 border-solid border-black dark:border-gray-200",
           "shadow-lg shadow-blue-200 hover:shadow-red-200 dark:shadow-indigo-900 dark:hover:shadow-indigo-700",
           "bg-gradient-to-tl from-white/70 via-white/60 to-white/50 dark:from-black/70 dark:via-black/60 dark:to-black/50",
@@ -67,100 +69,129 @@ export const TripDetailsContainer: FC<Props> = (props) => {
             className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}
           >
             <span className={clsx("text-indigo-800 dark:text-indigo-200")}>
-              Name:
+              {"Name: "}
             </span>
-            {` ${isLoading === false ? trip?.name : "loading..."}`}
+            {isLoading === false ? (
+              trip?.name
+            ) : (
+              <>
+                loading
+                <LoadingAnimation />
+              </>
+            )}
           </div>
           <div
             className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}
           >
             <span className={clsx("text-indigo-800 dark:text-indigo-200")}>
-              Description:
+              {"Description: "}
             </span>
-            {` ${isLoading === false ? trip?.description : "loading..."}`}
+            {isLoading === false ? (
+              trip?.description
+            ) : (
+              <>
+                loading
+                <LoadingAnimation />
+              </>
+            )}
           </div>
           <div
             className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}
           >
             <span className={clsx("text-indigo-800 dark:text-indigo-200")}>
-              Created at:
+              {"Created at: "}
             </span>
-            {` ${
-              isLoading === false
-                ? trip?.createdAt.toLocaleString()
-                : "loading..."
-            }`}
+            {isLoading === false ? (
+              trip?.createdAt.toLocaleString()
+            ) : (
+              <>
+                loading
+                <LoadingAnimation />
+              </>
+            )}
           </div>
           <div
             className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}
           >
             <span className={clsx("text-indigo-800 dark:text-indigo-200")}>
-              Budget:
+              {"Budget: "}
             </span>
-            {` ${isLoading === false ? trip?.budget : "loading..."} `}{" "}
+            {isLoading === false ? (
+              trip?.budget
+            ) : (
+              <>
+                loading
+                <LoadingAnimation />
+              </>
+            )}
             <span className={clsx("text-indigo-800 dark:text-indigo-100")}>
-              INR per head
+              {" INR per head"}
             </span>
           </div>
           <div
             className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}
           >
             <span className={clsx("text-indigo-800 dark:text-indigo-200")}>
-              Starts at:
+              {"Starts at: "}
             </span>
-            {` ${
-              isLoading === false
-                ? trip?.startDate.toLocaleString()
-                : "loading..."
-            }`}
+            {isLoading === false ? (
+              trip?.startDate.toLocaleString()
+            ) : (
+              <>
+                loading
+                <LoadingAnimation />
+              </>
+            )}
           </div>
           <div
             className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}
           >
             <span className={clsx("text-indigo-800 dark:text-indigo-200")}>
-              Ends at:
+              {"Ends at: "}
             </span>
-            {` ${
-              isLoading === false
-                ? trip?.endDate.toLocaleString()
-                : "loading..."
-            }`}
+            {isLoading === false ? (
+              trip?.endDate.toLocaleString()
+            ) : (
+              <>
+                loading
+                <LoadingAnimation />
+              </>
+            )}
           </div>
           <div
             className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}
           >
             <span className={clsx("text-indigo-800 dark:text-indigo-200")}>
-              Participants:
+              {"Participants: "}
             </span>
-            {` ${
-              isLoading === false
-                ? trip?.participants.map((p) => p.name).join(", ")
-                : "loading..."
-            }`}
+            {isLoading === false ? (
+              trip?.participants.map((p) => p.name).join(", ")
+            ) : (
+              <>
+                loading
+                <LoadingAnimation />
+              </>
+            )}
           </div>
         </motion.div>
       </div>
 
       {trip && (
         <div
-          className={clsx(
-            "flex flex-row gap-5",
-            "items-center justify-center",
-            "py-5",
-          )}
+          className={clsx("flex gap-x-3", "items-center justify-center py-3")}
         >
           <CopyTripIdButton tripId={trip.id} tripName={trip.name} />
-          {
-            // if the user is the admin of the trip, show the delete button
-            user?.id === trip?.adminId && (
-              <>
-                <EditTripButton trip={trip} />
-                <DeleteTripButton tripId={trip?.id} />
-              </>
-            )
-          }
+          {user?.id === trip?.adminId && (
+            <div className="flex gap-x-3">
+              <ManageParticipants tripId={trip?.id} />
+              <EditTripButton trip={trip} />
+              <DeleteTripButton tripId={trip?.id} />
+            </div>
+          )}
         </div>
       )}
+
+      <Footer />
     </motion.div>
   );
 };

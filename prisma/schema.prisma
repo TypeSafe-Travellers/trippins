@@ -54,6 +54,7 @@ model User {
     accounts      Account[]
     sessions      Session[]
     trips         Trip[]    @relation(name: "TripParticipants")
+    bannedTrips   Trip[]    @relation(name: "TripBannedUsers")
 }
 
 model Trip {
@@ -62,10 +63,11 @@ model Trip {
     description  String
     startDate    DateTime
     endDate      DateTime
-    budget       Int @default(0)
+    budget       Int      @default(0)
     adminId      String
     createdAt    DateTime @default(now())
     participants User[]   @relation(name: "TripParticipants")
+    bannedUsers  User[]   @relation(name: "TripBannedUsers")
 }
 
 model VerificationToken {
