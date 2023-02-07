@@ -92,10 +92,10 @@ export const ProfileDetails = () => {
 
         <div className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}>
           <span className={clsx("text-indigo-800 dark:text-indigo-200")}>
-            {"Trips banned: "}
+            {"Trips Karma: "}
           </span>
           {trips?.isBanned ? (
-            trips.isBanned.length
+            `${trips.isBanned.length === 0 ? 0 : trips.isBanned.length * -1}`
           ) : (
             <>
               loading
