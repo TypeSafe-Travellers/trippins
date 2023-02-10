@@ -117,7 +117,7 @@ export const userTripsRouter = createTRPCRouter({
    * @returns trip object
    */
   getSpecificTrip: protectedProcedure
-    .input(z.object({ tripId: z.string().min(25).max(25) }))
+    .input(z.object({ tripId: z.string().length(25) }))
     .query(async ({ ctx, input }) => {
       try {
         return await ctx.prisma.trip.findUnique({
@@ -313,7 +313,7 @@ export const userTripsRouter = createTRPCRouter({
    * @param tripId - id of the trip (trip code in client)
    */
   addParticipant: protectedProcedure
-    .input(z.object({ tripId: z.string().min(25).max(25), userId: z.string() }))
+    .input(z.object({ tripId: z.string().length(25), userId: z.string() }))
     .mutation(async ({ ctx, input }) => {
       try {
         await ctx.prisma.trip.update({
@@ -339,7 +339,7 @@ export const userTripsRouter = createTRPCRouter({
    * @param tripId - id of the trip (trip code in client)
    */
   removeParticipant: protectedProcedure
-    .input(z.object({ tripId: z.string().min(25).max(25), userId: z.string() }))
+    .input(z.object({ tripId: z.string().length(25), userId: z.string() }))
     .mutation(async ({ ctx, input }) => {
       try {
         await ctx.prisma.trip.update({
