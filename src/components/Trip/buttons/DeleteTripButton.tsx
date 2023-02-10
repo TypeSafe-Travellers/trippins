@@ -2,9 +2,9 @@ import { Transition } from "@headlessui/react";
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
 import clsx from "clsx";
 import { type FC, type MouseEvent, useState, Fragment } from "react";
-import { regularFont } from "../../fonts";
+import { regularFont } from "../../../fonts";
 import { motion } from "framer-motion";
-import { api } from "../../utils/api";
+import { api } from "../../../utils/api";
 import { useRouter } from "next/router";
 
 interface Props {

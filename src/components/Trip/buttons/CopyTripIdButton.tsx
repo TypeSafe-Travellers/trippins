@@ -1,11 +1,11 @@
 import { useState, type FC } from "react";
 import clsx from "clsx";
-import { regularFont } from "../../../../fonts";
+import { regularFont } from "../../../fonts";
 import { motion } from "framer-motion";
 import * as Toast from "@radix-ui/react-toast";
-import { useMediaQuery } from "../../../../hooks";
+import { useMediaQuery } from "../../../hooks";
 import { useSession } from "next-auth/react";
-import { api } from "../../../../utils/api";
+import { api } from "../../../utils/api";
 
 interface Props {
   tripId: string;

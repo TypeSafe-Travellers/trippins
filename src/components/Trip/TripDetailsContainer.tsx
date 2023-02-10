@@ -3,12 +3,15 @@ import { clsx } from "clsx";
 import { boldFont, semiBoldFont } from "../../fonts";
 import { type FC } from "react";
 import { api } from "../../utils/api";
-import { DeleteTripButton } from "./DeleteTripButton";
-import { EditTripButton } from "./EditTripButton";
-import { CopyTripIdButton } from "../Home/Authenticated";
 import { useSession } from "next-auth/react";
-import { ManageParticipants } from "./ManageParticipants";
 import { Footer, LoadingAnimation } from "../Misc";
+import {
+  DeleteTripButton,
+  EditTripButton,
+  CopyTripIdButton,
+  ManageParticipants,
+} from "./buttons";
+import { TripChat } from "./TripChat";
 
 interface Props {
   tripId: string;
@@ -190,6 +193,8 @@ export const TripDetailsContainer: FC<Props> = (props) => {
           )}
         </div>
       )}
+
+      <TripChat />
 
       <Footer />
     </motion.div>
