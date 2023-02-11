@@ -13,12 +13,12 @@ export const getMessageTime = (messageDate: Date): string => {
       dateString =
         "sent " +
         Math.round(diffMinutes) +
-        `${diffMinutes === 1 ? " minute ago" : " minutes ago"}`;
+        `${Math.round(diffMinutes) === 1 ? " minute ago" : " minutes ago"}`;
     } else {
       dateString =
         "sent " +
         Math.round(diffHours) +
-        `${diffHours === 1 ? " hour ago" : " hours ago"}`;
+        `${Math.round(diffHours) === 1 ? " hour ago" : " hours ago"}`;
     }
   } else {
     dateString = messageDate.toLocaleDateString();
