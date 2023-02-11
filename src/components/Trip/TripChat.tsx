@@ -11,7 +11,17 @@ export const TripChat: FC<Props> = (props) => {
   const { tripId, userId, userName } = props;
   const [message, setMessage] = useState("");
   const { data: messages } = api.tripMessages.getMessages.useQuery({ tripId });
+  const { data: trip } = api.userTrips.getSpecificTrip.useQuery({ tripId });
   const sendMessageMutation = api.tripMessages.sendMessage.useMutation();
+
+  /**
+   * map participants to an object with id and name
+   * this is to avoid having to do a find on the participants array
+   */
+  const participantsMap = trip?.participants.map((participant) => ({
+    id: participant.id,
+    name: participant.name,
+  }));
 
   return (
     <div className="flex flex-col items-center justify-center gap-3 text-center">
@@ -27,6 +37,8 @@ export const TripChat: FC<Props> = (props) => {
             text: message,
             userId,
           });
+
+          setMessage("");
         }}
       >
         send
@@ -34,7 +46,13 @@ export const TripChat: FC<Props> = (props) => {
       {messages?.map((message) => (
         <div key={message.id}>
           <p>{message.text}</p>
-          <p>{message.senderId === userId ? userName : message.senderId}</p>
+          <p>
+            {message.senderId === userId
+              ? userName
+              : participantsMap?.find(
+                  (participant) => participant.id === message.senderId,
+                )?.name || "Unknown"}
+          </p>
           <p>{message.createdAt.toLocaleString()}</p>
         </div>
       ))}
