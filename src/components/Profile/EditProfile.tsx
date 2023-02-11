@@ -7,17 +7,22 @@ import { regularFont } from "../../fonts";
 import { useSession } from "next-auth/react";
 import { api } from "../../utils/api";
 import { motion } from "framer-motion";
-import { useRouter } from "next/router";
 
 export const EditProfile = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { data: session } = useSession();
+  const utils = api.useContext();
   const { data: user } = api.userProfile.getProfileDetails.useQuery({
     email: session?.user?.email as string,
   });
-  const { reload } = useRouter();
   const [userName, setUserName] = useState(user?.name as string);
-  const updateUserNameMutation = api.userProfile.updateName.useMutation();
+  const updateUserNameMutation = api.userProfile.updateName.useMutation({
+    onSuccess: () => {
+      utils.userProfile.getProfileDetails.refetch({
+        email: session?.user?.email as string,
+      });
+    },
+  });
 
   const handleSave = (): void => {
     if (userName !== user?.name && user?.id !== undefined) {
@@ -27,7 +32,6 @@ export const EditProfile = () => {
       });
 
       setIsOpen(false);
-      reload();
     }
   };
 
