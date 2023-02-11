@@ -1,4 +1,4 @@
-import { useState, type FC } from "react";
+import { useState, type FC, useEffect } from "react";
 import clsx from "clsx";
 import { regularFont } from "../../../../fonts";
 import { motion } from "framer-motion";
@@ -20,6 +20,7 @@ export const CopyTripIdButton: FC<Props> = (props) => {
   const { data: user } = api.userProfile.getProfileDetails.useQuery({
     email: session?.user?.email as string,
   });
+  const utils = api.useContext();
   const handleCopyToClipboard = async (): Promise<void> => {
     try {
       await navigator.clipboard.writeText(
@@ -38,6 +39,14 @@ export const CopyTripIdButton: FC<Props> = (props) => {
       console.error("Failed to copy text: ", err);
     }
   };
+
+  useEffect(() => {
+    if (session?.user?.email) {
+      utils.userProfile.getProfileDetails.refetch({
+        email: session.user.email,
+      });
+    }
+  }, [session?.user?.email, utils.userProfile.getProfileDetails]);
 
   return (
     <motion.div
