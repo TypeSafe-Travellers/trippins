@@ -204,11 +204,11 @@ export const TripDetailsContainer: FC<Props> = (props) => {
           <div
             className={clsx(
               `${regularFont.className}`,
-              "text-center text-xl lg:text-2xl",
+              "text-center text-2xl lg:text-3xl",
               "m-auto break-words p-4",
             )}
           >
-            Chats are still in experimental stage!
+            PS: Chats are still experimental
           </div>
 
           {trip && user && <TripChat tripId={trip.id} userId={user.id} />}

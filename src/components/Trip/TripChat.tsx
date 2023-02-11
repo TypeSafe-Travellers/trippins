@@ -57,7 +57,8 @@ export const TripChat: FC<Props> = (props) => {
           Start chatting about your trip...
         </div>
 
-        <hr />
+        <hr className="mx-auto w-full border border-black dark:border-gray-200" />
+
         {messages?.map((message) => (
           <div
             key={message.id}
