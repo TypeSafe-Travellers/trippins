@@ -1,6 +1,5 @@
 import { Transition } from "@headlessui/react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { CrossIcon } from "../../icons";
 import { type FC, type MouseEvent, useEffect, useState, Fragment } from "react";
 import clsx from "clsx";
 import { motion } from "framer-motion";
