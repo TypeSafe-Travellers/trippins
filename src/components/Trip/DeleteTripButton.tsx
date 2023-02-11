@@ -9,13 +9,19 @@ import { useRouter } from "next/router";
 
 interface Props {
   tripId: string;
+  userId: string;
 }
 
 export const DeleteTripButton: FC<Props> = (props) => {
-  const { tripId } = props;
-  const { push, reload } = useRouter();
+  const { tripId, userId } = props;
+  const { push } = useRouter();
   const [isOpen, setIsOpen] = useState(false);
-  const deleteTripMutation = api.userTrips.deleteTrip.useMutation();
+  const deleteTripMutation = api.userTrips.deleteTrip.useMutation({
+    onSuccess: () => {
+      utils.userTrips.getAll.refetch({ userId });
+    },
+  });
+  const utils = api.useContext();
 
   const handleDeleteTrip = (e: MouseEvent<HTMLButtonElement>): void => {
     e.preventDefault();
@@ -24,10 +30,6 @@ export const DeleteTripButton: FC<Props> = (props) => {
     setIsOpen(false);
 
     push("/");
-
-    setTimeout(() => {
-      reload();
-    }, 500);
   };
 
   return (
