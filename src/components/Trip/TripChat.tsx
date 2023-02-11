@@ -1,4 +1,4 @@
-import { type FC, useState } from "react";
+import { type FC, useState, useEffect } from "react";
 import { api } from "../../utils/api";
 
 interface Props {
@@ -10,9 +10,25 @@ interface Props {
 export const TripChat: FC<Props> = (props) => {
   const { tripId, userId, userName } = props;
   const [message, setMessage] = useState("");
+  const utils = api.useContext();
   const { data: messages } = api.tripMessages.getMessages.useQuery({ tripId });
   const { data: trip } = api.userTrips.getSpecificTrip.useQuery({ tripId });
-  const sendMessageMutation = api.tripMessages.sendMessage.useMutation();
+  const sendMessageMutation = api.tripMessages.sendMessage.useMutation({
+    onSuccess: () => {
+      utils.tripMessages.getMessages.refetch({ tripId });
+    },
+  });
+
+  /**
+   * this is a bit of a hack to get the messages to update in real time
+   */
+  useEffect(() => {
+    utils.tripMessages.getMessages.refetch({ tripId });
+
+    return () => {
+      utils.tripMessages.getMessages.invalidate({ tripId });
+    };
+  }, [messages, tripId, utils.tripMessages.getMessages]);
 
   /**
    * map participants to an object with id and name
