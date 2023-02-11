@@ -35,4 +35,32 @@ export const tripMessagesRouter = createTRPCRouter({
         console.error(error);
       }
     }),
+
+  /**
+   * mutation to send a message
+   * @param tripId - the id of the trip
+   * @param userId - the id of the user
+   * @param text - the text of the message
+   */
+  sendMessage: protectedProcedure
+    .input(
+      z.object({
+        tripId: z.string().length(25),
+        userId: z.string().length(25),
+        text: z.string().min(1).max(1000),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      try {
+        await ctx.prisma.message.create({
+          data: {
+            text: input.text,
+            tripId: input.tripId,
+            senderId: input.userId,
+          },
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }),
 });
