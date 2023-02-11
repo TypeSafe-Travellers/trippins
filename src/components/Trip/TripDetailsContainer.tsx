@@ -189,7 +189,7 @@ export const TripDetailsContainer: FC<Props> = (props) => {
               <div className="flex gap-x-3">
                 <ManageParticipants tripId={trip?.id} />
                 <EditTripButton trip={trip} />
-                <DeleteTripButton tripId={trip?.id} />
+                <DeleteTripButton tripId={trip?.id} userId={user.id} />
               </div>
             )}
           </div>

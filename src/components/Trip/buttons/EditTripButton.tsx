@@ -1,6 +1,6 @@
 import { Transition } from "@headlessui/react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { useRouter } from "next/router";
+import { CrossIcon } from "../../icons";
 import { type FC, type MouseEvent, useEffect, useState, Fragment } from "react";
 import clsx from "clsx";
 import { motion } from "framer-motion";
@@ -20,7 +20,6 @@ interface Props {
 }
 
 export const EditTripButton: FC<Props> = (props) => {
-  const { reload } = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const { trip } = props;
   const [tripName, setTripName] = useState(trip.name);
@@ -33,6 +32,12 @@ export const EditTripButton: FC<Props> = (props) => {
     trip.endDate.toISOString().slice(0, 16),
   );
   const [isValidated, setIsValidated] = useState(false);
+  const utils = api.useContext();
+  const editTripDetailsMutation = api.userTrips.editTrip.useMutation({
+    onSuccess: () => {
+      utils.userTrips.getSpecificTrip.refetch({ tripId: trip.id });
+    },
+  });
 
   useEffect(() => {
     if (
@@ -68,8 +73,6 @@ export const EditTripButton: FC<Props> = (props) => {
     tripBudget,
   ]);
 
-  const editTripDetailsMutation = api.userTrips.editTrip.useMutation();
-
   const handleSubmit = (e: MouseEvent<HTMLButtonElement>): void => {
     e.preventDefault();
 
@@ -99,9 +102,6 @@ export const EditTripButton: FC<Props> = (props) => {
     });
 
     setIsOpen(false);
-    setTimeout(() => {
-      reload();
-    }, 1000);
   };
 
   return (
