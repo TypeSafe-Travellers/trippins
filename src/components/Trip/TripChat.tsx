@@ -1,4 +1,4 @@
-import { type FC, useState, useEffect } from "react";
+import { type FC, useState, useEffect, useRef } from "react";
 import { api } from "../../utils/api";
 import clsx from "clsx";
 import { regularFont } from "../../fonts";
@@ -20,11 +20,16 @@ export const TripChat: FC<Props> = (props) => {
       utils.tripMessages.getMessages.refetch({ tripId });
     },
   });
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   /**
    * this is a bit of a hack to get the messages to update in real time
    */
   useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+
     utils.tripMessages.getMessages.refetch({ tripId });
 
     return () => {
@@ -76,6 +81,7 @@ export const TripChat: FC<Props> = (props) => {
             </p>
           </div>
         ))}
+        <div ref={messagesEndRef} />
       </div>
 
       <div className="pt-5 text-center">
