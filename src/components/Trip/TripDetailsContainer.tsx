@@ -194,7 +194,7 @@ export const TripDetailsContainer: FC<Props> = (props) => {
             )}
           </div>
 
-          {user && (
+          {user && user.name && (
             <TripChat tripId={trip.id} userId={user.id} userName={user.name} />
           )}
         </>
