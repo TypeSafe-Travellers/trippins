@@ -8,7 +8,7 @@ export const getMessageTime = (messageDate: Date): string => {
   let dateString;
   if (messageDate.toDateString() === today.toDateString()) {
     if (diffMinutes < 1) {
-      dateString = "Sent just now";
+      dateString = "sent just now";
     } else if (diffMinutes < 60) {
       dateString = "sent " + Math.round(diffMinutes) + " minutes ago";
     } else {
