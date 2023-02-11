@@ -10,9 +10,15 @@ export const getMessageTime = (messageDate: Date): string => {
     if (diffMinutes < 1) {
       dateString = "sent just now";
     } else if (diffMinutes < 60) {
-      dateString = "sent " + Math.round(diffMinutes) + " minutes ago";
+      dateString =
+        "sent " +
+        Math.round(diffMinutes) +
+        `${diffMinutes === 1 ? " minute ago" : " minutes ago"}`;
     } else {
-      dateString = "sent " + Math.round(diffHours) + " hours ago";
+      dateString =
+        "sent " +
+        Math.round(diffHours) +
+        `${diffHours === 1 ? " hour ago" : " hours ago"}`;
     }
   } else {
     dateString = messageDate.toLocaleDateString();
