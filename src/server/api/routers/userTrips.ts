@@ -51,6 +51,67 @@ export const userTripsRouter = createTRPCRouter({
   }),
 
   /**
+   * query to get count of trips a user has created or participated in or is banned from
+   * @param userId - id of the user
+   */
+  getTripsByUser: protectedProcedure
+    .input(z.object({ userId: z.string() }))
+    .query(async ({ ctx, input }) => {
+      try {
+        const isCreator = await ctx.prisma.trip.findMany({
+          where: {
+            adminId: input.userId,
+          },
+          select: {
+            _count: {
+              select: {
+                participants: true,
+              },
+            },
+          },
+        });
+
+        const isParticipant = await ctx.prisma.trip.findMany({
+          where: {
+            participants: {
+              some: {
+                id: input.userId,
+              },
+            },
+          },
+          select: {
+            _count: {
+              select: {
+                participants: true,
+              },
+            },
+          },
+        });
+
+        const isBanned = await ctx.prisma.trip.findMany({
+          where: {
+            bannedUsers: {
+              some: {
+                id: input.userId,
+              },
+            },
+          },
+          select: {
+            _count: {
+              select: {
+                participants: true,
+              },
+            },
+          },
+        });
+
+        return { isCreator, isParticipant, isBanned };
+      } catch (error) {
+        console.error("error", error);
+      }
+    }),
+
+  /**
    * query to get a specific trip
    * @param tripId - id of the trip
    * @returns trip object

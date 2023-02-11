@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import clsx from "clsx";
 import { semiBoldFont } from "../../fonts";
 import { useSession } from "next-auth/react";
@@ -10,6 +11,20 @@ export const ProfileDetails = () => {
   const { data: user } = api.userProfile.getProfileDetails.useQuery({
     email: session?.user?.email as string,
   });
+  const { data: trips } = api.userTrips.getTripsByUser.useQuery({
+    userId: user?.id as string,
+  });
+  const utils = api.useContext();
+
+  useEffect(() => {
+    if (user?.id) {
+      utils.userTrips.getTripsByUser.refetch({ userId: user.id });
+    }
+
+    return () => {
+      utils.userTrips.getTripsByUser.invalidate();
+    };
+  }, [user?.id, utils.userTrips.getTripsByUser]);
 
   return (
     <div
@@ -44,12 +59,55 @@ export const ProfileDetails = () => {
             </>
           )}
         </div>
+
         <div className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}>
           <span className={clsx("text-indigo-800 dark:text-indigo-200")}>
             {"Email: "}
           </span>
           {user?.email ? (
             user.email
+          ) : (
+            <>
+              loading
+              <LoadingAnimation />
+            </>
+          )}
+        </div>
+
+        <div className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}>
+          <span className={clsx("text-indigo-800 dark:text-indigo-200")}>
+            {"Trips joined: "}
+          </span>
+          {trips?.isParticipant ? (
+            trips.isParticipant.length
+          ) : (
+            <>
+              loading
+              <LoadingAnimation />
+            </>
+          )}
+        </div>
+
+        <div className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}>
+          <span className={clsx("text-indigo-800 dark:text-indigo-200")}>
+            {"Trips created: "}
+          </span>
+          {trips?.isCreator ? (
+            trips.isCreator.length
+          ) : (
+            <>
+              loading
+              <LoadingAnimation />
+            </>
+          )}
+        </div>
+
+        <div className={clsx("my-2 leading-none", `${semiBoldFont.className}`)}>
+          <span className={clsx("text-indigo-800 dark:text-indigo-200")}>
+            {"Trips Karma: "}
+          </span>
+          {trips?.isBanned ? (
+            `${trips.isBanned.length === 0 ? 0 : trips.isBanned.length * -1}`
           ) : (
             <>
               loading
