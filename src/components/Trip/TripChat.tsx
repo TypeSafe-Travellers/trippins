@@ -72,8 +72,8 @@ export const TripChat: FC<Props> = (props) => {
                 : participantsMap?.find(
                     (participant) => participant.id === message.senderId,
                   )?.name || "Unknown"}
+              {` ${getMessageTime(message.createdAt)}`}
             </p>
-            <p>{getMessageTime(message.createdAt)}</p>
           </div>
         ))}
       </div>
