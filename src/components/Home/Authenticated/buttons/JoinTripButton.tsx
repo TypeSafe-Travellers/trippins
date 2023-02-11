@@ -6,7 +6,6 @@ import { type MouseEvent, Fragment, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { regularFont } from "../../../../fonts";
 import { api } from "../../../../utils/api";
-import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 
 export const JoinTripButton = () => {
@@ -15,7 +14,6 @@ export const JoinTripButton = () => {
   const [isValidated, setIsValidated] = useState(false);
   const [isParticipant, setIsParticipant] = useState(true);
   const [isBanned, setIsBanned] = useState(true);
-  const { reload } = useRouter();
   const { data: session } = useSession();
   const { data: user } = api.userProfile.getProfileDetails.useQuery({
     email: session?.user?.email as string,
@@ -26,7 +24,12 @@ export const JoinTripButton = () => {
   });
   const { data: bannedParticipants } =
     api.userTrips.getBannedParticipants.useQuery({ tripId });
-  const addTripParticipantMutation = api.userTrips.addParticipant.useMutation();
+  const addTripParticipantMutation = api.userTrips.addParticipant.useMutation({
+    onSuccess: () => {
+      utils.userTrips.getAll.refetch({ userId: user?.id as string });
+    },
+  });
+  const utils = api.useContext();
 
   const handleAddParticipant = (e: MouseEvent<HTMLButtonElement>): void => {
     e.preventDefault();
@@ -37,10 +40,6 @@ export const JoinTripButton = () => {
     });
 
     setIsOpen(false);
-
-    setTimeout(() => {
-      reload();
-    }, 1000);
   };
 
   useEffect(() => {
@@ -68,6 +67,16 @@ export const JoinTripButton = () => {
     } else {
       setIsValidated(false);
     }
+
+    if (tripId) {
+      utils.userTrips.getTripParticipants.refetch({ tripId });
+      utils.userTrips.getBannedParticipants.refetch({ tripId });
+    }
+
+    return () => {
+      utils.userTrips.getTripParticipants.invalidate();
+      utils.userTrips.getBannedParticipants.invalidate();
+    };
   }, [
     tripId,
     isBanned,
@@ -76,6 +85,8 @@ export const JoinTripButton = () => {
     participants,
     isParticipant,
     bannedParticipants,
+    utils.userTrips.getTripParticipants,
+    utils.userTrips.getBannedParticipants,
   ]);
 
   return (

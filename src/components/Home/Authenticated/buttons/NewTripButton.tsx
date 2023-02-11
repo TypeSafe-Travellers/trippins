@@ -4,7 +4,6 @@ import { CrossIcon } from "../../../../icons";
 import clsx from "clsx";
 import { type MouseEvent, Fragment, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { api } from "../../../../utils/api";
 import { regularFont } from "../../../../fonts";
@@ -17,12 +16,16 @@ export const NewTripButton = () => {
   const [endDate, setEndDate] = useState("");
   const [perHeadBudget, setPerHeadBudget] = useState(0);
   const [isValidated, setIsValidated] = useState(false);
-  const { reload } = useRouter();
-
   const { data: session } = useSession();
   const { data: user } = api.userProfile.getProfileDetails.useQuery({
     email: session?.user?.email as string,
   });
+  const createTripMutation = api.userTrips.createTrip.useMutation({
+    onSuccess: () => {
+      utils.userTrips.getAll.refetch({ userId: user?.id as string });
+    },
+  });
+  const utils = api.useContext();
 
   useEffect(() => {
     if (
@@ -40,9 +43,25 @@ export const NewTripButton = () => {
     } else {
       setIsValidated(false);
     }
-  }, [tripName, tripDescription, startDate, endDate, perHeadBudget]);
 
-  const createTripMutation = api.userTrips.createTrip.useMutation();
+    if (session?.user?.email) {
+      utils.userProfile.getProfileDetails.refetch({
+        email: session?.user?.email,
+      });
+    }
+
+    return () => {
+      utils.userProfile.getProfileDetails.invalidate();
+    };
+  }, [
+    endDate,
+    tripName,
+    startDate,
+    perHeadBudget,
+    tripDescription,
+    session?.user?.email,
+    utils.userProfile.getProfileDetails,
+  ]);
 
   const handleSubmit = (e: MouseEvent<HTMLButtonElement>): void => {
     e.preventDefault();
@@ -65,10 +84,6 @@ export const NewTripButton = () => {
       });
 
       setIsOpen(false);
-
-      setTimeout(() => {
-        reload();
-      }, 1000);
     }
   };
 
