@@ -208,7 +208,7 @@ export const TripDetailsContainer: FC<Props> = (props) => {
               "m-auto break-words p-4",
             )}
           >
-            PS: Chats are still experimental
+            Start chatting about your trip...
           </div>
 
           {trip && user && <TripChat tripId={trip.id} userId={user.id} />}
