@@ -165,7 +165,7 @@ export const TripChat: FC<Props> = (props) => {
                   </a>
                 );
               }
-              return <span key={i}>{part} </span>;
+              return <span key={i}> {part} </span>;
             })}
             <p>
               {message.senderId === userId
