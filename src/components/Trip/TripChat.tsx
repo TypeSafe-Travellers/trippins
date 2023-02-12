@@ -1,4 +1,4 @@
-import { type FC, useState, useEffect, useRef } from "react";
+import { type FC, type UIEvent, useState, useEffect, useRef } from "react";
 import { api } from "../../utils/api";
 import clsx from "clsx";
 import { regularFont } from "../../fonts";
@@ -23,13 +23,30 @@ export const TripChat: FC<Props> = (props) => {
 
   // ref to the bottom of the chat so that it scrolls to the bottom when a new message is sent
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const [scrollLock, setScrollLock] = useState(false);
+
+  /**
+   * if the user scrolls up, lock the scroll position
+   */
+  const handleScroll = (e: UIEvent<HTMLDivElement>) => {
+    const target = e.target as HTMLDivElement;
+
+    if (target.scrollTop >= 0) {
+      setScrollLock(true);
+    } else {
+      setScrollLock(false);
+    }
+  };
 
   /**
    * bit of a hack to get the messages to update in real time
    */
   useEffect(() => {
-    // scroll to the bottom of the chat
-    if (messagesEndRef.current) {
+    /**
+     * if the user has not scrolled up
+     * scroll to the bottom of the chat
+     */
+    if (messagesEndRef.current && !scrollLock) {
       messagesEndRef.current.scrollIntoView({
         behavior: "smooth",
         block: "end",
@@ -46,6 +63,7 @@ export const TripChat: FC<Props> = (props) => {
   }, [
     tripId,
     messages,
+    scrollLock,
     utils.tripMessages.getMessages,
     utils.userTrips.getSpecificTrip,
   ]);
@@ -62,6 +80,7 @@ export const TripChat: FC<Props> = (props) => {
   return (
     <>
       <div
+        onScroll={(e) => handleScroll(e)}
         className={clsx(
           `${regularFont.className}`,
           "flex flex-col gap-3 text-left",
