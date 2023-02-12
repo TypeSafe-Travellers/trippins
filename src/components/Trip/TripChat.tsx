@@ -1,4 +1,11 @@
-import { type FC, type UIEvent, useState, useEffect, useRef } from "react";
+import {
+  type FC,
+  type UIEvent,
+  type MouseEvent,
+  useState,
+  useEffect,
+  useRef,
+} from "react";
 import { api } from "../../utils/api";
 import clsx from "clsx";
 import { regularFont } from "../../fonts";
@@ -18,6 +25,19 @@ export const TripChat: FC<Props> = (props) => {
   const sendMessageMutation = api.tripMessages.sendMessage.useMutation({
     onSuccess: () => {
       utils.tripMessages.getMessages.refetch({ tripId });
+
+      /**
+       * when a new message is sent
+       * scroll to the bottom of the chat
+       */
+      setTimeout(() => {
+        if (messagesEndRef.current) {
+          messagesEndRef.current.scrollIntoView({
+            behavior: "smooth",
+            block: "end",
+          });
+        }
+      }, 1000);
     },
   });
 
@@ -39,6 +59,18 @@ export const TripChat: FC<Props> = (props) => {
     } else {
       setScrollLock(false);
     }
+  };
+
+  const handleSendMessage = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    sendMessageMutation.mutate({
+      tripId,
+      text: message,
+      userId,
+    });
+
+    setMessage("");
   };
 
   /**
@@ -131,15 +163,7 @@ export const TripChat: FC<Props> = (props) => {
         <button
           type="button"
           onClick={(e) => {
-            e.preventDefault();
-
-            sendMessageMutation.mutate({
-              tripId,
-              text: message,
-              userId,
-            });
-
-            setMessage("");
+            handleSendMessage(e);
           }}
         >
           send
