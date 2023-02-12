@@ -42,7 +42,7 @@ export const TripDetailsContainer: FC<Props> = (props) => {
           "bg-clip-text text-transparent",
           "bg-gradient-to-r from-indigo-700 to-fuchsia-700 dark:from-indigo-300 dark:to-fuchsia-300",
           "text-center text-5xl lg:text-left lg:text-7xl",
-          "mx-auto",
+          "mx-auto mt-10",
           `${boldFont.className}`,
         )}
       >
