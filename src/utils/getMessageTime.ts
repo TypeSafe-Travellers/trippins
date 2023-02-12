@@ -21,7 +21,7 @@ export const getMessageTime = (messageDate: Date): string => {
         `${Math.round(diffHours) === 1 ? " hour ago" : " hours ago"}`;
     }
   } else {
-    dateString = messageDate.toLocaleDateString();
+    dateString = "sent on " + messageDate.toLocaleDateString();
   }
 
   return dateString;
