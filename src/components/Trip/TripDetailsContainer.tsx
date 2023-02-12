@@ -3,6 +3,7 @@ import { clsx } from "clsx";
 import { boldFont, regularFont, semiBoldFont } from "../../fonts";
 import { type FC } from "react";
 import { api } from "../../utils/api";
+import { ReloadIcon } from "../../icons";
 import { useSession } from "next-auth/react";
 import { Footer, LoadingAnimation } from "../Misc";
 import {
@@ -12,6 +13,7 @@ import {
   ManageParticipants,
 } from "./buttons";
 import { TripChat } from "./TripChat";
+import { useRouter } from "next/router";
 
 interface Props {
   tripId: string;
@@ -19,6 +21,7 @@ interface Props {
 
 export const TripDetailsContainer: FC<Props> = (props) => {
   const { tripId } = props;
+  const { reload } = useRouter();
   const { data: session } = useSession();
   const { data: user } = api.userProfile.getProfileDetails.useQuery({
     email: session?.user?.email as string,
@@ -39,14 +42,26 @@ export const TripDetailsContainer: FC<Props> = (props) => {
     >
       <div
         className={clsx(
-          "bg-clip-text text-transparent",
-          "bg-gradient-to-r from-indigo-700 to-fuchsia-700 dark:from-indigo-300 dark:to-fuchsia-300",
+          "flex items-center justify-between",
           "text-center text-5xl lg:text-left lg:text-7xl",
-          "mx-auto mt-10",
+          "mx-5 mt-10",
           `${boldFont.className}`,
         )}
       >
-        Trip Details
+        <div
+          className={clsx(
+            "bg-clip-text text-transparent",
+            "bg-gradient-to-r from-indigo-700 to-fuchsia-700 dark:from-indigo-300 dark:to-fuchsia-300",
+            "mr-4",
+          )}
+        >
+          Trip Details
+        </div>
+        <span>
+          <button onClick={() => reload()}>
+            <ReloadIcon />
+          </button>
+        </span>
       </div>
 
       <div className="flex flex-col gap-y-5 gap-x-0 lg:flex-row lg:gap-y-0 lg:gap-x-5">

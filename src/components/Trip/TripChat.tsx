@@ -172,6 +172,8 @@ export const TripChat: FC<Props> = (props) => {
                   )?.name || "Unknown"}
               {` ${getMessageTime(message.createdAt)}`}
             </p>
+
+            <hr className="mx-auto w-full border border-black dark:border-gray-200" />
           </div>
         ))}
 
