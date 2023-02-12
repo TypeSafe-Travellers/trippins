@@ -143,7 +143,30 @@ export const TripChat: FC<Props> = (props) => {
             key={message.id}
             className={clsx(`${message.senderId === userId && "text-right"}`)}
           >
-            <p>{message.text}</p>
+            {/**
+             * split the message text by spaces
+             * if the text is a link, render it as a clickable link
+             * otherwise render it as plain text
+             */}
+            {message.text.split(" ").map((part, i) => {
+              if (part.startsWith("http") || part.startsWith("www")) {
+                return (
+                  <a
+                    key={i}
+                    className={clsx(
+                      "text-blue-800 dark:text-blue-300",
+                      "hover:underline",
+                    )}
+                    href={part}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {part}
+                  </a>
+                );
+              }
+              return <span key={i}>{part} </span>;
+            })}
             <p>
               {message.senderId === userId
                 ? null
@@ -154,12 +177,16 @@ export const TripChat: FC<Props> = (props) => {
             </p>
           </div>
         ))}
+
         <div ref={messagesEndRef} />
       </div>
 
       <div className="pt-5 text-center">
         <label>send message</label>
-        <input value={message} onChange={(e) => setMessage(e.target.value)} />
+        <textarea
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+        />
         <button
           type="button"
           onClick={(e) => {
