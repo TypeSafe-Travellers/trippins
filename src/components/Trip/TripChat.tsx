@@ -20,22 +20,35 @@ export const TripChat: FC<Props> = (props) => {
       utils.tripMessages.getMessages.refetch({ tripId });
     },
   });
+
+  // ref to the bottom of the chat so that it scrolls to the bottom when a new message is sent
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   /**
-   * this is a bit of a hack to get the messages to update in real time
+   * bit of a hack to get the messages to update in real time
    */
   useEffect(() => {
+    // scroll to the bottom of the chat
     if (messagesEndRef.current) {
-      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+      messagesEndRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "end",
+      });
     }
 
     utils.tripMessages.getMessages.refetch({ tripId });
+    utils.userTrips.getSpecificTrip.refetch({ tripId });
 
     return () => {
       utils.tripMessages.getMessages.invalidate({ tripId });
+      utils.userTrips.getSpecificTrip.invalidate({ tripId });
     };
-  }, [messages, tripId, utils.tripMessages.getMessages]);
+  }, [
+    tripId,
+    messages,
+    utils.tripMessages.getMessages,
+    utils.userTrips.getSpecificTrip,
+  ]);
 
   /**
    * map participants to an object with id and name
