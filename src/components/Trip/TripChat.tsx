@@ -21,7 +21,10 @@ export const TripChat: FC<Props> = (props) => {
     },
   });
 
-  // ref to the bottom of the chat so that it scrolls to the bottom when a new message is sent
+  /**
+   * ref to the bottom of the chat
+   * scrolls to the bottom when a new message is sent
+   */
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const [scrollLock, setScrollLock] = useState(false);
 
