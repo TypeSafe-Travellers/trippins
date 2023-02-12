@@ -147,13 +147,22 @@ export const TripChat: FC<Props> = (props) => {
               "rounded-lg border border-solid border-black dark:border-white",
             )}
           >
-            {/**
-             * split the message text by spaces
-             * if the text is a link, render it as a clickable link
-             * otherwise render it as plain text
-             */}
             {message.text.split(" ").map((part, i) => {
+              let isLink = false;
+              let link = part;
               if (part.startsWith("http") || part.startsWith("www")) {
+                isLink = true;
+                link = part;
+              } else if (part.includes("(http")) {
+                const startIndex = part.indexOf("(http");
+                const endIndex = part.indexOf(")");
+                if (startIndex !== -1 && endIndex !== -1) {
+                  isLink = true;
+                  link = part.substring(startIndex + 1, endIndex);
+                }
+              }
+
+              if (isLink) {
                 return (
                   <a
                     key={i}
@@ -161,7 +170,7 @@ export const TripChat: FC<Props> = (props) => {
                       "text-blue-800 dark:text-blue-300",
                       "hover:underline",
                     )}
-                    href={part}
+                    href={link}
                     target="_blank"
                     rel="noreferrer"
                   >
@@ -172,9 +181,14 @@ export const TripChat: FC<Props> = (props) => {
               return <span key={i}> {part} </span>;
             })}
 
-            <hr className="mx-auto mt-5 w-full border border-black dark:border-gray-200" />
+            <hr
+              className={clsx(
+                "mx-auto mt-5 w-full border border-black",
+                "dark:border-gray-200",
+              )}
+            />
 
-            <p className="py-3 text-center">
+            <p className={clsx("py-3 text-center")}>
               {message.senderId === userId
                 ? "you"
                 : participantsMap?.find(
