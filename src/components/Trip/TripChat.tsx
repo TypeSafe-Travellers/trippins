@@ -120,7 +120,7 @@ export const TripChat: FC<Props> = (props) => {
         className={clsx(
           `${regularFont.className}`,
           "flex flex-col gap-3",
-          "mx-5 h-80 w-96 overflow-y-auto py-5 px-3",
+          "mx-5 h-80 w-96 overflow-y-auto p-5",
           "scroll-smooth scrollbar-thin scrollbar-track-transparent scrollbar-thumb-zinc-500 dark:scrollbar-thumb-indigo-900",
           "rounded-lg border-4 border-solid border-black dark:border-gray-200",
           "shadow-lg shadow-blue-200 hover:shadow-red-200 dark:shadow-indigo-900",
@@ -143,11 +143,19 @@ export const TripChat: FC<Props> = (props) => {
           <div
             key={message.id}
             className={clsx(
-              "w-full break-words px-3 pt-5",
+              "my-1 w-full break-words px-3 pt-5",
               "shadow-lg shadow-blue-200 hover:shadow-red-200 dark:shadow-indigo-900 dark:hover:shadow-indigo-700",
               "rounded-lg border border-solid border-black dark:border-white",
+              `${
+                message.senderId === userId
+                  ? "bg-white dark:bg-black"
+                  : "bg-gray-50 dark:bg-neutral-900"
+              }`,
             )}
           >
+            {/**
+             * check if the message has a link or not
+             */}
             {message.text.split(" ").map((part, i) => {
               if (part.startsWith("http") || part.startsWith("www")) {
                 return (
