@@ -205,15 +205,19 @@ export const TripDetailsContainer: FC<Props> = (props) => {
             className={clsx(
               `${regularFont.className}`,
               "text-center text-2xl lg:text-3xl",
-              "m-auto break-words p-4",
+              "font-semibold tracking-wide",
+              "m-auto break-words p-2",
             )}
           >
-            Start chatting about your trip...
+            <span className={clsx("text-indigo-700 dark:text-indigo-200")}>
+              Chat with your fellow travellers
+            </span>
           </div>
 
           {trip && user && <TripChat tripId={trip.id} userId={user.id} />}
         </div>
       </div>
+
       <Footer />
     </motion.div>
   );

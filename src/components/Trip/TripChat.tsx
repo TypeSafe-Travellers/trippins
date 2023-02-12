@@ -94,7 +94,13 @@ export const TripChat: FC<Props> = (props) => {
           "bg-gradient-to-tl from-white/70 via-white/60 to-white/50 dark:from-black/70 dark:via-black/60 dark:to-black/50",
         )}
       >
-        <div className={clsx("text-center text-lg lg:text-xl")}>
+        <div
+          className={clsx(
+            "font-semibold tracking-wider",
+            "text-center text-lg lg:text-xl",
+            "text-fuchsia-700 dark:text-fuchsia-200",
+          )}
+        >
           Start chatting about your trip...
         </div>
 
