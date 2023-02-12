@@ -37,7 +37,7 @@ export const TripChat: FC<Props> = (props) => {
             block: "end",
           });
         }
-      }, 1000);
+      }, 3000);
     },
   });
 
