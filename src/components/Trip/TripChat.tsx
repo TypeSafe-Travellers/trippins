@@ -55,8 +55,16 @@ export const TripChat: FC<Props> = (props) => {
   const handleScroll = (e: UIEvent<HTMLDivElement>) => {
     const target = e.target as HTMLDivElement;
 
+    /**
+     * if the user has scrolled up, lock the scroll position
+     * this is to avoid the chat from scrolling to the bottom
+     * when the user is reading the messages & a new message is sent
+     */
     if (target.scrollTop >= 0) {
       setScrollLock(true);
+      setTimeout(() => {
+        setScrollLock(false);
+      }, 5000);
     } else {
       setScrollLock(false);
     }
@@ -114,13 +122,12 @@ export const TripChat: FC<Props> = (props) => {
   }));
 
   return (
-    <>
+    <div className="flex flex-col items-center text-center">
       <div
         onScroll={(e) => handleScroll(e)}
         className={clsx(
           `${regularFont.className}`,
-          "flex flex-col gap-3",
-          "mx-5 h-80 w-96 overflow-y-auto p-5",
+          "h-72 w-96 overflow-y-auto p-5",
           "scroll-smooth scrollbar-thin scrollbar-track-transparent scrollbar-thumb-zinc-500 dark:scrollbar-thumb-indigo-900",
           "rounded-lg border-4 border-solid border-black dark:border-gray-200",
           "shadow-lg shadow-blue-200 hover:shadow-red-200 dark:shadow-indigo-900",
@@ -143,7 +150,7 @@ export const TripChat: FC<Props> = (props) => {
           <div
             key={message.id}
             className={clsx(
-              "my-1 w-full break-words px-3 pt-5",
+              "my-5 w-full break-words px-3 pt-5 text-left",
               "shadow-lg shadow-blue-200 hover:shadow-red-200 dark:shadow-indigo-900 dark:hover:shadow-indigo-700",
               "rounded-lg border border-solid border-black dark:border-white",
               `${
@@ -178,7 +185,7 @@ export const TripChat: FC<Props> = (props) => {
 
             <hr
               className={clsx(
-                "mx-auto mt-5 w-full border border-black",
+                "mx-auto mt-3 w-full border border-black",
                 "dark:border-gray-200",
               )}
             />
@@ -197,29 +204,34 @@ export const TripChat: FC<Props> = (props) => {
         <div ref={messagesEndRef} />
       </div>
 
-      <div className="pt-5 text-center">
-        <textarea
-          className={clsx(
-            `${regularFont.className}`,
-            "h-20 w-96",
-            "p-2",
-            "rounded-lg border-2 border-solid border-black dark:border-gray-200",
-            "shadow-lg shadow-blue-200 hover:shadow-red-200 dark:shadow-indigo-900 dark:hover:shadow-indigo-700",
-            "bg-gradient-to-tl from-white/70 via-white/60 to-white/50 dark:from-black/70 dark:via-black/60 dark:to-black/50",
-          )}
-          placeholder="Type your message here..."
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-        />
-        <button
-          type="button"
-          onClick={(e) => {
-            handleSendMessage(e);
-          }}
-        >
-          <SendButton />
-        </button>
+      <div className="flex flex-row items-center gap-x-3 pt-5 text-center">
+        <div>
+          <textarea
+            className={clsx(
+              `${regularFont.className}`,
+              "mx-8 w-80 p-2 lg:mx-0",
+              "rounded-lg border-2 border-solid border-black dark:border-gray-200",
+              "shadow-lg shadow-blue-200 hover:shadow-red-200 dark:shadow-indigo-900 dark:hover:shadow-indigo-700",
+              "bg-gradient-to-tl from-white/70 via-white/60 to-white/50 dark:from-black/70 dark:via-black/60 dark:to-black/50",
+            )}
+            placeholder="Type your message here..."
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+          />
+        </div>
+
+        <div>
+          <button
+            className="my-auto"
+            type="button"
+            onClick={(e) => {
+              handleSendMessage(e);
+            }}
+          >
+            <SendButton />
+          </button>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
