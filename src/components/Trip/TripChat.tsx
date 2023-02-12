@@ -148,21 +148,7 @@ export const TripChat: FC<Props> = (props) => {
             )}
           >
             {message.text.split(" ").map((part, i) => {
-              let isLink = false;
-              let link = part;
               if (part.startsWith("http") || part.startsWith("www")) {
-                isLink = true;
-                link = part;
-              } else if (part.includes("(http")) {
-                const startIndex = part.indexOf("(http");
-                const endIndex = part.indexOf(")");
-                if (startIndex !== -1 && endIndex !== -1) {
-                  isLink = true;
-                  link = part.substring(startIndex + 1, endIndex);
-                }
-              }
-
-              if (isLink) {
                 return (
                   <a
                     key={i}
@@ -170,7 +156,7 @@ export const TripChat: FC<Props> = (props) => {
                       "text-blue-800 dark:text-blue-300",
                       "hover:underline",
                     )}
-                    href={link}
+                    href={part}
                     target="_blank"
                     rel="noreferrer"
                   >
