@@ -10,6 +10,7 @@ import { api } from "../../utils/api";
 import clsx from "clsx";
 import { regularFont } from "../../fonts";
 import { getMessageTime } from "../../utils/getMessageTime";
+import { SendButton } from "../../icons";
 
 interface Props {
   tripId: string;
@@ -200,7 +201,7 @@ export const TripChat: FC<Props> = (props) => {
             handleSendMessage(e);
           }}
         >
-          send
+          <SendButton />
         </button>
       </div>
     </>
