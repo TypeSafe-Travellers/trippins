@@ -118,7 +118,7 @@ export const TripChat: FC<Props> = (props) => {
         onScroll={(e) => handleScroll(e)}
         className={clsx(
           `${regularFont.className}`,
-          "flex flex-col gap-3 text-left",
+          "flex flex-col gap-3",
           "mx-5 h-80 w-96 overflow-y-auto py-5 px-3",
           "scroll-smooth scrollbar-thin scrollbar-track-transparent scrollbar-thumb-zinc-500 dark:scrollbar-thumb-indigo-900",
           "rounded-lg border-4 border-solid border-black dark:border-gray-200",
@@ -139,10 +139,7 @@ export const TripChat: FC<Props> = (props) => {
         <hr className="mx-auto w-full border border-black dark:border-gray-200" />
 
         {messages?.map((message) => (
-          <div
-            key={message.id}
-            className={clsx(`${message.senderId === userId && "text-right"}`)}
-          >
+          <div key={message.id} className={clsx("w-full break-words")}>
             {/**
              * split the message text by spaces
              * if the text is a link, render it as a clickable link
@@ -169,7 +166,7 @@ export const TripChat: FC<Props> = (props) => {
             })}
             <p>
               {message.senderId === userId
-                ? null
+                ? "you"
                 : participantsMap?.find(
                     (participant) => participant.id === message.senderId,
                   )?.name || "Unknown"}
