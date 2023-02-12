@@ -198,8 +198,16 @@ export const TripChat: FC<Props> = (props) => {
       </div>
 
       <div className="pt-5 text-center">
-        <label>send message</label>
         <textarea
+          className={clsx(
+            `${regularFont.className}`,
+            "h-20 w-96",
+            "p-2",
+            "rounded-lg border-2 border-solid border-black dark:border-gray-200",
+            "shadow-lg shadow-blue-200 hover:shadow-red-200 dark:shadow-indigo-900 dark:hover:shadow-indigo-700",
+            "bg-gradient-to-tl from-white/70 via-white/60 to-white/50 dark:from-black/70 dark:via-black/60 dark:to-black/50",
+          )}
+          placeholder="Type your message here..."
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
