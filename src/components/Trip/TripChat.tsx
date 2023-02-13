@@ -150,7 +150,7 @@ export const TripChat: FC<Props> = (props) => {
           <div
             key={message.id}
             className={clsx(
-              "my-5 w-full break-words px-3 pt-5 text-left",
+              "my-5 w-full break-words px-3 pt-5 text-left leading-tight",
               "shadow-lg shadow-blue-200 hover:shadow-red-200 dark:shadow-indigo-900 dark:hover:shadow-indigo-700",
               "rounded-lg border border-solid border-black dark:border-white",
               `${
