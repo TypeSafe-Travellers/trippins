@@ -53,4 +53,27 @@ export const userProfileRouter = createTRPCRouter({
         console.error(error);
       }
     }),
+
+  /**
+   * gets user details for chat
+   * @param userId - the id of the user
+   * @returns user object
+   */
+  getUserDetailsForChat: protectedProcedure
+    .input(z.object({ userId: z.string() }))
+    .query(async ({ ctx, input }) => {
+      try {
+        return await ctx.prisma.user.findUnique({
+          select: {
+            id: true,
+            name: true,
+          },
+          where: {
+            id: input.userId,
+          },
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }),
 });
