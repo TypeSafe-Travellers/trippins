@@ -1,11 +1,11 @@
 import { useState, type FC, useEffect } from "react";
 import clsx from "clsx";
-import { regularFont } from "../../../../fonts";
+import { regularFont } from "../../../fonts";
 import { motion } from "framer-motion";
 import * as Toast from "@radix-ui/react-toast";
-import { useMediaQuery } from "../../../../hooks";
+import { useMediaQuery } from "../../../hooks";
 import { useSession } from "next-auth/react";
-import { api } from "../../../../utils/api";
+import { api } from "../../../utils/api";
 
 interface Props {
   tripId: string;
@@ -24,7 +24,7 @@ export const CopyTripIdButton: FC<Props> = (props) => {
   const handleCopyToClipboard = async (): Promise<void> => {
     try {
       await navigator.clipboard.writeText(
-        `${user?.name} has invited you to join their trip: ${tripName}! The trip code is ${tripId}. Signup / Login at Trippins (https://trippins.netlify.app/) to join.`,
+        `${user?.name} has invited you to join their trip: ${tripName}! The trip code is ${tripId}. Signup / Login @ Trippins https://trippins.netlify.app to join.`,
       );
 
       if (open) {

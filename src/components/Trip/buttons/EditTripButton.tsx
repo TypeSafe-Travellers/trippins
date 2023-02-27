@@ -1,11 +1,11 @@
 import { Transition } from "@headlessui/react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { CrossIcon } from "../../icons";
 import { type FC, type MouseEvent, useEffect, useState, Fragment } from "react";
 import clsx from "clsx";
-import { regularFont } from "../../fonts";
 import { motion } from "framer-motion";
-import { api } from "../../utils/api";
+import { api } from "../../../utils/api";
+import { regularFont } from "../../../fonts";
+import { CrossIcon } from "../../../icons";
 
 interface Props {
   trip: {
