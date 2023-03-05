@@ -5,6 +5,7 @@ import { api } from "../../../utils/api";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { LoadingAnimation } from "../../Misc";
+import { useEffect } from "react";
 
 export const TripsContainer = () => {
   const { data: session } = useSession();
@@ -15,6 +16,29 @@ export const TripsContainer = () => {
     userId: user?.id as string,
   });
   const { push } = useRouter();
+  const utils = api.useContext();
+
+  useEffect(() => {
+    if (session?.user?.email) {
+      utils.userProfile.getProfileDetails.refetch({
+        email: session?.user?.email,
+      });
+    }
+
+    if (user?.id) {
+      utils.userTrips.getAll.refetch({ userId: user?.id as string });
+    }
+
+    return () => {
+      utils.userProfile.getProfileDetails.invalidate();
+      utils.userTrips.getAll.invalidate();
+    };
+  }, [
+    user?.id,
+    session?.user?.email,
+    utils.userTrips.getAll,
+    utils.userProfile.getProfileDetails,
+  ]);
 
   if (isLoading) {
     return (

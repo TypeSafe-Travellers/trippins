@@ -51,12 +51,73 @@ export const userTripsRouter = createTRPCRouter({
   }),
 
   /**
+   * query to get count of trips a user has created or participated in or is banned from
+   * @param userId - id of the user
+   */
+  getTripsByUser: protectedProcedure
+    .input(z.object({ userId: z.string() }))
+    .query(async ({ ctx, input }) => {
+      try {
+        const isCreator = await ctx.prisma.trip.findMany({
+          where: {
+            adminId: input.userId,
+          },
+          select: {
+            _count: {
+              select: {
+                participants: true,
+              },
+            },
+          },
+        });
+
+        const isParticipant = await ctx.prisma.trip.findMany({
+          where: {
+            participants: {
+              some: {
+                id: input.userId,
+              },
+            },
+          },
+          select: {
+            _count: {
+              select: {
+                participants: true,
+              },
+            },
+          },
+        });
+
+        const isBanned = await ctx.prisma.trip.findMany({
+          where: {
+            bannedUsers: {
+              some: {
+                id: input.userId,
+              },
+            },
+          },
+          select: {
+            _count: {
+              select: {
+                participants: true,
+              },
+            },
+          },
+        });
+
+        return { isCreator, isParticipant, isBanned };
+      } catch (error) {
+        console.error("error", error);
+      }
+    }),
+
+  /**
    * query to get a specific trip
    * @param tripId - id of the trip
    * @returns trip object
    */
   getSpecificTrip: protectedProcedure
-    .input(z.object({ tripId: z.string().min(25).max(25) }))
+    .input(z.object({ tripId: z.string().length(25) }))
     .query(async ({ ctx, input }) => {
       try {
         return await ctx.prisma.trip.findUnique({
@@ -228,6 +289,32 @@ export const userTripsRouter = createTRPCRouter({
     }),
 
   /**
+   * mutation to remove a trip by participant
+   * @param tripId - id of the trip
+   * @param userId - id of the user who wants to leave the trip
+   */
+  removeTrip: protectedProcedure
+    .input(z.object({ tripId: z.string().length(25), userId: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      try {
+        await ctx.prisma.trip.update({
+          where: {
+            id: input.tripId,
+          },
+          data: {
+            participants: {
+              disconnect: {
+                id: input.userId,
+              },
+            },
+          },
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }),
+
+  /**
    * mutation to delete a trip
    * @param tripId - id of the trip
    */
@@ -252,7 +339,7 @@ export const userTripsRouter = createTRPCRouter({
    * @param tripId - id of the trip (trip code in client)
    */
   addParticipant: protectedProcedure
-    .input(z.object({ tripId: z.string().min(25).max(25), userId: z.string() }))
+    .input(z.object({ tripId: z.string().length(25), userId: z.string() }))
     .mutation(async ({ ctx, input }) => {
       try {
         await ctx.prisma.trip.update({
@@ -278,7 +365,7 @@ export const userTripsRouter = createTRPCRouter({
    * @param tripId - id of the trip (trip code in client)
    */
   removeParticipant: protectedProcedure
-    .input(z.object({ tripId: z.string().min(25).max(25), userId: z.string() }))
+    .input(z.object({ tripId: z.string().length(25), userId: z.string() }))
     .mutation(async ({ ctx, input }) => {
       try {
         await ctx.prisma.trip.update({

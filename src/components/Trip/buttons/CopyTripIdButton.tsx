@@ -1,11 +1,11 @@
-import { useState, type FC } from "react";
+import { useState, type FC, useEffect } from "react";
 import clsx from "clsx";
-import { regularFont } from "../../../../fonts";
+import { regularFont } from "../../../fonts";
 import { motion } from "framer-motion";
 import * as Toast from "@radix-ui/react-toast";
-import { useMediaQuery } from "../../../../hooks";
+import { useMediaQuery } from "../../../hooks";
 import { useSession } from "next-auth/react";
-import { api } from "../../../../utils/api";
+import { api } from "../../../utils/api";
 
 interface Props {
   tripId: string;
@@ -20,10 +20,11 @@ export const CopyTripIdButton: FC<Props> = (props) => {
   const { data: user } = api.userProfile.getProfileDetails.useQuery({
     email: session?.user?.email as string,
   });
+  const utils = api.useContext();
   const handleCopyToClipboard = async (): Promise<void> => {
     try {
       await navigator.clipboard.writeText(
-        `${user?.name} has invited you to join their trip: ${tripName}! The trip code is ${tripId}. Signup / Login at Trippins (https://trippins.netlify.app/) to join.`,
+        `${user?.name} has invited you to join their trip: ${tripName}! The trip code is ${tripId}. Signup / Login @ Trippins https://trippins.netlify.app to join.`,
       );
 
       if (open) {
@@ -38,6 +39,14 @@ export const CopyTripIdButton: FC<Props> = (props) => {
       console.error("Failed to copy text: ", err);
     }
   };
+
+  useEffect(() => {
+    if (session?.user?.email) {
+      utils.userProfile.getProfileDetails.refetch({
+        email: session.user.email,
+      });
+    }
+  }, [session?.user?.email, utils.userProfile.getProfileDetails]);
 
   return (
     <motion.div

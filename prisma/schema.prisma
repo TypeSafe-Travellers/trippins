@@ -55,19 +55,34 @@ model User {
     sessions      Session[]
     trips         Trip[]    @relation(name: "TripParticipants")
     bannedTrips   Trip[]    @relation(name: "TripBannedUsers")
+    Message       Message[]
 }
 
 model Trip {
-    id           String   @id @default(cuid())
+    id           String    @id @default(cuid())
     name         String
     description  String
     startDate    DateTime
     endDate      DateTime
-    budget       Int      @default(0)
+    budget       Int       @default(0)
     adminId      String
-    createdAt    DateTime @default(now())
-    participants User[]   @relation(name: "TripParticipants")
-    bannedUsers  User[]   @relation(name: "TripBannedUsers")
+    createdAt    DateTime  @default(now())
+    participants User[]    @relation(name: "TripParticipants")
+    bannedUsers  User[]    @relation(name: "TripBannedUsers")
+    Message      Message[]
+}
+
+model Message {
+    id        String   @id @default(cuid())
+    text      String
+    createdAt DateTime @default(now())
+    senderId  String
+    tripId    String
+    sender    User     @relation(fields: [senderId], references: [id], onDelete: Cascade)
+    trip      Trip     @relation(fields: [tripId], references: [id], onDelete: Cascade)
+
+    @@index([senderId])
+    @@index([tripId])
 }
 
 model VerificationToken {

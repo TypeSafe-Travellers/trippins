@@ -17,6 +17,7 @@ const UserTrip: NextPage = () => {
   const { data: participants } = api.userTrips.getTripParticipants.useQuery({
     tripId: id as string,
   });
+  const utils = api.useContext();
 
   useEffect(() => {
     if (status === "unauthenticated") {
@@ -36,7 +37,31 @@ const UserTrip: NextPage = () => {
         push("/404");
       }
     }
-  }, [id, participants, push, user?.id, status]);
+
+    if (session?.user?.email) {
+      utils.userProfile.getProfileDetails.refetch({
+        email: session?.user?.email,
+      });
+    }
+
+    if (id) {
+      utils.userTrips.getTripParticipants.refetch({ tripId: id as string });
+    }
+
+    return () => {
+      utils.userProfile.getProfileDetails.invalidate();
+      utils.userTrips.getTripParticipants.invalidate();
+    };
+  }, [
+    id,
+    push,
+    status,
+    user?.id,
+    participants,
+    session?.user?.email,
+    utils.userProfile.getProfileDetails,
+    utils.userTrips.getTripParticipants,
+  ]);
 
   if (status === "loading") return <Loading />;
 
@@ -51,7 +76,7 @@ const UserTrip: NextPage = () => {
       <Navbar />
       <main
         className={clsx(
-          "flex h-screen w-screen items-center justify-center",
+          "flex w-screen items-center justify-center",
           "flex-col gap-2",
           "text-gray-900 dark:text-zinc-100",
         )}

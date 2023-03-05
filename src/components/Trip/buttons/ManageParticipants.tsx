@@ -1,19 +1,17 @@
 import { Transition } from "@headlessui/react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { CrossIcon } from "../../icons";
+import { CrossIcon } from "../../../icons";
 import { clsx } from "clsx";
 import { type FC, type MouseEvent, Fragment, useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { regularFont } from "../../fonts";
-import { api } from "../../utils/api";
-import { useRouter } from "next/router";
+import { regularFont } from "../../../fonts";
+import { api } from "../../../utils/api";
 
 interface Props {
   tripId: string;
 }
 
 export const ManageParticipants: FC<Props> = (props) => {
-  const { reload } = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedBanParticipantId, setSelectedBanParticipantId] = useState("");
   const [selectedUnbanParticipantId, setSelectedUnbanParticipantId] =
@@ -24,9 +22,20 @@ export const ManageParticipants: FC<Props> = (props) => {
   const { data: trip } = api.userTrips.getSpecificTrip.useQuery({
     tripId,
   });
+  const utils = api.useContext();
   const removeTripParticipantMutation =
-    api.userTrips.removeParticipant.useMutation();
-  const unBanParticipantMutation = api.userTrips.unBanParticipant.useMutation();
+    api.userTrips.removeParticipant.useMutation({
+      onSuccess: () => {
+        setSelectedBanParticipantId("");
+        utils.userTrips.getSpecificTrip.refetch({ tripId });
+      },
+    });
+  const unBanParticipantMutation = api.userTrips.unBanParticipant.useMutation({
+    onSuccess: () => {
+      setSelectedUnbanParticipantId("");
+      utils.userTrips.getSpecificTrip.refetch({ tripId });
+    },
+  });
 
   const handleRemoveParticipant = (e: MouseEvent<HTMLButtonElement>): void => {
     e.preventDefault();
@@ -37,10 +46,6 @@ export const ManageParticipants: FC<Props> = (props) => {
     });
 
     setIsOpen(false);
-
-    setTimeout(() => {
-      reload();
-    }, 500);
   };
 
   const handleUnBanParticipant = (e: MouseEvent<HTMLButtonElement>): void => {
@@ -52,10 +57,6 @@ export const ManageParticipants: FC<Props> = (props) => {
     });
 
     setIsOpen(false);
-
-    setTimeout(() => {
-      reload();
-    }, 500);
   };
 
   useEffect(() => {
@@ -70,7 +71,20 @@ export const ManageParticipants: FC<Props> = (props) => {
     } else {
       setIsUnbanValidated(false);
     }
-  }, [selectedBanParticipantId, selectedUnbanParticipantId]);
+
+    if (tripId) {
+      utils.userTrips.getSpecificTrip.refetch({ tripId });
+    }
+
+    return () => {
+      utils.userTrips.getSpecificTrip.invalidate();
+    };
+  }, [
+    tripId,
+    selectedBanParticipantId,
+    selectedUnbanParticipantId,
+    utils.userTrips.getSpecificTrip,
+  ]);
 
   return (
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>

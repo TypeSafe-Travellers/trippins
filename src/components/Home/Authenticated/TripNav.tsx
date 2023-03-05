@@ -4,12 +4,26 @@ import { useSession } from "next-auth/react";
 import { NewTripButton, JoinTripButton } from "./buttons";
 import { api } from "../../../utils/api";
 import { LoadingAnimation } from "../../Misc";
+import { useEffect } from "react";
 
 export const TripNav = () => {
   const { data: session } = useSession();
   const { data: user } = api.userProfile.getProfileDetails.useQuery({
     email: session?.user?.email as string,
   });
+  const utils = api.useContext();
+
+  useEffect(() => {
+    if (session?.user?.email) {
+      utils.userProfile.getProfileDetails.refetch({
+        email: session?.user?.email,
+      });
+    }
+
+    return () => {
+      utils.userProfile.getProfileDetails.invalidate();
+    };
+  }, [session?.user?.email, utils.userProfile.getProfileDetails]);
 
   return (
     <div
