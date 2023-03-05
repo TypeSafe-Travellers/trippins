@@ -1,11 +1,11 @@
 import { Transition } from "@headlessui/react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { CrossIcon } from "../../../../icons";
+import { CrossIcon } from "../../../icons";
 import { clsx } from "clsx";
 import { Fragment, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { regularFont } from "../../../../fonts";
-import { api } from "../../../../utils/api";
+import { regularFont } from "../../../fonts";
+import { api } from "../../../utils/api";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 
@@ -59,9 +59,8 @@ export const RemoveTripButton = () => {
     <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
       <Dialog.Trigger asChild>
         <motion.div
-          initial={{ y: 100, scale: 0 }}
-          animate={{ y: 0, scale: 1 }}
-          whileHover={{ scale: 1.1 }}
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
           transition={{
             type: "spring",
             stiffness: 260,
@@ -86,7 +85,7 @@ export const RemoveTripButton = () => {
               "radix-state-instant-open:bg-gray-50 radix-state-delayed-open:bg-gray-50",
             )}
           >
-            Remove Trip
+            Remove
           </button>
         </motion.div>
       </Dialog.Trigger>
