@@ -11,6 +11,7 @@ import {
   EditTripButton,
   CopyTripIdButton,
   ManageParticipants,
+  RemoveTripButton,
 } from "./buttons";
 import { TripChat } from "./TripChat";
 import { useRouter } from "next/router";
@@ -203,6 +204,11 @@ export const TripDetailsContainer: FC<Props> = (props) => {
                 )}
               >
                 <CopyTripIdButton tripId={trip.id} tripName={trip.name} />
+
+                {user?.id && user?.id !== trip?.adminId && (
+                  <RemoveTripButton tripId={trip?.id} userId={user.id} />
+                )}
+
                 {user?.id === trip?.adminId && (
                   <div className="flex gap-x-3">
                     <ManageParticipants tripId={trip?.id} />
