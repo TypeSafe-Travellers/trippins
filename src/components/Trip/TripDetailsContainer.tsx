@@ -204,7 +204,11 @@ export const TripDetailsContainer: FC<Props> = (props) => {
                 )}
               >
                 <CopyTripIdButton tripId={trip.id} tripName={trip.name} />
-                {user?.id !== trip?.adminId && <RemoveTripButton />}
+
+                {user?.id && user?.id !== trip?.adminId && (
+                  <RemoveTripButton tripId={trip?.id} userId={user.id} />
+                )}
+
                 {user?.id === trip?.adminId && (
                   <div className="flex gap-x-3">
                     <ManageParticipants tripId={trip?.id} />
